@@ -55,6 +55,9 @@
     <Compile Include="frmFaculty.Designer.cs">
       <DependentUpon>frmFaculty.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmFaculty.resx">
       <DependentUpon>frmFaculty.cs</DependentUpon>
     </EmbeddedResource>
@@ -118,28 +121,64 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmAccountHome.cs"><SubType>Form</SubType></Compile>
-    <Compile Include="frmAccountHome.Designer.cs"><DependentUpon>frmAccountHome.cs</DependentUpon></Compile>
-    <EmbeddedResource Include="frmAccountHome.resx"><DependentUpon>frmAccountHome.cs</DependentUpon></EmbeddedResource>
+    <Compile Include="frmAccountHome.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAccountHome.Designer.cs">
+      <DependentUpon>frmAccountHome.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="frmAccountHome.resx">
+      <DependentUpon>frmAccountHome.cs</DependentUpon>
+    </EmbeddedResource>
     <Compile Include="AccountService.cs" />
     <Compile Include="Security.cs" />
     <Compile Include="Presentation.cs" />
     <Compile Include="Diagnostics.cs" />
-    <Compile Include="frmLogin.cs"><SubType>Form</SubType></Compile>
-    <Compile Include="frmLogin.Designer.cs"><DependentUpon>frmLogin.cs</DependentUpon></Compile>
-    <EmbeddedResource Include="frmLogin.resx"><DependentUpon>frmLogin.cs</DependentUpon></EmbeddedResource>
-    <Compile Include="frmChangePassword.cs"><SubType>Form</SubType></Compile>
-    <Compile Include="frmChangePassword.Designer.cs"><DependentUpon>frmChangePassword.cs</DependentUpon></Compile>
-    <EmbeddedResource Include="frmChangePassword.resx"><DependentUpon>frmChangePassword.cs</DependentUpon></EmbeddedResource>
-    <Compile Include="frmUserManagement.cs"><SubType>Form</SubType></Compile>
-    <Compile Include="frmUserManagement.Designer.cs"><DependentUpon>frmUserManagement.cs</DependentUpon></Compile>
-    <EmbeddedResource Include="frmUserManagement.resx"><DependentUpon>frmUserManagement.cs</DependentUpon></EmbeddedResource>
-    <Compile Include="frmUserEdit.cs"><SubType>Form</SubType></Compile>
-    <Compile Include="frmUserEdit.Designer.cs"><DependentUpon>frmUserEdit.cs</DependentUpon></Compile>
-    <EmbeddedResource Include="frmUserEdit.resx"><DependentUpon>frmUserEdit.cs</DependentUpon></EmbeddedResource>
-    <Compile Include="frmRoleManagement.cs"><SubType>Form</SubType></Compile>
-    <Compile Include="frmRoleManagement.Designer.cs"><DependentUpon>frmRoleManagement.cs</DependentUpon></Compile>
-    <EmbeddedResource Include="frmRoleManagement.resx"><DependentUpon>frmRoleManagement.cs</DependentUpon></EmbeddedResource>
+    <Compile Include="frmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLogin.Designer.cs">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="frmLogin.resx">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Include="frmChangePassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmChangePassword.Designer.cs">
+      <DependentUpon>frmChangePassword.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="frmChangePassword.resx">
+      <DependentUpon>frmChangePassword.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Include="frmUserManagement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmUserManagement.Designer.cs">
+      <DependentUpon>frmUserManagement.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="frmUserManagement.resx">
+      <DependentUpon>frmUserManagement.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Include="frmUserEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmUserEdit.Designer.cs">
+      <DependentUpon>frmUserEdit.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="frmUserEdit.resx">
+      <DependentUpon>frmUserEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Include="frmRoleManagement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRoleManagement.Designer.cs">
+      <DependentUpon>frmRoleManagement.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="frmRoleManagement.resx">
+      <DependentUpon>frmRoleManagement.cs</DependentUpon>
+    </EmbeddedResource>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QuanLyGiangVien.designer.cs">

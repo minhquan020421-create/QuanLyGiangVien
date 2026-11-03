@@ -38,5 +38,10 @@ namespace QuanLyGiangVien
             },lblThongBao);
             Theme.Apply(this);
         }
+
+        private void cboVaiTro_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

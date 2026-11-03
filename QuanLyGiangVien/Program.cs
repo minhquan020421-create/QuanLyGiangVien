@@ -19,7 +19,7 @@ namespace QuanLyGiangVien
             if (args.Any(arg => string.Equals(arg, "--hao", StringComparison.OrdinalIgnoreCase)))
                 Application.Run(new frmLogin());
             else
-                Application.Run(new Form1());
+                Application.Run(new frmMain());
         }
     }
 }
