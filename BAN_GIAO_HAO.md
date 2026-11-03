@@ -20,7 +20,7 @@
 
 ## Tích hợp frmMain sau này
 
-AccountHome chỉ là màn hình chạy thử phân hệ tài khoản, không thay thế frmMain của nhóm. Session.Login trả Session của người dùng hiện tại; frmMain cùng project có thể nhận Session rồi mở frmUserManagement(session), frmRoleManagement(session), frmChangePassword(session).
+frmAccountHome chỉ là màn hình chạy thử phân hệ tài khoản, không thay thế frmMain của nhóm. Session.Login trả Session của người dùng hiện tại; frmMain cùng project có thể nhận Session rồi mở frmUserManagement(session), frmRoleManagement(session), frmChangePassword(session).
 
 Dùng session.Can(maForm, ActionRight.View/Add/Edit/Delete) để điều khiển nút/menu. MaForm phải khớp CHUC_NANG trong database. Các thao tác ghi của AccountService vẫn kiểm tra quyền và trạng thái tài khoản tại thời điểm thao tác; không dựa riêng vào việc ẩn nút.
 
@@ -36,3 +36,8 @@ Dùng session.Can(maForm, ActionRight.View/Add/Edit/Delete) để điều khiể
 ## Kiểm tra trước khi bàn giao
 
 Debug/Release build; đăng nhập đúng/sai/trống; thao tác tài khoản; đổi/đặt lại mật khẩu; thu hồi quyền; kiểm tra quyền trong service; cố định vai trò; mở 5 form và theme sáng/tối. Kết quả vòng kiểm tra ngày 02/11/2026: Debug và Release build thành công; 40 kiểm tra chức năng đạt trên database thử riêng; kiểm tra nút Đăng nhập với file ứng dụng đã biên dịch đạt. Database thử đã xóa; không thay đổi dữ liệu nghiệp vụ trên database đang sử dụng. Chưa kiểm thử tích hợp frmMain và các nghiệp vụ của thành viên khác.
+
+## Cập nhật ngày 03/11/2026
+
+- Màn hình tài khoản dùng frmAccountHome có .cs, .Designer.cs và .resx, dựa trên phần kéo thả của Hào. File .cs giữ xử lý sự kiện; vị trí và control nằm trong Designer. Đã thay chỗ mở màn hình trong frmLogin, bỏ AccountHome tạo control bằng code.
+- Diagnostics ghi lỗi tại đường dẫn tương đối Logs/sql-yyyyMMdd.log, tính từ thư mục làm việc hiện tại của ứng dụng. Thư mục Logs được bỏ qua bởi Git. Nếu không có quyền ghi, việc ghi log được bỏ qua như trước.
