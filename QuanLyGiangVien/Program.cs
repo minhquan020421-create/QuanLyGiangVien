@@ -16,10 +16,7 @@ namespace QuanLyGiangVien
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            if (args.Any(arg => string.Equals(arg, "--hao", StringComparison.OrdinalIgnoreCase)))
-                Application.Run(new frmLogin());
-            else
-                Application.Run(new frmMain());
+            Application.Run(new frmLogin());
         }
     }
 }

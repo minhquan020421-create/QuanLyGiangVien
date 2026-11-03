@@ -6,6 +6,82 @@ namespace QuanLyGiangVien
 {
     public partial class frmMain : Form
     {
+        private Session session;
+
+        internal frmMain(Session current) : this()
+        {
+            if (current == null)
+                throw new ArgumentNullException(nameof(current));
+
+            session = current;
+            lblWelcome.Text = "Xin chào, " + session.Username;
+            btnChuyenmon.Click += (s, e) =>
+            {
+                Ui.Run(this, () =>
+                {
+                    if (!session.Can("frmSpecialization", ActionRight.View))
+                        throw new UserMessage("Bạn không có quyền xem chuyên môn.");
+
+                    using (var form = new frmSpecialization(session.UserId))
+                    {
+                        form.ShowDialog(this);
+                    }
+                });
+            };
+
+            btnHocphan.Click += (s, e) =>
+            {
+                Ui.Run(this, () =>
+                {
+                    if (!session.Can("frmCourse", ActionRight.View))
+                        throw new UserMessage("Bạn không có quyền xem học phần.");
+
+                    using (var form = new frmCourse(session.UserId))
+                    {
+                        form.ShowDialog(this);
+                    }
+                });
+            };
+            btnChucvu.Click += (s, e) =>
+            {
+                Ui.Run(this, () =>
+                {
+                    if (!session.Can("frmPosition", ActionRight.View))
+                        throw new UserMessage("Bạn không có quyền xem chức vụ.");
+
+                    using (var form = new frmPosition(session.UserId))
+                    {
+                        form.ShowDialog(this);
+                    }
+                });
+            };
+            btnHocVi.Click += (s, e) =>
+            {
+                Ui.Run(this, () =>
+                {
+                    if (!session.Can("frmDegree", ActionRight.View))
+                        throw new UserMessage("Bạn không có quyền xem học vị.");
+
+                    using (var form = new frmDegree(session.UserId))
+                    {
+                        form.ShowDialog(this);
+                    }
+                });
+            };
+            btnGV.Click += (s, e) =>
+            {
+                Ui.Run(this, () =>
+                {
+                    if (!session.Can("frmLecturer", ActionRight.View))
+                        throw new UserMessage("Bạn không có quyền xem giảng viên.");
+
+                    using (var form = new frmLecturer(session.UserId))
+                    {
+                        form.ShowDialog(this);
+                    }
+                });
+            };
+        }
         // ============================================================
         // CONSTRUCTOR
         // ============================================================
@@ -251,7 +327,7 @@ namespace QuanLyGiangVien
             // Nếu người dùng bấm OK
             if (result == DialogResult.OK)
             {
-                Application.Exit();
+                Close();
             }
 
             // Nếu bấm Cancel thì không làm gì
@@ -292,15 +368,37 @@ namespace QuanLyGiangVien
 
         private void button2_Click(object sender, EventArgs e)
         {
-            // Nút Bộ môn
-            // Sau này mở frmDepartment
+            Ui.Run(this, () =>
+            {
+                if (session == null)
+                    throw new UserMessage("Bạn chưa đăng nhập.");
+
+                if (!session.Can("frmDepartment", ActionRight.View))
+                    throw new UserMessage("Bạn không có quyền xem bộ môn.");
+
+                using (var form = new frmDepartment(session.UserId))
+                {
+                    form.ShowDialog(this);
+                }
+            });
         }
 
 
         private void button3_Click(object sender, EventArgs e)
         {
-            // Nút Khoa
-            // Sau này mở frmFaculty
+            Ui.Run(this, () =>
+            {
+                if (session == null)
+                    throw new UserMessage("Bạn chưa đăng nhập.");
+
+                if (!session.Can("frmFaculty", ActionRight.View))
+                    throw new UserMessage("Bạn không có quyền xem khoa.");
+
+                using (var form = new frmFaculty(session.UserId))
+                {
+                    form.ShowDialog(this);
+                }
+            });
         }
 
 
