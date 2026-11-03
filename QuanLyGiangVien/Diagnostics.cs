@@ -12,8 +12,8 @@ namespace QuanLyGiangVien
             // Chỉ ghi mã chẩn đoán. Không ghi mật khẩu, salt, hash hoặc chuỗi kết nối.
             try
             {
-                string folder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
-                    "QLGV_Hao", "Logs");
+                // Đường dẫn tương đối với thư mục làm việc của ứng dụng.
+                string folder = "Logs";
                 Directory.CreateDirectory(folder);
                 string line = DateTime.UtcNow.ToString("O") + " SQL Number=" + error.Number +
                     " State=" + error.State + " Class=" + error.Class +

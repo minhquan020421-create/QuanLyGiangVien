@@ -36,7 +36,7 @@ namespace QuanLyGiangVien
             txtMatKhau.Clear(); txtMatKhau.UseSystemPasswordChar=true; btnHienMatKhau.AccessibleName="Hiện mật khẩu"; failures=0; retryAfter=DateTime.MinValue;
             Preferences.Values.RememberedName=chkGhiNhoDangNhap.Checked ? session.Username : "";
             Preferences.Values.Save();
-            using(var home=new AccountHome(session))
+            using(var home=new frmAccountHome(session))
             {
                 Hide();
                 try { home.ShowDialog(); }
