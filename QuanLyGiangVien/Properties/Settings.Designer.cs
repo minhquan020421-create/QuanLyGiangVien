@@ -26,7 +26,7 @@ namespace QuanLyGiangVien.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=.\\SQLEXPRESS;Initial Catalog=QuanLyGiangVien;Integrated Security=True" +
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=localhost;Initial Catalog=QuanLyGiangVien;Integrated Security=True" +
             ";TrustServerCertificate=True")]
         public string QuanLyGiangVienConnectionString {
             get {
