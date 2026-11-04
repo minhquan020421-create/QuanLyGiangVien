@@ -43,5 +43,10 @@ namespace QuanLyGiangVien
                 finally { Show(); Activate(); txtMatKhau.Focus(); }
             }
         }
+
+        private void lblMoTa_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

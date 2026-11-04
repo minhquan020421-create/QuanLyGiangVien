@@ -164,6 +164,15 @@ namespace QuanLyGiangVien
                     b.FlatAppearance.MouseOverBackColor=primary ? Color.FromArgb(59,107,208) : field;
                     b.Paint -= DrawDisabledButton;
                     b.Paint += DrawDisabledButton;
+                    // Giữ màu đỏ cho nút quay lại ở cả hai chế độ giao diện.
+                    if (b.Name == "btnQuayLaiMain")
+                    {
+                        b.BackColor = Color.FromArgb(185, 28, 28);
+                        b.ForeColor = Color.White;
+                        b.FlatAppearance.BorderSize = 0;
+                        b.FlatAppearance.MouseOverBackColor = Color.FromArgb(220, 38, 38);
+                        b.FlatAppearance.MouseDownBackColor = Color.FromArgb(153, 27, 27);
+                    }
                     if(b.Name=="btnTheme") b.Text=dark ? "Giao diện sáng" : "Giao diện tối";
                 }
                 else if(c is Label || c is CheckBox)
