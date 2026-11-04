@@ -78,7 +78,9 @@ namespace QuanLyGiangVien
 
         private void dgvDanhSach_SelectionChanged(object sender, EventArgs e)
         {
-            if (loading || dgvDanhSach.SelectedRows.Count == 0) return;
+            if (loading) return;
+            selected = null;
+            if (dgvDanhSach.SelectedRows.Count == 0) return;
             int id = Convert.ToInt32(dgvDanhSach.SelectedRows[0].Cells["colMaKhoa"].Value);
             selected = rows.FirstOrDefault(x => x.MaKhoa == id);
             if (selected == null) return;
@@ -91,7 +93,6 @@ namespace QuanLyGiangVien
             bool ok = HoangFormHelper.Run(this, () =>
             {
                 HoangFormHelper.RequireAction(maNguoiDung, "frmFaculty", adding ? "Them" : "Sua");
-                HoangFormHelper.Require(adding || selected != null, "Vui lòng chọn dòng cần sửa.");
                 HoangFormHelper.Require(txtTenKhoa.Text.Trim().Length > 0, "Vui lòng nhập tên.");
                 HoangFormHelper.CheckEmail(txtEmail.Text.Trim(), false);
                 HoangFormHelper.CheckPhone(txtSoDienThoai.Text.Trim());
@@ -104,10 +105,16 @@ namespace QuanLyGiangVien
                 HoangFormHelper.Require(!duplicatePhone, phone == null
                     ? "Đã có một khoa chưa nhập số điện thoại. Theo cấu hình dữ liệu hiện tại, vui lòng nhập số điện thoại cho khoa này."
                     : "Số điện thoại đã được khoa khác sử dụng.");
-                HoangFormHelper.Require(adding || db.KHOAs.Any(x => x.MaKhoa == selected.MaKhoa), "Bản ghi đã bị xóa. Hãy làm mới danh sách.");
-                writing = true;
                 var item = adding ? new KHOA() : selected;
-                item.TenKhoa = txtTenKhoa.Text.Trim(); item.Email = HoangFormHelper.Optional(txtEmail.Text); item.SoDienThoai = phone; item.TrangThai = chkTrangThai.Checked;
+                item.TenKhoa = txtTenKhoa.Text.Trim();
+                item.Email = HoangFormHelper.Optional(txtEmail.Text);
+                item.SoDienThoai = phone;
+                item.TrangThai = chkTrangThai.Checked;
+
+                if (!adding)
+                    HoangFormHelper.Require(db.GetChangeSet().Updates.Count > 0, "Thông tin khoa chưa thay đổi.");
+
+                writing = true;
                 if (adding) db.KHOAs.InsertOnSubmit(item);
                 db.SubmitChanges();
                 MessageBox.Show(this, "Đã lưu dữ liệu.", "Thông báo");
@@ -117,7 +124,16 @@ namespace QuanLyGiangVien
         }
 
         private void btnThem_Click(object sender, EventArgs e) { Save(true); }
-        private void btnSua_Click(object sender, EventArgs e) { Save(false); }
+        private void btnSua_Click(object sender, EventArgs e)
+        {
+            if (selected == null)
+            {
+                MessageBox.Show(this, "Vui lòng chọn khoa cần sửa.", "Thông báo");
+                return;
+            }
+
+            Save(false);
+        }
         private void btnTimKiem_Click(object sender, EventArgs e) { LoadData(); }
         private void btnLamMoi_Click(object sender, EventArgs e) { txtTimKiem.Clear(); LoadData(); }
 
