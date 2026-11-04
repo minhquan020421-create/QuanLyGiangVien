@@ -40,6 +40,9 @@ namespace QuanLyGiangVien
         public frmMain()
         {
             InitializeComponent();
+            layoutDashboard.Layout += layoutDashboard_Layout;
+            lblDashboardMessage.TextChanged += (sender, e) =>
+                lblDashboardMessage.Visible = lblDashboardMessage.Text.Length > 0;
             HoangFormHelper.KeepContentScrollable(pnlContent, layoutDashboard);
         }
 
@@ -76,7 +79,9 @@ namespace QuanLyGiangVien
             btnThongKe.Tag = pnlThongKe;
             btnBaoCao.Tag = pnlBaoCao;
             pnlHeThong.Visible = pnlDanhMuc.Visible = pnlDaoTao.Visible = pnlThongKe.Visible = pnlBaoCao.Visible = false;
-            lblWorkloadTitle.Text = $"Khối lượng giảng dạy · Năm học {StartYear}–{EndYear}";
+            lblWorkloadYear.Text = $"Năm học {StartYear}–{EndYear}";
+            lblRateTitleDat.Text = $"Đạt {frmTeachingWorkload.DinhMucTietMoiHocKy} tiết";
+            lblRateTitleVuot.Text = $"Vượt {frmTeachingWorkload.DinhMucTietMoiHocKy} tiết";
             Theme.Apply(this);
 
             var workArea = Screen.FromControl(this).WorkingArea;
@@ -100,6 +105,56 @@ namespace QuanLyGiangVien
             var button = (Button)sender;
             var group = (Control)button.Tag;
             group.Visible = !group.Visible;
+            button.Text = button.Text.TrimEnd(' ', '▸', '▾') + (group.Visible ? "  ▾" : "  ▸");
+        }
+
+        private void layoutDashboard_Layout(object sender, LayoutEventArgs e)
+        {
+            int width = layoutDashboard.ClientSize.Width - layoutDashboard.Padding.Horizontal;
+            // Keep the wide row large enough for the number and its status at the current scale.
+            int cardWidth = cardGiangVien.MinimumSize.Height * 3 / 2 + cardGiangVien.Margin.Horizontal;
+            int columns = width >= 4 * cardWidth ? 4 : 2;
+            int rows = 4 / columns;
+            if (layoutCounts.ColumnCount != columns)
+            {
+                var cards = new[] { cardGiangVien, cardKhoa, cardHocPhan, cardLop };
+                layoutCounts.SuspendLayout();
+                layoutCounts.ColumnCount = columns;
+                layoutCounts.RowCount = rows;
+                layoutCounts.ColumnStyles.Clear();
+                layoutCounts.RowStyles.Clear();
+                for (int i = 0; i < columns; i++)
+                    layoutCounts.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F / columns));
+                for (int i = 0; i < rows; i++)
+                    layoutCounts.RowStyles.Add(new RowStyle(SizeType.Percent, 100F / rows));
+                for (int i = 0; i < cards.Length; i++)
+                    layoutCounts.SetCellPosition(cards[i], new TableLayoutPanelCellPosition(i % columns, i / columns));
+                layoutCounts.ResumeLayout();
+            }
+
+            int countHeight = rows * (cardGiangVien.MinimumSize.Height + cardGiangVien.Margin.Vertical);
+            if (rows == 1)
+                countHeight += cardGiangVien.Padding.Vertical;
+            var countSize = new Size(0, countHeight);
+            if (layoutCounts.MinimumSize != countSize)
+                layoutCounts.MinimumSize = countSize;
+
+            int messageHeight = lblDashboardMessage.Text.Length == 0 ? 0 : DashboardRowHeight(lblDashboardMessage, width);
+            int height = layoutDashboard.Padding.Vertical + countHeight + messageHeight +
+                DashboardRowHeight(layoutOverviewHeader, width) + DashboardRowHeight(layoutWorkload, width);
+            if (layoutDashboard.MinimumSize.Height != height)
+            {
+                layoutDashboard.MinimumSize = new Size(layoutDashboard.MinimumSize.Width, height);
+                // The scroll range is calculated after the nested layout has settled.
+                if (pnlContent.IsHandleCreated)
+                    pnlContent.BeginInvoke((MethodInvoker)pnlContent.PerformLayout);
+            }
+        }
+
+        private static int DashboardRowHeight(Control control, int width)
+        {
+            var proposed = new Size(Math.Max(1, width - control.Margin.Horizontal), 0);
+            return control.GetPreferredSize(proposed).Height + control.Margin.Vertical;
         }
 
         private void btnTheme_Click(object sender, EventArgs e)
@@ -164,14 +219,14 @@ namespace QuanLyGiangVien
 
             SetCounts(LoadError);
             cboHocKy.Enabled = false;
-            lblWorkload.Text = LoadError;
+            SetWorkloadStatus(LoadError);
 
             Ui.Run(this, () =>
             {
                 if (session == null)
                 {
                     SetCounts(NoAccess);
-                    lblWorkload.Text = NoAccess;
+                    SetWorkloadStatus(NoAccess);
                     throw new UserMessage("Bạn chưa đăng nhập.");
                 }
 
@@ -193,8 +248,8 @@ namespace QuanLyGiangVien
                         int semester = LoadSemesters(db);
                         if (semester != 0)
                         {
-                            lblWorkload.Text = LoadError;
-                            lblWorkload.Text = CalculateWorkload(db, user, semester);
+                            SetWorkloadStatus(LoadError);
+                            LoadWorkload(db, user, semester);
                         }
                     }
                     else
@@ -205,7 +260,17 @@ namespace QuanLyGiangVien
 
         private void SetCounts(string text)
         {
-            lblSoGiangVien.Text = lblSoKhoa.Text = lblSoHocPhan.Text = lblSoLop.Text = text;
+            ShowCount(lblSoGiangVien, lblTrangThaiGiangVien, text);
+            ShowCount(lblSoKhoa, lblTrangThaiKhoa, text);
+            ShowCount(lblSoHocPhan, lblTrangThaiHocPhan, text);
+            ShowCount(lblSoLop, lblTrangThaiLop, text);
+        }
+
+        private static void ShowCount(Label value, Label status, string text)
+        {
+            bool available = text != NoAccess && text != NoData && text != LoadError;
+            value.Text = available ? text : "—";
+            status.Text = available ? "Đang hoạt động" : text;
         }
 
         private void LoadCounts(QuanLyGiangVienDataContext db, int? lecturerId, bool personal, HashSet<string> rights)
@@ -229,10 +294,10 @@ namespace QuanLyGiangVien
             string classCount = rights.Contains(AssignmentForm)
                 ? FormatCount(classes.Where(c => c.TrangThai), classes) : NoAccess;
 
-            lblSoGiangVien.Text = lecturerCount;
-            lblSoKhoa.Text = facultyCount;
-            lblSoHocPhan.Text = courseCount;
-            lblSoLop.Text = classCount;
+            ShowCount(lblSoGiangVien, lblTrangThaiGiangVien, lecturerCount);
+            ShowCount(lblSoKhoa, lblTrangThaiKhoa, facultyCount);
+            ShowCount(lblSoHocPhan, lblTrangThaiHocPhan, courseCount);
+            ShowCount(lblSoLop, lblTrangThaiLop, classCount);
             lblScope.Text = personal ? "Bản ghi đang hoạt động trong phạm vi cá nhân."
                 : "Bản ghi đang hoạt động thuộc các chức năng bạn được phép xem.";
         }
@@ -280,10 +345,11 @@ namespace QuanLyGiangVien
             int semester = cboHocKy.SelectedValue is int ? (int)cboHocKy.SelectedValue : 0;
             if (semester == 0)
             {
-                lblWorkload.Text = "Chọn học kỳ để xem tỷ lệ.";
+                SetWorkloadStatus("Chọn học kỳ để xem tỷ lệ.");
                 return;
             }
 
+            SetWorkloadStatus(LoadError);
             Ui.Run(this, () =>
             {
                 if (session == null)
@@ -299,16 +365,26 @@ namespace QuanLyGiangVien
                         return;
                     }
 
-                    lblWorkload.Text = CalculateWorkload(db, user, semester);
+                    LoadWorkload(db, user, semester);
                 }
             }, lblWorkload);
         }
 
-        private static string CalculateWorkload(QuanLyGiangVienDataContext db, NGUOI_DUNG user, int semester)
+        private void SetWorkloadStatus(string text)
+        {
+            lblSoDat.Text = lblSoVuot.Text = "—";
+            lblTiLeDat.Text = lblTiLeVuot.Text = " ";
+            lblWorkload.Text = text;
+        }
+
+        private void LoadWorkload(QuanLyGiangVienDataContext db, NGUOI_DUNG user, int semester)
         {
             var year = db.NAM_HOCs.FirstOrDefault(y => y.TuNam == StartYear && y.DenNam == EndYear);
             if (year == null)
-                return "Chưa có dữ liệu năm học.";
+            {
+                lblWorkload.Text = "Chưa có dữ liệu năm học.";
+                return;
+            }
 
             var lecturers = db.GIANG_VIENs.Where(g => g.TrangThai);
             var assignments = frmTeachingWorkload.ActiveAssignments(db, year.MaNamHoc, semester);
@@ -321,14 +397,20 @@ namespace QuanLyGiangVien
 
             int denominator = lecturers.Count();
             if (denominator == 0)
-                return "Chưa có giảng viên đang hoạt động trong phạm vi xem.";
+            {
+                lblWorkload.Text = "Chưa có giảng viên đang hoạt động trong phạm vi xem.";
+                return;
+            }
 
             var totals = assignments.GroupBy(a => a.MaGV).Select(g => g.Sum(a => a.SoTiet));
             int quota = frmTeachingWorkload.DinhMucTietMoiHocKy;
             int meets = totals.Count(t => t == quota);
             int exceeds = totals.Count(t => t > quota);
-            return $"Đạt {quota} tiết: {(double)meets / denominator:P1}  ({meets}/{denominator})" +
-                Environment.NewLine + $"Vượt {quota} tiết: {(double)exceeds / denominator:P1}  ({exceeds}/{denominator})";
+            lblSoDat.Text = ((double)meets / denominator).ToString("P1");
+            lblSoVuot.Text = ((double)exceeds / denominator).ToString("P1");
+            lblTiLeDat.Text = $"{meets}/{denominator} giảng viên";
+            lblTiLeVuot.Text = $"{exceeds}/{denominator} giảng viên";
+            lblWorkload.Text = "Tính trên giảng viên đang hoạt động trong phạm vi xem.";
         }
     }
 }

@@ -130,7 +130,8 @@ namespace QuanLyGiangVien
                 if(c is Panel)
                 {
                     bool dashboardBackground = f is frmMain && (c.Name == "pnlContent" ||
-                        c.Name == "layoutDashboard" || c.Name == "layoutCounts" || c.Name == "pnlQuickActions");
+                        c.Name == "layoutDashboard" || c.Name == "layoutOverviewHeader" ||
+                        c.Name == "layoutCounts" || c.Name == "rateDat" || c.Name == "rateVuot");
                     c.BackColor = dashboardBackground ? background : surface;
                 }
                 else if(c is DateTimePicker)
@@ -154,7 +155,8 @@ namespace QuanLyGiangVien
                 {
                     var b=(Button)c;
                     bool primary=b.Name=="btnDangNhap" || b.Name=="btnDoiMatKhau" && f is frmChangePassword ||
-                                 b.Name.StartsWith("btnLuu") || (b.Name=="btnThem" || b.Name=="btnThemVaiTro") || b.Name=="btnAccounts";
+                                 b.Name.StartsWith("btnLuu") || (b.Name=="btnThem" || b.Name=="btnThemVaiTro") || b.Name=="btnAccounts" ||
+                                 f is frmMain && (b.Name=="btnTongQuan" || b.Name=="btnBieuDoTongQuan");
                     b.FlatStyle=FlatStyle.Flat; b.UseVisualStyleBackColor=false; b.Cursor=Cursors.Hand;
                     b.BackColor=primary ? Color.FromArgb(49,91,190) : surface;
                     b.ForeColor=primary ? Color.White : b.Name.StartsWith("btnXoa") ? alert : ink;
@@ -168,7 +170,7 @@ namespace QuanLyGiangVien
                 {
                     c.BackColor=Color.Transparent;
                     c.ForeColor=c.Name=="lblThongBao" || c.Name=="lblDashboardMessage" ? alert :
-                        c.Name.StartsWith("lblIcon") ? accent :
+                        c.Name.StartsWith("lblIcon") || f is frmMain && c.Name.StartsWith("lblDanhMuc") ? accent :
                         c.Name.Contains("TieuDe") || c.Name=="lblTenHeThong" || c.Name=="lblDangNhap" ||
                         f is frmMain && c.Name.StartsWith("lblSo") ? ink : muted;
                 }
