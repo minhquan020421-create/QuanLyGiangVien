@@ -165,7 +165,7 @@ namespace QuanLyGiangVien
                     b.Paint -= DrawDisabledButton;
                     b.Paint += DrawDisabledButton;
                     // Giữ màu đỏ cho nút quay lại ở cả hai chế độ giao diện.
-                    if (b.Name == "btnQuayLaiMain")
+                    if (b.Name == "btnQuayLaiMain" || b.Name == "btnQuayLai")
                     {
                         b.BackColor = Color.FromArgb(185, 28, 28);
                         b.ForeColor = Color.White;

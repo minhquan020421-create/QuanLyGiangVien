@@ -276,6 +276,13 @@
             this.pnlCuoi.WrapContents = false;
             this.pnlCuoi.Padding = new System.Windows.Forms.Padding(8, 4, 8, 4);
             this.pnlCuoi.TabIndex = 1;
+            this.btnQuayLai.BackColor = System.Drawing.Color.FromArgb(185, 28, 28);
+            this.btnQuayLai.ForeColor = System.Drawing.Color.White;
+            this.btnQuayLai.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnQuayLai.FlatAppearance.BorderSize = 0;
+            this.btnQuayLai.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(220, 38, 38);
+            this.btnQuayLai.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(153, 27, 27);
+            this.btnQuayLai.UseVisualStyleBackColor = false;
             this.btnQuayLai.Name = "btnQuayLai";
             this.btnQuayLai.AutoSize = true;
             this.btnQuayLai.MinimumSize = new System.Drawing.Size(112, 32);
