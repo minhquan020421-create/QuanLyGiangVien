@@ -15,6 +15,8 @@ namespace QuanLyGiangVien
 
             session = current;
             lblWelcome.Text = "Xin chào, " + session.Username;
+            btnPhanQuyen.Click += btnPhanQuyen_Click;
+            Shown += (s, e) => Ui.Run(this, RefreshAccountRights);
             btnChuyenmon.Click += (s, e) =>
             {
                 Ui.Run(this, () =>
@@ -404,15 +406,66 @@ namespace QuanLyGiangVien
 
         private void button1_Click(object sender, EventArgs e)
         {
-            // Nút Quản lý người dùng
-            // Sau này mở frmUserManagement
+            OpenAccountForm(AccountService.Accounts, () => new frmUserManagement(session));
         }
 
 
         private void btnDoiMatKhau_Click(object sender, EventArgs e)
         {
-            // Nút Đổi mật khẩu
-            // Sau này mở Form đổi mật khẩu
+            OpenAccountForm(null, () => new frmChangePassword(session));
+        }
+
+
+        private void btnPhanQuyen_Click(object sender, EventArgs e)
+        {
+            OpenAccountForm(AccountService.Roles, () => new frmRoleManagement(session));
+        }
+
+        // Đọc lại quyền khi mở Main và sau khi đóng màn hình tài khoản.
+        private void RefreshAccountRights()
+        {
+            btnNguoiDung.Enabled = false;
+            btnPhanQuyen.Enabled = false;
+            btnDoiMatKhau.Enabled = false;
+            if (session == null) return;
+
+            using (var db = Session.Open())
+            {
+                var user = session.Current(db);
+                btnNguoiDung.Enabled = Session.Allows(db, user.MaVaiTro,
+                    AccountService.Accounts, ActionRight.View);
+                btnPhanQuyen.Enabled = Session.Allows(db, user.MaVaiTro,
+                    AccountService.Roles, ActionRight.View);
+                // Người dùng có phiên hợp lệ được đổi mật khẩu của chính mình.
+                btnDoiMatKhau.Enabled = true;
+            }
+        }
+
+        private void OpenAccountForm(string formName, Func<Form> createForm)
+        {
+            Ui.Run(this, () =>
+            {
+                if (session == null)
+                    throw new UserMessage("Bạn chưa đăng nhập.");
+
+                // Kiểm tra lại tại lúc bấm, kể cả khi nút đang được bật.
+                using (var db = Session.Open())
+                {
+                    var user = session.Current(db);
+                    if (formName != null &&
+                        !Session.Allows(db, user.MaVaiTro, formName, ActionRight.View))
+                        throw new UserMessage("Bạn không có quyền mở chức năng này.");
+                }
+
+                try
+                {
+                    using (var form = createForm()) form.ShowDialog(this);
+                }
+                finally
+                {
+                    Ui.Run(this, RefreshAccountRights);
+                }
+            });
         }
 
 

@@ -1,4 +1,4 @@
-﻿# Phần tài khoản và phân quyền — Hào
+# Phần tài khoản và phân quyền — Hào
 
 ## Phạm vi bàn giao
 
@@ -14,8 +14,8 @@
 1. Mở QuanLyGiangVien/QuanLyGiangVien.slnx bằng Visual Studio có .NET desktop development, .NET Framework 4.8 targeting pack và LINQ to SQL tools.
 2. SQL Server Express phải có instance SQLEXPRESS. Dùng script QuanLyGiangVien_CreateTables.sql của nhóm để khởi tạo database mới. Không chạy lại script tạo bảng/seed trên database đang có dữ liệu.
 3. Cấu hình kết nối nằm trong App.config; mặc định Windows Authentication, server .\SQLEXPRESS, database QuanLyGiangVien. Máy khác tên server cần sửa cấu hình phù hợp.
-4. Vào Project Properties > Debug > Command line arguments, nhập --hao rồi F5. Hoặc chạy file QuanLyGiangVien.exe với đối số --hao.
-5. Khi không có --hao, chương trình vẫn khởi động Form1 như nhánh main hiện tại.
+4. Nhấn F5: chương trình mở frmLogin, đăng nhập thành công chuyển sang frmMain(session). Không cần đối số --hao.
+5. Trên Main, mở nhóm Hệ thống để vào Quản lý người dùng, Phân quyền hoặc Đổi mật khẩu.
 6. Tài khoản demo lấy từ script seed của nhóm. Không đưa tài khoản thử hoặc bản sao database cá nhân lên Git.
 
 ## Tích hợp frmMain sau này
@@ -41,3 +41,13 @@ Debug/Release build; đăng nhập đúng/sai/trống; thao tác tài khoản; �
 
 - Màn hình tài khoản dùng frmAccountHome có .cs, .Designer.cs và .resx, dựa trên phần kéo thả của Hào. File .cs giữ xử lý sự kiện; vị trí và control nằm trong Designer. Đã thay chỗ mở màn hình trong frmLogin, bỏ AccountHome tạo control bằng code.
 - Diagnostics ghi lỗi tại đường dẫn tương đối Logs/sql-yyyyMMdd.log, tính từ thư mục làm việc hiện tại của ứng dụng. Thư mục Logs được bỏ qua bởi Git. Nếu không có quyền ghi, việc ghi log được bỏ qua như trước.
+
+
+## Tích hợp Main ngày 04/11/2026
+
+- Dùng các nút có sẵn trong Designer của nhóm: btnNguoiDung, btnPhanQuyen, btnDoiMatKhau.
+- Truyền cùng Session vào frmUserManagement, frmRoleManagement, frmChangePassword.
+- Main đọc quyền xem để bật/tắt hai nút quản lý; kiểm tra lại phiên và quyền khi bấm. Tự đổi mật khẩu chỉ cần phiên hợp lệ.
+- Sau khi đóng màn hình con, Main đọc lại quyền. Giữ nguyên kiểm tra quyền tại AccountService.
+- Đã thử mở ba màn hình từ Main với tài khoản hoạt động đại diện ba vai trò trên SQL Server hiện có; kiểm tra quyền bật/tắt và tự đổi mật khẩu đều đạt. Lượt này chỉ đọc dữ liệu và mở/đóng form, không lưu thay đổi tài khoản hoặc phân quyền.
+- Các mục đào tạo/thống kê/báo cáo và kiểm tra toàn bộ nghiệp vụ thành viên khác nằm ngoài lượt tích hợp này.
