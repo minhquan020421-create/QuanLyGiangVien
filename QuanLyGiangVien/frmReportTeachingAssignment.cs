@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -32,10 +31,7 @@ namespace QuanLyGiangVien
         public frmReportTeachingAssignment()
         {
             InitializeComponent();
-            var cs = ConfigurationManager.ConnectionStrings["QuanLyGiangVien.Properties.Settings.QuanLyGiangVienConnectionString1"]
-                  ?? ConfigurationManager.ConnectionStrings["QuanLyGiangVien.Properties.Settings.QuanLyGiangVienConnectionString"];
-            if (cs == null) throw new InvalidOperationException("Không tìm thấy chuỗi kết nối trong App.config.");
-            connectionString = cs.ConnectionString;
+            connectionString = DatabaseConnection.CurrentConnectionString;
             cboNamHoc.SelectedIndexChanged += FilterChanged;
             cboHocKy.SelectedIndexChanged += FilterChanged;
             cboKhoa.SelectedIndexChanged += FacultyChanged;

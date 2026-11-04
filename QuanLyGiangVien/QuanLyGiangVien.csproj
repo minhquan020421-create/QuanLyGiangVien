@@ -156,6 +156,11 @@
     <Compile Include="Security.cs" />
     <Compile Include="Presentation.cs" />
     <Compile Include="Diagnostics.cs" />
+    <Compile Include="DatabaseConnection.cs" />
+    <Compile Include="DatabaseSchema.cs" />
+    <EmbeddedResource Include="..\BoSungEmailKhoiPhuc.sql">
+      <LogicalName>QuanLyGiangVien.BoSungEmailKhoiPhuc.sql</LogicalName>
+    </EmbeddedResource>
     <Compile Include="PasswordRecovery.cs" />
     <Compile Include="frmForgotPassword.cs"><SubType>Form</SubType></Compile>
     <Compile Include="frmForgotPassword.Designer.cs"><DependentUpon>frmForgotPassword.cs</DependentUpon></Compile>

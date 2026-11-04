@@ -39,7 +39,7 @@ namespace QuanLyGiangVien
         {
             Require(userId.HasValue && userId.Value > 0,
                 "Chưa nhận được người dùng đã đăng nhập. Hãy mở chức năng từ màn hình chính.");
-            using (var context = new QuanLyGiangVienDataContext())
+            using (var context = new QuanLyGiangVienDataContext(DatabaseConnection.CurrentConnectionString))
             {
                 var user = context.NGUOI_DUNGs.Where(x => x.MaNguoiDung == userId.Value && x.TrangThai)
                     .Select(x => new { x.MaVaiTro, x.MaGV, TenVaiTro = x.VAI_TRO.TenVaiTro }).SingleOrDefault();

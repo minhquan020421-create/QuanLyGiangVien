@@ -51,7 +51,7 @@ namespace QuanLyGiangVien
             {
                 if (db != null) db.Dispose();
                 access = HoangFormHelper.GetAccess(maNguoiDung, "frmDegree");
-                db = new QuanLyGiangVienDataContext();
+                db = new QuanLyGiangVienDataContext(DatabaseConnection.CurrentConnectionString);
                 string keyword = txtTimKiem.Text.Trim();
                 int id;
                 bool byId = int.TryParse(keyword, out id);

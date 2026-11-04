@@ -1,7 +1,6 @@
 using System;
 using System.ComponentModel;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Data.Linq;
 using System.Drawing.Printing;
 using System.IO;
@@ -35,14 +34,7 @@ namespace QuanLyGiangVien
         public frmReportLecturer()
         {
             InitializeComponent();
-            var setting = ConfigurationManager.ConnectionStrings[
-                "QuanLyGiangVien.Properties.Settings.QuanLyGiangVienConnectionString1"];
-            if (setting == null)
-                setting = ConfigurationManager.ConnectionStrings[
-                    "QuanLyGiangVien.Properties.Settings.QuanLyGiangVienConnectionString"];
-            if (setting == null || string.IsNullOrWhiteSpace(setting.ConnectionString))
-                throw new InvalidOperationException("Không tìm thấy chuỗi kết nối database trong App.config.");
-            connectionString = setting.ConnectionString;
+            connectionString = DatabaseConnection.CurrentConnectionString;
 
             Load += frmReportLecturer_Load;
             btnViewReport.Click += btnViewReport_Click;

@@ -56,7 +56,7 @@ namespace QuanLyGiangVien
                     db = null;
                 }
                 access = HoangFormHelper.GetAccess(maNguoiDung, "frmCourse");
-                db = new QuanLyGiangVienDataContext();
+                db = new QuanLyGiangVienDataContext(DatabaseConnection.CurrentConnectionString);
 
                 IQueryable<HOC_PHAN> courses = db.HOC_PHANs;
                 IQueryable<BO_MON> departments = db.BO_MONs;

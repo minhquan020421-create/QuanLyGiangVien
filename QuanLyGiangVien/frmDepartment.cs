@@ -51,7 +51,7 @@ namespace QuanLyGiangVien
             {
                 if (db != null) db.Dispose();
                 access = HoangFormHelper.GetAccess(maNguoiDung, "frmDepartment");
-                db = new QuanLyGiangVienDataContext();
+                db = new QuanLyGiangVienDataContext(DatabaseConnection.CurrentConnectionString);
                 cboMaKhoa.DisplayMember = "TenKhoa";
                 cboMaKhoa.ValueMember = "MaKhoa";
                 cboMaKhoa.DataSource = db.KHOAs.OrderBy(x => x.TenKhoa).Select(x => new { x.MaKhoa, x.TenKhoa }).ToList();

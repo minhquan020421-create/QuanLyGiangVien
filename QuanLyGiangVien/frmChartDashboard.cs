@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Configuration;
 using System.Linq;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
@@ -28,13 +27,7 @@ namespace QuanLyGiangVien
         public frmChartDashboard()
         {
             InitializeComponent();
-            var setting = ConfigurationManager.ConnectionStrings[
-                "QuanLyGiangVien.Properties.Settings.QuanLyGiangVienConnectionString1"]
-                ?? ConfigurationManager.ConnectionStrings[
-                "QuanLyGiangVien.Properties.Settings.QuanLyGiangVienConnectionString"];
-            if (setting == null || string.IsNullOrWhiteSpace(setting.ConnectionString))
-                throw new InvalidOperationException("Không tìm thấy chuỗi kết nối database trong App.config.");
-            connectionString = setting.ConnectionString;
+            connectionString = DatabaseConnection.CurrentConnectionString;
             Load += frmChartDashboard_Load;
             cboNamHoc.SelectedIndexChanged += FilterChanged;
             cboHocKy.SelectedIndexChanged += FilterChanged;

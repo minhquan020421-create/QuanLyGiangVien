@@ -57,7 +57,7 @@ namespace QuanLyGiangVien
             {
                 if (db != null) db.Dispose();
                 access = HoangFormHelper.GetAccess(maNguoiDung, "frmLecturer");
-                db = new QuanLyGiangVienDataContext();
+                db = new QuanLyGiangVienDataContext(DatabaseConnection.CurrentConnectionString);
                 // ComboBox nhập liệu không có giá trị "Tất cả".
                 var faculties = db.KHOAs.OrderBy(x => x.TenKhoa).Select(x => new { Id = x.MaKhoa, Name = x.TenKhoa }).ToList();
                 cboMaKhoa.DisplayMember = "Name";
