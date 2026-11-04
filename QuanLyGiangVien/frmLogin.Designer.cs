@@ -35,6 +35,7 @@ namespace QuanLyGiangVien
             this.lblIconTaiKhoan = new System.Windows.Forms.Label();
             this.lblThongBao = new System.Windows.Forms.Label();
             this.btnThoat = new System.Windows.Forms.Button();
+            this.btnQuenMatKhau = new System.Windows.Forms.Button();
             this.btnDangNhap = new System.Windows.Forms.Button();
             this.chkGhiNhoDangNhap = new System.Windows.Forms.CheckBox();
             this.btnHienMatKhau = new System.Windows.Forms.Button();
@@ -59,6 +60,7 @@ namespace QuanLyGiangVien
             this.pnlDangNhap.Controls.Add(this.lblIconTaiKhoan);
             this.pnlDangNhap.Controls.Add(this.lblThongBao);
             this.pnlDangNhap.Controls.Add(this.btnThoat);
+            this.pnlDangNhap.Controls.Add(this.btnQuenMatKhau);
             this.pnlDangNhap.Controls.Add(this.btnDangNhap);
             this.pnlDangNhap.Controls.Add(this.chkGhiNhoDangNhap);
             this.pnlDangNhap.Controls.Add(this.btnHienMatKhau);
@@ -106,7 +108,7 @@ namespace QuanLyGiangVien
             this.lblThongBao.Location = new System.Drawing.Point(30, 336);
             this.lblThongBao.Name = "lblThongBao";
             this.lblThongBao.Size = new System.Drawing.Size(380, 40);
-            this.lblThongBao.TabIndex = 6;
+            this.lblThongBao.TabIndex = 7;
             //
             // btnThoat
             //
@@ -118,7 +120,7 @@ namespace QuanLyGiangVien
             this.btnThoat.Location = new System.Drawing.Point(302, 280);
             this.btnThoat.Name = "btnThoat";
             this.btnThoat.Size = new System.Drawing.Size(108, 42);
-            this.btnThoat.TabIndex = 5;
+            this.btnThoat.TabIndex = 6;
             this.btnThoat.Text = "Thoát";
             this.btnThoat.UseVisualStyleBackColor = false;
             //
@@ -134,9 +136,24 @@ namespace QuanLyGiangVien
             this.btnDangNhap.Location = new System.Drawing.Point(30, 280);
             this.btnDangNhap.Name = "btnDangNhap";
             this.btnDangNhap.Size = new System.Drawing.Size(260, 42);
-            this.btnDangNhap.TabIndex = 4;
+            this.btnDangNhap.TabIndex = 5;
             this.btnDangNhap.Text = "Đăng nhập";
             this.btnDangNhap.UseVisualStyleBackColor = false;
+            //
+            // btnQuenMatKhau
+            //
+            this.btnQuenMatKhau.BackColor = System.Drawing.Color.FromArgb(27, 39, 58);
+            this.btnQuenMatKhau.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnQuenMatKhau.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(62, 82, 110);
+            this.btnQuenMatKhau.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnQuenMatKhau.ForeColor = System.Drawing.Color.FromArgb(236, 242, 251);
+            this.btnQuenMatKhau.Location = new System.Drawing.Point(260, 231);
+            this.btnQuenMatKhau.Name = "btnQuenMatKhau";
+            this.btnQuenMatKhau.Size = new System.Drawing.Size(150, 34);
+            this.btnQuenMatKhau.TabIndex = 4;
+            this.btnQuenMatKhau.Text = "Quên mật khẩu";
+            this.btnQuenMatKhau.UseVisualStyleBackColor = false;
+            this.btnQuenMatKhau.Click += new System.EventHandler(this.btnQuenMatKhau_Click);
             //
             // chkGhiNhoDangNhap
             //
@@ -322,6 +339,7 @@ namespace QuanLyGiangVien
         private System.Windows.Forms.Button btnDangNhap;
         private System.Windows.Forms.CheckBox chkGhiNhoDangNhap;
         private System.Windows.Forms.Button btnThoat;
+        private System.Windows.Forms.Button btnQuenMatKhau;
         private System.Windows.Forms.Label lblThongBao;
         private System.Windows.Forms.Label lblIconTaiKhoan;
         private System.Windows.Forms.Label lblIconMatKhau;

@@ -52,6 +52,7 @@ namespace QuanLyGiangVien
             this.dgvTaiKhoan = new System.Windows.Forms.DataGridView();
             this.colMaNguoiDung = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colTenDangNhap = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colEmailKhoiPhuc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colGiangVien = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colVaiTro = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colTrangThai = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -320,6 +321,7 @@ namespace QuanLyGiangVien
             this.dgvTaiKhoan.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colMaNguoiDung,
             this.colTenDangNhap,
+            this.colEmailKhoiPhuc,
             this.colGiangVien,
             this.colVaiTro,
             this.colTrangThai});
@@ -361,6 +363,16 @@ namespace QuanLyGiangVien
             this.colTenDangNhap.MinimumWidth = 6;
             this.colTenDangNhap.Name = "colTenDangNhap";
             this.colTenDangNhap.ReadOnly = true;
+            //
+            // colEmailKhoiPhuc
+            //
+            this.colEmailKhoiPhuc.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colEmailKhoiPhuc.DataPropertyName = "RecoveryEmail";
+            this.colEmailKhoiPhuc.FillWeight = 30F;
+            this.colEmailKhoiPhuc.HeaderText = "Email khôi phục";
+            this.colEmailKhoiPhuc.MinimumWidth = 90;
+            this.colEmailKhoiPhuc.Name = "colEmailKhoiPhuc";
+            this.colEmailKhoiPhuc.ReadOnly = true;
             //
             // colGiangVien
             //
@@ -470,6 +482,7 @@ namespace QuanLyGiangVien
         private System.Windows.Forms.DataGridView dgvTaiKhoan;
         private System.Windows.Forms.DataGridViewTextBoxColumn colMaNguoiDung;
         private System.Windows.Forms.DataGridViewTextBoxColumn colTenDangNhap;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colEmailKhoiPhuc;
         private System.Windows.Forms.DataGridViewTextBoxColumn colGiangVien;
         private System.Windows.Forms.DataGridViewTextBoxColumn colVaiTro;
         private System.Windows.Forms.DataGridViewTextBoxColumn colTrangThai;

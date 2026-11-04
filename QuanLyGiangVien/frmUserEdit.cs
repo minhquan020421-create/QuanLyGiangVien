@@ -21,10 +21,8 @@ namespace QuanLyGiangVien
             if(!create)
             {
                 txtTenDangNhap.Text=user.Name; cboGiangVien.SelectedValue=user.LecturerId ?? 0; cboVaiTro.SelectedValue=user.RoleId;
-                lblMatKhau.Visible=txtMatKhau.Visible=lblXacNhanMatKhau.Visible=txtXacNhanMatKhau.Visible=false;
-                int offset=145;
-                btnLuu.Top-=offset;btnHuy.Top-=offset;lblThongBao.Top-=offset;
-                pnlThongTin.Height-=offset;Height-=offset;
+                txtEmailKhoiPhuc.Text=user.RecoveryEmail ?? "";
+                txtMatKhau.Enabled=txtXacNhanMatKhau.Enabled=false;
             }
             txtMatKhau.MaxLength=txtXacNhanMatKhau.MaxLength=128;
             AcceptButton=btnLuu;CancelButton=btnHuy;btnHuy.DialogResult=DialogResult.Cancel;
@@ -33,7 +31,7 @@ namespace QuanLyGiangVien
                 if(role==null) throw new UserMessage("Hãy chọn vai trò cho tài khoản.");
                 var person=cboGiangVien.SelectedItem as Choice;
                 service.SaveAccount(user,txtTenDangNhap.Text,person==null || person.Id==0 ? (int?)null : person.Id,
-                    role.Id,txtMatKhau.Text,txtXacNhanMatKhau.Text);
+                    role.Id,txtEmailKhoiPhuc.Text,txtMatKhau.Text,txtXacNhanMatKhau.Text);
                 DialogResult=DialogResult.OK;
             },lblThongBao);
             Theme.Apply(this);

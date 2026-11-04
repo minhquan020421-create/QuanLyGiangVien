@@ -156,6 +156,9 @@
     <Compile Include="Security.cs" />
     <Compile Include="Presentation.cs" />
     <Compile Include="Diagnostics.cs" />
+    <Compile Include="PasswordRecovery.cs" />
+    <Compile Include="frmForgotPassword.cs"><SubType>Form</SubType></Compile>
+    <Compile Include="frmForgotPassword.Designer.cs"><DependentUpon>frmForgotPassword.cs</DependentUpon></Compile>
     <Compile Include="frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>

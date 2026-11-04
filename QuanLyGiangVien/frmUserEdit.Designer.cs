@@ -37,6 +37,8 @@ namespace QuanLyGiangVien
             this.btnLuu = new System.Windows.Forms.Button();
             this.cboVaiTro = new System.Windows.Forms.ComboBox();
             this.cboGiangVien = new System.Windows.Forms.ComboBox();
+            this.txtEmailKhoiPhuc = new System.Windows.Forms.TextBox();
+            this.lblEmailKhoiPhuc = new System.Windows.Forms.Label();
             this.txtMatKhau = new System.Windows.Forms.TextBox();
             this.txtXacNhanMatKhau = new System.Windows.Forms.TextBox();
             this.txtTenDangNhap = new System.Windows.Forms.TextBox();
@@ -68,6 +70,8 @@ namespace QuanLyGiangVien
             this.pnlThongTin.Controls.Add(this.btnLuu);
             this.pnlThongTin.Controls.Add(this.cboVaiTro);
             this.pnlThongTin.Controls.Add(this.cboGiangVien);
+            this.pnlThongTin.Controls.Add(this.txtEmailKhoiPhuc);
+            this.pnlThongTin.Controls.Add(this.lblEmailKhoiPhuc);
             this.pnlThongTin.Controls.Add(this.txtMatKhau);
             this.pnlThongTin.Controls.Add(this.txtXacNhanMatKhau);
             this.pnlThongTin.Controls.Add(this.txtTenDangNhap);
@@ -102,7 +106,7 @@ namespace QuanLyGiangVien
             this.btnHuy.Location = new System.Drawing.Point(382, 404);
             this.btnHuy.Name = "btnHuy";
             this.btnHuy.Size = new System.Drawing.Size(108, 42);
-            this.btnHuy.TabIndex = 6;
+            this.btnHuy.TabIndex = 7;
             this.btnHuy.Text = "Hủy";
             this.btnHuy.UseVisualStyleBackColor = false;
             // 
@@ -118,7 +122,7 @@ namespace QuanLyGiangVien
             this.btnLuu.Location = new System.Drawing.Point(30, 404);
             this.btnLuu.Name = "btnLuu";
             this.btnLuu.Size = new System.Drawing.Size(340, 42);
-            this.btnLuu.TabIndex = 5;
+            this.btnLuu.TabIndex = 6;
             this.btnLuu.Text = "Lưu";
             this.btnLuu.UseVisualStyleBackColor = false;
             // 
@@ -145,6 +149,28 @@ namespace QuanLyGiangVien
             this.cboGiangVien.Name = "cboGiangVien";
             this.cboGiangVien.Size = new System.Drawing.Size(460, 33);
             this.cboGiangVien.TabIndex = 1;
+            //
+            // txtEmailKhoiPhuc
+            //
+            this.txtEmailKhoiPhuc.AccessibleName = "Email khôi phục";
+            this.txtEmailKhoiPhuc.BackColor = System.Drawing.Color.FromArgb(17, 29, 46);
+            this.txtEmailKhoiPhuc.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtEmailKhoiPhuc.Font = new System.Drawing.Font("Segoe UI", 10.8F);
+            this.txtEmailKhoiPhuc.ForeColor = System.Drawing.Color.FromArgb(236, 242, 251);
+            this.txtEmailKhoiPhuc.Location = new System.Drawing.Point(30, 272);
+            this.txtEmailKhoiPhuc.MaxLength = 254;
+            this.txtEmailKhoiPhuc.Name = "txtEmailKhoiPhuc";
+            this.txtEmailKhoiPhuc.Size = new System.Drawing.Size(460, 31);
+            this.txtEmailKhoiPhuc.TabIndex = 3;
+            //
+            // lblEmailKhoiPhuc
+            //
+            this.lblEmailKhoiPhuc.BackColor = System.Drawing.Color.Transparent;
+            this.lblEmailKhoiPhuc.ForeColor = System.Drawing.Color.FromArgb(181, 199, 220);
+            this.lblEmailKhoiPhuc.Location = new System.Drawing.Point(30, 242);
+            this.lblEmailKhoiPhuc.Name = "lblEmailKhoiPhuc";
+            this.lblEmailKhoiPhuc.Size = new System.Drawing.Size(460, 25);
+            this.lblEmailKhoiPhuc.Text = "Email khôi phục (không bắt buộc)";
             // 
             // txtMatKhau
             // 
@@ -152,10 +178,10 @@ namespace QuanLyGiangVien
             this.txtMatKhau.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtMatKhau.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMatKhau.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(242)))), ((int)(((byte)(251)))));
-            this.txtMatKhau.Location = new System.Drawing.Point(30, 272);
+            this.txtMatKhau.Location = new System.Drawing.Point(30, 346);
             this.txtMatKhau.Name = "txtMatKhau";
-            this.txtMatKhau.Size = new System.Drawing.Size(460, 31);
-            this.txtMatKhau.TabIndex = 3;
+            this.txtMatKhau.Size = new System.Drawing.Size(220, 31);
+            this.txtMatKhau.TabIndex = 4;
             this.txtMatKhau.UseSystemPasswordChar = true;
             // 
             // txtXacNhanMatKhau
@@ -164,10 +190,10 @@ namespace QuanLyGiangVien
             this.txtXacNhanMatKhau.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtXacNhanMatKhau.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtXacNhanMatKhau.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(242)))), ((int)(((byte)(251)))));
-            this.txtXacNhanMatKhau.Location = new System.Drawing.Point(30, 346);
+            this.txtXacNhanMatKhau.Location = new System.Drawing.Point(270, 346);
             this.txtXacNhanMatKhau.Name = "txtXacNhanMatKhau";
-            this.txtXacNhanMatKhau.Size = new System.Drawing.Size(460, 31);
-            this.txtXacNhanMatKhau.TabIndex = 4;
+            this.txtXacNhanMatKhau.Size = new System.Drawing.Size(220, 31);
+            this.txtXacNhanMatKhau.TabIndex = 5;
             this.txtXacNhanMatKhau.UseSystemPasswordChar = true;
             // 
             // txtTenDangNhap
@@ -185,9 +211,9 @@ namespace QuanLyGiangVien
             // 
             this.lblXacNhanMatKhau.BackColor = System.Drawing.Color.Transparent;
             this.lblXacNhanMatKhau.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(181)))), ((int)(((byte)(199)))), ((int)(((byte)(220)))));
-            this.lblXacNhanMatKhau.Location = new System.Drawing.Point(30, 316);
+            this.lblXacNhanMatKhau.Location = new System.Drawing.Point(270, 316);
             this.lblXacNhanMatKhau.Name = "lblXacNhanMatKhau";
-            this.lblXacNhanMatKhau.Size = new System.Drawing.Size(460, 25);
+            this.lblXacNhanMatKhau.Size = new System.Drawing.Size(220, 25);
             this.lblXacNhanMatKhau.TabIndex = 4;
             this.lblXacNhanMatKhau.Text = "Nhập lại mật khẩu";
             // 
@@ -195,9 +221,9 @@ namespace QuanLyGiangVien
             // 
             this.lblMatKhau.BackColor = System.Drawing.Color.Transparent;
             this.lblMatKhau.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(181)))), ((int)(((byte)(199)))), ((int)(((byte)(220)))));
-            this.lblMatKhau.Location = new System.Drawing.Point(30, 242);
+            this.lblMatKhau.Location = new System.Drawing.Point(30, 316);
             this.lblMatKhau.Name = "lblMatKhau";
-            this.lblMatKhau.Size = new System.Drawing.Size(460, 25);
+            this.lblMatKhau.Size = new System.Drawing.Size(220, 25);
             this.lblMatKhau.TabIndex = 3;
             this.lblMatKhau.Text = "Mật khẩu khởi tạo";
             // 
@@ -263,6 +289,8 @@ namespace QuanLyGiangVien
         private System.Windows.Forms.Label lblVaiTro;
         private System.Windows.Forms.Label lblGiangVien;
         private System.Windows.Forms.Label lblTenDangNhap;
+        private System.Windows.Forms.Label lblEmailKhoiPhuc;
+        private System.Windows.Forms.TextBox txtEmailKhoiPhuc;
         private System.Windows.Forms.TextBox txtMatKhau;
         private System.Windows.Forms.TextBox txtXacNhanMatKhau;
         private System.Windows.Forms.TextBox txtTenDangNhap;

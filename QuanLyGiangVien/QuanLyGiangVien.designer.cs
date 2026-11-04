@@ -3028,6 +3028,8 @@ namespace QuanLyGiangVien
 		
 		private string _TenDangNhap;
 		
+		private string _Email;
+
 		private string _MatKhauHash;
 		
 		private string _MatKhauSalt;
@@ -3052,6 +3054,8 @@ namespace QuanLyGiangVien
     partial void OnMaNguoiDungChanged();
     partial void OnTenDangNhapChanging(string value);
     partial void OnTenDangNhapChanged();
+    partial void OnEmailChanging(string value);
+    partial void OnEmailChanged();
     partial void OnMatKhauHashChanging(string value);
     partial void OnMatKhauHashChanged();
     partial void OnMatKhauSaltChanging(string value);
@@ -3112,6 +3116,26 @@ namespace QuanLyGiangVien
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="VarChar(254)")]
+		public string Email
+		{
+			get
+			{
+				return this._Email;
+			}
+			set
+			{
+				if ((this._Email != value))
+				{
+					this.OnEmailChanging(value);
+					this.SendPropertyChanging();
+					this._Email = value;
+					this.SendPropertyChanged("Email");
+					this.OnEmailChanged();
+				}
+			}
+		}
+
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MatKhauHash", DbType="VarChar(64) NOT NULL", CanBeNull=false)]
 		public string MatKhauHash
 		{

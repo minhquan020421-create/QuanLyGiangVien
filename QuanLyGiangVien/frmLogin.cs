@@ -48,5 +48,23 @@ namespace QuanLyGiangVien
         {
 
         }
+
+        private void btnQuenMatKhau_Click(object sender, EventArgs e)
+        {
+            using (var recovery = new frmForgotPassword(txtTenDangNhap.Text.Trim()))
+            {
+                if (recovery.ShowDialog(this) != DialogResult.OK)
+                    return;
+
+                txtTenDangNhap.Text = recovery.Username;
+                txtMatKhau.Clear();
+                txtMatKhau.UseSystemPasswordChar = true;
+                btnHienMatKhau.AccessibleName = "Hiện mật khẩu";
+                lblThongBao.Text = "";
+                failures = 0;
+                retryAfter = DateTime.MinValue;
+                txtMatKhau.Focus();
+            }
+        }
     }
 }
