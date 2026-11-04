@@ -13,7 +13,11 @@ namespace QuanLyGiangVien
         private bool loading;
         private int? maNguoiDung;
 
-        public frmLecturer() { InitializeComponent(); }
+        public frmLecturer()
+        {
+            InitializeComponent();
+            HoangFormHelper.KeepContentScrollable(pnlCuon, layoutChinh);
+        }
 
         // Constructor mặc định dành cho Designer; khi chạy nhận mã người dùng đã đăng nhập.
         public frmLecturer(int maNguoiDung) : this()
@@ -25,10 +29,16 @@ namespace QuanLyGiangVien
         {
             // Designer chỉ hiển thị giao diện, không đọc dữ liệu hoặc kiểm tra quyền.
             if (System.ComponentModel.LicenseManager.UsageMode == System.ComponentModel.LicenseUsageMode.Designtime || DesignMode) return;
+            Theme.Apply(this);
             cboGioiTinh.Items.AddRange(new object[] { "", "Nam", "Nữ", "Khác" });
             cboLocTrangThai.Items.AddRange(new object[] { "Tất cả", "Đang hoạt động", "Ngừng hoạt động" });
             cboLocTrangThai.SelectedIndex = 0;
             LoadData(true);
+        }
+
+        private void btnQuayLai_Click(object sender, EventArgs e)
+        {
+            Close();
         }
 
         private void LoadData(bool resetFilters)

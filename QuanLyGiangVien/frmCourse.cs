@@ -13,7 +13,11 @@ namespace QuanLyGiangVien
         private bool loading;
         private int? maNguoiDung;
 
-        public frmCourse() { InitializeComponent(); }
+        public frmCourse()
+        {
+            InitializeComponent();
+            HoangFormHelper.KeepContentScrollable(pnlCuon, layoutChinh);
+        }
 
         // Constructor mặc định dành cho Designer; khi chạy nhận mã người dùng đã đăng nhập.
         public frmCourse(int maNguoiDung) : this()
@@ -25,7 +29,13 @@ namespace QuanLyGiangVien
         {
             // Designer chỉ hiển thị giao diện, không đọc dữ liệu hoặc kiểm tra quyền.
             if (System.ComponentModel.LicenseManager.UsageMode == System.ComponentModel.LicenseUsageMode.Designtime || DesignMode) return;
+            Theme.Apply(this);
             LoadData();
+        }
+
+        private void btnQuayLai_Click(object sender, EventArgs e)
+        {
+            Close();
         }
 
         private void LoadData()
@@ -36,19 +46,38 @@ namespace QuanLyGiangVien
             selected = null;
             rows.Clear();
             dgvDanhSach.DataSource = null;
+            cboMaBoMon.DataSource = null;
             HoangFormAccess access = null;
             bool ok = HoangFormHelper.Run(this, () =>
             {
-                if (db != null) db.Dispose();
+                if (db != null)
+                {
+                    db.Dispose();
+                    db = null;
+                }
                 access = HoangFormHelper.GetAccess(maNguoiDung, "frmCourse");
                 db = new QuanLyGiangVienDataContext();
+
+                IQueryable<HOC_PHAN> courses = db.HOC_PHANs;
+                IQueryable<BO_MON> departments = db.BO_MONs;
+                if (access.ChiXemCaNhan)
+                {
+                    int? lecturerId = access.MaGV;
+                    var ownCourseIds = db.PHAN_CONG_GIANG_DAYs
+                        .Where(x => x.MaGV == lecturerId)
+                        .Select(x => x.LOP_HOC_PHAN.MaHocPhan);
+                    courses = courses.Where(x => ownCourseIds.Contains(x.MaHocPhan));
+                    departments = departments.Where(x => x.HOC_PHANs.Any(c => ownCourseIds.Contains(c.MaHocPhan)));
+                }
+
                 cboMaBoMon.DisplayMember = "TenBoMon";
                 cboMaBoMon.ValueMember = "MaBoMon";
-                cboMaBoMon.DataSource = db.BO_MONs.OrderBy(x => x.TenBoMon).Select(x => new { x.MaBoMon, x.TenBoMon }).ToList();
+                cboMaBoMon.DataSource = departments.OrderBy(x => x.TenBoMon)
+                    .Select(x => new { x.MaBoMon, x.TenBoMon }).ToList();
                 string keyword = txtTimKiem.Text.Trim();
                 int id;
                 bool byId = int.TryParse(keyword, out id);
-                rows = db.HOC_PHANs.Where(x => keyword == "" || x.TenHocPhan.Contains(keyword) || (byId && x.MaHocPhan == id))
+                rows = courses.Where(x => keyword == "" || x.TenHocPhan.Contains(keyword) || (byId && x.MaHocPhan == id))
                     .OrderBy(x => x.MaHocPhan).ToList();
                 dgvDanhSach.DataSource = rows.Select(x => new { x.MaHocPhan, x.TenHocPhan, x.SoTinChi, x.SoTietLyThuyet, x.SoTietThucHanh, x.TrangThai, TenBoMon = x.BO_MON.TenBoMon }).ToList();
                 lblKetQua.Text = rows.Count + " kết quả";
@@ -56,9 +85,10 @@ namespace QuanLyGiangVien
             if (!ok) lblKetQua.Text = "Chưa tải được dữ liệu";
             loading = false;
             ClearInput();
-            btnThem.Enabled = ok && access.Them;
-            btnSua.Enabled = ok && access.Sua;
-            btnXoa.Enabled = ok && access.Xoa;
+            bool canEdit = ok && !access.ChiXemCaNhan;
+            btnThem.Enabled = canEdit && access.Them;
+            btnSua.Enabled = canEdit && access.Sua;
+            btnXoa.Enabled = canEdit && access.Xoa;
         }
 
         private void ClearInput()
@@ -83,7 +113,7 @@ namespace QuanLyGiangVien
             bool writing = false;
             bool ok = HoangFormHelper.Run(this, () =>
             {
-                HoangFormHelper.RequireAction(maNguoiDung, "frmCourse", adding ? "Them" : "Sua");
+                RequireCourseAction(adding ? "Them" : "Sua");
                 HoangFormHelper.Require(adding || selected != null, "Vui lòng chọn dòng cần sửa.");
                 HoangFormHelper.Require(txtTenHocPhan.Text.Trim().Length > 0, "Vui lòng nhập tên.");
                 int? MaBoMon = HoangFormHelper.SelectedId(cboMaBoMon);
@@ -105,14 +135,20 @@ namespace QuanLyGiangVien
         private void btnTimKiem_Click(object sender, EventArgs e) { LoadData(); }
         private void btnLamMoi_Click(object sender, EventArgs e) { txtTimKiem.Clear(); LoadData(); }
 
+        private void RequireCourseAction(string action)
+        {
+            var access = HoangFormHelper.RequireAction(maNguoiDung, "frmCourse", action);
+            HoangFormHelper.Require(!access.ChiXemCaNhan, "Tài khoản giảng viên chỉ được xem học phần đã phân công.");
+        }
+
         private void btnXoa_Click(object sender, EventArgs e)
         {
-            if (!HoangFormHelper.Run(this, () => HoangFormHelper.RequireAction(maNguoiDung, "frmCourse", "Xoa"))) return;
+            if (!HoangFormHelper.Run(this, () => RequireCourseAction("Xoa"))) return;
             if (selected == null) { MessageBox.Show(this, "Vui lòng chọn dòng cần xóa."); return; }
             if (!HoangFormHelper.ConfirmDelete(this, selected.TenHocPhan)) return;
             HoangFormHelper.Run(this, () =>
             {
-                HoangFormHelper.RequireAction(maNguoiDung, "frmCourse", "Xoa");
+                RequireCourseAction("Xoa");
                 HoangFormHelper.Require(!(db.LOP_HOC_PHANs.Any(x => x.MaHocPhan == selected.MaHocPhan)), "Dữ liệu đang được sử dụng. Không thể xóa; hãy kiểm tra các bản ghi liên quan.");
                 db.HOC_PHANs.DeleteOnSubmit(selected);
                 db.SubmitChanges();

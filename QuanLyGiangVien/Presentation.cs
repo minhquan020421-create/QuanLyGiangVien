@@ -70,14 +70,44 @@ namespace QuanLyGiangVien
             }
             e.DrawFocusRectangle();
         }
+
+        private static Color FieldColor(bool dark)
+        {
+            return dark ? Color.FromArgb(17,29,46) : Color.White;
+        }
+
+        private static Color MutedColor(bool dark)
+        {
+            return dark ? Color.FromArgb(181,199,220) : Color.FromArgb(71,87,108);
+        }
+
+        private static void DrawDisabledButton(object sender, PaintEventArgs e)
+        {
+            var button = (Button)sender;
+            if (button.Enabled) return;
+
+            bool dark = Preferences.Values.Dark;
+            e.Graphics.Clear(FieldColor(dark));
+            using (var pen = new Pen(button.FlatAppearance.BorderColor))
+                e.Graphics.DrawRectangle(pen, 0, 0, button.ClientSize.Width - 1, button.ClientSize.Height - 1);
+
+            var bounds = button.ClientRectangle;
+            bounds.X += button.Padding.Left + 3;
+            bounds.Width = Math.Max(0, bounds.Width - button.Padding.Horizontal - 6);
+            var alignment = button.TextAlign == ContentAlignment.MiddleLeft ? TextFormatFlags.Left :
+                button.TextAlign == ContentAlignment.MiddleRight ? TextFormatFlags.Right : TextFormatFlags.HorizontalCenter;
+            TextRenderer.DrawText(e.Graphics, button.Text, button.Font, bounds, MutedColor(dark), alignment |
+                TextFormatFlags.VerticalCenter | TextFormatFlags.EndEllipsis | TextFormatFlags.SingleLine | TextFormatFlags.HidePrefix);
+        }
+
         internal static void Apply(Form f)
         {
             bool dark=Preferences.Values.Dark;
             Color background=dark ? Color.FromArgb(16,23,37) : Color.FromArgb(239,243,249);
             Color surface=dark ? Color.FromArgb(27,39,58) : Color.White;
-            Color field=dark ? Color.FromArgb(17,29,46) : Color.White;
+            Color field=FieldColor(dark);
             Color ink=dark ? Color.FromArgb(236,242,251) : Color.FromArgb(25,42,70);
-            Color muted=dark ? Color.FromArgb(181,199,220) : Color.FromArgb(71,87,108);
+            Color muted=MutedColor(dark);
             Color border=dark ? Color.FromArgb(62,82,110) : Color.FromArgb(194,207,221);
             Color accent=dark ? Color.FromArgb(144,211,240) : Color.FromArgb(23,96,132);
             Color alert=dark ? Color.FromArgb(255,165,157) : Color.Firebrick;
@@ -97,8 +127,22 @@ namespace QuanLyGiangVien
                     g.DefaultCellStyle.SelectionForeColor=ink;
                     return;
                 }
-                if(c is Panel) c.BackColor=surface;
-                else if(c is TextBox || c is ComboBox || c is ListBox) { c.BackColor=field; c.ForeColor=ink;
+                if(c is Panel)
+                {
+                    bool dashboardBackground = f is frmMain && (c.Name == "pnlContent" ||
+                        c.Name == "layoutDashboard" || c.Name == "layoutCounts" || c.Name == "pnlQuickActions");
+                    c.BackColor = dashboardBackground ? background : surface;
+                }
+                else if(c is DateTimePicker)
+                {
+                    var picker = (DateTimePicker)c;
+                    picker.CalendarMonthBackground = field;
+                    picker.CalendarForeColor = ink;
+                    picker.CalendarTitleBackColor = surface;
+                    picker.CalendarTitleForeColor = accent;
+                    picker.CalendarTrailingForeColor = muted;
+                }
+                else if(c is TextBox || c is ComboBox || c is ListBox || c is NumericUpDown) { c.BackColor=field; c.ForeColor=ink;
                     var combo=c as ComboBox; if(combo!=null)
                     {
                         combo.FlatStyle=FlatStyle.Flat;
@@ -116,13 +160,17 @@ namespace QuanLyGiangVien
                     b.ForeColor=primary ? Color.White : b.Name.StartsWith("btnXoa") ? alert : ink;
                     b.FlatAppearance.BorderSize=primary ? 0 : 1; b.FlatAppearance.BorderColor=border;
                     b.FlatAppearance.MouseOverBackColor=primary ? Color.FromArgb(59,107,208) : field;
+                    b.Paint -= DrawDisabledButton;
+                    b.Paint += DrawDisabledButton;
                     if(b.Name=="btnTheme") b.Text=dark ? "Giao diện sáng" : "Giao diện tối";
                 }
                 else if(c is Label || c is CheckBox)
                 {
                     c.BackColor=Color.Transparent;
-                    c.ForeColor=c.Name=="lblThongBao" ? alert : c.Name.StartsWith("lblIcon") ? accent :
-                        c.Name.Contains("TieuDe") || c.Name=="lblTenHeThong" || c.Name=="lblDangNhap" ? ink : muted;
+                    c.ForeColor=c.Name=="lblThongBao" || c.Name=="lblDashboardMessage" ? alert :
+                        c.Name.StartsWith("lblIcon") ? accent :
+                        c.Name.Contains("TieuDe") || c.Name=="lblTenHeThong" || c.Name=="lblDangNhap" ||
+                        f is frmMain && c.Name.StartsWith("lblSo") ? ink : muted;
                 }
                 foreach(Control child in c.Controls) visit(child);
             };

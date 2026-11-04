@@ -18,6 +18,8 @@
         {
             this.components = new System.ComponentModel.Container();
             this.pnlCuon = new System.Windows.Forms.Panel();
+            this.pnlCuoi = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnQuayLai = new System.Windows.Forms.Button();
             this.layoutChinh = new System.Windows.Forms.TableLayoutPanel();
             this.layoutNhap = new System.Windows.Forms.TableLayoutPanel();
             this.layouttxtMaChuyenMon = new System.Windows.Forms.TableLayoutPanel();
@@ -50,6 +52,7 @@
             this.colTrangThai = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDanhSach)).BeginInit();
             this.pnlCuon.SuspendLayout();
+            this.pnlCuoi.SuspendLayout();
             this.layoutChinh.SuspendLayout();
             this.layoutNhap.SuspendLayout();
             this.layouttxtMaChuyenMon.SuspendLayout();
@@ -109,10 +112,10 @@
             this.btnTimKiem.TabIndex = 14;
             this.btnTimKiem.Text = "Tìm kiếm";
             this.lblKetQua.Name = "lblKetQua";
-            this.lblKetQua.TabIndex = 15;
+            this.lblKetQua.TabIndex = 3;
             this.lblKetQua.Text = "Chưa tải dữ liệu";
             this.dgvDanhSach.Name = "dgvDanhSach";
-            this.dgvDanhSach.TabIndex = 16;
+            this.dgvDanhSach.TabIndex = 4;
             this.dgvDanhSach.ReadOnly = true;
             this.dgvDanhSach.AllowUserToAddRows = false;
             this.dgvDanhSach.AllowUserToDeleteRows = false;
@@ -120,8 +123,7 @@
             this.dgvDanhSach.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvDanhSach.AutoGenerateColumns = false;
             this.dgvDanhSach.RowHeadersVisible = false;
-            this.dgvDanhSach.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
-            this.dgvDanhSach.BackgroundColor = System.Drawing.Color.White;
+            this.dgvDanhSach.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.colMaChuyenMon.Name = "colMaChuyenMon";
             this.colMaChuyenMon.DataPropertyName = "MaChuyenMon";
             this.colMaChuyenMon.HeaderText = "Mã (tự tăng)";
@@ -148,17 +150,18 @@
             this.pnlCuon.Name = "pnlCuon";
             this.pnlCuon.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlCuon.AutoScroll = true;
+            this.pnlCuon.TabIndex = 0;
             this.pnlCuon.Padding = new System.Windows.Forms.Padding(6);
             this.layoutChinh.Name = "layoutChinh";
-            this.layoutChinh.AutoSize = true;
-            this.layoutChinh.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.layoutChinh.Dock = System.Windows.Forms.DockStyle.Top;
+            this.layoutChinh.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.layoutChinh.MinimumSize = new System.Drawing.Size(0, 373);
             this.layoutChinh.ColumnCount = 1;
             this.layoutChinh.Margin = new System.Windows.Forms.Padding(0);
             this.layoutChinh.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.000000F));
-            this.layoutChinh.MinimumSize = new System.Drawing.Size(0, 0);
+            this.layoutChinh.TabIndex = 0;
             this.layoutChinh.Padding = new System.Windows.Forms.Padding(2);
             this.layoutNhap.Name = "layoutNhap";
+            this.layoutNhap.TabIndex = 0;
             this.layoutNhap.AutoSize = true;
             this.layoutNhap.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.layoutNhap.Dock = System.Windows.Forms.DockStyle.Top;
@@ -257,6 +260,7 @@
             this.layoutchkTrangThai.Controls.Add(this.chkTrangThai, 0, 1);
             this.layoutNhap.Controls.Add(this.layoutchkTrangThai, 0, 1);
             this.pnlNut.Name = "pnlNut";
+            this.pnlNut.TabIndex = 1;
             this.pnlNut.AutoSize = true;
             this.pnlNut.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.pnlNut.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -279,6 +283,7 @@
             this.btnLamMoi.Margin = new System.Windows.Forms.Padding(0, 0, 8, 2);
             this.pnlNut.Controls.Add(this.btnLamMoi);
             this.layoutTim.Name = "layoutTim";
+            this.layoutTim.TabIndex = 2;
             this.layoutTim.AutoSize = true;
             this.layoutTim.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.layoutTim.Dock = System.Windows.Forms.DockStyle.Top;
@@ -322,7 +327,7 @@
             this.layoutChinh.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.AutoSize));
             this.layoutChinh.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.AutoSize));
             this.layoutChinh.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.AutoSize));
-            this.layoutChinh.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.AutoSize));
+            this.layoutChinh.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.layoutChinh.Controls.Add(this.layoutNhap, 0, 0);
             this.layoutChinh.Controls.Add(this.pnlNut, 0, 1);
             this.layoutChinh.Controls.Add(this.layoutTim, 0, 2);
@@ -333,21 +338,40 @@
             this.lblKetQua.Margin = new System.Windows.Forms.Padding(4, 2, 4, 4);
             this.dgvDanhSach.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvDanhSach.Margin = new System.Windows.Forms.Padding(4);
-            this.dgvDanhSach.MinimumSize = new System.Drawing.Size(0, 180);
-            this.dgvDanhSach.Size = new System.Drawing.Size(740, 180);
+            this.dgvDanhSach.MinimumSize = new System.Drawing.Size(0, 140);
             this.dgvDanhSach.RowTemplate.Height = 26;
             this.dgvDanhSach.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.colMaChuyenMon.MinimumWidth = 80;
+            this.colMaChuyenMon.FillWeight = 15F;
             this.colTenChuyenMon.MinimumWidth = 120;
+            this.colTenChuyenMon.FillWeight = 30F;
             this.colMoTa.MinimumWidth = 80;
+            this.colMoTa.FillWeight = 40F;
             this.colTrangThai.MinimumWidth = 80;
+            this.colTrangThai.FillWeight = 15F;
+            this.pnlCuoi.Name = "pnlCuoi";
+            this.pnlCuoi.AutoSize = true;
+            this.pnlCuoi.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.pnlCuoi.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pnlCuoi.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
+            this.pnlCuoi.WrapContents = false;
+            this.pnlCuoi.Padding = new System.Windows.Forms.Padding(8, 4, 8, 4);
+            this.pnlCuoi.TabIndex = 1;
+            this.btnQuayLai.Name = "btnQuayLai";
+            this.btnQuayLai.AutoSize = true;
+            this.btnQuayLai.MinimumSize = new System.Drawing.Size(112, 32);
+            this.btnQuayLai.TabIndex = 0;
+            this.btnQuayLai.Text = "Quay lại";
+            this.btnQuayLai.Click += new System.EventHandler(this.btnQuayLai_Click);
+            this.pnlCuoi.Controls.Add(this.btnQuayLai);
             this.pnlCuon.Controls.Add(this.layoutChinh);
             this.Controls.Add(this.pnlCuon);
+            this.Controls.Add(this.pnlCuoi);
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.Font = new System.Drawing.Font("Segoe UI", 9.5F);
             this.ClientSize = new System.Drawing.Size(800, 460);
-            this.MinimumSize = new System.Drawing.Size(720, 420);
+            this.MinimumSize = new System.Drawing.Size(480, 320);
             this.WindowState = System.Windows.Forms.FormWindowState.Normal;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Name = "frmSpecialization";
@@ -374,12 +398,16 @@
             this.layoutChinh.PerformLayout();
             this.pnlCuon.ResumeLayout(false);
             this.pnlCuon.PerformLayout();
+            this.pnlCuoi.ResumeLayout(false);
+            this.pnlCuoi.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
         }
         #endregion
 
         private System.Windows.Forms.Panel pnlCuon;
+        private System.Windows.Forms.FlowLayoutPanel pnlCuoi;
+        private System.Windows.Forms.Button btnQuayLai;
         private System.Windows.Forms.TableLayoutPanel layoutChinh;
         private System.Windows.Forms.TableLayoutPanel layoutNhap;
         private System.Windows.Forms.TableLayoutPanel layouttxtMaChuyenMon;

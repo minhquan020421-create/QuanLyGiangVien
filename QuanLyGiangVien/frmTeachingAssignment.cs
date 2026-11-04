@@ -10,6 +10,8 @@ namespace QuanLyGiangVien
     public partial class frmTeachingAssignment : Form
     {
         private const int DinhMucTietMoiHocKy = 300;
+        private readonly Session session;
+        private int? lecturerScope;
         private bool dangNap;
 
         public frmTeachingAssignment()
@@ -21,14 +23,27 @@ namespace QuanLyGiangVien
             btnAssign.Click += btnAssign_Click;
         }
 
+        internal frmTeachingAssignment(Session session) : this()
+        {
+            this.session = session ?? throw new ArgumentNullException(nameof(session));
+        }
+
         private void frmTeachingAssignment_Load(object sender, EventArgs e)
         {
             if (LaDesignTime()) return;
+            btnAssign.Enabled = false;
+            txtPeriods.ReadOnly = true;
             try
             {
                 dangNap = true;
-                using (var db = new QuanLyGiangVienDataContext())
+                using (var db = Session.Open())
                 {
+                    var user = CurrentViewer(db);
+                    lecturerScope = GetLecturerScope(user);
+                    btnAssign.Enabled = !lecturerScope.HasValue &&
+                        Session.Allows(db, user.MaVaiTro, nameof(frmTeachingAssignment), ActionRight.Add);
+                    txtPeriods.ReadOnly = !btnAssign.Enabled;
+
                     cboAcademicYear.DataSource = db.NAM_HOCs.Where(x => x.TrangThai).OrderByDescending(x => x.TuNam)
                         .Select(x => new { x.MaNamHoc, x.TenNamHoc }).ToList();
                     cboAcademicYear.DisplayMember = "TenNamHoc";
@@ -37,7 +52,9 @@ namespace QuanLyGiangVien
                         .Select(x => new { x.MaHocKy, x.TenHocKy }).ToList();
                     cboSemester.DisplayMember = "TenHocKy";
                     cboSemester.ValueMember = "MaHocKy";
-                    cboLecturer.DataSource = db.GIANG_VIENs.Where(x => x.TrangThai).OrderBy(x => x.HoTen)
+                    cboLecturer.DataSource = db.GIANG_VIENs
+                        .Where(x => x.TrangThai && (!lecturerScope.HasValue || x.MaGV == lecturerScope))
+                        .OrderBy(x => x.HoTen)
                         .Select(x => new { x.MaGV, TenHienThi = x.MaGV + " - " + x.HoTen }).ToList();
                     cboLecturer.DisplayMember = "TenHienThi";
                     cboLecturer.ValueMember = "MaGV";
@@ -46,6 +63,7 @@ namespace QuanLyGiangVien
                 LoadCourseClasses();
                 LoadAssignments();
             }
+            catch (UserMessage ex) { CloseForAccessError(ex); }
             catch (Exception ex)
             {
                 dangNap = false;
@@ -60,6 +78,43 @@ namespace QuanLyGiangVien
             LoadAssignments();
         }
 
+        private NGUOI_DUNG CurrentViewer(QuanLyGiangVienDataContext db)
+        {
+            if (session == null) throw new UserMessage("Bạn chưa đăng nhập.");
+            var user = session.Current(db);
+            if (!Session.Allows(db, user.MaVaiTro, nameof(frmTeachingAssignment), ActionRight.View))
+                throw new UserMessage("Bạn không có quyền xem phân công giảng dạy.");
+            return user;
+        }
+
+        private static int? GetLecturerScope(NGUOI_DUNG user)
+        {
+            if (!HoangFormHelper.IsLecturer(user.VAI_TRO.TenVaiTro)) return null;
+            return user.MaGV ?? throw new UserMessage("Tài khoản chưa liên kết với hồ sơ giảng viên.");
+        }
+
+        private NGUOI_DUNG ValidateViewScope(QuanLyGiangVienDataContext db)
+        {
+            var user = CurrentViewer(db);
+            if (GetLecturerScope(user) != lecturerScope)
+                throw new UserMessage("Phạm vi dữ liệu đã thay đổi. Hãy mở lại chức năng.");
+            return user;
+        }
+
+        private void RequireAddPermission(QuanLyGiangVienDataContext db)
+        {
+            var user = ValidateViewScope(db);
+            if (lecturerScope.HasValue ||
+                !Session.Allows(db, user.MaVaiTro, nameof(frmTeachingAssignment), ActionRight.Add))
+                throw new UserMessage("Bạn không có quyền thêm phân công giảng dạy.");
+        }
+
+        private void CloseForAccessError(UserMessage ex)
+        {
+            MessageBox.Show(this, ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            Close();
+        }
+
         private void LoadCourseClasses()
         {
             if (!DaChonNamHocVaHocKy()) return;
@@ -67,11 +122,13 @@ namespace QuanLyGiangVien
             {
                 int maNamHoc = Convert.ToInt32(cboAcademicYear.SelectedValue);
                 int maHocKy = Convert.ToInt32(cboSemester.SelectedValue);
-                using (var db = new QuanLyGiangVienDataContext())
+                using (var db = Session.Open())
                 {
+                    ValidateViewScope(db);
                     dangNap = true;
                     cboCourseClass.DataSource = db.LOP_HOC_PHANs
                         .Where(x => x.TrangThai && x.MaNamHoc == maNamHoc && x.MaHocKy == maHocKy)
+                        .Where(x => !lecturerScope.HasValue || x.PHAN_CONG_GIANG_DAYs.Any(p => p.MaGV == lecturerScope))
                         .OrderBy(x => x.TenLop)
                         .Select(x => new { x.MaLopHP, TenHienThi = x.TenLop + " - " + x.HOC_PHAN.TenHocPhan })
                         .ToList();
@@ -80,6 +137,7 @@ namespace QuanLyGiangVien
                     dangNap = false;
                 }
             }
+            catch (UserMessage ex) { CloseForAccessError(ex); }
             catch (Exception ex)
             {
                 dangNap = false;
@@ -89,16 +147,19 @@ namespace QuanLyGiangVien
 
         private void LoadAssignments()
         {
+            if (IsDisposed || DialogResult != DialogResult.None) return;
             dgvAssignments.Rows.Clear();
             if (!DaChonNamHocVaHocKy()) return;
             try
             {
                 int maNamHoc = Convert.ToInt32(cboAcademicYear.SelectedValue);
                 int maHocKy = Convert.ToInt32(cboSemester.SelectedValue);
-                using (var db = new QuanLyGiangVienDataContext())
+                using (var db = Session.Open())
                 {
+                    ValidateViewScope(db);
                     var rows = db.PHAN_CONG_GIANG_DAYs
                         .Where(x => x.LOP_HOC_PHAN.MaNamHoc == maNamHoc && x.LOP_HOC_PHAN.MaHocKy == maHocKy)
+                        .Where(x => !lecturerScope.HasValue || x.MaGV == lecturerScope)
                         .OrderBy(x => x.GIANG_VIEN.HoTen)
                         .Select(x => new {
                             x.MaPhanCong,
@@ -113,6 +174,7 @@ namespace QuanLyGiangVien
                             row.HocKy, row.SoTiet, "Đã phân công");
                 }
             }
+            catch (UserMessage ex) { CloseForAccessError(ex); }
             catch (Exception ex) { ShowError("Không tải được danh sách phân công.", ex); }
         }
 
@@ -141,8 +203,9 @@ namespace QuanLyGiangVien
             {
                 // Chuyên môn lưu dưới dạng tên tự do, không có khóa liên kết tới học phần.
                 // Cảnh báo để người dùng xác nhận khi cách đặt tên môn/chuyên môn khác nhau.
-                using (var dbKiemTra = new QuanLyGiangVienDataContext())
+                using (var dbKiemTra = Session.Open())
                 {
+                    RequireAddPermission(dbKiemTra);
                     var tenHocPhan = dbKiemTra.LOP_HOC_PHANs
                         .Where(x => x.MaLopHP == maLopHP)
                         .Select(x => x.HOC_PHAN.TenHocPhan)
@@ -162,8 +225,9 @@ namespace QuanLyGiangVien
 
                 var options = new TransactionOptions { IsolationLevel = System.Transactions.IsolationLevel.Serializable };
                 using (var scope = new TransactionScope(TransactionScopeOption.Required, options))
-                using (var db = new QuanLyGiangVienDataContext())
+                using (var db = Session.Open())
                 {
+                    RequireAddPermission(db);
                     var giangVien = db.GIANG_VIENs.SingleOrDefault(x => x.MaGV == maGV);
                     var lopHocPhan = db.LOP_HOC_PHANs.SingleOrDefault(x => x.MaLopHP == maLopHP);
                     if (giangVien == null || !giangVien.TrangThai)
@@ -201,6 +265,7 @@ namespace QuanLyGiangVien
                 txtPeriods.Clear();
                 LoadAssignments();
             }
+            catch (UserMessage ex) { CloseForAccessError(ex); }
             catch (InvalidOperationException ex)
             {
                 MessageBox.Show(ex.Message, "Không thể phân công", MessageBoxButtons.OK, MessageBoxIcon.Warning);

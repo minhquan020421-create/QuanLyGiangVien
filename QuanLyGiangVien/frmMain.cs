@@ -1,510 +1,334 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace QuanLyGiangVien
 {
     public partial class frmMain : Form
     {
-        private Session session;
+        private const string LecturerForm = nameof(frmLecturer);
+        private const string FacultyForm = nameof(frmFaculty);
+        private const string CourseForm = nameof(frmCourse);
+        private const string AssignmentForm = nameof(frmTeachingAssignment);
+        private const string WorkloadForm = nameof(frmTeachingWorkload);
+        private const string ChartForm = nameof(frmChartDashboard);
+        private const int StartYear = 2025;
+        private const int EndYear = 2026;
+        private const string NoAccess = "Không có quyền";
+        private const string NoData = "Chưa có dữ liệu";
+        private const string LoadError = "Lỗi tải dữ liệu";
 
-        internal frmMain(Session current) : this()
+        private readonly Session session;
+        private readonly List<NavigationItem> navigation = new List<NavigationItem>();
+        private bool loadingSemesters;
+
+        private sealed class NavigationItem
         {
-            if (current == null)
-                throw new ArgumentNullException(nameof(current));
-
-            session = current;
-            lblWelcome.Text = "Xin chào, " + session.Username;
-            btnPhanQuyen.Click += btnPhanQuyen_Click;
-            Shown += (s, e) => Ui.Run(this, RefreshAccountRights);
-            btnChuyenmon.Click += (s, e) =>
-            {
-                Ui.Run(this, () =>
-                {
-                    if (!session.Can("frmSpecialization", ActionRight.View))
-                        throw new UserMessage("Bạn không có quyền xem chuyên môn.");
-
-                    using (var form = new frmSpecialization(session.UserId))
-                    {
-                        form.ShowDialog(this);
-                    }
-                });
-            };
-
-            btnHocphan.Click += (s, e) =>
-            {
-                Ui.Run(this, () =>
-                {
-                    if (!session.Can("frmCourse", ActionRight.View))
-                        throw new UserMessage("Bạn không có quyền xem học phần.");
-
-                    using (var form = new frmCourse(session.UserId))
-                    {
-                        form.ShowDialog(this);
-                    }
-                });
-            };
-            btnChucvu.Click += (s, e) =>
-            {
-                Ui.Run(this, () =>
-                {
-                    if (!session.Can("frmPosition", ActionRight.View))
-                        throw new UserMessage("Bạn không có quyền xem chức vụ.");
-
-                    using (var form = new frmPosition(session.UserId))
-                    {
-                        form.ShowDialog(this);
-                    }
-                });
-            };
-            btnHocVi.Click += (s, e) =>
-            {
-                Ui.Run(this, () =>
-                {
-                    if (!session.Can("frmDegree", ActionRight.View))
-                        throw new UserMessage("Bạn không có quyền xem học vị.");
-
-                    using (var form = new frmDegree(session.UserId))
-                    {
-                        form.ShowDialog(this);
-                    }
-                });
-            };
-            btnGV.Click += (s, e) =>
-            {
-                Ui.Run(this, () =>
-                {
-                    if (!session.Can("frmLecturer", ActionRight.View))
-                        throw new UserMessage("Bạn không có quyền xem giảng viên.");
-
-                    using (var form = new frmLecturer(session.UserId))
-                    {
-                        form.ShowDialog(this);
-                    }
-                });
-            };
+            public Button Button { get; set; }
+            public string FormName { get; set; }
+            public bool FullScopeOnly { get; set; }
         }
-        // ============================================================
-        // CONSTRUCTOR
-        // ============================================================
+
+        private sealed class SemesterChoice
+        {
+            public int Id { get; set; }
+            public string Name { get; set; }
+        }
+
         public frmMain()
         {
             InitializeComponent();
-
-            // Cho phép Sidebar cuộn lên / xuống
-            pnlSidebar.AutoScroll = true;
-
-            // Không cho nội dung Sidebar tự co giãn
-            pnlSidebar.AutoSize = false;
-
-            // Gắn sự kiện cho các nút chính
-            btnTongQuan.Click += btnTongQuan_Click;
-            btnHeThong.Click += btnHeThong_Click;
-            btnDanhMuc.Click += btnDanhMuc_Click;
-            btnDaoTao.Click += btnDaoTao_Click;
-            btnThongKe.Click += btnThongKe_Click;
-            btnBaoCao.Click += btnBaoCao_Click;
-            btnDanhsach.Click += (s, e) => OpenReport(() => new frmReportLecturer(), "frmReportLecturer");
-            btnPc.Click += (s, e) => OpenReport(() => new frmReportTeachingAssignment(), "frmReportTeachingAssignment");
-            btnBD.Click += (s, e) => OpenReport(() => new frmChartDashboard(), "frmChartDashboard");
-            btnKLGD.Click += (s, e) => OpenReport(() => new frmTeachingWorkload(), "frmTeachingWorkload");
-            btnPhanCong.Click += (s, e) => OpenReport(() => new frmTeachingAssignment(), "frmTeachingAssignment");
-
-            // Nút đăng xuất
-            btnDangXuat.Click += btnDangXuat_Click;
+            HoangFormHelper.KeepContentScrollable(pnlContent, layoutDashboard);
         }
 
+        internal frmMain(Session current) : this()
+        {
+            session = current ?? throw new ArgumentNullException(nameof(current));
+            lblWelcome.Text = "Xin chào, " + session.Username;
 
-        // ============================================================
-        // FORM LOAD
-        // ============================================================
+            AddRoute(btnNguoiDung, AccountService.Accounts, s => new frmUserManagement(s), refresh: true);
+            AddRoute(btnDoiMatKhau, null, s => new frmChangePassword(s), refresh: true);
+            AddRoute(btnPhanQuyen, AccountService.Roles, s => new frmRoleManagement(s), refresh: true);
+
+            AddRoute(btnKhoa, FacultyForm, s => new frmFaculty(s.UserId), refresh: true);
+            AddRoute(btnBoMon, "frmDepartment", s => new frmDepartment(s.UserId));
+            AddRoute(btnGiangVien, LecturerForm, s => new frmLecturer(s.UserId), refresh: true);
+            AddRoute(btnHocVi, "frmDegree", s => new frmDegree(s.UserId));
+            AddRoute(btnChucVu, "frmPosition", s => new frmPosition(s.UserId));
+            AddRoute(btnChuyenMon, "frmSpecialization", s => new frmSpecialization(s.UserId));
+            AddRoute(btnHocPhan, CourseForm, s => new frmCourse(s.UserId), refresh: true);
+
+            AddRoute(btnPhanCong, AssignmentForm, s => new frmTeachingAssignment(s), refresh: true);
+            AddRoute(btnKhoiLuong, WorkloadForm, s => new frmTeachingWorkload(s));
+            AddRoute(btnBieuDo, ChartForm, s => new frmChartDashboard(), fullScopeOnly: true);
+            AddRoute(btnBieuDoTongQuan, ChartForm, s => new frmChartDashboard(), fullScopeOnly: true);
+            AddRoute(btnBaoCaoGiangVien, "frmReportLecturer", s => new frmReportLecturer(), fullScopeOnly: true);
+            AddRoute(btnBaoCaoPhanCong, "frmReportTeachingAssignment", s => new frmReportTeachingAssignment(), fullScopeOnly: true);
+        }
+
         private void frmMain_Load(object sender, EventArgs e)
         {
-            // Khi mở chương trình:
-            // Chỉ hiển thị các menu chính
-            // Các menu con sẽ được ẩn đi
-            pnlHeThong.Visible = false;
-            pnlDanhMuc.Visible = false;
-            pnlDaoTao.Visible = false;
-            pnlTK.Visible = false;
-            pnlBaoCao.Visible = false;
+            btnHeThong.Tag = pnlHeThong;
+            btnDanhMuc.Tag = pnlDanhMuc;
+            btnDaoTao.Tag = pnlDaoTao;
+            btnThongKe.Tag = pnlThongKe;
+            btnBaoCao.Tag = pnlBaoCao;
+            pnlHeThong.Visible = pnlDanhMuc.Visible = pnlDaoTao.Visible = pnlThongKe.Visible = pnlBaoCao.Visible = false;
+            lblWorkloadTitle.Text = $"Khối lượng giảng dạy · Năm học {StartYear}–{EndYear}";
+            Theme.Apply(this);
 
-            // Sắp xếp lại Sidebar
-            UpdateSidebarLayout();
+            var workArea = Screen.FromControl(this).WorkingArea;
+            if (Width > workArea.Width || Height > workArea.Height)
+                SetBounds(workArea.Left, workArea.Top, Math.Min(Width, workArea.Width), Math.Min(Height, workArea.Height));
         }
 
+        private void frmMain_Shown(object sender, EventArgs e)
+        {
+            RefreshDashboard();
+        }
 
-        // ============================================================
-        // TỔNG QUAN
-        // ============================================================
         private void btnTongQuan_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(
-                "Bạn đang ở trang Tổng quan.",
-                "Thông báo",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Information
-            );
+            pnlContent.AutoScrollPosition = Point.Empty;
+            RefreshDashboard();
         }
 
-
-        // ============================================================
-        // HỆ THỐNG
-        // ============================================================
-        private void btnHeThong_Click(object sender, EventArgs e)
+        private void btnNhom_Click(object sender, EventArgs e)
         {
-            // Nếu đang mở thì đóng
-            // Nếu đang đóng thì mở
-            pnlHeThong.Visible = !pnlHeThong.Visible;
-
-            // Cập nhật lại vị trí tất cả menu phía dưới
-            UpdateSidebarLayout();
+            var button = (Button)sender;
+            var group = (Control)button.Tag;
+            group.Visible = !group.Visible;
         }
 
-
-        // ============================================================
-        // DANH MỤC
-        // ============================================================
-        private void btnDanhMuc_Click(object sender, EventArgs e)
+        private void btnTheme_Click(object sender, EventArgs e)
         {
-            pnlDanhMuc.Visible = !pnlDanhMuc.Visible;
-
-            UpdateSidebarLayout();
+            Ui.Run(this, Theme.Toggle);
         }
 
-
-        // ============================================================
-        // ĐÀO TẠO
-        // ============================================================
-        private void btnDaoTao_Click(object sender, EventArgs e)
-        {
-            pnlDaoTao.Visible = !pnlDaoTao.Visible;
-
-            UpdateSidebarLayout();
-        }
-
-
-        // ============================================================
-        // THỐNG KÊ
-        // ============================================================
-        private void btnThongKe_Click(object sender, EventArgs e)
-        {
-            pnlTK.Visible = !pnlTK.Visible;
-
-            UpdateSidebarLayout();
-        }
-
-
-        // ============================================================
-        // BÁO CÁO
-        // ============================================================
-        private void btnBaoCao_Click(object sender, EventArgs e)
-        {
-            pnlBaoCao.Visible = !pnlBaoCao.Visible;
-
-            UpdateSidebarLayout();
-        }
-
-
-        // ============================================================
-        // HÀM SẮP XẾP LẠI SIDEBAR
-        // ============================================================
-        private void UpdateSidebarLayout()
-        {
-            // Khoảng cách bắt đầu
-            int y = 10;
-
-            // Chiều cao các nút menu chính
-            int mainButtonHeight = 45;
-
-            // Khoảng cách nhỏ giữa các nhóm
-            int spacing = 5;
-
-
-            // ========================================================
-            // 1. TỔNG QUAN
-            // ========================================================
-            btnTongQuan.Location = new Point(12, y);
-
-            y += mainButtonHeight + spacing;
-
-
-            // ========================================================
-            // 2. HỆ THỐNG
-            // ========================================================
-            btnHeThong.Location = new Point(12, y);
-
-            y += mainButtonHeight;
-
-            if (pnlHeThong.Visible)
-            {
-                pnlHeThong.Location = new Point(9, y);
-
-                y += pnlHeThong.Height + spacing;
-            }
-
-
-            // ========================================================
-            // 3. DANH MỤC
-            // ========================================================
-            btnDanhMuc.Location = new Point(9, y);
-
-            y += mainButtonHeight;
-
-            if (pnlDanhMuc.Visible)
-            {
-                pnlDanhMuc.Location = new Point(9, y);
-
-                y += pnlDanhMuc.Height + spacing;
-            }
-
-
-            // ========================================================
-            // 4. ĐÀO TẠO
-            // ========================================================
-            btnDaoTao.Location = new Point(9, y);
-
-            y += mainButtonHeight;
-
-            if (pnlDaoTao.Visible)
-            {
-                pnlDaoTao.Location = new Point(9, y);
-
-                y += pnlDaoTao.Height + spacing;
-            }
-
-
-            // ========================================================
-            // 5. THỐNG KÊ
-            // ========================================================
-            btnThongKe.Location = new Point(9, y);
-
-            y += mainButtonHeight;
-
-            if (pnlTK.Visible)
-            {
-                pnlTK.Location = new Point(9, y);
-
-                y += pnlTK.Height + spacing;
-            }
-
-
-            // ========================================================
-            // 6. BÁO CÁO
-            // ========================================================
-            btnBaoCao.Location = new Point(9, y);
-
-            y += mainButtonHeight;
-
-            if (pnlBaoCao.Visible)
-            {
-                pnlBaoCao.Location = new Point(9, y);
-
-                y += pnlBaoCao.Height + spacing;
-            }
-
-
-            // ========================================================
-            // 7. ĐĂNG XUẤT
-            // ========================================================
-            btnDangXuat.Location = new Point(12, y);
-
-            y += btnDangXuat.Height + 20;
-
-
-            // ========================================================
-            // Cập nhật vùng cuộn của Sidebar
-            // ========================================================
-            pnlSidebar.AutoScrollMinSize = new Size(0, y);
-        }
-
-
-        // ============================================================
-        // ĐĂNG XUẤT
-        // ============================================================
         private void btnDangXuat_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show(
-                "Bạn có chắc chắn đăng xuất?",
-                "Xác nhận đăng xuất",
-                MessageBoxButtons.OKCancel,
-                MessageBoxIcon.Question
-            );
-
-            // Nếu người dùng bấm OK
-            if (result == DialogResult.OK)
-            {
+            // frmLogin hiện lại khi hộp thoại Main đóng.
+            if (Ui.Confirm(this, "Bạn có chắc chắn đăng xuất?"))
                 Close();
-            }
-
-            // Nếu bấm Cancel thì không làm gì
         }
 
-
-        // ============================================================
-        // CÁC EVENT CŨ TRONG DESIGNER
-        // ============================================================
-        // Các hàm dưới đây được giữ lại để Designer không báo lỗi.
-        // Sau này Bo có thể dùng chúng để mở các Form tương ứng.
-
-
-        private void lblTitle_Click(object sender, EventArgs e)
+        private void AddRoute(Button button, string formName, Func<Session, Form> createForm,
+            bool refresh = false, bool fullScopeOnly = false)
         {
-            // Không xử lý gì
+            var item = new NavigationItem { Button = button, FormName = formName, FullScopeOnly = fullScopeOnly };
+            navigation.Add(item);
+            button.Click += (sender, e) => OpenForm(item, createForm, refresh);
         }
 
-
-        private void pnlSidebar_Paint(object sender, PaintEventArgs e)
-        {
-            // Không xử lý gì
-        }
-
-
-        private void button1_Click_1(object sender, EventArgs e)
-        {
-            // Event cũ của btnDaoTao
-            // Logic mở menu đã được xử lý bởi btnDaoTao_Click
-        }
-
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-            // Không xử lý gì
-        }
-
-
-        private void button2_Click(object sender, EventArgs e)
+        private void OpenForm(NavigationItem item, Func<Session, Form> createForm, bool refresh)
         {
             Ui.Run(this, () =>
             {
                 if (session == null)
                     throw new UserMessage("Bạn chưa đăng nhập.");
 
-                if (!session.Can("frmDepartment", ActionRight.View))
-                    throw new UserMessage("Bạn không có quyền xem bộ môn.");
-
-                using (var form = new frmDepartment(session.UserId))
-                {
-                    form.ShowDialog(this);
-                }
-            });
-        }
-
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            Ui.Run(this, () =>
-            {
-                if (session == null)
-                    throw new UserMessage("Bạn chưa đăng nhập.");
-
-                if (!session.Can("frmFaculty", ActionRight.View))
-                    throw new UserMessage("Bạn không có quyền xem khoa.");
-
-                using (var form = new frmFaculty(session.UserId))
-                {
-                    form.ShowDialog(this);
-                }
-            });
-        }
-
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            OpenAccountForm(AccountService.Accounts, () => new frmUserManagement(session));
-        }
-
-
-        private void btnDoiMatKhau_Click(object sender, EventArgs e)
-        {
-            OpenAccountForm(null, () => new frmChangePassword(session));
-        }
-
-
-        private void btnPhanQuyen_Click(object sender, EventArgs e)
-        {
-            OpenAccountForm(AccountService.Roles, () => new frmRoleManagement(session));
-        }
-
-        // Đọc lại quyền khi mở Main và sau khi đóng màn hình tài khoản.
-        private void RefreshAccountRights()
-        {
-            btnNguoiDung.Enabled = false;
-            btnPhanQuyen.Enabled = false;
-            btnDoiMatKhau.Enabled = false;
-            if (session == null) return;
-
-            using (var db = Session.Open())
-            {
-                var user = session.Current(db);
-                btnNguoiDung.Enabled = Session.Allows(db, user.MaVaiTro,
-                    AccountService.Accounts, ActionRight.View);
-                btnPhanQuyen.Enabled = Session.Allows(db, user.MaVaiTro,
-                    AccountService.Roles, ActionRight.View);
-                // Người dùng có phiên hợp lệ được đổi mật khẩu của chính mình.
-                btnDoiMatKhau.Enabled = true;
-            }
-        }
-
-        private void OpenAccountForm(string formName, Func<Form> createForm)
-        {
-            Ui.Run(this, () =>
-            {
-                if (session == null)
-                    throw new UserMessage("Bạn chưa đăng nhập.");
-
-                // Kiểm tra lại tại lúc bấm, kể cả khi nút đang được bật.
                 using (var db = Session.Open())
                 {
                     var user = session.Current(db);
-                    if (formName != null &&
-                        !Session.Allows(db, user.MaVaiTro, formName, ActionRight.View))
+                    if ((item.FullScopeOnly && HoangFormHelper.IsLecturer(user.VAI_TRO.TenVaiTro)) ||
+                        (item.FormName != null && !Session.Allows(db, user.MaVaiTro, item.FormName, ActionRight.View)))
+                    {
+                        item.Button.Enabled = false;
                         throw new UserMessage("Bạn không có quyền mở chức năng này.");
+                    }
                 }
 
                 try
                 {
-                    using (var form = createForm()) form.ShowDialog(this);
+                    using (var form = createForm(session))
+                    {
+                        var workArea = Screen.FromControl(this).WorkingArea;
+                        form.Size = new Size(Math.Min(form.Width, workArea.Width), Math.Min(form.Height, workArea.Height));
+                        form.ShowDialog(this);
+                    }
                 }
                 finally
                 {
-                    Ui.Run(this, RefreshAccountRights);
+                    if (refresh)
+                        RefreshDashboard();
                 }
             });
         }
 
-        private void OpenReport(Func<Form> createForm, string formName)
+        private void RefreshDashboard()
         {
+            foreach (var item in navigation)
+                item.Button.Enabled = false;
+
+            SetCounts(LoadError);
+            cboHocKy.Enabled = false;
+            lblWorkload.Text = LoadError;
+
             Ui.Run(this, () =>
             {
-                if (session != null && !session.Can(formName, ActionRight.View))
-                    throw new UserMessage("Bạn không có quyền xem chức năng này.");
-                using (var form = createForm()) form.ShowDialog(this);
-            });
+                if (session == null)
+                {
+                    SetCounts(NoAccess);
+                    lblWorkload.Text = NoAccess;
+                    throw new UserMessage("Bạn chưa đăng nhập.");
+                }
+
+                using (var db = Session.Open())
+                {
+                    var user = session.Current(db);
+                    var rights = new HashSet<string>(db.PHAN_QUYENs
+                        .Where(p => p.MaVaiTro == user.MaVaiTro && p.DuocXem)
+                        .Select(p => p.CHUC_NANG.MaForm), StringComparer.OrdinalIgnoreCase);
+                    bool personal = HoangFormHelper.IsLecturer(user.VAI_TRO.TenVaiTro);
+
+                    foreach (var item in navigation)
+                        item.Button.Enabled = (!personal || !item.FullScopeOnly) &&
+                            (item.FormName == null || rights.Contains(item.FormName));
+
+                    LoadCounts(db, user.MaGV, personal, rights);
+                    if (rights.Contains(WorkloadForm))
+                    {
+                        int semester = LoadSemesters(db);
+                        if (semester != 0)
+                        {
+                            lblWorkload.Text = LoadError;
+                            lblWorkload.Text = CalculateWorkload(db, user, semester);
+                        }
+                    }
+                    else
+                        lblWorkload.Text = NoAccess;
+                }
+            }, lblDashboardMessage);
         }
 
-
-        private void panel1_Paint_1(object sender, PaintEventArgs e)
+        private void SetCounts(string text)
         {
-            // Không xử lý gì
+            lblSoGiangVien.Text = lblSoKhoa.Text = lblSoHocPhan.Text = lblSoLop.Text = text;
         }
 
-
-        private void lblDashboard_Click(object sender, EventArgs e)
+        private void LoadCounts(QuanLyGiangVienDataContext db, int? lecturerId, bool personal, HashSet<string> rights)
         {
-            // Không xử lý gì
+            var lecturers = db.GIANG_VIENs.AsQueryable();
+            var courses = db.HOC_PHANs.AsQueryable();
+            var classes = db.LOP_HOC_PHANs.AsQueryable();
+            if (personal)
+            {
+                lecturers = lecturers.Where(g => g.MaGV == lecturerId);
+                classes = classes.Where(c => c.PHAN_CONG_GIANG_DAYs.Any(a => a.MaGV == lecturerId));
+                courses = courses.Where(c => c.LOP_HOC_PHANs.Any(l => l.PHAN_CONG_GIANG_DAYs.Any(a => a.MaGV == lecturerId)));
+            }
+
+            string lecturerCount = rights.Contains(LecturerForm)
+                ? FormatCount(lecturers.Where(g => g.TrangThai), lecturers) : NoAccess;
+            string facultyCount = !personal && rights.Contains(FacultyForm)
+                ? FormatCount(db.KHOAs.Where(k => k.TrangThai), db.KHOAs) : NoAccess;
+            string courseCount = rights.Contains(CourseForm)
+                ? FormatCount(courses.Where(c => c.TrangThai), courses) : NoAccess;
+            string classCount = rights.Contains(AssignmentForm)
+                ? FormatCount(classes.Where(c => c.TrangThai), classes) : NoAccess;
+
+            lblSoGiangVien.Text = lecturerCount;
+            lblSoKhoa.Text = facultyCount;
+            lblSoHocPhan.Text = courseCount;
+            lblSoLop.Text = classCount;
+            lblScope.Text = personal ? "Bản ghi đang hoạt động trong phạm vi cá nhân."
+                : "Bản ghi đang hoạt động thuộc các chức năng bạn được phép xem.";
         }
 
-
-        private void label13_Click(object sender, EventArgs e)
+        private static string FormatCount<T>(IQueryable<T> active, IQueryable<T> scope)
         {
-            // Không xử lý gì
+            int count = active.Count();
+            return count != 0 || scope.Any() ? count.ToString("N0") : NoData;
         }
 
-
-        private void label15_Click(object sender, EventArgs e)
+        private int LoadSemesters(QuanLyGiangVienDataContext db)
         {
-            // Không xử lý gì
+            int previous = cboHocKy.SelectedValue is int ? (int)cboHocKy.SelectedValue : 0;
+            var semesters = db.HOC_Kies.OrderBy(k => k.MaHocKy)
+                .Select(k => new SemesterChoice { Id = k.MaHocKy, Name = k.TenHocKy }).ToList();
+
+            loadingSemesters = true;
+            try
+            {
+                semesters.Insert(0, new SemesterChoice { Name = "Chọn học kỳ" });
+                cboHocKy.DataSource = semesters;
+                cboHocKy.SelectedValue = semesters.Any(k => k.Id == previous) ? previous : 0;
+            }
+            finally
+            {
+                loadingSemesters = false;
+            }
+
+            cboHocKy.Enabled = semesters.Count > 1;
+            lblWorkload.Text = cboHocKy.Enabled ? "Chọn học kỳ để xem tỷ lệ." : NoData;
+            return cboHocKy.SelectedValue is int ? (int)cboHocKy.SelectedValue : 0;
+        }
+
+        private void cboHocKy_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (!loadingSemesters)
+                RefreshWorkload();
+        }
+
+        private void RefreshWorkload()
+        {
+            if (!cboHocKy.Enabled)
+                return;
+
+            int semester = cboHocKy.SelectedValue is int ? (int)cboHocKy.SelectedValue : 0;
+            if (semester == 0)
+            {
+                lblWorkload.Text = "Chọn học kỳ để xem tỷ lệ.";
+                return;
+            }
+
+            Ui.Run(this, () =>
+            {
+                if (session == null)
+                    throw new UserMessage("Bạn chưa đăng nhập.");
+
+                using (var db = Session.Open())
+                {
+                    var user = session.Current(db);
+                    if (!Session.Allows(db, user.MaVaiTro, WorkloadForm, ActionRight.View))
+                    {
+                        cboHocKy.Enabled = false;
+                        lblWorkload.Text = NoAccess;
+                        return;
+                    }
+
+                    lblWorkload.Text = CalculateWorkload(db, user, semester);
+                }
+            }, lblWorkload);
+        }
+
+        private static string CalculateWorkload(QuanLyGiangVienDataContext db, NGUOI_DUNG user, int semester)
+        {
+            var year = db.NAM_HOCs.FirstOrDefault(y => y.TuNam == StartYear && y.DenNam == EndYear);
+            if (year == null)
+                return "Chưa có dữ liệu năm học.";
+
+            var lecturers = db.GIANG_VIENs.Where(g => g.TrangThai);
+            var assignments = frmTeachingWorkload.ActiveAssignments(db, year.MaNamHoc, semester);
+            if (HoangFormHelper.IsLecturer(user.VAI_TRO.TenVaiTro))
+            {
+                int? lecturerId = user.MaGV;
+                lecturers = lecturers.Where(g => g.MaGV == lecturerId);
+                assignments = assignments.Where(a => a.MaGV == lecturerId);
+            }
+
+            int denominator = lecturers.Count();
+            if (denominator == 0)
+                return "Chưa có giảng viên đang hoạt động trong phạm vi xem.";
+
+            var totals = assignments.GroupBy(a => a.MaGV).Select(g => g.Sum(a => a.SoTiet));
+            int quota = frmTeachingWorkload.DinhMucTietMoiHocKy;
+            int meets = totals.Count(t => t == quota);
+            int exceeds = totals.Count(t => t > quota);
+            return $"Đạt {quota} tiết: {(double)meets / denominator:P1}  ({meets}/{denominator})" +
+                Environment.NewLine + $"Vượt {quota} tiết: {(double)exceeds / denominator:P1}  ({exceeds}/{denominator})";
         }
     }
 }

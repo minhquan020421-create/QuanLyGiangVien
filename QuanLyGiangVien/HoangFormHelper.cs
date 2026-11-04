@@ -17,6 +17,23 @@ namespace QuanLyGiangVien
 
     internal static class HoangFormHelper
     {
+        internal static void KeepContentScrollable(Panel viewport, Control content)
+        {
+            // MinimumSize của control co giãn theo DPI, còn AutoScrollMinSize thì không.
+            viewport.Layout += (sender, e) =>
+            {
+                var minimum = content.MinimumSize + viewport.Padding.Size;
+                if (viewport.AutoScrollMinSize != minimum)
+                    viewport.AutoScrollMinSize = minimum;
+            };
+            viewport.PerformLayout();
+        }
+
+        internal static bool IsLecturer(string roleName)
+        {
+            return string.Equals(roleName, "Giảng viên", StringComparison.OrdinalIgnoreCase);
+        }
+
         // Chỉ đọc bảng quyền của nhóm; mã người dùng do phần đăng nhập của Hào truyền vào.
         public static HoangFormAccess GetAccess(int? userId, string formName)
         {
@@ -36,7 +53,7 @@ namespace QuanLyGiangVien
                     Them = permission.DuocThem,
                     Sua = permission.DuocSua,
                     Xoa = permission.DuocXoa,
-                    ChiXemCaNhan = string.Equals(user.TenVaiTro, "Giảng viên", StringComparison.OrdinalIgnoreCase),
+                    ChiXemCaNhan = IsLecturer(user.TenVaiTro),
                     MaGV = user.MaGV
                 };
             }
