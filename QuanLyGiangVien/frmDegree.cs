@@ -78,50 +78,72 @@ namespace QuanLyGiangVien
 
         private void dgvDanhSach_SelectionChanged(object sender, EventArgs e)
         {
-            if (loading || dgvDanhSach.SelectedRows.Count == 0) return;
+            if (loading) return;
+            selected = null;
+            if (dgvDanhSach.SelectedRows.Count == 0) return;
             int id = Convert.ToInt32(dgvDanhSach.SelectedRows[0].Cells["colMaHocVi"].Value);
             selected = rows.FirstOrDefault(x => x.MaHocVi == id);
             if (selected == null) return;
-            txtMaHocVi.Text = selected.MaHocVi.ToString(); txtTenHocVi.Text = selected.TenHocVi;
+            txtMaHocVi.Text = selected.MaHocVi.ToString();
+            txtTenHocVi.Text = selected.TenHocVi;
         }
 
         private void Save(bool adding)
         {
             bool writing = false;
-            bool ok = HoangFormHelper.Run(this, () =>
+            HoangFormHelper.Run(this, () =>
             {
                 HoangFormHelper.RequireAction(maNguoiDung, "frmDegree", adding ? "Them" : "Sua");
-                HoangFormHelper.Require(adding || selected != null, "Vui lòng chọn dòng cần sửa.");
-                HoangFormHelper.Require(txtTenHocVi.Text.Trim().Length > 0, "Vui lòng nhập tên.");
-                int currentId = adding ? 0 : selected.MaHocVi;
-                HoangFormHelper.Require(!db.HOC_VIs.Any(x => x.TenHocVi == txtTenHocVi.Text.Trim() && x.MaHocVi != currentId), "Tên đã tồn tại.");
-                HoangFormHelper.Require(adding || db.HOC_VIs.Any(x => x.MaHocVi == selected.MaHocVi), "Bản ghi đã bị xóa. Hãy làm mới danh sách.");
-                writing = true;
+                string name = txtTenHocVi.Text.Trim();
+                HoangFormHelper.Require(name.Length > 0, "Vui lòng nhập tên học vị.");
+
                 var item = adding ? new HOC_VI() : selected;
-                item.TenHocVi = txtTenHocVi.Text.Trim();
+                HoangFormHelper.Require(adding || item.TenHocVi != name, "Thông tin học vị chưa thay đổi.");
+
+                int currentId = item.MaHocVi;
+                HoangFormHelper.Require(!db.HOC_VIs.Any(x => x.TenHocVi == name && (adding || x.MaHocVi != currentId)),
+                    "Tên học vị đã tồn tại.");
+
+                writing = true;
+                item.TenHocVi = name;
                 if (adding) db.HOC_VIs.InsertOnSubmit(item);
                 db.SubmitChanges();
                 MessageBox.Show(this, "Đã lưu dữ liệu.", "Thông báo");
             });
             // Giữ dữ liệu nhập khi kiểm tra sai; bỏ entity chờ lưu nếu SubmitChanges lỗi.
-            if (ok || writing) LoadData();
+            if (writing) LoadData();
         }
 
         private void btnThem_Click(object sender, EventArgs e) { Save(true); }
-        private void btnSua_Click(object sender, EventArgs e) { Save(false); }
+        private void btnSua_Click(object sender, EventArgs e)
+        {
+            if (selected == null)
+            {
+                MessageBox.Show(this, "Vui lòng chọn học vị cần sửa.", "Thông báo");
+                return;
+            }
+
+            Save(false);
+        }
         private void btnTimKiem_Click(object sender, EventArgs e) { LoadData(); }
         private void btnLamMoi_Click(object sender, EventArgs e) { txtTimKiem.Clear(); LoadData(); }
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
-            if (!HoangFormHelper.Run(this, () => HoangFormHelper.RequireAction(maNguoiDung, "frmDegree", "Xoa"))) return;
-            if (selected == null) { MessageBox.Show(this, "Vui lòng chọn dòng cần xóa."); return; }
-            if (!HoangFormHelper.ConfirmDelete(this, selected.TenHocVi)) return;
+            var item = selected;
+            if (item == null)
+            {
+                MessageBox.Show(this, "Vui lòng chọn dòng cần xóa.", "Thông báo");
+                return;
+            }
+
+            if (!HoangFormHelper.ConfirmDelete(this, item.TenHocVi)) return;
             HoangFormHelper.Run(this, () =>
             {
                 HoangFormHelper.RequireAction(maNguoiDung, "frmDegree", "Xoa");
-                HoangFormHelper.Require(!(db.GIANG_VIENs.Any(x => x.MaHocVi == selected.MaHocVi)), "Dữ liệu đang được sử dụng. Không thể xóa; hãy kiểm tra các bản ghi liên quan.");
-                db.HOC_VIs.DeleteOnSubmit(selected);
+                HoangFormHelper.Require(!db.GIANG_VIENs.Any(x => x.MaHocVi == item.MaHocVi),
+                    "Dữ liệu đang được sử dụng. Không thể xóa; hãy kiểm tra các bản ghi liên quan.");
+                db.HOC_VIs.DeleteOnSubmit(item);
                 db.SubmitChanges();
                 MessageBox.Show(this, "Đã xóa dữ liệu.", "Thông báo");
             });

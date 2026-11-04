@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Linq;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -55,9 +56,16 @@ namespace QuanLyGiangVien
             HoangFormAccess access = null;
             bool ok = HoangFormHelper.Run(this, () =>
             {
-                if (db != null) db.Dispose();
+                db?.Dispose();
+                db = null;
                 access = HoangFormHelper.GetAccess(maNguoiDung, "frmLecturer");
                 db = new QuanLyGiangVienDataContext(DatabaseConnection.CurrentConnectionString);
+                var loadOptions = new DataLoadOptions();
+                loadOptions.LoadWith<GIANG_VIEN>(x => x.BO_MON);
+                loadOptions.LoadWith<BO_MON>(x => x.KHOA);
+                loadOptions.LoadWith<GIANG_VIEN>(x => x.HOC_VI);
+                loadOptions.LoadWith<GIANG_VIEN>(x => x.CHUC_VU);
+                db.LoadOptions = loadOptions;
                 // ComboBox nhập liệu không có giá trị "Tất cả".
                 var faculties = db.KHOAs.OrderBy(x => x.TenKhoa).Select(x => new { Id = x.MaKhoa, Name = x.TenKhoa }).ToList();
                 cboMaKhoa.DisplayMember = "Name";
@@ -98,7 +106,7 @@ namespace QuanLyGiangVien
                 var query = db.GIANG_VIENs.Where(x => keyword == "" || x.HoTen.Contains(keyword) || (byId && x.MaGV == id));
                 if (access.ChiXemCaNhan)
                 {
-                    int ownId = access.MaGV ?? -1;
+                    int? ownId = access.MaGV;
                     query = query.Where(x => x.MaGV == ownId);
                 }
                 if (filterFaculty > 0) query = query.Where(x => x.BO_MON.MaKhoa == filterFaculty);
@@ -119,12 +127,22 @@ namespace QuanLyGiangVien
                 }).ToList();
                 lblKetQua.Text = rows.Count + " kết quả";
             });
-            if (!ok) lblKetQua.Text = "Chưa tải được dữ liệu";
+            if (!ok)
+            {
+                db?.Dispose();
+                db = null;
+                rows.Clear();
+                dgvDanhSach.DataSource = null;
+                cboMaKhoa.DataSource = cboMaHocVi.DataSource = cboMaChucVu.DataSource = null;
+                cboLocKhoa.DataSource = cboLocBoMon.DataSource = cboLocHocVi.DataSource = null;
+                lblKetQua.Text = "Chưa tải được dữ liệu";
+            }
             ClearInput();
             loading = false;
-            btnThem.Enabled = ok && access.Them;
-            btnSua.Enabled = ok && access.Sua;
-            btnXoa.Enabled = ok && access.Xoa;
+            btnThem.Enabled = ok && access.Them && !access.ChiXemCaNhan;
+            bool canSelectRecord = ok && (!access.ChiXemCaNhan || access.MaGV.HasValue);
+            btnSua.Enabled = canSelectRecord && access.Sua;
+            btnXoa.Enabled = canSelectRecord && access.Xoa;
         }
 
         private void LoadFilterDepartments(int? selectedId)
@@ -184,7 +202,9 @@ namespace QuanLyGiangVien
 
         private void dgvDanhSach_SelectionChanged(object sender, EventArgs e)
         {
-            if (loading || dgvDanhSach.SelectedRows.Count == 0) return;
+            if (loading) return;
+            selected = null;
+            if (dgvDanhSach.SelectedRows.Count == 0) return;
             int id = Convert.ToInt32(dgvDanhSach.SelectedRows[0].Cells["colMaGV"].Value);
             selected = rows.FirstOrDefault(x => x.MaGV == id);
             if (selected == null) return;
@@ -213,52 +233,78 @@ namespace QuanLyGiangVien
         private void Save(bool adding)
         {
             bool writing = false;
-            bool ok = HoangFormHelper.Run(this, () =>
+            HoangFormHelper.Run(this, () =>
             {
                 var permission = HoangFormHelper.RequireAction(maNguoiDung, "frmLecturer", adding ? "Them" : "Sua");
-                HoangFormHelper.Require(adding || selected != null, "Vui lòng chọn giảng viên cần sửa.");
-                HoangFormHelper.Require(txtHoTen.Text.Trim().Length > 0, "Vui lòng nhập họ tên.");
                 HoangFormHelper.Require(!permission.ChiXemCaNhan || (!adding && selected.MaGV == permission.MaGV),
                     "Bạn chỉ được thao tác trên hồ sơ giảng viên của mình.");
+                string name = txtHoTen.Text.Trim();
+                HoangFormHelper.Require(name.Length > 0, "Vui lòng nhập họ tên.");
                 string email = txtEmail.Text.Trim();
                 HoangFormHelper.CheckEmail(email, true);
                 HoangFormHelper.CheckPhone(txtSoDienThoai.Text.Trim());
-                int currentId = adding ? 0 : selected.MaGV;
-                HoangFormHelper.Require(!db.GIANG_VIENs.Any(x => x.Email == email && x.MaGV != currentId), "Email đã được giảng viên khác sử dụng.");
-                int? khoa = HoangFormHelper.SelectedId(cboMaKhoa);
-                int? boMon = HoangFormHelper.SelectedId(cboMaBoMon);
-                int? hocVi = HoangFormHelper.SelectedId(cboMaHocVi);
-                int? chucVu = HoangFormHelper.SelectedId(cboMaChucVu);
-                HoangFormHelper.Require(khoa.HasValue && boMon.HasValue && db.BO_MONs.Any(x => x.MaBoMon == boMon.Value && x.MaKhoa == khoa.Value), "Vui lòng chọn khoa và bộ môn phù hợp.");
-                HoangFormHelper.Require(hocVi.HasValue && db.HOC_VIs.Any(x => x.MaHocVi == hocVi.Value), "Vui lòng chọn học vị hợp lệ.");
-                HoangFormHelper.Require(!chucVu.HasValue || chucVu == 0 || db.CHUC_VUs.Any(x => x.MaChucVu == chucVu.Value), "Chức vụ không còn tồn tại. Hãy tải lại danh sách.");
+
                 DateTime? birth = dtpNgaySinh.Checked ? (DateTime?)dtpNgaySinh.Value.Date : null;
                 DateTime? joined = dtpNgayVaoTruong.Checked ? (DateTime?)dtpNgayVaoTruong.Value.Date : null;
                 HoangFormHelper.Require(!birth.HasValue || birth.Value <= DateTime.Today, "Ngày sinh không được ở tương lai.");
                 HoangFormHelper.Require(!birth.HasValue || !joined.HasValue || joined.Value >= birth.Value, "Ngày vào trường không được trước ngày sinh.");
-                HoangFormHelper.Require(adding || db.GIANG_VIENs.Any(x => x.MaGV == selected.MaGV), "Bản ghi đã bị xóa. Hãy làm mới danh sách.");
-                writing = true;
+
+                int currentId = adding ? 0 : selected.MaGV;
+                HoangFormHelper.Require(!db.GIANG_VIENs.Any(x => x.Email == email && x.MaGV != currentId), "Email đã được giảng viên khác sử dụng.");
+
+                int? facultyId = HoangFormHelper.SelectedId(cboMaKhoa);
+                int? departmentId = HoangFormHelper.SelectedId(cboMaBoMon);
+                int? degreeId = HoangFormHelper.SelectedId(cboMaHocVi);
+                int? positionId = HoangFormHelper.SelectedId(cboMaChucVu);
+                var department = facultyId.HasValue && departmentId.HasValue
+                    ? db.BO_MONs.SingleOrDefault(x => x.MaBoMon == departmentId.Value && x.MaKhoa == facultyId.Value)
+                    : null;
+                HoangFormHelper.Require(department != null, "Vui lòng chọn khoa và bộ môn phù hợp.");
+                var degree = degreeId.HasValue ? db.HOC_VIs.SingleOrDefault(x => x.MaHocVi == degreeId.Value) : null;
+                HoangFormHelper.Require(degree != null, "Vui lòng chọn học vị hợp lệ.");
+                CHUC_VU position = null;
+                if (positionId.HasValue && positionId.Value != 0)
+                {
+                    position = db.CHUC_VUs.SingleOrDefault(x => x.MaChucVu == positionId.Value);
+                    HoangFormHelper.Require(position != null, "Chức vụ không còn tồn tại. Hãy tải lại danh sách.");
+                }
+
                 var item = adding ? new GIANG_VIEN() : selected;
-                item.HoTen = txtHoTen.Text.Trim(); item.Email = email;
-                item.NgaySinh = birth; item.NgayVaoTruong = joined;
+                item.HoTen = name;
+                item.Email = email;
+                item.NgaySinh = birth;
+                item.NgayVaoTruong = joined;
                 item.GioiTinh = HoangFormHelper.Optional(cboGioiTinh.Text);
                 item.SoDienThoai = HoangFormHelper.Optional(txtSoDienThoai.Text);
                 item.DiaChi = HoangFormHelper.Optional(txtDiaChi.Text);
                 // Dùng entity liên quan: tránh ForeignKeyReferenceAlreadyHasValueException
                 // khi navigation property đã được đọc để hiển thị tên.
-                item.BO_MON = db.BO_MONs.Single(x => x.MaBoMon == boMon.Value);
-                item.HOC_VI = db.HOC_VIs.Single(x => x.MaHocVi == hocVi.Value);
-                item.CHUC_VU = !chucVu.HasValue || chucVu == 0 ? null : db.CHUC_VUs.Single(x => x.MaChucVu == chucVu.Value);
+                item.BO_MON = department;
+                item.HOC_VI = degree;
+                item.CHUC_VU = position;
                 item.TrangThai = chkTrangThai.Checked;
+                if (!adding)
+                    HoangFormHelper.Require(db.GetChangeSet().Updates.Count > 0, "Thông tin giảng viên chưa thay đổi.");
+
+                writing = true;
                 if (adding) db.GIANG_VIENs.InsertOnSubmit(item);
                 db.SubmitChanges();
                 MessageBox.Show(this, "Đã lưu giảng viên.", "Thông báo");
             });
-            if (ok || writing) LoadData(false);
+            if (writing) LoadData(false);
         }
 
         private void btnThem_Click(object sender, EventArgs e) { Save(true); }
-        private void btnSua_Click(object sender, EventArgs e) { Save(false); }
+        private void btnSua_Click(object sender, EventArgs e)
+        {
+            if (selected == null)
+            {
+                MessageBox.Show(this, "Vui lòng chọn giảng viên cần sửa.", "Thông báo");
+                return;
+            }
+
+            Save(false);
+        }
         private void btnTimKiem_Click(object sender, EventArgs e) { LoadData(false); }
         private void btnLamMoi_Click(object sender, EventArgs e)
         {
@@ -269,20 +315,20 @@ namespace QuanLyGiangVien
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
-            if (!HoangFormHelper.Run(this, () => HoangFormHelper.RequireAction(maNguoiDung, "frmLecturer", "Xoa"))) return;
-            if (selected == null) { MessageBox.Show(this, "Vui lòng chọn giảng viên cần xóa."); return; }
-            if (!HoangFormHelper.ConfirmDelete(this, selected.HoTen)) return;
+            var item = selected;
+            if (item == null) { MessageBox.Show(this, "Vui lòng chọn giảng viên cần xóa."); return; }
+            if (!HoangFormHelper.ConfirmDelete(this, item.HoTen)) return;
             HoangFormHelper.Run(this, () =>
             {
                 var permission = HoangFormHelper.RequireAction(maNguoiDung, "frmLecturer", "Xoa");
-                HoangFormHelper.Require(!permission.ChiXemCaNhan || selected.MaGV == permission.MaGV,
+                HoangFormHelper.Require(!permission.ChiXemCaNhan || item.MaGV == permission.MaGV,
                     "Bạn chỉ được thao tác trên hồ sơ giảng viên của mình.");
-                int id = selected.MaGV;
+                int id = item.MaGV;
                 HoangFormHelper.Require(!db.PHAN_CONG_GIANG_DAYs.Any(x => x.MaGV == id)
                     && !db.GIANG_VIEN_CHUYEN_MONs.Any(x => x.MaGV == id)
                     && !db.NGUOI_DUNGs.Any(x => x.MaGV == id),
                     "Giảng viên đang có phân công, chuyên môn hoặc tài khoản liên quan. Không thể xóa. Có thể sửa trạng thái thành ngừng hoạt động nếu phù hợp.");
-                db.GIANG_VIENs.DeleteOnSubmit(selected);
+                db.GIANG_VIENs.DeleteOnSubmit(item);
                 db.SubmitChanges();
                 MessageBox.Show(this, "Đã xóa giảng viên.", "Thông báo");
             });

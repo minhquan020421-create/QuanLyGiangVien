@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Linq;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -57,6 +58,9 @@ namespace QuanLyGiangVien
                 }
                 access = HoangFormHelper.GetAccess(maNguoiDung, "frmCourse");
                 db = new QuanLyGiangVienDataContext(DatabaseConnection.CurrentConnectionString);
+                var loadOptions = new DataLoadOptions();
+                loadOptions.LoadWith<HOC_PHAN>(x => x.BO_MON);
+                db.LoadOptions = loadOptions;
 
                 IQueryable<HOC_PHAN> courses = db.HOC_PHANs;
                 IQueryable<BO_MON> departments = db.BO_MONs;
@@ -101,7 +105,9 @@ namespace QuanLyGiangVien
 
         private void dgvDanhSach_SelectionChanged(object sender, EventArgs e)
         {
-            if (loading || dgvDanhSach.SelectedRows.Count == 0) return;
+            if (loading) return;
+            selected = null;
+            if (dgvDanhSach.SelectedRows.Count == 0) return;
             int id = Convert.ToInt32(dgvDanhSach.SelectedRows[0].Cells["colMaHocPhan"].Value);
             selected = rows.FirstOrDefault(x => x.MaHocPhan == id);
             if (selected == null) return;
@@ -111,27 +117,48 @@ namespace QuanLyGiangVien
         private void Save(bool adding)
         {
             bool writing = false;
-            bool ok = HoangFormHelper.Run(this, () =>
+            HoangFormHelper.Run(this, () =>
             {
                 RequireCourseAction(adding ? "Them" : "Sua");
-                HoangFormHelper.Require(adding || selected != null, "Vui lòng chọn dòng cần sửa.");
-                HoangFormHelper.Require(txtTenHocPhan.Text.Trim().Length > 0, "Vui lòng nhập tên.");
-                int? MaBoMon = HoangFormHelper.SelectedId(cboMaBoMon);
-                HoangFormHelper.Require(MaBoMon.HasValue && db.BO_MONs.Any(x => x.MaBoMon == MaBoMon.Value), "Vui lòng chọn bộ môn hợp lệ.");
-                HoangFormHelper.Require(adding || db.HOC_PHANs.Any(x => x.MaHocPhan == selected.MaHocPhan), "Bản ghi đã bị xóa. Hãy làm mới danh sách.");
-                writing = true;
+                string name = txtTenHocPhan.Text.Trim();
+                HoangFormHelper.Require(name.Length > 0, "Vui lòng nhập tên học phần.");
+                int? departmentId = HoangFormHelper.SelectedId(cboMaBoMon);
+                var department = departmentId.HasValue
+                    ? db.BO_MONs.SingleOrDefault(x => x.MaBoMon == departmentId.Value)
+                    : null;
+                HoangFormHelper.Require(department != null, "Vui lòng chọn bộ môn hợp lệ.");
+
                 var item = adding ? new HOC_PHAN() : selected;
-                item.TenHocPhan = txtTenHocPhan.Text.Trim(); item.SoTinChi = (int)numSoTinChi.Value; item.SoTietLyThuyet = (int)numSoTietLyThuyet.Value; item.SoTietThucHanh = (int)numSoTietThucHanh.Value; item.BO_MON = db.BO_MONs.Single(x => x.MaBoMon == MaBoMon.Value); item.TrangThai = chkTrangThai.Checked;
+                item.TenHocPhan = name;
+                item.SoTinChi = (int)numSoTinChi.Value;
+                item.SoTietLyThuyet = (int)numSoTietLyThuyet.Value;
+                item.SoTietThucHanh = (int)numSoTietThucHanh.Value;
+                item.BO_MON = department;
+                item.TrangThai = chkTrangThai.Checked;
+
+                if (!adding)
+                    HoangFormHelper.Require(db.GetChangeSet().Updates.Count > 0, "Thông tin học phần chưa thay đổi.");
+
+                writing = true;
                 if (adding) db.HOC_PHANs.InsertOnSubmit(item);
                 db.SubmitChanges();
                 MessageBox.Show(this, "Đã lưu dữ liệu.", "Thông báo");
             });
             // Giữ dữ liệu nhập khi kiểm tra sai; bỏ entity chờ lưu nếu SubmitChanges lỗi.
-            if (ok || writing) LoadData();
+            if (writing) LoadData();
         }
 
         private void btnThem_Click(object sender, EventArgs e) { Save(true); }
-        private void btnSua_Click(object sender, EventArgs e) { Save(false); }
+        private void btnSua_Click(object sender, EventArgs e)
+        {
+            if (selected == null)
+            {
+                MessageBox.Show(this, "Vui lòng chọn học phần cần sửa.", "Thông báo");
+                return;
+            }
+
+            Save(false);
+        }
         private void btnTimKiem_Click(object sender, EventArgs e) { LoadData(); }
         private void btnLamMoi_Click(object sender, EventArgs e) { txtTimKiem.Clear(); LoadData(); }
 
@@ -143,14 +170,14 @@ namespace QuanLyGiangVien
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
-            if (!HoangFormHelper.Run(this, () => RequireCourseAction("Xoa"))) return;
-            if (selected == null) { MessageBox.Show(this, "Vui lòng chọn dòng cần xóa."); return; }
-            if (!HoangFormHelper.ConfirmDelete(this, selected.TenHocPhan)) return;
+            var item = selected;
+            if (item == null) { MessageBox.Show(this, "Vui lòng chọn học phần cần xóa.", "Thông báo"); return; }
+            if (!HoangFormHelper.ConfirmDelete(this, item.TenHocPhan)) return;
             HoangFormHelper.Run(this, () =>
             {
                 RequireCourseAction("Xoa");
-                HoangFormHelper.Require(!(db.LOP_HOC_PHANs.Any(x => x.MaHocPhan == selected.MaHocPhan)), "Dữ liệu đang được sử dụng. Không thể xóa; hãy kiểm tra các bản ghi liên quan.");
-                db.HOC_PHANs.DeleteOnSubmit(selected);
+                HoangFormHelper.Require(!db.LOP_HOC_PHANs.Any(x => x.MaHocPhan == item.MaHocPhan), "Học phần đã có lớp học phần, không thể xóa.");
+                db.HOC_PHANs.DeleteOnSubmit(item);
                 db.SubmitChanges();
                 MessageBox.Show(this, "Đã xóa dữ liệu.", "Thông báo");
             });
