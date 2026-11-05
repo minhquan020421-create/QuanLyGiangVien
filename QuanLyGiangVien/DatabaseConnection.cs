@@ -59,7 +59,7 @@ namespace QuanLyGiangVien
                 }
 
                 using (connection)
-                    DatabaseSchema.EnsureRecoveryEmail(connection, IsPrivateLocalDb(selected));
+                    DatabaseSchema.EnsureRecoveryEmail(connection, IsLocalDatabase(selected));
 
                 selectedConnectionString = selected;
                 return selectedConnectionString;
@@ -86,6 +86,20 @@ namespace QuanLyGiangVien
 
             builder.DataSource = HoangLocalDb;
             return builder.ConnectionString;
+        }
+
+        private static bool IsLocalDatabase(string connectionString)
+        {
+            string server = new SqlConnectionStringBuilder(connectionString).DataSource;
+            if (server.StartsWith(@"(localdb)\", StringComparison.OrdinalIgnoreCase))
+                return IsPrivateLocalDb(connectionString);
+
+            string host = server.Split('\\')[0].Trim();
+            return string.Equals(host, "localhost", StringComparison.OrdinalIgnoreCase) ||
+                string.Equals(host, ".", StringComparison.OrdinalIgnoreCase) ||
+                string.Equals(host, "(local)", StringComparison.OrdinalIgnoreCase) ||
+                string.Equals(host, "127.0.0.1", StringComparison.OrdinalIgnoreCase) ||
+                string.Equals(host, "::1", StringComparison.OrdinalIgnoreCase);
         }
 
         private static bool IsPrivateLocalDb(string connectionString)

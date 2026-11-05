@@ -13,7 +13,8 @@ namespace QuanLyGiangVien
         private const string CourseForm = nameof(frmCourse);
         private const string AssignmentForm = nameof(frmTeachingAssignment);
         private const string WorkloadForm = nameof(frmTeachingWorkload);
-        private const string ChartForm = nameof(frmChartDashboard);
+        // Mã chức năng này vẫn được dùng trong bảng PHAN_QUYEN; lớp form đã được thay bằng frmChart.
+        private const string ChartForm = "frmChartDashboard";
         private const int StartYear = 2025;
         private const int EndYear = 2026;
         private const string NoAccess = "Không có quyền";
@@ -65,8 +66,8 @@ namespace QuanLyGiangVien
 
             AddRoute(btnPhanCong, AssignmentForm, s => new frmTeachingAssignment(s), refresh: true);
             AddRoute(btnKhoiLuong, WorkloadForm, s => new frmTeachingWorkload(s));
-            AddRoute(btnBieuDo, ChartForm, s => new frmChartDashboard(), fullScopeOnly: true);
-            AddRoute(btnBieuDoTongQuan, ChartForm, s => new frmChartDashboard(), fullScopeOnly: true);
+            AddRoute(btnBieuDo, ChartForm, s => new frmChart(), fullScopeOnly: true);
+            AddRoute(btnBieuDoTongQuan, ChartForm, s => new frmChart(), fullScopeOnly: true);
             AddRoute(btnBaoCaoGiangVien, "frmReportLecturer", s => new frmReportLecturer(), fullScopeOnly: true);
             AddRoute(btnBaoCaoPhanCong, "frmReportTeachingAssignment", s => new frmReportTeachingAssignment(), fullScopeOnly: true);
             // Hai báo cáo mở rộng dùng quyền xem báo cáo phân công đã có trong database.
