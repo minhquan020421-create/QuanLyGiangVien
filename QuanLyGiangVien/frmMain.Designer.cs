@@ -54,6 +54,8 @@ namespace QuanLyGiangVien
             this.pnlBaoCao = new TableLayoutPanel();
             this.btnBaoCaoGiangVien = new Button();
             this.btnBaoCaoPhanCong = new Button();
+            this.btnBaoCaoTaiTrongKhoa = new Button();
+            this.btnBaoCaoChuaPhanCong = new Button();
             this.btnDangXuat = new Button();
             this.pnlContent = new Panel();
             this.layoutDashboard = new TableLayoutPanel();
@@ -522,7 +524,7 @@ namespace QuanLyGiangVien
             // pnlBaoCao
             this.pnlBaoCao.Name = "pnlBaoCao";
             this.pnlBaoCao.ColumnCount = 1;
-            this.pnlBaoCao.RowCount = 2;
+            this.pnlBaoCao.RowCount = 4;
             this.pnlBaoCao.GrowStyle = TableLayoutPanelGrowStyle.FixedSize;
             this.pnlBaoCao.Dock = DockStyle.Fill;
             this.pnlBaoCao.AutoSize = true;
@@ -530,6 +532,8 @@ namespace QuanLyGiangVien
             this.pnlBaoCao.Margin = new Padding(10, 0, 0, 6);
             this.pnlBaoCao.TabIndex = 10;
             this.pnlBaoCao.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            this.pnlBaoCao.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+            this.pnlBaoCao.RowStyles.Add(new RowStyle(SizeType.AutoSize));
             this.pnlBaoCao.RowStyles.Add(new RowStyle(SizeType.AutoSize));
             this.pnlBaoCao.RowStyles.Add(new RowStyle(SizeType.AutoSize));
             // btnBaoCaoGiangVien
@@ -558,6 +562,32 @@ namespace QuanLyGiangVien
             this.btnBaoCaoPhanCong.Font = new Font("Segoe UI", 9.5F);
             this.btnBaoCaoPhanCong.Enabled = false;
             this.pnlBaoCao.Controls.Add(this.btnBaoCaoPhanCong, 0, 1);
+            // btnBaoCaoTaiTrongKhoa
+            this.btnBaoCaoTaiTrongKhoa.Name = "btnBaoCaoTaiTrongKhoa";
+            this.btnBaoCaoTaiTrongKhoa.Text = "Tải trọng theo khoa";
+            this.btnBaoCaoTaiTrongKhoa.TabIndex = 2;
+            this.btnBaoCaoTaiTrongKhoa.UseVisualStyleBackColor = true;
+            this.btnBaoCaoTaiTrongKhoa.Dock = DockStyle.Fill;
+            this.btnBaoCaoTaiTrongKhoa.Height = 36;
+            this.btnBaoCaoTaiTrongKhoa.TextAlign = ContentAlignment.MiddleLeft;
+            this.btnBaoCaoTaiTrongKhoa.Padding = new Padding(14, 0, 5, 0);
+            this.btnBaoCaoTaiTrongKhoa.Margin = new Padding(0, 0, 0, 5);
+            this.btnBaoCaoTaiTrongKhoa.Font = new Font("Segoe UI", 9.5F);
+            this.btnBaoCaoTaiTrongKhoa.Enabled = false;
+            this.pnlBaoCao.Controls.Add(this.btnBaoCaoTaiTrongKhoa, 0, 2);
+            // btnBaoCaoChuaPhanCong
+            this.btnBaoCaoChuaPhanCong.Name = "btnBaoCaoChuaPhanCong";
+            this.btnBaoCaoChuaPhanCong.Text = "Giảng viên chưa phân công";
+            this.btnBaoCaoChuaPhanCong.TabIndex = 3;
+            this.btnBaoCaoChuaPhanCong.UseVisualStyleBackColor = true;
+            this.btnBaoCaoChuaPhanCong.Dock = DockStyle.Fill;
+            this.btnBaoCaoChuaPhanCong.Height = 36;
+            this.btnBaoCaoChuaPhanCong.TextAlign = ContentAlignment.MiddleLeft;
+            this.btnBaoCaoChuaPhanCong.Padding = new Padding(14, 0, 5, 0);
+            this.btnBaoCaoChuaPhanCong.Margin = new Padding(0, 0, 0, 5);
+            this.btnBaoCaoChuaPhanCong.Font = new Font("Segoe UI", 9.5F);
+            this.btnBaoCaoChuaPhanCong.Enabled = false;
+            this.pnlBaoCao.Controls.Add(this.btnBaoCaoChuaPhanCong, 0, 3);
             this.layoutSidebar.Controls.Add(this.btnBaoCao, 0, 10);
             this.layoutSidebar.Controls.Add(this.pnlBaoCao, 0, 11);
             // btnDangXuat
@@ -1071,6 +1101,8 @@ namespace QuanLyGiangVien
         private TableLayoutPanel pnlBaoCao;
         private Button btnBaoCaoGiangVien;
         private Button btnBaoCaoPhanCong;
+        private Button btnBaoCaoTaiTrongKhoa;
+        private Button btnBaoCaoChuaPhanCong;
         private Button btnDangXuat;
         private Panel pnlContent;
         private TableLayoutPanel layoutDashboard;

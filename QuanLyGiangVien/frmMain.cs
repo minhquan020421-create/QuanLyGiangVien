@@ -69,6 +69,9 @@ namespace QuanLyGiangVien
             AddRoute(btnBieuDoTongQuan, ChartForm, s => new frmChartDashboard(), fullScopeOnly: true);
             AddRoute(btnBaoCaoGiangVien, "frmReportLecturer", s => new frmReportLecturer(), fullScopeOnly: true);
             AddRoute(btnBaoCaoPhanCong, "frmReportTeachingAssignment", s => new frmReportTeachingAssignment(), fullScopeOnly: true);
+            // Hai báo cáo mở rộng dùng quyền xem báo cáo phân công đã có trong database.
+            AddRoute(btnBaoCaoTaiTrongKhoa, "frmReportTeachingAssignment", s => new frmReportFacultyWorkload(), fullScopeOnly: true);
+            AddRoute(btnBaoCaoChuaPhanCong, "frmReportTeachingAssignment", s => new frmReportUnassignedLecturers(), fullScopeOnly: true);
         }
 
         private void frmMain_Load(object sender, EventArgs e)
