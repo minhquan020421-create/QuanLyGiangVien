@@ -13,7 +13,11 @@ namespace QuanLyGiangVien
         private bool loading;
         private int? maNguoiDung;
 
-        public frmSpecialization() { InitializeComponent(); }
+        public frmSpecialization()
+        {
+            InitializeComponent();
+            HoangFormHelper.KeepContentScrollable(pnlCuon, layoutChinh);
+        }
 
         // Constructor mặc định dành cho Designer; khi chạy nhận mã người dùng đã đăng nhập.
         public frmSpecialization(int maNguoiDung) : this()
@@ -25,7 +29,13 @@ namespace QuanLyGiangVien
         {
             // Designer chỉ hiển thị giao diện, không đọc dữ liệu hoặc kiểm tra quyền.
             if (System.ComponentModel.LicenseManager.UsageMode == System.ComponentModel.LicenseUsageMode.Designtime || DesignMode) return;
+            Theme.Apply(this);
             LoadData();
+        }
+
+        private void btnQuayLai_Click(object sender, EventArgs e)
+        {
+            Close();
         }
 
         private void LoadData()
@@ -41,7 +51,7 @@ namespace QuanLyGiangVien
             {
                 if (db != null) db.Dispose();
                 access = HoangFormHelper.GetAccess(maNguoiDung, "frmSpecialization");
-                db = new QuanLyGiangVienDataContext();
+                db = new QuanLyGiangVienDataContext(DatabaseConnection.CurrentConnectionString);
                 string keyword = txtTimKiem.Text.Trim();
                 int id;
                 bool byId = int.TryParse(keyword, out id);
@@ -62,56 +72,91 @@ namespace QuanLyGiangVien
         {
             selected = null;
             txtMaChuyenMon.Text = "Tự tăng";
-            txtTenChuyenMon.Clear(); txtMoTa.Clear(); chkTrangThai.Checked = true;
+            txtTenChuyenMon.Clear();
+            txtMoTa.Clear();
+            chkTrangThai.Checked = true;
             dgvDanhSach.ClearSelection();
         }
 
         private void dgvDanhSach_SelectionChanged(object sender, EventArgs e)
         {
-            if (loading || dgvDanhSach.SelectedRows.Count == 0) return;
+            if (loading) return;
+            selected = null;
+            if (dgvDanhSach.SelectedRows.Count == 0) return;
             int id = Convert.ToInt32(dgvDanhSach.SelectedRows[0].Cells["colMaChuyenMon"].Value);
             selected = rows.FirstOrDefault(x => x.MaChuyenMon == id);
             if (selected == null) return;
-            txtMaChuyenMon.Text = selected.MaChuyenMon.ToString(); txtTenChuyenMon.Text = selected.TenChuyenMon; txtMoTa.Text = selected.MoTa; chkTrangThai.Checked = selected.TrangThai;
+            txtMaChuyenMon.Text = selected.MaChuyenMon.ToString();
+            txtTenChuyenMon.Text = selected.TenChuyenMon;
+            txtMoTa.Text = selected.MoTa;
+            chkTrangThai.Checked = selected.TrangThai;
         }
 
         private void Save(bool adding)
         {
             bool writing = false;
-            bool ok = HoangFormHelper.Run(this, () =>
+            HoangFormHelper.Run(this, () =>
             {
                 HoangFormHelper.RequireAction(maNguoiDung, "frmSpecialization", adding ? "Them" : "Sua");
-                HoangFormHelper.Require(adding || selected != null, "Vui lòng chọn dòng cần sửa.");
-                HoangFormHelper.Require(txtTenChuyenMon.Text.Trim().Length > 0, "Vui lòng nhập tên.");
-                int currentId = adding ? 0 : selected.MaChuyenMon;
-                HoangFormHelper.Require(!db.CHUYEN_MONs.Any(x => x.TenChuyenMon == txtTenChuyenMon.Text.Trim() && x.MaChuyenMon != currentId), "Tên đã tồn tại.");
-                HoangFormHelper.Require(adding || db.CHUYEN_MONs.Any(x => x.MaChuyenMon == selected.MaChuyenMon), "Bản ghi đã bị xóa. Hãy làm mới danh sách.");
-                writing = true;
+                string name = txtTenChuyenMon.Text.Trim();
+                string description = HoangFormHelper.Optional(txtMoTa.Text);
+                bool active = chkTrangThai.Checked;
+                HoangFormHelper.Require(name.Length > 0, "Vui lòng nhập tên chuyên môn.");
+
                 var item = adding ? new CHUYEN_MON() : selected;
-                item.TenChuyenMon = txtTenChuyenMon.Text.Trim(); item.MoTa = HoangFormHelper.Optional(txtMoTa.Text); item.TrangThai = chkTrangThai.Checked;
+                bool nameChanged = item.TenChuyenMon != name;
+                HoangFormHelper.Require(adding || nameChanged || item.MoTa != description || item.TrangThai != active,
+                    "Thông tin chuyên môn chưa thay đổi.");
+
+                if (adding || nameChanged)
+                {
+                    int currentId = item.MaChuyenMon;
+                    HoangFormHelper.Require(!db.CHUYEN_MONs.Any(x => x.TenChuyenMon == name && (adding || x.MaChuyenMon != currentId)),
+                        "Tên chuyên môn đã tồn tại.");
+                }
+
+                writing = true;
+                item.TenChuyenMon = name;
+                item.MoTa = description;
+                item.TrangThai = active;
                 if (adding) db.CHUYEN_MONs.InsertOnSubmit(item);
                 db.SubmitChanges();
                 MessageBox.Show(this, "Đã lưu dữ liệu.", "Thông báo");
             });
             // Giữ dữ liệu nhập khi kiểm tra sai; bỏ entity chờ lưu nếu SubmitChanges lỗi.
-            if (ok || writing) LoadData();
+            if (writing) LoadData();
         }
 
         private void btnThem_Click(object sender, EventArgs e) { Save(true); }
-        private void btnSua_Click(object sender, EventArgs e) { Save(false); }
+        private void btnSua_Click(object sender, EventArgs e)
+        {
+            if (selected == null)
+            {
+                MessageBox.Show(this, "Vui lòng chọn chuyên môn cần sửa.", "Thông báo");
+                return;
+            }
+
+            Save(false);
+        }
         private void btnTimKiem_Click(object sender, EventArgs e) { LoadData(); }
         private void btnLamMoi_Click(object sender, EventArgs e) { txtTimKiem.Clear(); LoadData(); }
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
-            if (!HoangFormHelper.Run(this, () => HoangFormHelper.RequireAction(maNguoiDung, "frmSpecialization", "Xoa"))) return;
-            if (selected == null) { MessageBox.Show(this, "Vui lòng chọn dòng cần xóa."); return; }
-            if (!HoangFormHelper.ConfirmDelete(this, selected.TenChuyenMon)) return;
+            var item = selected;
+            if (item == null)
+            {
+                MessageBox.Show(this, "Vui lòng chọn dòng cần xóa.", "Thông báo");
+                return;
+            }
+
+            if (!HoangFormHelper.ConfirmDelete(this, item.TenChuyenMon)) return;
             HoangFormHelper.Run(this, () =>
             {
                 HoangFormHelper.RequireAction(maNguoiDung, "frmSpecialization", "Xoa");
-                HoangFormHelper.Require(!(db.GIANG_VIEN_CHUYEN_MONs.Any(x => x.MaChuyenMon == selected.MaChuyenMon)), "Dữ liệu đang được sử dụng. Không thể xóa; hãy kiểm tra các bản ghi liên quan.");
-                db.CHUYEN_MONs.DeleteOnSubmit(selected);
+                HoangFormHelper.Require(!db.GIANG_VIEN_CHUYEN_MONs.Any(x => x.MaChuyenMon == item.MaChuyenMon),
+                    "Dữ liệu đang được sử dụng. Không thể xóa; hãy kiểm tra các bản ghi liên quan.");
+                db.CHUYEN_MONs.DeleteOnSubmit(item);
                 db.SubmitChanges();
                 MessageBox.Show(this, "Đã xóa dữ liệu.", "Thông báo");
             });

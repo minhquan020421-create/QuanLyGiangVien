@@ -17,12 +17,29 @@ namespace QuanLyGiangVien
 
     internal static class HoangFormHelper
     {
+        internal static void KeepContentScrollable(Panel viewport, Control content)
+        {
+            // MinimumSize của control co giãn theo DPI, còn AutoScrollMinSize thì không.
+            viewport.Layout += (sender, e) =>
+            {
+                var minimum = content.MinimumSize + viewport.Padding.Size;
+                if (viewport.AutoScrollMinSize != minimum)
+                    viewport.AutoScrollMinSize = minimum;
+            };
+            viewport.PerformLayout();
+        }
+
+        internal static bool IsLecturer(string roleName)
+        {
+            return string.Equals(roleName, "Giảng viên", StringComparison.OrdinalIgnoreCase);
+        }
+
         // Chỉ đọc bảng quyền của nhóm; mã người dùng do phần đăng nhập của Hào truyền vào.
         public static HoangFormAccess GetAccess(int? userId, string formName)
         {
             Require(userId.HasValue && userId.Value > 0,
                 "Chưa nhận được người dùng đã đăng nhập. Hãy mở chức năng từ màn hình chính.");
-            using (var context = new QuanLyGiangVienDataContext())
+            using (var context = new QuanLyGiangVienDataContext(DatabaseConnection.CurrentConnectionString))
             {
                 var user = context.NGUOI_DUNGs.Where(x => x.MaNguoiDung == userId.Value && x.TrangThai)
                     .Select(x => new { x.MaVaiTro, x.MaGV, TenVaiTro = x.VAI_TRO.TenVaiTro }).SingleOrDefault();
@@ -36,7 +53,7 @@ namespace QuanLyGiangVien
                     Them = permission.DuocThem,
                     Sua = permission.DuocSua,
                     Xoa = permission.DuocXoa,
-                    ChiXemCaNhan = string.Equals(user.TenVaiTro, "Giảng viên", StringComparison.OrdinalIgnoreCase),
+                    ChiXemCaNhan = IsLecturer(user.TenVaiTro),
                     MaGV = user.MaGV
                 };
             }

@@ -141,6 +141,7 @@
     <Type Name="NGUOI_DUNG">
       <Column Name="MaNguoiDung" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="TenDangNhap" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(254)" CanBeNull="true" />
       <Column Name="MatKhauHash" Type="System.String" DbType="VarChar(64) NOT NULL" CanBeNull="false" />
       <Column Name="MatKhauSalt" Type="System.String" DbType="VarChar(64) NOT NULL" CanBeNull="false" />
       <Column Name="MaGV" Type="System.Int32" DbType="Int" CanBeNull="true" />

@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Configuration;
 using System.Linq;
-using System.Data.SqlClient;
 using System.Security.Cryptography;
 using System.Text;
 using QuanLyGiangVien;
@@ -69,10 +67,7 @@ namespace QuanLyGiangVien
 
         internal static QuanLyGiangVienDataContext Open()
         {
-            var setting = ConfigurationManager.ConnectionStrings["QuanLyGiangVien.Properties.Settings.QuanLyGiangVienConnectionString"];
-            if (setting == null || string.IsNullOrWhiteSpace(setting.ConnectionString))
-                throw new UserMessage("Thiếu cấu hình kết nối dữ liệu.");
-            var db = new QuanLyGiangVienDataContext(setting.ConnectionString);
+            var db = new QuanLyGiangVienDataContext(DatabaseConnection.GetReadyConnectionString());
             db.CommandTimeout = 15;
             try
             {

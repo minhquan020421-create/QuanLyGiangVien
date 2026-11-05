@@ -35,6 +35,7 @@ namespace QuanLyGiangVien
             this.lblIconTaiKhoan = new System.Windows.Forms.Label();
             this.lblThongBao = new System.Windows.Forms.Label();
             this.btnThoat = new System.Windows.Forms.Button();
+            this.btnQuenMatKhau = new System.Windows.Forms.Button();
             this.btnDangNhap = new System.Windows.Forms.Button();
             this.chkGhiNhoDangNhap = new System.Windows.Forms.CheckBox();
             this.btnHienMatKhau = new System.Windows.Forms.Button();
@@ -47,16 +48,19 @@ namespace QuanLyGiangVien
             this.lblMoTa = new System.Windows.Forms.Label();
             this.btnTheme = new System.Windows.Forms.Button();
             this.lblIconHocVu = new System.Windows.Forms.Label();
+            this.pnlNoiDungLogin = new System.Windows.Forms.Panel();
             this.pnlDangNhap.SuspendLayout();
+            this.pnlNoiDungLogin.SuspendLayout();
             this.SuspendLayout();
-            // 
+            //
             // pnlDangNhap
-            // 
+            //
             this.pnlDangNhap.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(39)))), ((int)(((byte)(58)))));
             this.pnlDangNhap.Controls.Add(this.lblIconMatKhau);
             this.pnlDangNhap.Controls.Add(this.lblIconTaiKhoan);
             this.pnlDangNhap.Controls.Add(this.lblThongBao);
             this.pnlDangNhap.Controls.Add(this.btnThoat);
+            this.pnlDangNhap.Controls.Add(this.btnQuenMatKhau);
             this.pnlDangNhap.Controls.Add(this.btnDangNhap);
             this.pnlDangNhap.Controls.Add(this.chkGhiNhoDangNhap);
             this.pnlDangNhap.Controls.Add(this.btnHienMatKhau);
@@ -70,9 +74,9 @@ namespace QuanLyGiangVien
             this.pnlDangNhap.Name = "pnlDangNhap";
             this.pnlDangNhap.Size = new System.Drawing.Size(440, 390);
             this.pnlDangNhap.TabIndex = 0;
-            // 
+            //
             // lblIconMatKhau
-            // 
+            //
             this.lblIconMatKhau.BackColor = System.Drawing.Color.Transparent;
             this.lblIconMatKhau.Font = new System.Drawing.Font("Segoe MDL2 Assets", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblIconMatKhau.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(144)))), ((int)(((byte)(211)))), ((int)(((byte)(240)))));
@@ -82,32 +86,32 @@ namespace QuanLyGiangVien
             this.lblIconMatKhau.TabIndex = 8;
             this.lblIconMatKhau.Text = "";
             this.lblIconMatKhau.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
+            //
             // lblIconTaiKhoan
-            // 
+            //
             this.lblIconTaiKhoan.AutoSize = true;
             this.lblIconTaiKhoan.BackColor = System.Drawing.Color.Transparent;
             this.lblIconTaiKhoan.Font = new System.Drawing.Font("Segoe MDL2 Assets", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblIconTaiKhoan.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(144)))), ((int)(((byte)(211)))), ((int)(((byte)(240)))));
             this.lblIconTaiKhoan.Location = new System.Drawing.Point(30, 78);
             this.lblIconTaiKhoan.Name = "lblIconTaiKhoan";
-            this.lblIconTaiKhoan.Size = new System.Drawing.Size(34, 24);
+            this.lblIconTaiKhoan.Size = new System.Drawing.Size(29, 20);
             this.lblIconTaiKhoan.TabIndex = 7;
             this.lblIconTaiKhoan.Text = "";
             this.lblIconTaiKhoan.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
+            //
             // lblThongBao
-            // 
+            //
             this.lblThongBao.BackColor = System.Drawing.Color.Transparent;
             this.lblThongBao.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblThongBao.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(165)))), ((int)(((byte)(157)))));
             this.lblThongBao.Location = new System.Drawing.Point(30, 336);
             this.lblThongBao.Name = "lblThongBao";
             this.lblThongBao.Size = new System.Drawing.Size(380, 40);
-            this.lblThongBao.TabIndex = 6;
-            // 
+            this.lblThongBao.TabIndex = 7;
+            //
             // btnThoat
-            // 
+            //
             this.btnThoat.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(39)))), ((int)(((byte)(58)))));
             this.btnThoat.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnThoat.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(82)))), ((int)(((byte)(110)))));
@@ -116,12 +120,12 @@ namespace QuanLyGiangVien
             this.btnThoat.Location = new System.Drawing.Point(302, 280);
             this.btnThoat.Name = "btnThoat";
             this.btnThoat.Size = new System.Drawing.Size(108, 42);
-            this.btnThoat.TabIndex = 5;
+            this.btnThoat.TabIndex = 6;
             this.btnThoat.Text = "Thoát";
             this.btnThoat.UseVisualStyleBackColor = false;
-            // 
+            //
             // btnDangNhap
-            // 
+            //
             this.btnDangNhap.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(91)))), ((int)(((byte)(190)))));
             this.btnDangNhap.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnDangNhap.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(82)))), ((int)(((byte)(110)))));
@@ -132,24 +136,39 @@ namespace QuanLyGiangVien
             this.btnDangNhap.Location = new System.Drawing.Point(30, 280);
             this.btnDangNhap.Name = "btnDangNhap";
             this.btnDangNhap.Size = new System.Drawing.Size(260, 42);
-            this.btnDangNhap.TabIndex = 4;
+            this.btnDangNhap.TabIndex = 5;
             this.btnDangNhap.Text = "Đăng nhập";
             this.btnDangNhap.UseVisualStyleBackColor = false;
-            // 
+            //
+            // btnQuenMatKhau
+            //
+            this.btnQuenMatKhau.BackColor = System.Drawing.Color.FromArgb(27, 39, 58);
+            this.btnQuenMatKhau.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnQuenMatKhau.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(62, 82, 110);
+            this.btnQuenMatKhau.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnQuenMatKhau.ForeColor = System.Drawing.Color.FromArgb(236, 242, 251);
+            this.btnQuenMatKhau.Location = new System.Drawing.Point(260, 231);
+            this.btnQuenMatKhau.Name = "btnQuenMatKhau";
+            this.btnQuenMatKhau.Size = new System.Drawing.Size(150, 34);
+            this.btnQuenMatKhau.TabIndex = 4;
+            this.btnQuenMatKhau.Text = "Quên mật khẩu";
+            this.btnQuenMatKhau.UseVisualStyleBackColor = false;
+            this.btnQuenMatKhau.Click += new System.EventHandler(this.btnQuenMatKhau_Click);
+            //
             // chkGhiNhoDangNhap
-            // 
+            //
             this.chkGhiNhoDangNhap.AutoSize = true;
             this.chkGhiNhoDangNhap.BackColor = System.Drawing.Color.Transparent;
             this.chkGhiNhoDangNhap.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(181)))), ((int)(((byte)(199)))), ((int)(((byte)(220)))));
             this.chkGhiNhoDangNhap.Location = new System.Drawing.Point(30, 236);
             this.chkGhiNhoDangNhap.Name = "chkGhiNhoDangNhap";
-            this.chkGhiNhoDangNhap.Size = new System.Drawing.Size(255, 34);
+            this.chkGhiNhoDangNhap.Size = new System.Drawing.Size(211, 27);
             this.chkGhiNhoDangNhap.TabIndex = 3;
             this.chkGhiNhoDangNhap.Text = "Ghi nhớ tên đăng nhập";
             this.chkGhiNhoDangNhap.UseVisualStyleBackColor = false;
-            // 
+            //
             // btnHienMatKhau
-            // 
+            //
             this.btnHienMatKhau.AccessibleName = "Hiện hoặc ẩn mật khẩu";
             this.btnHienMatKhau.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(39)))), ((int)(((byte)(58)))));
             this.btnHienMatKhau.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -163,21 +182,21 @@ namespace QuanLyGiangVien
             this.btnHienMatKhau.TabIndex = 2;
             this.btnHienMatKhau.Text = "";
             this.btnHienMatKhau.UseVisualStyleBackColor = false;
-            // 
+            //
             // txtMatKhau
-            // 
+            //
             this.txtMatKhau.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
             this.txtMatKhau.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtMatKhau.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMatKhau.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(242)))), ((int)(((byte)(251)))));
             this.txtMatKhau.Location = new System.Drawing.Point(30, 188);
             this.txtMatKhau.Name = "txtMatKhau";
-            this.txtMatKhau.Size = new System.Drawing.Size(332, 36);
+            this.txtMatKhau.Size = new System.Drawing.Size(332, 31);
             this.txtMatKhau.TabIndex = 1;
             this.txtMatKhau.UseSystemPasswordChar = true;
-            // 
+            //
             // lblMatKhau
-            // 
+            //
             this.lblMatKhau.BackColor = System.Drawing.Color.Transparent;
             this.lblMatKhau.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(181)))), ((int)(((byte)(199)))), ((int)(((byte)(220)))));
             this.lblMatKhau.Location = new System.Drawing.Point(56, 158);
@@ -185,20 +204,20 @@ namespace QuanLyGiangVien
             this.lblMatKhau.Size = new System.Drawing.Size(354, 25);
             this.lblMatKhau.TabIndex = 3;
             this.lblMatKhau.Text = "Mật khẩu";
-            // 
+            //
             // txtTenDangNhap
-            // 
+            //
             this.txtTenDangNhap.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
             this.txtTenDangNhap.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtTenDangNhap.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTenDangNhap.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(242)))), ((int)(((byte)(251)))));
             this.txtTenDangNhap.Location = new System.Drawing.Point(30, 108);
             this.txtTenDangNhap.Name = "txtTenDangNhap";
-            this.txtTenDangNhap.Size = new System.Drawing.Size(380, 36);
+            this.txtTenDangNhap.Size = new System.Drawing.Size(380, 31);
             this.txtTenDangNhap.TabIndex = 0;
-            // 
+            //
             // lblTenDangNhap
-            // 
+            //
             this.lblTenDangNhap.BackColor = System.Drawing.Color.Transparent;
             this.lblTenDangNhap.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(181)))), ((int)(((byte)(199)))), ((int)(((byte)(220)))));
             this.lblTenDangNhap.Location = new System.Drawing.Point(56, 78);
@@ -206,9 +225,9 @@ namespace QuanLyGiangVien
             this.lblTenDangNhap.Size = new System.Drawing.Size(354, 25);
             this.lblTenDangNhap.TabIndex = 1;
             this.lblTenDangNhap.Text = "Tên đăng nhập";
-            // 
+            //
             // lblDangNhap
-            // 
+            //
             this.lblDangNhap.BackColor = System.Drawing.Color.Transparent;
             this.lblDangNhap.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDangNhap.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(242)))), ((int)(((byte)(251)))));
@@ -218,9 +237,9 @@ namespace QuanLyGiangVien
             this.lblDangNhap.TabIndex = 0;
             this.lblDangNhap.Text = "Đăng nhập";
             this.lblDangNhap.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
+            //
             // lblTenHeThong
-            // 
+            //
             this.lblTenHeThong.BackColor = System.Drawing.Color.Transparent;
             this.lblTenHeThong.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTenHeThong.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(242)))), ((int)(((byte)(251)))));
@@ -230,9 +249,9 @@ namespace QuanLyGiangVien
             this.lblTenHeThong.TabIndex = 1;
             this.lblTenHeThong.Text = "QUẢN LÝ GIẢNG VIÊN";
             this.lblTenHeThong.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
+            //
             // lblMoTa
-            // 
+            //
             this.lblMoTa.BackColor = System.Drawing.Color.Transparent;
             this.lblMoTa.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMoTa.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(181)))), ((int)(((byte)(199)))), ((int)(((byte)(220)))));
@@ -243,9 +262,9 @@ namespace QuanLyGiangVien
             this.lblMoTa.Text = "Hệ thống quản lý đại học";
             this.lblMoTa.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lblMoTa.Click += new System.EventHandler(this.lblMoTa_Click);
-            // 
+            //
             // btnTheme
-            // 
+            //
             this.btnTheme.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(39)))), ((int)(((byte)(58)))));
             this.btnTheme.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(82)))), ((int)(((byte)(110)))));
             this.btnTheme.FlatAppearance.BorderSize = 0;
@@ -257,10 +276,9 @@ namespace QuanLyGiangVien
             this.btnTheme.TabIndex = 8;
             this.btnTheme.Text = "Giao diện sáng";
             this.btnTheme.UseVisualStyleBackColor = false;
-            this.btnTheme.Click += new System.EventHandler(this.btnTheme_Click);
-            // 
+            //
             // lblIconHocVu
-            // 
+            //
             this.lblIconHocVu.BackColor = System.Drawing.Color.Transparent;
             this.lblIconHocVu.Font = new System.Drawing.Font("Segoe MDL2 Assets", 20F);
             this.lblIconHocVu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(144)))), ((int)(((byte)(211)))), ((int)(((byte)(240)))));
@@ -270,32 +288,41 @@ namespace QuanLyGiangVien
             this.lblIconHocVu.TabIndex = 9;
             this.lblIconHocVu.Text = "";
             this.lblIconHocVu.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
+            //
+            // pnlNoiDungLogin
+            //
+            this.pnlNoiDungLogin.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.pnlNoiDungLogin.Controls.Add(this.btnTheme);
+            this.pnlNoiDungLogin.Controls.Add(this.lblMoTa);
+            this.pnlNoiDungLogin.Controls.Add(this.lblTenHeThong);
+            this.pnlNoiDungLogin.Controls.Add(this.lblIconHocVu);
+            this.pnlNoiDungLogin.Controls.Add(this.pnlDangNhap);
+            this.pnlNoiDungLogin.Location = new System.Drawing.Point(0, 0);
+            this.pnlNoiDungLogin.Name = "pnlNoiDungLogin";
+            this.pnlNoiDungLogin.Size = new System.Drawing.Size(522, 593);
+            this.pnlNoiDungLogin.TabIndex = 10;
+            //
             // frmLogin
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 28F);
+            //
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(23)))), ((int)(((byte)(37)))));
-            this.ClientSize = new System.Drawing.Size(524, 635);
-            this.Controls.Add(this.lblMoTa);
-            this.Controls.Add(this.lblTenHeThong);
-            this.Controls.Add(this.pnlDangNhap);
-            this.Controls.Add(this.btnTheme);
-            this.Controls.Add(this.lblIconHocVu);
+            this.ClientSize = new System.Drawing.Size(522, 593);
+            this.Controls.Add(this.pnlNoiDungLogin);
             this.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(242)))), ((int)(((byte)(251)))));
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.MaximizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(540, 640);
             this.Name = "frmLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Đăng nhập — Quản lý giảng viên";
             this.pnlDangNhap.ResumeLayout(false);
             this.pnlDangNhap.PerformLayout();
+            this.pnlNoiDungLogin.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
-        
+
         #endregion
 
         private System.Windows.Forms.Button btnTheme;
@@ -312,9 +339,11 @@ namespace QuanLyGiangVien
         private System.Windows.Forms.Button btnDangNhap;
         private System.Windows.Forms.CheckBox chkGhiNhoDangNhap;
         private System.Windows.Forms.Button btnThoat;
+        private System.Windows.Forms.Button btnQuenMatKhau;
         private System.Windows.Forms.Label lblThongBao;
         private System.Windows.Forms.Label lblIconTaiKhoan;
         private System.Windows.Forms.Label lblIconMatKhau;
+        private Panel pnlNoiDungLogin;
     }
 }
 

@@ -13,7 +13,11 @@ namespace QuanLyGiangVien
         private bool loading;
         private int? maNguoiDung;
 
-        public frmFaculty() { InitializeComponent(); }
+        public frmFaculty()
+        {
+            InitializeComponent();
+            HoangFormHelper.KeepContentScrollable(pnlCuon, layoutChinh);
+        }
 
         // Constructor mặc định dành cho Designer; khi chạy nhận mã người dùng đã đăng nhập.
         public frmFaculty(int maNguoiDung) : this()
@@ -25,7 +29,13 @@ namespace QuanLyGiangVien
         {
             // Designer chỉ hiển thị giao diện, không đọc dữ liệu hoặc kiểm tra quyền.
             if (System.ComponentModel.LicenseManager.UsageMode == System.ComponentModel.LicenseUsageMode.Designtime || DesignMode) return;
+            Theme.Apply(this);
             LoadData();
+        }
+
+        private void btnQuayLai_Click(object sender, EventArgs e)
+        {
+            Close();
         }
 
         private void LoadData()
@@ -39,9 +49,10 @@ namespace QuanLyGiangVien
             HoangFormAccess access = null;
             bool ok = HoangFormHelper.Run(this, () =>
             {
-                if (db != null) db.Dispose();
+                db?.Dispose();
+                db = null;
                 access = HoangFormHelper.GetAccess(maNguoiDung, "frmFaculty");
-                db = new QuanLyGiangVienDataContext();
+                db = new QuanLyGiangVienDataContext(DatabaseConnection.CurrentConnectionString);
                 string keyword = txtTimKiem.Text.Trim();
                 int id;
                 bool byId = int.TryParse(keyword, out id);
@@ -68,7 +79,9 @@ namespace QuanLyGiangVien
 
         private void dgvDanhSach_SelectionChanged(object sender, EventArgs e)
         {
-            if (loading || dgvDanhSach.SelectedRows.Count == 0) return;
+            if (loading) return;
+            selected = null;
+            if (dgvDanhSach.SelectedRows.Count == 0) return;
             int id = Convert.ToInt32(dgvDanhSach.SelectedRows[0].Cells["colMaKhoa"].Value);
             selected = rows.FirstOrDefault(x => x.MaKhoa == id);
             if (selected == null) return;
@@ -78,49 +91,73 @@ namespace QuanLyGiangVien
         private void Save(bool adding)
         {
             bool writing = false;
-            bool ok = HoangFormHelper.Run(this, () =>
+            HoangFormHelper.Run(this, () =>
             {
                 HoangFormHelper.RequireAction(maNguoiDung, "frmFaculty", adding ? "Them" : "Sua");
-                HoangFormHelper.Require(adding || selected != null, "Vui lòng chọn dòng cần sửa.");
-                HoangFormHelper.Require(txtTenKhoa.Text.Trim().Length > 0, "Vui lòng nhập tên.");
-                HoangFormHelper.CheckEmail(txtEmail.Text.Trim(), false);
-                HoangFormHelper.CheckPhone(txtSoDienThoai.Text.Trim());
-                int currentId = adding ? 0 : selected.MaKhoa;
+                string name = txtTenKhoa.Text.Trim();
+                string email = HoangFormHelper.Optional(txtEmail.Text);
                 string phone = HoangFormHelper.Optional(txtSoDienThoai.Text);
-                // SQL Server UNIQUE hiện tại chỉ cho một khoa có SĐT NULL.
-                bool duplicatePhone = phone == null
-                    ? db.KHOAs.Any(x => x.MaKhoa != currentId && x.SoDienThoai == null)
-                    : db.KHOAs.Any(x => x.MaKhoa != currentId && x.SoDienThoai == phone);
-                HoangFormHelper.Require(!duplicatePhone, phone == null
-                    ? "Đã có một khoa chưa nhập số điện thoại. Theo cấu hình dữ liệu hiện tại, vui lòng nhập số điện thoại cho khoa này."
-                    : "Số điện thoại đã được khoa khác sử dụng.");
-                HoangFormHelper.Require(adding || db.KHOAs.Any(x => x.MaKhoa == selected.MaKhoa), "Bản ghi đã bị xóa. Hãy làm mới danh sách.");
-                writing = true;
+                HoangFormHelper.Require(name.Length > 0, "Vui lòng nhập tên.");
+                HoangFormHelper.CheckEmail(email ?? "", false);
+                HoangFormHelper.CheckPhone(phone ?? "");
+
+                if (adding || phone != selected.SoDienThoai)
+                {
+                    var otherFaculties = db.KHOAs.AsQueryable();
+                    if (!adding)
+                        otherFaculties = otherFaculties.Where(x => x.MaKhoa != selected.MaKhoa);
+
+                    // Ràng buộc UNIQUE của SoDienThoai chỉ cho một khoa để trống số.
+                    bool duplicatePhone = phone == null
+                        ? otherFaculties.Any(x => x.SoDienThoai == null)
+                        : otherFaculties.Any(x => x.SoDienThoai == phone);
+                    HoangFormHelper.Require(!duplicatePhone, phone == null
+                        ? "Đã có một khoa chưa nhập số điện thoại. Vui lòng nhập số điện thoại cho khoa này."
+                        : "Số điện thoại đã được khoa khác sử dụng.");
+                }
+
                 var item = adding ? new KHOA() : selected;
-                item.TenKhoa = txtTenKhoa.Text.Trim(); item.Email = HoangFormHelper.Optional(txtEmail.Text); item.SoDienThoai = phone; item.TrangThai = chkTrangThai.Checked;
+                item.TenKhoa = name;
+                item.Email = email;
+                item.SoDienThoai = phone;
+                item.TrangThai = chkTrangThai.Checked;
+
+                if (!adding)
+                    HoangFormHelper.Require(db.GetChangeSet().Updates.Count > 0, "Thông tin khoa chưa thay đổi.");
+
+                writing = true;
                 if (adding) db.KHOAs.InsertOnSubmit(item);
                 db.SubmitChanges();
                 MessageBox.Show(this, "Đã lưu dữ liệu.", "Thông báo");
             });
             // Giữ dữ liệu nhập khi kiểm tra sai; bỏ entity chờ lưu nếu SubmitChanges lỗi.
-            if (ok || writing) LoadData();
+            if (writing) LoadData();
         }
 
         private void btnThem_Click(object sender, EventArgs e) { Save(true); }
-        private void btnSua_Click(object sender, EventArgs e) { Save(false); }
+        private void btnSua_Click(object sender, EventArgs e)
+        {
+            if (selected == null)
+            {
+                MessageBox.Show(this, "Vui lòng chọn khoa cần sửa.", "Thông báo");
+                return;
+            }
+
+            Save(false);
+        }
         private void btnTimKiem_Click(object sender, EventArgs e) { LoadData(); }
         private void btnLamMoi_Click(object sender, EventArgs e) { txtTimKiem.Clear(); LoadData(); }
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
-            if (!HoangFormHelper.Run(this, () => HoangFormHelper.RequireAction(maNguoiDung, "frmFaculty", "Xoa"))) return;
-            if (selected == null) { MessageBox.Show(this, "Vui lòng chọn dòng cần xóa."); return; }
-            if (!HoangFormHelper.ConfirmDelete(this, selected.TenKhoa)) return;
+            var item = selected;
+            if (item == null) { MessageBox.Show(this, "Vui lòng chọn dòng cần xóa."); return; }
+            if (!HoangFormHelper.ConfirmDelete(this, item.TenKhoa)) return;
             HoangFormHelper.Run(this, () =>
             {
                 HoangFormHelper.RequireAction(maNguoiDung, "frmFaculty", "Xoa");
-                HoangFormHelper.Require(!(db.BO_MONs.Any(x => x.MaKhoa == selected.MaKhoa)), "Dữ liệu đang được sử dụng. Không thể xóa; hãy kiểm tra các bản ghi liên quan.");
-                db.KHOAs.DeleteOnSubmit(selected);
+                HoangFormHelper.Require(!db.BO_MONs.Any(x => x.MaKhoa == item.MaKhoa), "Khoa còn bộ môn liên kết nên không thể xóa.");
+                db.KHOAs.DeleteOnSubmit(item);
                 db.SubmitChanges();
                 MessageBox.Show(this, "Đã xóa dữ liệu.", "Thông báo");
             });

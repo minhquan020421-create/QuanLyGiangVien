@@ -6,6 +6,41 @@ namespace QuanLyGiangVien
     public partial class frmChangePassword : System.Windows.Forms.Form
     {
         public frmChangePassword() { InitializeComponent(); }
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+
+            // Lấy kích thước thực tế sau khi Windows áp dụng DPI.
+            int initialWidth = pnlNoiDungDoiMatKhau.Width;
+            int initialHeight = pnlNoiDungDoiMatKhau.Height;
+            int maximumWidth = (int)(initialWidth * 1.5);
+            int margin = (int)(24.0 * initialWidth / 522);
+
+            // Giữ cửa sổ đủ chỗ hiển thị toàn bộ nội dung.
+            MinimumSize = new System.Drawing.Size(
+                Math.Max(MinimumSize.Width,
+                    initialWidth + Width - ClientSize.Width),
+                Math.Max(MinimumSize.Height,
+                    initialHeight + Height - ClientSize.Height));
+
+            Action updateLayout = () =>
+            {
+                int availableWidth = ClientSize.Width - margin * 2;
+
+                pnlNoiDungDoiMatKhau.Width = Math.Max(
+                    initialWidth,
+                    Math.Min(maximumWidth, availableWidth));
+
+                pnlNoiDungDoiMatKhau.Left = Math.Max(
+                    0, (ClientSize.Width - pnlNoiDungDoiMatKhau.Width) / 2);
+
+                pnlNoiDungDoiMatKhau.Top = Math.Max(
+                    0, (ClientSize.Height - pnlNoiDungDoiMatKhau.Height) / 2);
+            };
+
+            Resize += (sender, args) => updateLayout();
+            updateLayout();
+        }
         internal frmChangePassword(Session session, AccountRow target=null) : this()
         {
             bool reset=target!=null && target.Id!=session.UserId;
@@ -23,6 +58,11 @@ namespace QuanLyGiangVien
                 MessageBox.Show(this,"Đã lưu mật khẩu mới."); DialogResult=DialogResult.OK;
             },lblThongBao);
             Theme.Apply(this);
+        }
+
+        private void pnlNoiDungDoiMatKhau_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

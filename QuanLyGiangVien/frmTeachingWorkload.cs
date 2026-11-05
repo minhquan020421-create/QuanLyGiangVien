@@ -8,7 +8,9 @@ namespace QuanLyGiangVien
 {
     public partial class frmTeachingWorkload : Form
     {
-        private const int DinhMucTietMoiHocKy = 300;
+        internal const int DinhMucTietMoiHocKy = 300;
+        private readonly Session session;
+        private int? lecturerScope;
         private bool dangNapBoLoc;
 
         public frmTeachingWorkload()
@@ -19,6 +21,11 @@ namespace QuanLyGiangVien
             Load += frmTeachingWorkload_Load;
         }
 
+        internal frmTeachingWorkload(Session session) : this()
+        {
+            this.session = session ?? throw new ArgumentNullException(nameof(session));
+        }
+
         private void frmTeachingWorkload_Load(object sender, EventArgs e)
         {
             if (LicenseManager.UsageMode == LicenseUsageMode.Designtime) return;
@@ -26,8 +33,9 @@ namespace QuanLyGiangVien
             dangNapBoLoc = true;
             try
             {
-                using (var db = new QuanLyGiangVienDataContext())
+                using (var db = Session.Open())
                 {
+                    lecturerScope = GetViewScope(db);
                     cboNamHoc.DataSource = db.NAM_HOCs
                         .Where(x => x.TrangThai)
                         .OrderByDescending(x => x.TuNam)
@@ -45,6 +53,8 @@ namespace QuanLyGiangVien
 
                     var khoaItems = db.KHOAs
                         .Where(x => x.TrangThai)
+                        .Where(x => !lecturerScope.HasValue ||
+                            x.BO_MONs.Any(b => b.GIANG_VIENs.Any(g => g.MaGV == lecturerScope)))
                         .OrderBy(x => x.TenKhoa)
                         .Select(x => new { x.MaKhoa, x.TenKhoa })
                         .ToList();
@@ -66,6 +76,11 @@ namespace QuanLyGiangVien
                 if (cboHocKy.Items.Count > 0) cboHocKy.SelectedIndex = 0;
                 if (cboKhoa.Items.Count > 0) cboKhoa.SelectedIndex = 0;
             }
+            catch (UserMessage ex)
+            {
+                CloseForAccessError(ex);
+                return;
+            }
             catch (Exception ex)
             {
                 HienThiLoi("Không tải được danh sách bộ lọc. Hãy kiểm tra SQL Server và chuỗi kết nối trong App.config.", ex);
@@ -76,6 +91,30 @@ namespace QuanLyGiangVien
             }
 
             LoadWorkload();
+        }
+
+        private int? GetViewScope(QuanLyGiangVienDataContext db)
+        {
+            if (session == null) throw new UserMessage("Bạn chưa đăng nhập.");
+            var user = session.Current(db);
+            if (!Session.Allows(db, user.MaVaiTro, nameof(frmTeachingWorkload), ActionRight.View))
+                throw new UserMessage("Bạn không có quyền xem khối lượng giảng dạy.");
+            if (!HoangFormHelper.IsLecturer(user.VAI_TRO.TenVaiTro)) return null;
+            return user.MaGV ?? throw new UserMessage("Tài khoản chưa liên kết với hồ sơ giảng viên.");
+        }
+
+        private void CloseForAccessError(UserMessage ex)
+        {
+            MessageBox.Show(this, ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            Close();
+        }
+
+        internal static IQueryable<PHAN_CONG_GIANG_DAY> ActiveAssignments(
+            QuanLyGiangVienDataContext db, int maNamHoc, int maHocKy)
+        {
+            return db.PHAN_CONG_GIANG_DAYs.Where(x => x.LOP_HOC_PHAN.TrangThai &&
+                x.LOP_HOC_PHAN.MaNamHoc == maNamHoc && x.LOP_HOC_PHAN.MaHocKy == maHocKy &&
+                x.GIANG_VIEN.TrangThai);
         }
 
         private void LoadWorkload()
@@ -94,11 +133,15 @@ namespace QuanLyGiangVien
 
             try
             {
-                using (var db = new QuanLyGiangVienDataContext())
+                using (var db = Session.Open())
                 {
+                    if (GetViewScope(db) != lecturerScope)
+                        throw new UserMessage("Phạm vi dữ liệu đã thay đổi. Hãy mở lại chức năng.");
+
                     // Đọc danh sách giảng viên trước để vẫn hiện người có tổng số tiết bằng 0.
                     var lecturers = db.GIANG_VIENs
                         .Where(x => x.TrangThai && (maKhoa == 0 || x.BO_MON.MaKhoa == maKhoa))
+                        .Where(x => !lecturerScope.HasValue || x.MaGV == lecturerScope)
                         .OrderBy(x => x.HoTen)
                         .Select(x => new
                         {
@@ -108,12 +151,9 @@ namespace QuanLyGiangVien
                         })
                         .ToList();
 
-                    var assignments = db.PHAN_CONG_GIANG_DAYs
-                        .Where(x => x.LOP_HOC_PHAN.TrangThai &&
-                                    x.LOP_HOC_PHAN.MaNamHoc == maNamHoc &&
-                                    x.LOP_HOC_PHAN.MaHocKy == maHocKy &&
-                                    x.GIANG_VIEN.TrangThai &&
-                                    (maKhoa == 0 || x.GIANG_VIEN.BO_MON.MaKhoa == maKhoa))
+                    var assignments = ActiveAssignments(db, maNamHoc, maHocKy)
+                        .Where(x => (maKhoa == 0 || x.GIANG_VIEN.BO_MON.MaKhoa == maKhoa) &&
+                                    (!lecturerScope.HasValue || x.MaGV == lecturerScope))
                         .Select(x => new { x.MaGV, x.SoTiet })
                         .ToList();
 
@@ -139,6 +179,7 @@ namespace QuanLyGiangVien
                     }
                 }
             }
+            catch (UserMessage ex) { CloseForAccessError(ex); }
             catch (Exception ex)
             {
                 HienThiLoi("Không tính được khối lượng giảng dạy.", ex);

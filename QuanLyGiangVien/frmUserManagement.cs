@@ -62,6 +62,12 @@ namespace QuanLyGiangVien
             mayDelete=session.Can(AccountService.Accounts,ActionRight.Delete);
             UpdateActions();
         }
+
+        private void frmUserManagement_Load(object sender, EventArgs e)
+        {
+
+        }
+
         private void UpdateActions()
         {
             var u=dgvTaiKhoan.CurrentRow?.DataBoundItem as AccountRow;

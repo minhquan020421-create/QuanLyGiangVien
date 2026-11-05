@@ -18,6 +18,7 @@ namespace QuanLyGiangVien
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public string RecoveryEmail { get; set; }
         public string Lecturer { get; set; }
         public int? LecturerId { get; set; }
         public int RoleId { get; set; }
@@ -96,7 +97,7 @@ namespace QuanLyGiangVien
                     users = users.Where(u => u.TenDangNhap.Contains(key) || (u.MaGV.HasValue && u.GIANG_VIEN.HoTen.Contains(key)));
                 }
                 return users.OrderBy(u => u.TenDangNhap).Select(u => new AccountRow {
-                    Id=u.MaNguoiDung, Name=u.TenDangNhap, LecturerId=u.MaGV,
+                    Id=u.MaNguoiDung, Name=u.TenDangNhap, RecoveryEmail=u.Email, LecturerId=u.MaGV,
                     Lecturer=u.MaGV.HasValue ? u.GIANG_VIEN.HoTen : "—", RoleId=u.MaVaiTro,
                     Role=u.VAI_TRO.TenVaiTro, Active=u.TrangThai
                 }).ToList();
@@ -135,26 +136,49 @@ namespace QuanLyGiangVien
             }
         }
 
-        internal void SaveAccount(AccountRow original, string name, int? lecturer, int role, string password, string repeat)
+        internal static string NormalizeRecoveryEmail(string value)
+        {
+            string email = (value ?? "").Trim();
+            if (email.Length == 0) return null;
+
+            // Chấp nhận một địa chỉ ASCII, không kèm tên hiển thị hoặc nhiều người nhận.
+            const string atom = @"[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+";
+            const string domainLabel = @"[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?";
+            const string topLevelLabel = @"[A-Za-z](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?";
+            int at = email.IndexOf('@');
+            if (email.Length > 254 || at < 1 || at > 64 ||
+                !Regex.IsMatch(email.Substring(0, at), @"\A" + atom + @"(?:\." + atom + @")*\z") ||
+                !Regex.IsMatch(email.Substring(at + 1), @"\A(?:" + domainLabel + @"\.)+" + topLevelLabel + @"\z"))
+                throw new UserMessage("Email khôi phục không hợp lệ. Hãy nhập một địa chỉ email không dấu, tối đa 254 ký tự.");
+
+            return email;
+        }
+
+        internal void SaveAccount(AccountRow original, string name, int? lecturer, int role, string recoveryEmail, string password, string repeat)
         {
             name = (name ?? "").Trim();
             if (!Regex.IsMatch(name, @"\A[A-Za-z0-9_.-]{1,50}\z")) throw new UserMessage("Tên đăng nhập cần 1–50 ký tự: chữ không dấu, số, dấu chấm, gạch dưới hoặc gạch ngang.");
+            string email = NormalizeRecoveryEmail(recoveryEmail);
             Write(Accounts, original == null ? ActionRight.Add : ActionRight.Edit, original == null ? "Thêm tài khoản" : "Sửa tài khoản", (db,actor) =>
             {
                 CheckRoleScope(db,actor.MaVaiTro,role);
                 if (lecturer.HasValue && !db.GIANG_VIENs.Any(g=>g.MaGV==lecturer)) throw new UserMessage("Giảng viên đã thay đổi.");
                 int id=original==null ? 0 : original.Id;
                 if(db.NGUOI_DUNGs.Any(u=>u.TenDangNhap==name && u.MaNguoiDung!=id)) throw new UserMessage("Tên đăng nhập đã tồn tại.");
+                if (email != null && db.NGUOI_DUNGs.Any(u => u.Email == email && u.MaNguoiDung != id))
+                    throw new UserMessage("Email khôi phục đã được sử dụng cho tài khoản khác.");
                 var user= original == null ? new NGUOI_DUNG { TrangThai=true } : Find(db,id);
                 if(original==null) { Passwords.Set(user,password,repeat); db.NGUOI_DUNGs.InsertOnSubmit(user); }
                 else
                 {
                     CheckRoleScope(db,actor.MaVaiTro,user.MaVaiTro);
-                    if(user.MaVaiTro!=original.RoleId || user.MaGV!=original.LecturerId || user.TenDangNhap!=original.Name)
+                    if(user.MaVaiTro!=original.RoleId || user.MaGV!=original.LecturerId || user.TenDangNhap!=original.Name ||
+                        user.Email != original.RecoveryEmail)
                         throw new UserMessage("Tài khoản vừa thay đổi. Hãy làm mới danh sách.");
                     if(user.MaNguoiDung==actor.MaNguoiDung && role!=user.MaVaiTro) throw new UserMessage("Bạn không thể tự đổi vai trò.");
                 }
                 user.MaGV=lecturer; user.MaVaiTro=role; user.TenDangNhap=name;
+                user.Email = email;
                 return name;
             });
         }
