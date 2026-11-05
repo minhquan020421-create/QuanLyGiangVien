@@ -44,25 +44,33 @@ namespace QuanLyGiangVien
             loading = true;
             btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = false;
             selected = null;
-            rows.Clear();
-            dgvDanhSach.DataSource = null;
             HoangFormAccess access = null;
             bool ok = HoangFormHelper.Run(this, () =>
             {
-                if (db != null) db.Dispose();
+                db?.Dispose();
+                db = null;
                 access = HoangFormHelper.GetAccess(maNguoiDung, "frmSpecialization");
                 db = new QuanLyGiangVienDataContext(DatabaseConnection.CurrentConnectionString);
                 string keyword = txtTimKiem.Text.Trim();
                 int id;
                 bool byId = int.TryParse(keyword, out id);
-                rows = db.CHUYEN_MONs.Where(x => keyword == "" || x.TenChuyenMon.Contains(keyword) || (byId && x.MaChuyenMon == id))
+                var newRows = db.CHUYEN_MONs.Where(x => keyword == "" || x.TenChuyenMon.Contains(keyword) || (byId && x.MaChuyenMon == id))
                     .OrderBy(x => x.MaChuyenMon).ToList();
-                dgvDanhSach.DataSource = rows.Select(x => new { x.MaChuyenMon, x.TenChuyenMon, x.MoTa, x.TrangThai }).ToList();
+                var displayRows = newRows.Select(x => new { x.MaChuyenMon, x.TenChuyenMon, x.MoTa, x.TrangThai }).ToList();
+                rows = newRows;
+                HoangFormHelper.BindGrid(dgvDanhSach, displayRows);
                 lblKetQua.Text = rows.Count + " kết quả";
             });
-            if (!ok) lblKetQua.Text = "Chưa tải được dữ liệu";
-            loading = false;
+            if (!ok)
+            {
+                db?.Dispose();
+                db = null;
+                rows.Clear();
+                dgvDanhSach.DataSource = null;
+                lblKetQua.Text = "Chưa tải được dữ liệu";
+            }
             ClearInput();
+            loading = false;
             btnThem.Enabled = ok && access.Them;
             btnSua.Enabled = ok && access.Sua;
             btnXoa.Enabled = ok && access.Xoa;
@@ -151,16 +159,20 @@ namespace QuanLyGiangVien
             }
 
             if (!HoangFormHelper.ConfirmDelete(this, item.TenChuyenMon)) return;
+            bool permissionChecked = false;
+            bool writing = false;
             HoangFormHelper.Run(this, () =>
             {
                 HoangFormHelper.RequireAction(maNguoiDung, "frmSpecialization", "Xoa");
+                permissionChecked = true;
                 HoangFormHelper.Require(!db.GIANG_VIEN_CHUYEN_MONs.Any(x => x.MaChuyenMon == item.MaChuyenMon),
                     "Dữ liệu đang được sử dụng. Không thể xóa; hãy kiểm tra các bản ghi liên quan.");
+                writing = true;
                 db.CHUYEN_MONs.DeleteOnSubmit(item);
                 db.SubmitChanges();
                 MessageBox.Show(this, "Đã xóa dữ liệu.", "Thông báo");
             });
-            LoadData();
+            if (writing || !permissionChecked) LoadData();
         }
     }
 }

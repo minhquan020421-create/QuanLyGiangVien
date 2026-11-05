@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Data.Linq;
 using System.Net.Mail;
 using System.Linq;
@@ -17,6 +18,33 @@ namespace QuanLyGiangVien
 
     internal static class HoangFormHelper
     {
+        internal static void BindLookup(ComboBox combo, IList values)
+        {
+            if (!SameValues(combo.DataSource as IList, values))
+                combo.DataSource = values;
+        }
+
+        internal static void BindGrid(DataGridView grid, IList values)
+        {
+            if (SameValues(grid.DataSource as IList, values)) return;
+
+            int firstVisibleRow = grid.FirstDisplayedScrollingRowIndex;
+            grid.DataSource = values;
+            if (firstVisibleRow >= 0 && grid.Rows.Count > 0)
+                grid.FirstDisplayedScrollingRowIndex = Math.Min(firstVisibleRow, grid.Rows.Count - 1);
+        }
+
+        private static bool SameValues(IList current, IList next)
+        {
+            if (current == null || current.Count != next.Count) return false;
+            for (int i = 0; i < next.Count; i++)
+            {
+                if (!Equals(current[i], next[i])) return false;
+            }
+
+            return true;
+        }
+
         internal static void KeepContentScrollable(Panel viewport, Control content)
         {
             // MinimumSize của control co giãn theo DPI, còn AutoScrollMinSize thì không.

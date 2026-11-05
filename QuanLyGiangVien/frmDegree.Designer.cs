@@ -39,7 +39,7 @@
             this.txtTimKiem = new System.Windows.Forms.TextBox();
             this.btnTimKiem = new System.Windows.Forms.Button();
             this.lblKetQua = new System.Windows.Forms.Label();
-            this.dgvDanhSach = new System.Windows.Forms.DataGridView();
+            this.dgvDanhSach = new QuanLyGiangVien.HoangDataGridView();
             this.colMaHocVi = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colTenHocVi = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDanhSach)).BeginInit();

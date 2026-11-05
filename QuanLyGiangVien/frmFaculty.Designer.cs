@@ -48,7 +48,7 @@
             this.txtTimKiem = new System.Windows.Forms.TextBox();
             this.btnTimKiem = new System.Windows.Forms.Button();
             this.lblKetQua = new System.Windows.Forms.Label();
-            this.dgvDanhSach = new System.Windows.Forms.DataGridView();
+            this.dgvDanhSach = new QuanLyGiangVien.HoangDataGridView();
             this.colMaKhoa = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colTenKhoa = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colEmail = new System.Windows.Forms.DataGridViewTextBoxColumn();

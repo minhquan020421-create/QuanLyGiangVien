@@ -45,8 +45,6 @@ namespace QuanLyGiangVien
             loading = true;
             btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = false;
             selected = null;
-            rows.Clear();
-            dgvDanhSach.DataSource = null;
             HoangFormAccess access = null;
             bool ok = HoangFormHelper.Run(this, () =>
             {
@@ -57,15 +55,18 @@ namespace QuanLyGiangVien
                 var loadOptions = new DataLoadOptions();
                 loadOptions.LoadWith<BO_MON>(x => x.KHOA);
                 db.LoadOptions = loadOptions;
-                cboMaKhoa.DisplayMember = "TenKhoa";
-                cboMaKhoa.ValueMember = "MaKhoa";
-                cboMaKhoa.DataSource = db.KHOAs.OrderBy(x => x.TenKhoa).Select(x => new { x.MaKhoa, x.TenKhoa }).ToList();
+                var faculties = db.KHOAs.OrderBy(x => x.TenKhoa).Select(x => new { x.MaKhoa, x.TenKhoa }).ToList();
                 string keyword = txtTimKiem.Text.Trim();
                 int id;
                 bool byId = int.TryParse(keyword, out id);
-                rows = db.BO_MONs.Where(x => keyword == "" || x.TenBoMon.Contains(keyword) || (byId && x.MaBoMon == id))
+                var newRows = db.BO_MONs.Where(x => keyword == "" || x.TenBoMon.Contains(keyword) || (byId && x.MaBoMon == id))
                     .OrderBy(x => x.MaBoMon).ToList();
-                dgvDanhSach.DataSource = rows.Select(x => new { x.MaBoMon, x.TenBoMon, x.TrangThai, TenKhoa = x.KHOA.TenKhoa }).ToList();
+                var gridRows = newRows.Select(x => new { x.MaBoMon, x.TenBoMon, x.TrangThai, TenKhoa = x.KHOA.TenKhoa }).ToList();
+                cboMaKhoa.DisplayMember = "TenKhoa";
+                cboMaKhoa.ValueMember = "MaKhoa";
+                HoangFormHelper.BindLookup(cboMaKhoa, faculties);
+                rows = newRows;
+                HoangFormHelper.BindGrid(dgvDanhSach, gridRows);
                 lblKetQua.Text = rows.Count + " kết quả";
             });
             if (!ok)
@@ -150,15 +151,19 @@ namespace QuanLyGiangVien
             var item = selected;
             if (item == null) { MessageBox.Show(this, "Vui lòng chọn bộ môn cần xóa."); return; }
             if (!HoangFormHelper.ConfirmDelete(this, item.TenBoMon)) return;
+            bool permissionChecked = false;
+            bool writing = false;
             HoangFormHelper.Run(this, () =>
             {
                 HoangFormHelper.RequireAction(maNguoiDung, "frmDepartment", "Xoa");
+                permissionChecked = true;
                 HoangFormHelper.Require(!(db.GIANG_VIENs.Any(x => x.MaBoMon == item.MaBoMon) || db.HOC_PHANs.Any(x => x.MaBoMon == item.MaBoMon)), "Dữ liệu đang được sử dụng. Không thể xóa; hãy kiểm tra các bản ghi liên quan.");
+                writing = true;
                 db.BO_MONs.DeleteOnSubmit(item);
                 db.SubmitChanges();
                 MessageBox.Show(this, "Đã xóa dữ liệu.", "Thông báo");
             });
-            LoadData();
+            if (writing || !permissionChecked) LoadData();
         }
     }
 }

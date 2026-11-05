@@ -44,8 +44,6 @@ namespace QuanLyGiangVien
             loading = true;
             btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = false;
             selected = null;
-            rows.Clear();
-            dgvDanhSach.DataSource = null;
             HoangFormAccess access = null;
             bool ok = HoangFormHelper.Run(this, () =>
             {
@@ -56,14 +54,23 @@ namespace QuanLyGiangVien
                 string keyword = txtTimKiem.Text.Trim();
                 int id;
                 bool byId = int.TryParse(keyword, out id);
-                rows = db.KHOAs.Where(x => keyword == "" || x.TenKhoa.Contains(keyword) || (byId && x.MaKhoa == id))
+                var loadedRows = db.KHOAs.Where(x => keyword == "" || x.TenKhoa.Contains(keyword) || (byId && x.MaKhoa == id))
                     .OrderBy(x => x.MaKhoa).ToList();
-                dgvDanhSach.DataSource = rows.Select(x => new { x.MaKhoa, x.TenKhoa, x.Email, x.SoDienThoai, x.TrangThai }).ToList();
+                var displayRows = loadedRows.Select(x => new { x.MaKhoa, x.TenKhoa, x.Email, x.SoDienThoai, x.TrangThai }).ToList();
+                rows = loadedRows;
+                HoangFormHelper.BindGrid(dgvDanhSach, displayRows);
                 lblKetQua.Text = rows.Count + " kết quả";
             });
-            if (!ok) lblKetQua.Text = "Chưa tải được dữ liệu";
-            loading = false;
+            if (!ok)
+            {
+                db?.Dispose();
+                db = null;
+                rows.Clear();
+                dgvDanhSach.DataSource = null;
+                lblKetQua.Text = "Chưa tải được dữ liệu";
+            }
             ClearInput();
+            loading = false;
             btnThem.Enabled = ok && access.Them;
             btnSua.Enabled = ok && access.Sua;
             btnXoa.Enabled = ok && access.Xoa;
@@ -153,15 +160,19 @@ namespace QuanLyGiangVien
             var item = selected;
             if (item == null) { MessageBox.Show(this, "Vui lòng chọn dòng cần xóa."); return; }
             if (!HoangFormHelper.ConfirmDelete(this, item.TenKhoa)) return;
+            bool permissionChecked = false;
+            bool writing = false;
             HoangFormHelper.Run(this, () =>
             {
                 HoangFormHelper.RequireAction(maNguoiDung, "frmFaculty", "Xoa");
+                permissionChecked = true;
                 HoangFormHelper.Require(!db.BO_MONs.Any(x => x.MaKhoa == item.MaKhoa), "Khoa còn bộ môn liên kết nên không thể xóa.");
+                writing = true;
                 db.KHOAs.DeleteOnSubmit(item);
                 db.SubmitChanges();
                 MessageBox.Show(this, "Đã xóa dữ liệu.", "Thông báo");
             });
-            LoadData();
+            if (writing || !permissionChecked) LoadData();
         }
     }
 }

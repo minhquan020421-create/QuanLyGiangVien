@@ -10,9 +10,17 @@ namespace QuanLyGiangVien
     {
         private QuanLyGiangVienDataContext db;
         private List<GIANG_VIEN> rows = new List<GIANG_VIEN>();
+        private List<DepartmentItem> departments = new List<DepartmentItem>();
         private GIANG_VIEN selected;
         private bool loading;
         private int? maNguoiDung;
+
+        private sealed class DepartmentItem
+        {
+            public int Id { get; set; }
+            public int FacultyId { get; set; }
+            public string Name { get; set; }
+        }
 
         public frmLecturer()
         {
@@ -51,8 +59,6 @@ namespace QuanLyGiangVien
             loading = true;
             btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = false;
             selected = null;
-            rows.Clear();
-            dgvDanhSach.DataSource = null;
             HoangFormAccess access = null;
             bool ok = HoangFormHelper.Run(this, () =>
             {
@@ -66,42 +72,19 @@ namespace QuanLyGiangVien
                 loadOptions.LoadWith<GIANG_VIEN>(x => x.HOC_VI);
                 loadOptions.LoadWith<GIANG_VIEN>(x => x.CHUC_VU);
                 db.LoadOptions = loadOptions;
-                // ComboBox nhập liệu không có giá trị "Tất cả".
                 var faculties = db.KHOAs.OrderBy(x => x.TenKhoa).Select(x => new { Id = x.MaKhoa, Name = x.TenKhoa }).ToList();
-                cboMaKhoa.DisplayMember = "Name";
-                cboMaKhoa.ValueMember = "Id";
-                cboMaKhoa.DataSource = faculties.ToList();
-                cboLocKhoa.DisplayMember = "Name";
-                cboLocKhoa.ValueMember = "Id";
-                faculties.Insert(0, new { Id = 0, Name = "Tất cả khoa" });
-                cboLocKhoa.DataSource = faculties;
-                cboLocKhoa.SelectedValue = khoa ?? 0;
-                if (cboLocKhoa.SelectedIndex < 0) cboLocKhoa.SelectedValue = 0;
-
                 var degrees = db.HOC_VIs.OrderBy(x => x.TenHocVi).Select(x => new { Id = x.MaHocVi, Name = x.TenHocVi }).ToList();
-                cboMaHocVi.DisplayMember = "Name";
-                cboMaHocVi.ValueMember = "Id";
-                cboMaHocVi.DataSource = degrees.ToList();
-                cboLocHocVi.DisplayMember = "Name";
-                cboLocHocVi.ValueMember = "Id";
-                degrees.Insert(0, new { Id = 0, Name = "Tất cả học vị" });
-                cboLocHocVi.DataSource = degrees;
-                cboLocHocVi.SelectedValue = hocVi ?? 0;
-                if (cboLocHocVi.SelectedIndex < 0) cboLocHocVi.SelectedValue = 0;
-
                 var positions = db.CHUC_VUs.OrderBy(x => x.TenChucVu).Select(x => new { Id = x.MaChucVu, Name = x.TenChucVu }).ToList();
-                positions.Insert(0, new { Id = 0, Name = "Không có chức vụ" });
-                cboMaChucVu.DisplayMember = "Name";
-                cboMaChucVu.ValueMember = "Id";
-                cboMaChucVu.DataSource = positions;
-                LoadFilterDepartments(boMon);
+                var loadedDepartments = db.BO_MONs.OrderBy(x => x.TenBoMon)
+                    .Select(x => new DepartmentItem { Id = x.MaBoMon, FacultyId = x.MaKhoa, Name = x.TenBoMon }).ToList();
 
                 string keyword = txtTimKiem.Text.Trim();
                 int id;
                 bool byId = int.TryParse(keyword, out id);
-                int filterFaculty = HoangFormHelper.SelectedId(cboLocKhoa) ?? 0;
-                int filterDepartment = HoangFormHelper.SelectedId(cboLocBoMon) ?? 0;
-                int filterDegree = HoangFormHelper.SelectedId(cboLocHocVi) ?? 0;
+                int filterFaculty = faculties.Any(x => x.Id == khoa) ? khoa.Value : 0;
+                int filterDepartment = loadedDepartments.Any(x => x.Id == boMon && (filterFaculty == 0 || x.FacultyId == filterFaculty))
+                    ? boMon.Value : 0;
+                int filterDegree = degrees.Any(x => x.Id == hocVi) ? hocVi.Value : 0;
                 int state = cboLocTrangThai.SelectedIndex;
                 var query = db.GIANG_VIENs.Where(x => keyword == "" || x.HoTen.Contains(keyword) || (byId && x.MaGV == id));
                 if (access.ChiXemCaNhan)
@@ -115,8 +98,8 @@ namespace QuanLyGiangVien
                 if (state == 1) query = query.Where(x => x.TrangThai);
                 if (state == 2) query = query.Where(x => !x.TrangThai);
                 // Truy vấn SQL trước, sau đó giữ entity gốc để LINQ kiểm tra xung đột khi lưu.
-                rows = query.OrderBy(x => x.MaGV).ToList();
-                dgvDanhSach.DataSource = rows.Select(x => new
+                var loadedRows = query.OrderBy(x => x.MaGV).ToList();
+                var displayRows = loadedRows.Select(x => new
                 {
                     x.MaGV, x.HoTen, x.NgaySinh, x.GioiTinh, x.Email, x.SoDienThoai,
                     x.DiaChi, x.NgayVaoTruong, x.TrangThai,
@@ -125,6 +108,30 @@ namespace QuanLyGiangVien
                     TenHocVi = x.HOC_VI.TenHocVi,
                     TenChucVu = x.CHUC_VU == null ? "" : x.CHUC_VU.TenChucVu
                 }).ToList();
+
+                // Chỉ cập nhật giao diện sau khi toàn bộ dữ liệu đã tải thành công.
+                cboMaKhoa.DisplayMember = cboLocKhoa.DisplayMember = "Name";
+                cboMaKhoa.ValueMember = cboLocKhoa.ValueMember = "Id";
+                HoangFormHelper.BindLookup(cboMaKhoa, faculties.ToList());
+                faculties.Insert(0, new { Id = 0, Name = "Tất cả khoa" });
+                HoangFormHelper.BindLookup(cboLocKhoa, faculties);
+                cboLocKhoa.SelectedValue = filterFaculty;
+
+                cboMaHocVi.DisplayMember = cboLocHocVi.DisplayMember = "Name";
+                cboMaHocVi.ValueMember = cboLocHocVi.ValueMember = "Id";
+                HoangFormHelper.BindLookup(cboMaHocVi, degrees.ToList());
+                degrees.Insert(0, new { Id = 0, Name = "Tất cả học vị" });
+                HoangFormHelper.BindLookup(cboLocHocVi, degrees);
+                cboLocHocVi.SelectedValue = filterDegree;
+
+                positions.Insert(0, new { Id = 0, Name = "Không có chức vụ" });
+                cboMaChucVu.DisplayMember = "Name";
+                cboMaChucVu.ValueMember = "Id";
+                HoangFormHelper.BindLookup(cboMaChucVu, positions);
+                departments = loadedDepartments;
+                LoadFilterDepartments(filterDepartment);
+                rows = loadedRows;
+                HoangFormHelper.BindGrid(dgvDanhSach, displayRows);
                 lblKetQua.Text = rows.Count + " kết quả";
             });
             if (!ok)
@@ -132,6 +139,7 @@ namespace QuanLyGiangVien
                 db?.Dispose();
                 db = null;
                 rows.Clear();
+                departments.Clear();
                 dgvDanhSach.DataSource = null;
                 cboMaKhoa.DataSource = cboMaHocVi.DataSource = cboMaChucVu.DataSource = null;
                 cboLocKhoa.DataSource = cboLocBoMon.DataSource = cboLocHocVi.DataSource = null;
@@ -148,25 +156,29 @@ namespace QuanLyGiangVien
         private void LoadFilterDepartments(int? selectedId)
         {
             int khoa = HoangFormHelper.SelectedId(cboLocKhoa) ?? 0;
-            var items = db.BO_MONs.Where(x => khoa == 0 || x.MaKhoa == khoa)
-                .OrderBy(x => x.TenBoMon).Select(x => new { Id = x.MaBoMon, Name = x.TenBoMon }).ToList();
+            var items = departments.Where(x => khoa == 0 || x.FacultyId == khoa)
+                .Select(x => new { x.Id, x.Name }).ToList();
             items.Insert(0, new { Id = 0, Name = "Tất cả bộ môn" });
             cboLocBoMon.DisplayMember = "Name";
             cboLocBoMon.ValueMember = "Id";
-            cboLocBoMon.DataSource = items;
+            HoangFormHelper.BindLookup(cboLocBoMon, items);
             cboLocBoMon.SelectedValue = selectedId ?? 0;
             if (cboLocBoMon.SelectedIndex < 0) cboLocBoMon.SelectedValue = 0;
         }
 
         private void LoadEntryDepartments()
         {
-            cboMaBoMon.DataSource = null;
             int? khoa = HoangFormHelper.SelectedId(cboMaKhoa);
-            if (!khoa.HasValue) return;
+            if (!khoa.HasValue)
+            {
+                cboMaBoMon.DataSource = null;
+                return;
+            }
             cboMaBoMon.DisplayMember = "Name";
             cboMaBoMon.ValueMember = "Id";
-            cboMaBoMon.DataSource = db.BO_MONs.Where(x => x.MaKhoa == khoa.Value)
-                .OrderBy(x => x.TenBoMon).Select(x => new { Id = x.MaBoMon, Name = x.TenBoMon }).ToList();
+            var items = departments.Where(x => x.FacultyId == khoa.Value)
+                .Select(x => new { x.Id, x.Name }).ToList();
+            HoangFormHelper.BindLookup(cboMaBoMon, items);
             cboMaBoMon.SelectedIndex = -1;
         }
 
@@ -179,8 +191,6 @@ namespace QuanLyGiangVien
         private void cboLocKhoa_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (loading || db == null) return;
-            // Xóa bộ môn cũ trước khi tải, tránh lọc bộ môn không thuộc khoa mới khi kết nối lỗi.
-            cboLocBoMon.DataSource = null;
             HoangFormHelper.Run(this, () => LoadFilterDepartments(null));
         }
 
@@ -318,21 +328,25 @@ namespace QuanLyGiangVien
             var item = selected;
             if (item == null) { MessageBox.Show(this, "Vui lòng chọn giảng viên cần xóa."); return; }
             if (!HoangFormHelper.ConfirmDelete(this, item.HoTen)) return;
+            bool permissionChecked = false;
+            bool writing = false;
             HoangFormHelper.Run(this, () =>
             {
                 var permission = HoangFormHelper.RequireAction(maNguoiDung, "frmLecturer", "Xoa");
                 HoangFormHelper.Require(!permission.ChiXemCaNhan || item.MaGV == permission.MaGV,
                     "Bạn chỉ được thao tác trên hồ sơ giảng viên của mình.");
+                permissionChecked = true;
                 int id = item.MaGV;
                 HoangFormHelper.Require(!db.PHAN_CONG_GIANG_DAYs.Any(x => x.MaGV == id)
                     && !db.GIANG_VIEN_CHUYEN_MONs.Any(x => x.MaGV == id)
                     && !db.NGUOI_DUNGs.Any(x => x.MaGV == id),
                     "Giảng viên đang có phân công, chuyên môn hoặc tài khoản liên quan. Không thể xóa. Có thể sửa trạng thái thành ngừng hoạt động nếu phù hợp.");
+                writing = true;
                 db.GIANG_VIENs.DeleteOnSubmit(item);
                 db.SubmitChanges();
                 MessageBox.Show(this, "Đã xóa giảng viên.", "Thông báo");
             });
-            LoadData(false);
+            if (writing || !permissionChecked) LoadData(false);
         }
     }
 }

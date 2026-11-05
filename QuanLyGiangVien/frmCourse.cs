@@ -45,9 +45,6 @@ namespace QuanLyGiangVien
             loading = true;
             btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = false;
             selected = null;
-            rows.Clear();
-            dgvDanhSach.DataSource = null;
-            cboMaBoMon.DataSource = null;
             HoangFormAccess access = null;
             bool ok = HoangFormHelper.Run(this, () =>
             {
@@ -74,21 +71,32 @@ namespace QuanLyGiangVien
                     departments = departments.Where(x => x.HOC_PHANs.Any(c => ownCourseIds.Contains(c.MaHocPhan)));
                 }
 
-                cboMaBoMon.DisplayMember = "TenBoMon";
-                cboMaBoMon.ValueMember = "MaBoMon";
-                cboMaBoMon.DataSource = departments.OrderBy(x => x.TenBoMon)
+                var departmentItems = departments.OrderBy(x => x.TenBoMon)
                     .Select(x => new { x.MaBoMon, x.TenBoMon }).ToList();
                 string keyword = txtTimKiem.Text.Trim();
                 int id;
                 bool byId = int.TryParse(keyword, out id);
-                rows = courses.Where(x => keyword == "" || x.TenHocPhan.Contains(keyword) || (byId && x.MaHocPhan == id))
+                var newRows = courses.Where(x => keyword == "" || x.TenHocPhan.Contains(keyword) || (byId && x.MaHocPhan == id))
                     .OrderBy(x => x.MaHocPhan).ToList();
-                dgvDanhSach.DataSource = rows.Select(x => new { x.MaHocPhan, x.TenHocPhan, x.SoTinChi, x.SoTietLyThuyet, x.SoTietThucHanh, x.TrangThai, TenBoMon = x.BO_MON.TenBoMon }).ToList();
+                var gridRows = newRows.Select(x => new { x.MaHocPhan, x.TenHocPhan, x.SoTinChi, x.SoTietLyThuyet, x.SoTietThucHanh, x.TrangThai, TenBoMon = x.BO_MON.TenBoMon }).ToList();
+                cboMaBoMon.DisplayMember = "TenBoMon";
+                cboMaBoMon.ValueMember = "MaBoMon";
+                HoangFormHelper.BindLookup(cboMaBoMon, departmentItems);
+                rows = newRows;
+                HoangFormHelper.BindGrid(dgvDanhSach, gridRows);
                 lblKetQua.Text = rows.Count + " kết quả";
             });
-            if (!ok) lblKetQua.Text = "Chưa tải được dữ liệu";
-            loading = false;
+            if (!ok)
+            {
+                db?.Dispose();
+                db = null;
+                rows.Clear();
+                dgvDanhSach.DataSource = null;
+                cboMaBoMon.DataSource = null;
+                lblKetQua.Text = "Chưa tải được dữ liệu";
+            }
             ClearInput();
+            loading = false;
             bool canEdit = ok && !access.ChiXemCaNhan;
             btnThem.Enabled = canEdit && access.Them;
             btnSua.Enabled = canEdit && access.Sua;
@@ -173,15 +181,19 @@ namespace QuanLyGiangVien
             var item = selected;
             if (item == null) { MessageBox.Show(this, "Vui lòng chọn học phần cần xóa.", "Thông báo"); return; }
             if (!HoangFormHelper.ConfirmDelete(this, item.TenHocPhan)) return;
+            bool permissionChecked = false;
+            bool writing = false;
             HoangFormHelper.Run(this, () =>
             {
                 RequireCourseAction("Xoa");
+                permissionChecked = true;
                 HoangFormHelper.Require(!db.LOP_HOC_PHANs.Any(x => x.MaHocPhan == item.MaHocPhan), "Học phần đã có lớp học phần, không thể xóa.");
+                writing = true;
                 db.HOC_PHANs.DeleteOnSubmit(item);
                 db.SubmitChanges();
                 MessageBox.Show(this, "Đã xóa dữ liệu.", "Thông báo");
             });
-            LoadData();
+            if (writing || !permissionChecked) LoadData();
         }
     }
 }
