@@ -25,6 +25,7 @@ namespace QuanLyGiangVien
         public frmLecturer()
         {
             InitializeComponent();
+            HoangFormHelper.EnableGridBuffering(dgvDanhSach);
             HoangFormHelper.KeepContentScrollable(pnlCuon, layoutChinh);
         }
 

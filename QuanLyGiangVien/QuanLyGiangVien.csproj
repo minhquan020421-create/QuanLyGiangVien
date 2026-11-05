@@ -142,7 +142,6 @@
       <DependentUpon>frmReportTeachingAssignment.cs</DependentUpon>
     </EmbeddedResource>
     <Compile Include="HoangFormHelper.cs" />
-    <Compile Include="HoangDataGridView.cs" />
     <Compile Include="frmFaculty.cs">
       <SubType>Form</SubType>
     </Compile>

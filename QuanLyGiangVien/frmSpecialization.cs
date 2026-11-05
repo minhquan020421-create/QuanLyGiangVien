@@ -16,6 +16,7 @@ namespace QuanLyGiangVien
         public frmSpecialization()
         {
             InitializeComponent();
+            HoangFormHelper.EnableGridBuffering(dgvDanhSach);
             HoangFormHelper.KeepContentScrollable(pnlCuon, layoutChinh);
         }
 

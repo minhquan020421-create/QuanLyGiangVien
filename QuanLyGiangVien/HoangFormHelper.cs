@@ -18,6 +18,17 @@ namespace QuanLyGiangVien
 
     internal static class HoangFormHelper
     {
+        internal static void EnableGridBuffering(DataGridView grid)
+        {
+            if (System.ComponentModel.LicenseManager.UsageMode == System.ComponentModel.LicenseUsageMode.Designtime)
+                return;
+
+            // Dùng bảng chuẩn trong Designer, chỉ bật bộ đệm vẽ khi chạy.
+            typeof(Control).GetProperty("DoubleBuffered",
+                System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic)
+                .SetValue(grid, true, null);
+        }
+
         internal static void BindLookup(ComboBox combo, IList values)
         {
             if (!SameValues(combo.DataSource as IList, values))
