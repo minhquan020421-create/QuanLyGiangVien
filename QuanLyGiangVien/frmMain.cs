@@ -106,7 +106,8 @@ namespace QuanLyGiangVien
             btnBaoCao.Click += btnBaoCao_Click;
             btnDanhsach.Click += (s, e) => OpenReport(() => new frmReportLecturer(), "frmReportLecturer");
             btnPc.Click += (s, e) => OpenReport(() => new frmReportTeachingAssignment(), "frmReportTeachingAssignment");
-            btnBD.Click += (s, e) => OpenReport(() => new frmChartDashboard(), "frmChartDashboard");
+            // Giữ mã chức năng hiện có trong database để quyền xem thống kê tiếp tục áp dụng.
+            btnBD.Click += (s, e) => OpenReport(() => new frmChart(), "frmChartDashboard");
             btnKLGD.Click += (s, e) => OpenReport(() => new frmTeachingWorkload(), "frmTeachingWorkload");
             btnPhanCong.Click += (s, e) => OpenReport(() => new frmTeachingAssignment(), "frmTeachingAssignment");
 

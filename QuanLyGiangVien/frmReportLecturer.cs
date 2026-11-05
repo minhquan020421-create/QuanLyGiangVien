@@ -35,6 +35,8 @@ namespace QuanLyGiangVien
         public frmReportLecturer()
         {
             InitializeComponent();
+            Theme.Apply(this);
+            btQuayLai.Click += (s, e) => Close();
             var setting = ConfigurationManager.ConnectionStrings[
                 "QuanLyGiangVien.Properties.Settings.QuanLyGiangVienConnectionString1"];
             if (setting == null)
@@ -214,5 +216,6 @@ namespace QuanLyGiangVien
         }
 
         private void label1_Click(object sender, EventArgs e) { }
+
     }
 }

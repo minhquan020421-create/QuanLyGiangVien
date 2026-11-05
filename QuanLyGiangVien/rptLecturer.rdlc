@@ -24,7 +24,7 @@
           </Paragraph>
         </Paragraphs>
         <Top>0.13417in</Top>
-        <Left>0.17583in</Left>
+        <Left>0.17584in</Left>
         <Height>0.43056in</Height>
         <Width>9.11111in</Width>
         <Style>
@@ -461,7 +461,7 @@
         <Top>0.63417in</Top>
         <Left>0.17583in</Left>
         <Height>0.93056in</Height>
-        <Width>9.11111in</Width>
+        <Width>9.11112in</Width>
         <ZIndex>1</ZIndex>
         <Style>
           <Border>
@@ -554,10 +554,6 @@
           <DataField>TenChucVu</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="TrangThai">
-          <DataField>TrangThai</DataField>
-          <rd:TypeName>System.Boolean</rd:TypeName>
-        </Field>
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>QuanLyGiangVienDataSet</rd:DataSetName>
@@ -572,4 +568,3 @@
   <rd:ReportUnitType>Inch</rd:ReportUnitType>
   <rd:ReportID>db9d7efb-0827-4276-9556-ae0e51bceaf8</rd:ReportID>
 </Report>
-

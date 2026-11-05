@@ -97,6 +97,41 @@ namespace QuanLyGiangVien
                     g.DefaultCellStyle.SelectionForeColor=ink;
                     return;
                 }
+                if(c is Microsoft.Reporting.WinForms.ReportViewer)
+                {
+                    c.BackColor=surface;
+                    return;
+                }
+                if(c is System.Windows.Forms.DataVisualization.Charting.Chart)
+                {
+                    var chart=(System.Windows.Forms.DataVisualization.Charting.Chart)c;
+                    chart.BackColor=surface;
+                    chart.ForeColor=ink;
+                    chart.BorderlineColor=border;
+                    chart.Palette=dark ? System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.BrightPastel :
+                        System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Pastel;
+                    foreach(var area in chart.ChartAreas)
+                    {
+                        area.BackColor=surface;
+                        area.AxisX.LabelStyle.ForeColor=muted;
+                        area.AxisY.LabelStyle.ForeColor=muted;
+                        area.AxisX.LineColor=border;
+                        area.AxisY.LineColor=border;
+                        area.AxisX.MajorGrid.LineColor=border;
+                        area.AxisY.MajorGrid.LineColor=border;
+                    }
+                    foreach(var legend in chart.Legends)
+                    {
+                        legend.BackColor=surface;
+                        legend.ForeColor=ink;
+                    }
+                    foreach(var title in chart.Titles)
+                    {
+                        title.ForeColor=ink;
+                        title.Font=new Font("Segoe UI",12F,FontStyle.Bold);
+                    }
+                    return;
+                }
                 if(c is Panel) c.BackColor=surface;
                 else if(c is TextBox || c is ComboBox || c is ListBox) { c.BackColor=field; c.ForeColor=ink;
                     var combo=c as ComboBox; if(combo!=null)
@@ -110,7 +145,9 @@ namespace QuanLyGiangVien
                 {
                     var b=(Button)c;
                     bool primary=b.Name=="btnDangNhap" || b.Name=="btnDoiMatKhau" && f is frmChangePassword ||
-                                 b.Name.StartsWith("btnLuu") || (b.Name=="btnThem" || b.Name=="btnThemVaiTro") || b.Name=="btnAccounts";
+                                 b.Name.StartsWith("btnLuu") || (b.Name=="btnThem" || b.Name=="btnThemVaiTro") ||
+                                 b.Name=="btnAccounts" || b.Name=="btQuayLai" || b.Name=="btnThongKe" || b.Name=="btnlammoi" ||
+                                 b.Name=="btnXemBaoCao" || b.Name=="btnAssign";
                     b.FlatStyle=FlatStyle.Flat; b.UseVisualStyleBackColor=false; b.Cursor=Cursors.Hand;
                     b.BackColor=primary ? Color.FromArgb(49,91,190) : surface;
                     b.ForeColor=primary ? Color.White : b.Name.StartsWith("btnXoa") ? alert : ink;
@@ -122,7 +159,8 @@ namespace QuanLyGiangVien
                 {
                     c.BackColor=Color.Transparent;
                     c.ForeColor=c.Name=="lblThongBao" ? alert : c.Name.StartsWith("lblIcon") ? accent :
-                        c.Name.Contains("TieuDe") || c.Name=="lblTenHeThong" || c.Name=="lblDangNhap" ? ink : muted;
+                        c.Name.Contains("TieuDe") || c.Name.StartsWith("lblTitle") || c.Name.StartsWith("lblReportTitle") ||
+                        c.Name.StartsWith("lblHeading") || c.Name=="lblTenHeThong" || c.Name=="lblDangNhap" ? ink : muted;
                 }
                 foreach(Control child in c.Controls) visit(child);
             };

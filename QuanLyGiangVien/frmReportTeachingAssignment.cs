@@ -32,6 +32,8 @@ namespace QuanLyGiangVien
         public frmReportTeachingAssignment()
         {
             InitializeComponent();
+            Theme.Apply(this);
+            btQuayLai.Click += (s, e) => Close();
             var cs = ConfigurationManager.ConnectionStrings["QuanLyGiangVien.Properties.Settings.QuanLyGiangVienConnectionString1"]
                   ?? ConfigurationManager.ConnectionStrings["QuanLyGiangVien.Properties.Settings.QuanLyGiangVienConnectionString"];
             if (cs == null) throw new InvalidOperationException("Không tìm thấy chuỗi kết nối trong App.config.");

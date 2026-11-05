@@ -42,13 +42,14 @@
             this.btnInBaoCao = new System.Windows.Forms.Button();
             this.btnXemBaoCao = new System.Windows.Forms.Button();
             this.reportViewerTeachingAssignment = new Microsoft.Reporting.WinForms.ReportViewer();
+            this.btQuayLai = new System.Windows.Forms.Button();
             this.panelHeader.SuspendLayout();
             this.pnlFilter.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelHeader
             // 
-            this.panelHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(58)))), ((int)(((byte)(79)))));
+            this.panelHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(39)))), ((int)(((byte)(58)))));
             this.panelHeader.Controls.Add(this.lblTitle);
             this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelHeader.Location = new System.Drawing.Point(0, 0);
@@ -61,7 +62,7 @@
             this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitle.ForeColor = System.Drawing.Color.White;
-            this.lblTitle.Location = new System.Drawing.Point(12, 18);
+            this.lblTitle.Location = new System.Drawing.Point(11, 24);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(554, 45);
             this.lblTitle.TabIndex = 1;
@@ -70,6 +71,9 @@
             // 
             // pnlFilter
             // 
+            this.pnlFilter.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlFilter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(39)))), ((int)(((byte)(58)))));
             this.pnlFilter.Controls.Add(this.cboGiangVien);
             this.pnlFilter.Controls.Add(this.lblStatus);
             this.pnlFilter.Controls.Add(this.cboKhoa);
@@ -95,9 +99,11 @@
             // lblStatus
             // 
             this.lblStatus.AutoSize = true;
+            this.lblStatus.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStatus.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(181)))), ((int)(((byte)(199)))), ((int)(((byte)(220)))));
             this.lblStatus.Location = new System.Drawing.Point(311, 90);
             this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(95, 25);
+            this.lblStatus.Size = new System.Drawing.Size(103, 25);
             this.lblStatus.TabIndex = 5;
             this.lblStatus.Text = "Giảng viên";
             this.lblStatus.Click += new System.EventHandler(this.lblStatus_Click);
@@ -114,9 +120,11 @@
             // lblDegree
             // 
             this.lblDegree.AutoSize = true;
+            this.lblDegree.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDegree.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(181)))), ((int)(((byte)(199)))), ((int)(((byte)(220)))));
             this.lblDegree.Location = new System.Drawing.Point(20, 89);
             this.lblDegree.Name = "lblDegree";
-            this.lblDegree.Size = new System.Drawing.Size(52, 25);
+            this.lblDegree.Size = new System.Drawing.Size(56, 25);
             this.lblDegree.TabIndex = 2;
             this.lblDegree.Text = "Khoa";
             // 
@@ -132,15 +140,18 @@
             // lblDepartment
             // 
             this.lblDepartment.AutoSize = true;
+            this.lblDepartment.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDepartment.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(181)))), ((int)(((byte)(199)))), ((int)(((byte)(220)))));
             this.lblDepartment.Location = new System.Drawing.Point(310, 15);
             this.lblDepartment.Name = "lblDepartment";
-            this.lblDepartment.Size = new System.Drawing.Size(67, 25);
+            this.lblDepartment.Size = new System.Drawing.Size(71, 25);
             this.lblDepartment.TabIndex = 2;
             this.lblDepartment.Text = "Học kỳ";
             this.lblDepartment.Click += new System.EventHandler(this.lblDepartment_Click);
             // 
             // cboNamHoc
             // 
+            this.cboNamHoc.BackColor = System.Drawing.SystemColors.Window;
             this.cboNamHoc.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboNamHoc.FormattingEnabled = true;
             this.cboNamHoc.Location = new System.Drawing.Point(25, 43);
@@ -151,27 +162,31 @@
             // lblFaculty
             // 
             this.lblFaculty.AutoSize = true;
+            this.lblFaculty.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFaculty.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(181)))), ((int)(((byte)(199)))), ((int)(((byte)(220)))));
             this.lblFaculty.Location = new System.Drawing.Point(20, 15);
             this.lblFaculty.Name = "lblFaculty";
-            this.lblFaculty.Size = new System.Drawing.Size(84, 25);
+            this.lblFaculty.Size = new System.Drawing.Size(88, 25);
             this.lblFaculty.TabIndex = 0;
             this.lblFaculty.Text = "Năm học";
             // 
             // btnInBaoCao
             // 
+            this.btnInBaoCao.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(91)))), ((int)(((byte)(190)))));
             this.btnInBaoCao.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnInBaoCao.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnInBaoCao.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(55)))), ((int)(((byte)(77)))));
+            this.btnInBaoCao.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnInBaoCao.ForeColor = System.Drawing.Color.White;
             this.btnInBaoCao.Location = new System.Drawing.Point(236, 281);
             this.btnInBaoCao.Name = "btnInBaoCao";
             this.btnInBaoCao.Size = new System.Drawing.Size(80, 36);
             this.btnInBaoCao.TabIndex = 6;
             this.btnInBaoCao.Text = "▣ In";
-            this.btnInBaoCao.UseVisualStyleBackColor = true;
+            this.btnInBaoCao.UseVisualStyleBackColor = false;
             // 
             // btnXemBaoCao
             // 
-            this.btnXemBaoCao.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(55)))), ((int)(((byte)(77)))));
+            this.btnXemBaoCao.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(91)))), ((int)(((byte)(190)))));
             this.btnXemBaoCao.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnXemBaoCao.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnXemBaoCao.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -185,20 +200,39 @@
             // 
             // reportViewerTeachingAssignment
             // 
-            this.reportViewerTeachingAssignment.Location = new System.Drawing.Point(0, 354);
+            this.reportViewerTeachingAssignment.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.reportViewerTeachingAssignment.LocalReport.ReportEmbeddedResource = "QuanLyGiangVien.rptTeachingAssignment.rdlc";
+            this.reportViewerTeachingAssignment.Location = new System.Drawing.Point(0, 335);
             this.reportViewerTeachingAssignment.Name = "reportViewerTeachingAssignment";
             this.reportViewerTeachingAssignment.ServerReport.BearerToken = null;
             this.reportViewerTeachingAssignment.ShowParameterPrompts = false;
             this.reportViewerTeachingAssignment.ShowPromptAreaButton = false;
-            this.reportViewerTeachingAssignment.Size = new System.Drawing.Size(1333, 395);
+            this.reportViewerTeachingAssignment.Size = new System.Drawing.Size(1333, 445);
             this.reportViewerTeachingAssignment.TabIndex = 7;
+            // 
+            // btQuayLai
+            // 
+            this.btQuayLai.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btQuayLai.AutoSize = true;
+            this.btQuayLai.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(91)))), ((int)(((byte)(190)))));
+            this.btQuayLai.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btQuayLai.ForeColor = System.Drawing.Color.White;
+            this.btQuayLai.Location = new System.Drawing.Point(1065, 801);
+            this.btQuayLai.Name = "btQuayLai";
+            this.btQuayLai.Size = new System.Drawing.Size(256, 39);
+            this.btQuayLai.TabIndex = 10;
+            this.btQuayLai.Text = "Quay lại";
+            this.btQuayLai.UseVisualStyleBackColor = false;
             // 
             // frmReportTeachingAssignment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(23)))), ((int)(((byte)(37)))));
             this.ClientSize = new System.Drawing.Size(1333, 862);
+            this.Controls.Add(this.btQuayLai);
             this.Controls.Add(this.reportViewerTeachingAssignment);
             this.Controls.Add(this.btnInBaoCao);
             this.Controls.Add(this.btnXemBaoCao);
@@ -215,6 +249,7 @@
             this.pnlFilter.ResumeLayout(false);
             this.pnlFilter.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -234,5 +269,6 @@
         private System.Windows.Forms.Button btnInBaoCao;
         private System.Windows.Forms.Button btnXemBaoCao;
         private Microsoft.Reporting.WinForms.ReportViewer reportViewerTeachingAssignment;
+        private System.Windows.Forms.Button btQuayLai;
     }
 }

@@ -15,6 +15,8 @@ namespace QuanLyGiangVien
         public frmTeachingAssignment()
         {
             InitializeComponent();
+            Theme.Apply(this);
+            btQuayLai.Click += (s, e) => Close();
             Load += frmTeachingAssignment_Load;
             cboAcademicYear.SelectedIndexChanged += BoLocThayDoi;
             cboSemester.SelectedIndexChanged += BoLocThayDoi;

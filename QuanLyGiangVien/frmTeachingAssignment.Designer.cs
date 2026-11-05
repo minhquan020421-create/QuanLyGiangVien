@@ -53,6 +53,7 @@
             this.colSemester = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colPeriods = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btQuayLai = new System.Windows.Forms.Button();
             this.pnlHeader.SuspendLayout();
             this.pnlAssignmentInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAssignments)).BeginInit();
@@ -60,7 +61,7 @@
             // 
             // pnlHeader
             // 
-            this.pnlHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(55)))), ((int)(((byte)(72)))));
+            this.pnlHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(39)))), ((int)(((byte)(58)))));
             this.pnlHeader.Controls.Add(this.lblTitle);
             this.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlHeader.Location = new System.Drawing.Point(0, 0);
@@ -81,7 +82,7 @@
             // 
             // pnlAssignmentInfo
             // 
-            this.pnlAssignmentInfo.BackColor = System.Drawing.SystemColors.Window;
+            this.pnlAssignmentInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(39)))), ((int)(((byte)(58)))));
             this.pnlAssignmentInfo.Controls.Add(this.btnAssign);
             this.pnlAssignmentInfo.Controls.Add(this.txtPeriods);
             this.pnlAssignmentInfo.Controls.Add(this.lblPeriods);
@@ -98,15 +99,16 @@
             this.pnlAssignmentInfo.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlAssignmentInfo.Location = new System.Drawing.Point(0, 83);
             this.pnlAssignmentInfo.Name = "pnlAssignmentInfo";
-            this.pnlAssignmentInfo.Size = new System.Drawing.Size(1200, 391);
+            this.pnlAssignmentInfo.Size = new System.Drawing.Size(1200, 344);
             this.pnlAssignmentInfo.TabIndex = 1;
             this.pnlAssignmentInfo.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlAssignmentInfo_Paint);
             // 
             // btnAssign
             // 
-            this.btnAssign.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(58)))), ((int)(((byte)(79)))));
+            this.btnAssign.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(91)))), ((int)(((byte)(190)))));
+            this.btnAssign.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAssign.ForeColor = System.Drawing.Color.White;
-            this.btnAssign.Location = new System.Drawing.Point(1038, 335);
+            this.btnAssign.Location = new System.Drawing.Point(1029, 290);
             this.btnAssign.Name = "btnAssign";
             this.btnAssign.Size = new System.Drawing.Size(150, 40);
             this.btnAssign.TabIndex = 12;
@@ -124,6 +126,7 @@
             // 
             this.lblPeriods.AutoSize = true;
             this.lblPeriods.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPeriods.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(181)))), ((int)(((byte)(199)))), ((int)(((byte)(220)))));
             this.lblPeriods.Location = new System.Drawing.Point(25, 289);
             this.lblPeriods.Name = "lblPeriods";
             this.lblPeriods.Size = new System.Drawing.Size(69, 28);
@@ -144,10 +147,11 @@
             // lblCourseClass
             // 
             this.lblCourseClass.AutoSize = true;
-            this.lblCourseClass.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCourseClass.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCourseClass.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(181)))), ((int)(((byte)(199)))), ((int)(((byte)(220)))));
             this.lblCourseClass.Location = new System.Drawing.Point(370, 197);
             this.lblCourseClass.Name = "lblCourseClass";
-            this.lblCourseClass.Size = new System.Drawing.Size(131, 28);
+            this.lblCourseClass.Size = new System.Drawing.Size(140, 28);
             this.lblCourseClass.TabIndex = 8;
             this.lblCourseClass.Text = "Lớp học phần";
             // 
@@ -165,10 +169,11 @@
             // lblLecturer
             // 
             this.lblLecturer.AutoSize = true;
-            this.lblLecturer.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLecturer.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLecturer.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(181)))), ((int)(((byte)(199)))), ((int)(((byte)(220)))));
             this.lblLecturer.Location = new System.Drawing.Point(25, 197);
             this.lblLecturer.Name = "lblLecturer";
-            this.lblLecturer.Size = new System.Drawing.Size(105, 28);
+            this.lblLecturer.Size = new System.Drawing.Size(113, 28);
             this.lblLecturer.TabIndex = 6;
             this.lblLecturer.Text = "Giảng viên";
             this.lblLecturer.Click += new System.EventHandler(this.lblLecturer_Click);
@@ -177,7 +182,7 @@
             // 
             this.lblTeacher.AutoSize = true;
             this.lblTeacher.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTeacher.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(55)))), ((int)(((byte)(72)))));
+            this.lblTeacher.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(181)))), ((int)(((byte)(199)))), ((int)(((byte)(220)))));
             this.lblTeacher.Location = new System.Drawing.Point(25, 157);
             this.lblTeacher.Name = "lblTeacher";
             this.lblTeacher.Size = new System.Drawing.Size(347, 30);
@@ -197,10 +202,11 @@
             // lblSemester
             // 
             this.lblSemester.AutoSize = true;
-            this.lblSemester.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSemester.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSemester.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(181)))), ((int)(((byte)(199)))), ((int)(((byte)(220)))));
             this.lblSemester.Location = new System.Drawing.Point(370, 55);
             this.lblSemester.Name = "lblSemester";
-            this.lblSemester.Size = new System.Drawing.Size(72, 28);
+            this.lblSemester.Size = new System.Drawing.Size(77, 28);
             this.lblSemester.TabIndex = 3;
             this.lblSemester.Text = "Học kỳ";
             // 
@@ -217,10 +223,11 @@
             // lblAcademicYear
             // 
             this.lblAcademicYear.AutoSize = true;
-            this.lblAcademicYear.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAcademicYear.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAcademicYear.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(181)))), ((int)(((byte)(199)))), ((int)(((byte)(220)))));
             this.lblAcademicYear.Location = new System.Drawing.Point(25, 55);
             this.lblAcademicYear.Name = "lblAcademicYear";
-            this.lblAcademicYear.Size = new System.Drawing.Size(91, 28);
+            this.lblAcademicYear.Size = new System.Drawing.Size(97, 28);
             this.lblAcademicYear.TabIndex = 1;
             this.lblAcademicYear.Text = "Năm học";
             // 
@@ -228,7 +235,7 @@
             // 
             this.lblAssignmentInfo.AutoSize = true;
             this.lblAssignmentInfo.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAssignmentInfo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(55)))), ((int)(((byte)(72)))));
+            this.lblAssignmentInfo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(181)))), ((int)(((byte)(199)))), ((int)(((byte)(220)))));
             this.lblAssignmentInfo.Location = new System.Drawing.Point(25, 15);
             this.lblAssignmentInfo.Name = "lblAssignmentInfo";
             this.lblAssignmentInfo.Size = new System.Drawing.Size(275, 30);
@@ -239,7 +246,8 @@
             // 
             this.lblAssignmentList.AutoSize = true;
             this.lblAssignmentList.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAssignmentList.Location = new System.Drawing.Point(16, 489);
+            this.lblAssignmentList.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(181)))), ((int)(((byte)(199)))), ((int)(((byte)(220)))));
+            this.lblAssignmentList.Location = new System.Drawing.Point(17, 442);
             this.lblAssignmentList.Name = "lblAssignmentList";
             this.lblAssignmentList.Size = new System.Drawing.Size(274, 25);
             this.lblAssignmentList.TabIndex = 2;
@@ -255,12 +263,12 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvAssignments.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvAssignments.BackgroundColor = System.Drawing.Color.White;
+            this.dgvAssignments.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(39)))), ((int)(((byte)(58)))));
             this.dgvAssignments.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(58)))), ((int)(((byte)(79)))));
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(181)))), ((int)(((byte)(199)))), ((int)(((byte)(220)))));
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(230)))), ((int)(((byte)(241)))));
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
@@ -274,7 +282,7 @@
             this.colPeriods,
             this.colStatus});
             this.dgvAssignments.EnableHeadersVisualStyles = false;
-            this.dgvAssignments.Location = new System.Drawing.Point(0, 528);
+            this.dgvAssignments.Location = new System.Drawing.Point(0, 483);
             this.dgvAssignments.MultiSelect = false;
             this.dgvAssignments.Name = "dgvAssignments";
             this.dgvAssignments.ReadOnly = true;
@@ -282,7 +290,7 @@
             this.dgvAssignments.RowHeadersWidth = 62;
             this.dgvAssignments.RowTemplate.Height = 28;
             this.dgvAssignments.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvAssignments.Size = new System.Drawing.Size(1200, 150);
+            this.dgvAssignments.Size = new System.Drawing.Size(1200, 137);
             this.dgvAssignments.TabIndex = 3;
             // 
             // colAssignmentID
@@ -327,11 +335,27 @@
             this.colStatus.Name = "colStatus";
             this.colStatus.ReadOnly = true;
             // 
+            // btQuayLai
+            // 
+            this.btQuayLai.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btQuayLai.AutoSize = true;
+            this.btQuayLai.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(91)))), ((int)(((byte)(190)))));
+            this.btQuayLai.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btQuayLai.ForeColor = System.Drawing.Color.White;
+            this.btQuayLai.Location = new System.Drawing.Point(932, 639);
+            this.btQuayLai.Name = "btQuayLai";
+            this.btQuayLai.Size = new System.Drawing.Size(256, 39);
+            this.btQuayLai.TabIndex = 13;
+            this.btQuayLai.Text = "Quay lại";
+            this.btQuayLai.UseVisualStyleBackColor = false;
+            // 
             // frmTeachingAssignment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(23)))), ((int)(((byte)(37)))));
             this.ClientSize = new System.Drawing.Size(1200, 690);
+            this.Controls.Add(this.btQuayLai);
             this.Controls.Add(this.dgvAssignments);
             this.Controls.Add(this.lblAssignmentList);
             this.Controls.Add(this.pnlAssignmentInfo);
@@ -376,5 +400,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colSemester;
         private System.Windows.Forms.DataGridViewTextBoxColumn colPeriods;
         private System.Windows.Forms.DataGridViewTextBoxColumn colStatus;
+        private System.Windows.Forms.Button btQuayLai;
     }
 }

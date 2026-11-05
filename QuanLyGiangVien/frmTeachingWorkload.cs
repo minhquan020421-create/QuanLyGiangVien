@@ -14,6 +14,8 @@ namespace QuanLyGiangVien
         public frmTeachingWorkload()
         {
             InitializeComponent();
+            Theme.Apply(this);
+            btQuayLai.Click += (s, e) => Close();
             Load += frmTeachingWorkload_Load;
         }
 
@@ -191,6 +193,11 @@ namespace QuanLyGiangVien
         }
 
         private void dgvTeachingWorkload_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void lblKhoa_Click(object sender, EventArgs e)
         {
 
         }
