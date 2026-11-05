@@ -53,5 +53,10 @@ namespace QuanLyGiangVien
             using(var db=Session.Open()) btnLuuQuyen.Enabled=session.Can(AccountService.Roles,ActionRight.Edit) && session.Current(db).MaVaiTro!=r.Id;
             foreach(DataGridViewColumn col in dgvPhanQuyen.Columns) col.ReadOnly=col==colChucNang || !btnLuuQuyen.Enabled;
         }
+
+        private void frmRoleManagement_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -27,10 +27,12 @@ namespace QuanLyGiangVien
         private void frmForgotPassword_Load(object sender, EventArgs e)
         {
             Theme.Apply(this);
+            UpdateActions();
         }
 
         private void txtTenDangNhap_TextChanged(object sender, EventArgs e)
         {
+            if (recovery != null) recovery.Cancel();
             recovery = null;
             txtOtp.Clear();
             txtMatKhauMoi.Clear();
@@ -43,6 +45,10 @@ namespace QuanLyGiangVien
         {
             if (sending) return;
             string username = Username;
+            // Yêu cầu gửi lại sẽ hủy mã cũ của màn hình này.
+            if (recovery != null) recovery.Cancel();
+            recovery = null;
+            txtOtp.Clear();
             sending = true;
             lblPhanHoi.Text = "Đang xử lý yêu cầu…";
             UpdateActions();
@@ -50,7 +56,11 @@ namespace QuanLyGiangVien
             try
             {
                 var request = await Task.Run(() => PasswordRecovery.Request(username));
-                if (!CanUpdateDialog) return;
+                if (!CanUpdateDialog)
+                {
+                    request.Cancel();
+                    return;
+                }
                 recovery = request;
                 txtOtp.Clear();
                 lblPhanHoi.Text = "Nếu tài khoản đủ điều kiện, mã đã được gửi đến email khôi phục. " +
@@ -107,6 +117,7 @@ namespace QuanLyGiangVien
 
         protected override void OnFormClosed(FormClosedEventArgs e)
         {
+            if (recovery != null) recovery.Cancel();
             recovery = null;
             base.OnFormClosed(e);
         }
