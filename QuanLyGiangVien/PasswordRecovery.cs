@@ -47,8 +47,9 @@ namespace QuanLyGiangVien
             if (string.IsNullOrWhiteSpace(username) || username.Length > 50)
                 throw new UserMessage("Vui lòng nhập tên đăng nhập.");
 
-            string sender = Environment.GetEnvironmentVariable("QLGV_GMAIL_USER");
-            string appPassword = Environment.GetEnvironmentVariable("QLGV_GMAIL_APP_PASSWORD");
+            username = username.Trim();
+            string sender = ReadMailSetting("QLGV_GMAIL_USER");
+            string appPassword = ReadMailSetting("QLGV_GMAIL_APP_PASSWORD");
             if (string.IsNullOrWhiteSpace(sender) || string.IsNullOrWhiteSpace(appPassword))
                 throw new UserMessage("Chưa cấu hình Gmail gửi mã. Hãy liên hệ quản trị viên.");
 
@@ -89,6 +90,19 @@ namespace QuanLyGiangVien
 
             // Keep the same UI response for missing, locked and eligible accounts.
             return new PasswordRecovery(target, otp);
+        }
+
+        // Cấu hình được nhập riêng trên máy, không lưu mật khẩu Gmail trong Git.
+        private static string ReadMailSetting(string name)
+        {
+            string value = Environment.GetEnvironmentVariable(name, EnvironmentVariableTarget.User);
+            return string.IsNullOrWhiteSpace(value)
+                ? Environment.GetEnvironmentVariable(name) : value;
+        }
+
+        internal void Cancel()
+        {
+            used = true;
         }
 
         private static void ReserveSend()
@@ -157,6 +171,7 @@ namespace QuanLyGiangVien
             if (!CanReset)
                 throw new UserMessage("Mã không còn hiệu lực. Hãy yêu cầu mã mới.");
 
+            submittedCode = (submittedCode ?? "").Trim();
             if (submittedCode.Length != code.Length || submittedCode.Any(c => c < '0' || c > '9'))
                 throw new UserMessage("Vui lòng nhập mã OTP gồm 6 chữ số.");
 

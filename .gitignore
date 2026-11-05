@@ -1,4 +1,4 @@
-﻿# Visual Studio
+# Visual Studio
 .vs/
 *.user
 *.suo
@@ -28,3 +28,8 @@ _ReSharper*/
 
 # Runtime diagnostic logs
 **/Logs/
+
+# Private local credentials (never commit)
+.env
+.env.*
+*.local.config
