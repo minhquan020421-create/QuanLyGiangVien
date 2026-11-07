@@ -34,6 +34,8 @@ namespace QuanLyGiangVien
         public frmReportLecturer()
         {
             InitializeComponent();
+            Theme.Apply(this);
+            reportViewerLecturer.BackColor = System.Drawing.Color.White;
             connectionString = DatabaseConnection.CurrentConnectionString;
 
             Load += frmReportLecturer_Load;
@@ -206,5 +208,15 @@ namespace QuanLyGiangVien
         }
 
         private void label1_Click(object sender, EventArgs e) { }
+
+        private void reportViewerLecturer_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btQuayLai_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }

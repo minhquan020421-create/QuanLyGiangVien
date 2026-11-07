@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Data;
 using System.Linq;
-using System.Text;
 using System.Transactions;
 using System.Windows.Forms;
 
@@ -56,10 +55,11 @@ namespace QuanLyGiangVien
                     cboSemester.ValueMember = "MaHocKy";
                     cboLecturer.DataSource = db.GIANG_VIENs
                         .Where(x => x.TrangThai && (!lecturerScope.HasValue || x.MaGV == lecturerScope))
-                        .OrderBy(x => x.HoTen)
-                        .Select(x => new { x.MaGV, TenHienThi = x.MaGV + " - " + x.HoTen }).ToList();
+                        .OrderByDescending(x => x.MaGV)
+                        .Select(x => new { x.MaGV, TenHienThi = x.MaGV + " - " + x.HoTen + " | " + x.BO_MON.KHOA.TenKhoa }).ToList();
                     cboLecturer.DisplayMember = "TenHienThi";
                     cboLecturer.ValueMember = "MaGV";
+                    cboLecturer.DropDownWidth = Math.Max(cboLecturer.Width, 420);
                 }
                 dangNap = false;
                 LoadCourseClasses();
@@ -127,15 +127,29 @@ namespace QuanLyGiangVien
                 using (var db = Session.Open())
                 {
                     ValidateViewScope(db);
+                    int? facultyId = null;
+                    if (cboLecturer.SelectedValue != null)
+                    {
+                        int selectedLecturerId = Convert.ToInt32(cboLecturer.SelectedValue);
+                        facultyId = db.GIANG_VIENs.Where(x => x.MaGV == selectedLecturerId)
+                            .Select(x => (int?)x.BO_MON.MaKhoa).SingleOrDefault();
+                    }
                     dangNap = true;
-                    cboCourseClass.DataSource = db.LOP_HOC_PHANs
+                    // Lop duoc loc dong theo khoa cua giang vien va hoc ky dang chon.
+                    // Khong rang buoc theo chuyen mon hay phan cong cu, nen giang vien moi tu dong dung duoc.
+                    var classes = db.LOP_HOC_PHANs
                         .Where(x => x.TrangThai && x.MaNamHoc == maNamHoc && x.MaHocKy == maHocKy)
+                        .Where(x => facultyId.HasValue && x.HOC_PHAN.BO_MON.MaKhoa == facultyId.Value)
                         .Where(x => !lecturerScope.HasValue || x.PHAN_CONG_GIANG_DAYs.Any(p => p.MaGV == lecturerScope))
                         .OrderBy(x => x.TenLop)
-                        .Select(x => new { x.MaLopHP, TenHienThi = x.TenLop + " - " + x.HOC_PHAN.TenHocPhan })
+                        .Select(x => new { x.MaLopHP, TenHienThi = x.TenLop + " - " + x.HOC_PHAN.TenHocPhan + " | " + x.HOC_PHAN.BO_MON.TenBoMon })
                         .ToList();
+                    if (classes.Count == 0)
+                        classes.Add(new { MaLopHP = 0, TenHienThi = "Chưa có lớp đang mở trong khoa / học kỳ này" });
+                    cboCourseClass.DataSource = classes;
                     cboCourseClass.DisplayMember = "TenHienThi";
                     cboCourseClass.ValueMember = "MaLopHP";
+                    cboCourseClass.DropDownWidth = Math.Max(cboCourseClass.Width, 520);
                     dangNap = false;
                 }
             }
@@ -188,6 +202,12 @@ namespace QuanLyGiangVien
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+            if (Convert.ToInt32(cboCourseClass.SelectedValue) <= 0)
+            {
+                MessageBox.Show("Khoa của giảng viên chưa có lớp đang mở trong năm học và học kỳ đã chọn.",
+                    "Chưa có lớp để phân công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
             int soTiet;
             if (!int.TryParse(txtPeriods.Text.Trim(), out soTiet) || soTiet <= 0)
             {
@@ -203,28 +223,6 @@ namespace QuanLyGiangVien
             int maLopHP = Convert.ToInt32(cboCourseClass.SelectedValue);
             try
             {
-                // Chuyên môn lưu dưới dạng tên tự do, không có khóa liên kết tới học phần.
-                // Cảnh báo để người dùng xác nhận khi cách đặt tên môn/chuyên môn khác nhau.
-                using (var dbKiemTra = Session.Open())
-                {
-                    RequireAddPermission(dbKiemTra);
-                    var tenHocPhan = dbKiemTra.LOP_HOC_PHANs
-                        .Where(x => x.MaLopHP == maLopHP)
-                        .Select(x => x.HOC_PHAN.TenHocPhan)
-                        .SingleOrDefault();
-                    var chuyenMons = dbKiemTra.GIANG_VIEN_CHUYEN_MONs
-                        .Where(x => x.MaGV == maGV && x.CHUYEN_MON.TrangThai)
-                        .Select(x => x.CHUYEN_MON.TenChuyenMon)
-                        .ToList();
-                    if (tenHocPhan != null && !chuyenMons.Any(x => ChuyenMonTrungHocPhan(x, tenHocPhan)))
-                    {
-                        var answer = MessageBox.Show(
-                            "Chưa tìm thấy tên chuyên môn trùng với học phần '" + tenHocPhan + "'. Bạn vẫn muốn tiếp tục?",
-                            "Xác nhận chuyên môn", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                        if (answer != DialogResult.Yes) return;
-                    }
-                }
-
                 var options = new TransactionOptions { IsolationLevel = System.Transactions.IsolationLevel.Serializable };
                 using (var scope = new TransactionScope(TransactionScopeOption.Required, options))
                 using (var db = Session.Open())
@@ -236,6 +234,8 @@ namespace QuanLyGiangVien
                         throw new InvalidOperationException("Giảng viên không tồn tại hoặc đang ngừng hoạt động.");
                     if (lopHocPhan == null || !lopHocPhan.TrangThai || lopHocPhan.MaNamHoc != maNamHoc || lopHocPhan.MaHocKy != maHocKy)
                         throw new InvalidOperationException("Lớp học phần không hợp lệ cho năm học và học kỳ đã chọn.");
+                    if (lopHocPhan.HOC_PHAN.BO_MON.MaKhoa != giangVien.BO_MON.MaKhoa)
+                        throw new InvalidOperationException("Chỉ được phân công giảng viên dạy lớp thuộc khoa của giảng viên.");
                     if (db.PHAN_CONG_GIANG_DAYs.Any(x => x.MaGV == maGV && x.MaLopHP == maLopHP))
                         throw new InvalidOperationException("Giảng viên này đã được phân công lớp học phần đã chọn.");
 
@@ -280,22 +280,6 @@ namespace QuanLyGiangVien
             return cboAcademicYear.SelectedValue is int && cboSemester.SelectedValue is int;
         }
 
-        private static bool ChuyenMonTrungHocPhan(string tenChuyenMon, string tenHocPhan)
-        {
-            return ChuanHoaTen(tenChuyenMon) == ChuanHoaTen(tenHocPhan);
-        }
-
-        private static string ChuanHoaTen(string value)
-        {
-            if (String.IsNullOrWhiteSpace(value)) return String.Empty;
-            string normalized = value.Normalize(NormalizationForm.FormD);
-            var result = new StringBuilder();
-            foreach (char c in normalized)
-                if (System.Globalization.CharUnicodeInfo.GetUnicodeCategory(c) != System.Globalization.UnicodeCategory.NonSpacingMark)
-                    result.Append(char.ToLowerInvariant(c));
-            return result.ToString().Replace('đ', 'd').Trim();
-        }
-
         private static bool LaDesignTime()
         {
             return System.ComponentModel.LicenseManager.UsageMode == System.ComponentModel.LicenseUsageMode.Designtime;
@@ -308,7 +292,10 @@ namespace QuanLyGiangVien
 
         // Các event handler này đang được WinForms Designer tham chiếu.
         private void lblLecturer_Click(object sender, EventArgs e) { }
-        private void cboLecturer_SelectedIndexChanged(object sender, EventArgs e) { }
+        private void cboLecturer_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!dangNap && !LaDesignTime()) LoadCourseClasses();
+        }
         private void lblPeriods_Click(object sender, EventArgs e) { }
         private void lblAssignmentList_Click(object sender, EventArgs e) { }
         private void pnlAssignmentInfo_Paint(object sender, PaintEventArgs e) { }

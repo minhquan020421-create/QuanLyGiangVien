@@ -32,6 +32,8 @@ namespace QuanLyGiangVien
         {
             InitializeComponent();
             Theme.Apply(this);
+            // De giu vung xem RDLC sang va de doc trong ca giao dien toi.
+            reportViewer1.BackColor = System.Drawing.Color.White;
             btQuayLai.Click += (s, e) => Close();
             var setting = ConfigurationManager.ConnectionStrings["QuanLyGiangVien.Properties.Settings.QuanLyGiangVienConnectionString1"]
                 ?? ConfigurationManager.ConnectionStrings["QuanLyGiangVien.Properties.Settings.QuanLyGiangVienConnectionString"];
@@ -51,7 +53,8 @@ namespace QuanLyGiangVien
             try
             {
                 reportViewer1.ProcessingMode = ProcessingMode.Local;
-                reportViewer1.LocalReport.ReportPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "rptFacultyWorkload.rdlc");
+                // RDLC da duoc nhung trong assembly va khai bao san trong Designer.
+                reportViewer1.LocalReport.ReportEmbeddedResource = "QuanLyGiangVien.rptFacultyWorkload.rdlc";
                 reportViewer1.SetDisplayMode(DisplayMode.PrintLayout);
                 reportViewer1.ZoomMode = ZoomMode.PageWidth;
                 LoadFilters();
@@ -173,5 +176,10 @@ namespace QuanLyGiangVien
         }
 
         private void lblDegree_Click(object sender, EventArgs e) { }
+
+        private void reportViewer1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

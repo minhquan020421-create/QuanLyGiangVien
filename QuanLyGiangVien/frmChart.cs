@@ -208,14 +208,18 @@ namespace QuanLyGiangVien
                 ChartArea = "ChartArea1",
                 Legend = "Legend1",
                 ChartType = pie ? SeriesChartType.Pie : SeriesChartType.Column,
-                IsValueShownAsLabel = true,
+                // Ten khoa va ti le duoc doc trong chu giai/tooltip; khong chen chu len cac lat banh.
+                IsValueShownAsLabel = !pie,
                 XValueType = ChartValueType.String
             };
             if (pie)
             {
-                series.Label = "#VALX (#PERCENT)";
+                // Nhung muc 0 khong tao lat banh, tranh nhan 0% chong len nhau.
+                series.Label = string.Empty;
                 series.LegendText = "#VALX";
                 chartThongKe.Legends[0].Enabled = true;
+                chartThongKe.Legends[0].Docking = Docking.Right;
+                chartThongKe.Legends[0].Alignment = StringAlignment.Center;
             }
             else
             {
@@ -223,7 +227,7 @@ namespace QuanLyGiangVien
                 chartThongKe.Legends[0].Enabled = false;
             }
 
-            foreach (var point in values)
+            foreach (var point in pie ? values.Where(x => x.Value > 0) : values)
             {
                 int index = series.Points.AddXY(point.Key, point.Value);
                 series.Points[index].ToolTip = point.Key + ": " + point.Value.ToString("N0");

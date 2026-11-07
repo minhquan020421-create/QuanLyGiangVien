@@ -195,7 +195,7 @@
             this.btQuayLai.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(91)))), ((int)(((byte)(190)))));
             this.btQuayLai.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btQuayLai.ForeColor = System.Drawing.Color.White;
-            this.btQuayLai.Location = new System.Drawing.Point(1211, 725);
+            this.btQuayLai.Location = new System.Drawing.Point(1211, 833);
             this.btQuayLai.Name = "btQuayLai";
             this.btQuayLai.Size = new System.Drawing.Size(256, 42);
             this.btQuayLai.TabIndex = 12;
@@ -211,15 +211,16 @@
             this.reportViewer1.Location = new System.Drawing.Point(0, 288);
             this.reportViewer1.Name = "reportViewer1";
             this.reportViewer1.ServerReport.BearerToken = null;
-            this.reportViewer1.Size = new System.Drawing.Size(1479, 422);
+            this.reportViewer1.Size = new System.Drawing.Size(1479, 530);
             this.reportViewer1.TabIndex = 13;
+            this.reportViewer1.Load += new System.EventHandler(this.reportViewer1_Load);
             // 
             // frmReportFacultyWorkload
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(23)))), ((int)(((byte)(37)))));
-            this.ClientSize = new System.Drawing.Size(1479, 779);
+            this.ClientSize = new System.Drawing.Size(1479, 887);
             this.Controls.Add(this.reportViewer1);
             this.Controls.Add(this.btQuayLai);
             this.Controls.Add(this.btnExportPDF);
@@ -227,6 +228,7 @@
             this.Controls.Add(this.btnViewReport);
             this.Controls.Add(this.pnlFilter);
             this.Controls.Add(this.panelHeader);
+            this.MinimumSize = new System.Drawing.Size(1357, 943);
             this.Name = "frmReportFacultyWorkload";
             this.Text = "Báo cáo tải trọng giảng dạy";
             this.Load += new System.EventHandler(this.frmReportFacultyWorkload_Load);

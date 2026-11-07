@@ -403,11 +403,27 @@
     <Style />
   </Page>
   <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="FacultyWorkloadData">
+      <ConnectionProperties>
+        <DataProvider>System.Data.DataSet</DataProvider>
+        <ConnectString>/* Local DataSet */</ConnectString>
+      </ConnectionProperties>
+      <rd:DataSourceID>be1f8790-345e-4b49-9b04-2a4362301328</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
   <DataSets>
     <DataSet Name="DataSet1">
+      <Fields>
+        <Field Name="STT"><DataField>STT</DataField><rd:TypeName>System.Int32</rd:TypeName></Field>
+        <Field Name="TenKhoa"><DataField>TenKhoa</DataField><rd:TypeName>System.String</rd:TypeName></Field>
+        <Field Name="SoLop"><DataField>SoLop</DataField><rd:TypeName>System.Int32</rd:TypeName></Field>
+        <Field Name="TongSoTiet"><DataField>TongSoTiet</DataField><rd:TypeName>System.Int32</rd:TypeName></Field>
+        <Field Name="TrungBinhTiet"><DataField>TrungBinhTiet</DataField><rd:TypeName>System.Decimal</rd:TypeName></Field>
+      </Fields>
       <Query>
-        <DataSourceName />
-        <CommandText />
+        <DataSourceName>FacultyWorkloadData</DataSourceName>
+        <CommandText>/* Local DataSet */</CommandText>
       </Query>
     </DataSet>
   </DataSets>

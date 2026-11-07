@@ -86,6 +86,7 @@
             this.pnlFilter.Name = "pnlFilter";
             this.pnlFilter.Size = new System.Drawing.Size(1333, 171);
             this.pnlFilter.TabIndex = 2;
+            this.pnlFilter.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlFilter_Paint);
             // 
             // cboGiangVien
             // 
@@ -106,7 +107,6 @@
             this.lblStatus.Size = new System.Drawing.Size(103, 25);
             this.lblStatus.TabIndex = 5;
             this.lblStatus.Text = "Giảng viên";
-            this.lblStatus.Click += new System.EventHandler(this.lblStatus_Click);
             // 
             // cboKhoa
             // 
@@ -147,7 +147,6 @@
             this.lblDepartment.Size = new System.Drawing.Size(71, 25);
             this.lblDepartment.TabIndex = 2;
             this.lblDepartment.Text = "Học kỳ";
-            this.lblDepartment.Click += new System.EventHandler(this.lblDepartment_Click);
             // 
             // cboNamHoc
             // 
@@ -211,6 +210,7 @@
             this.reportViewerTeachingAssignment.ShowPromptAreaButton = false;
             this.reportViewerTeachingAssignment.Size = new System.Drawing.Size(1333, 445);
             this.reportViewerTeachingAssignment.TabIndex = 7;
+            this.reportViewerTeachingAssignment.Load += new System.EventHandler(this.reportViewerTeachingAssignment_Load);
             // 
             // btQuayLai
             // 
@@ -219,12 +219,13 @@
             this.btQuayLai.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(91)))), ((int)(((byte)(190)))));
             this.btQuayLai.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btQuayLai.ForeColor = System.Drawing.Color.White;
-            this.btQuayLai.Location = new System.Drawing.Point(1065, 801);
+            this.btQuayLai.Location = new System.Drawing.Point(1065, 811);
             this.btQuayLai.Name = "btQuayLai";
             this.btQuayLai.Size = new System.Drawing.Size(256, 39);
-            this.btQuayLai.TabIndex = 10;
+            this.btQuayLai.TabIndex = 12;
             this.btQuayLai.Text = "Quay lại";
             this.btQuayLai.UseVisualStyleBackColor = false;
+            this.btQuayLai.Click += new System.EventHandler(this.btQuayLai_Click);
             // 
             // frmReportTeachingAssignment
             // 

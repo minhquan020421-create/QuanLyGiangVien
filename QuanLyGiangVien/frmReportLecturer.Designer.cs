@@ -138,12 +138,10 @@
             this.btQuayLai.TabIndex = 11;
             this.btQuayLai.Text = "Quay lại";
             this.btQuayLai.UseVisualStyleBackColor = false;
+            this.btQuayLai.Click += new System.EventHandler(this.btQuayLai_Click);
             // 
             // reportViewerLecturer
             // 
-            this.reportViewerLecturer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.reportViewerLecturer.LocalReport.ReportEmbeddedResource = "QuanLyGiangVien.rptLecturer.rdlc";
             this.reportViewerLecturer.Location = new System.Drawing.Point(0, 329);
             this.reportViewerLecturer.Name = "reportViewerLecturer";
@@ -152,6 +150,7 @@
             this.reportViewerLecturer.ShowPromptAreaButton = false;
             this.reportViewerLecturer.Size = new System.Drawing.Size(1335, 492);
             this.reportViewerLecturer.TabIndex = 12;
+            this.reportViewerLecturer.Load += new System.EventHandler(this.reportViewerLecturer_Load);
             // 
             // lblFaculty
             // 
@@ -268,6 +267,7 @@
             this.Controls.Add(this.pnlHeader);
             this.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.MinimumSize = new System.Drawing.Size(1357, 943);
             this.Name = "frmReportLecturer";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Báo cáo giảng viên";

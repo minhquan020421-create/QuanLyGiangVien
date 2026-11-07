@@ -33,8 +33,7 @@ namespace QuanLyGiangVien
         {
             InitializeComponent();
             Theme.Apply(this);
-            btQuayLai.Click += (s, e) => Close();
-            button1.Visible = false; // Nút cũ bị trùng với btQuayLai.
+            buttonQuaylai.Click += buttonQuaylai_Click;
             var setting = ConfigurationManager.ConnectionStrings["QuanLyGiangVien.Properties.Settings.QuanLyGiangVienConnectionString1"]
                 ?? ConfigurationManager.ConnectionStrings["QuanLyGiangVien.Properties.Settings.QuanLyGiangVienConnectionString"];
             if (setting == null || string.IsNullOrWhiteSpace(setting.ConnectionString))
@@ -54,7 +53,7 @@ namespace QuanLyGiangVien
             try
             {
                 reportViewer1.ProcessingMode = ProcessingMode.Local;
-                reportViewer1.LocalReport.ReportPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "rptfrmReportUnassignedLecturers.rdlc");
+                reportViewer1.LocalReport.ReportEmbeddedResource = "QuanLyGiangVien.rptfrmReportUnassignedLecturers.rdlc";
                 reportViewer1.SetDisplayMode(DisplayMode.PrintLayout);
                 reportViewer1.ZoomMode = ZoomMode.PageWidth;
                 LoadFilters();
@@ -188,6 +187,11 @@ namespace QuanLyGiangVien
         private void ShowError(string title, Exception ex)
         {
             MessageBox.Show(this, title + ":\r\n" + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        private void buttonQuaylai_Click(object sender, EventArgs e)
+        {
+            Close();
         }
 
         private void reportViewer1_Load(object sender, EventArgs e) { }

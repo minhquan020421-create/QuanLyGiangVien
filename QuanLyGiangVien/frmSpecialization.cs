@@ -175,5 +175,10 @@ namespace QuanLyGiangVien
             });
             if (writing || !permissionChecked) LoadData();
         }
+
+        private void dgvDanhSach_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

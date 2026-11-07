@@ -186,7 +186,7 @@ namespace QuanLyGiangVien
                     var b=(Button)c;
                     bool primary=b.Name=="btnDangNhap" || b.Name=="btnDoiMatKhau" && f is frmChangePassword ||
                                  b.Name.StartsWith("btnLuu") || (b.Name=="btnThem" || b.Name=="btnThemVaiTro") || b.Name=="btnAccounts" ||
-                                 b.Name=="btnlammoi" || b.Name=="btQuayLai" ||
+                                 b.Name=="btnlammoi" || b.Name=="btQuayLai" || b.Name=="buttonQuaylai" ||
                                  f is frmMain && (b.Name=="btnTongQuan" || b.Name=="btnBieuDoTongQuan");
                     b.FlatStyle=FlatStyle.Flat; b.UseVisualStyleBackColor=false; b.Cursor=Cursors.Hand;
                     b.BackColor=primary ? Color.FromArgb(49,91,190) : surface;

@@ -31,12 +31,21 @@ namespace QuanLyGiangVien
         public frmReportTeachingAssignment()
         {
             InitializeComponent();
+
+            // Áp dụng màu sáng/tối đang được lưu từ màn hình đăng nhập.
+            Theme.Apply(this);
+
+            // Đóng hộp thoại báo cáo để frmMain hiện lại.
+
+            // Dùng chung chuỗi kết nối SQL Server do ứng dụng cấu hình.
             connectionString = DatabaseConnection.CurrentConnectionString;
+
+            // Tự cập nhật báo cáo khi bộ lọc thay đổi; cờ loading chặn truy vấn trong lúc nạp danh sách.
             cboNamHoc.SelectedIndexChanged += FilterChanged;
             cboHocKy.SelectedIndexChanged += FilterChanged;
             cboKhoa.SelectedIndexChanged += FacultyChanged;
             cboGiangVien.SelectedIndexChanged += FilterChanged;
-            btnXemBaoCao.Click += btnXemBaoCao_Click;
+            btnXemBaoCao.Click += (s, e) => ShowReport();
             btnInBaoCao.Click += btnInBaoCao_Click;
         }
 
@@ -118,8 +127,6 @@ namespace QuanLyGiangVien
             return selected == null ? 0 : selected.Id;
         }
 
-        private void btnXemBaoCao_Click(object sender, EventArgs e) { ShowReport(); }
-
         private void ShowReport()
         {
             if (loading || reportViewerTeachingAssignment.LocalReport == null) return;
@@ -166,9 +173,22 @@ namespace QuanLyGiangVien
         private void ShowError(string title, Exception ex)
         {
             MessageBox.Show(this, title + ":\r\n" + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }   
+
+        private void pnlFilter_Paint(object sender, PaintEventArgs e)
+        {
+
         }
 
-        private void lblDepartment_Click(object sender, EventArgs e) { }
-        private void lblStatus_Click(object sender, EventArgs e) { }
+        private void reportViewerTeachingAssignment_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btQuayLai_Click(object sender, EventArgs e)
+        {
+            Close();
+
+        }
     }
 }
