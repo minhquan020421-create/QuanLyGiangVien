@@ -245,6 +245,7 @@
       <DependentUpon>QuanLyGiangVienDataSet3.xsd</DependentUpon>
     </Compile>
     <Compile Include="Security.cs" />
+    <Compile Include="CatalogPermissionUpgrade.cs" />
     <Compile Include="Presentation.cs" />
     <Compile Include="Diagnostics.cs" />
     <Compile Include="DatabaseConnection.cs" />

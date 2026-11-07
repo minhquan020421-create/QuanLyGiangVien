@@ -91,6 +91,7 @@ namespace QuanLyGiangVien
                 if (user == null || !Passwords.Matches(password, user))
                     throw new InvalidCredentials();
                 if (!user.TrangThai) throw new UserMessage("Tài khoản đang bị khóa.");
+                CatalogPermissionUpgrade.Ensure(user.MaNguoiDung);
                 if (!HasAccess(db, user.MaVaiTro)) throw new UserMessage("Vai trò của tài khoản chưa được cấp quyền truy cập.");
                 db.NHAT_KY_HE_THONGs.InsertOnSubmit(Log(user.MaNguoiDung, "Đăng nhập", "Xác thực thành công"));
                 db.SubmitChanges();

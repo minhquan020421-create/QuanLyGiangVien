@@ -7,7 +7,6 @@ namespace QuanLyGiangVien
     internal static class DatabaseConnection
     {
         private const string SettingsName = "QuanLyGiangVien.Properties.Settings.QuanLyGiangVienConnectionString";
-        private const string HoangLocalDb = @"(localdb)\HoangLocalDB";
         private static readonly object SetupLock = new object();
         private static string selectedConnectionString;
 
@@ -28,40 +27,11 @@ namespace QuanLyGiangVien
                     return selectedConnectionString;
 
                 string configured = GetConfiguredConnectionString();
-                string localCandidate = GetLocalDbCandidate(configured);
-                string selected = configured;
-                SqlConnection connection = null;
-                SqlException localError = null;
+                // Dùng đúng database của từng máy, không tự chuyển sang máy chủ khác.
+                using (var connection = Open(configured))
+                    DatabaseSchema.EnsureRecoveryEmail(connection, IsLocalDatabase(configured));
 
-                if (localCandidate != null)
-                {
-                    try
-                    {
-                        connection = Open(localCandidate);
-                        selected = localCandidate;
-                    }
-                    catch (SqlException error)
-                    {
-                        localError = error;
-                    }
-                }
-
-                if (connection == null)
-                {
-                    try { connection = Open(configured); }
-                    catch (SqlException error) when (localError != null)
-                    {
-                        Diagnostics.SqlFailure(localError);
-                        Diagnostics.SqlFailure(error);
-                        throw new UserMessage($"Không mở được database QuanLyGiangVien trên {HoangLocalDb} " +
-                            $"(mã {localError.Number}) hoặc localhost (mã {error.Number}).");
-                    }
-                }
-
-                using (connection)
-                    DatabaseSchema.EnsureRecoveryEmail(connection, IsLocalDatabase(selected));
-
-                selectedConnectionString = selected;
+                selectedConnectionString = configured;
                 return selectedConnectionString;
             }
         }
@@ -73,19 +43,6 @@ namespace QuanLyGiangVien
                 throw new UserMessage("Thiếu cấu hình kết nối dữ liệu.");
 
             return setting.ConnectionString;
-        }
-
-        private static string GetLocalDbCandidate(string configured)
-        {
-            var builder = new SqlConnectionStringBuilder(configured);
-            // Tôn trọng địa chỉ đã cấu hình riêng. Chỉ thử LocalDB khi còn dùng cấu hình localhost của repo.
-            if (!string.Equals(builder.DataSource, "localhost", StringComparison.OrdinalIgnoreCase) ||
-                !string.Equals(builder.InitialCatalog, "QuanLyGiangVien", StringComparison.OrdinalIgnoreCase) ||
-                !builder.IntegratedSecurity || builder.AttachDBFilename.Length != 0)
-                return null;
-
-            builder.DataSource = HoangLocalDb;
-            return builder.ConnectionString;
         }
 
         private static bool IsLocalDatabase(string connectionString)
