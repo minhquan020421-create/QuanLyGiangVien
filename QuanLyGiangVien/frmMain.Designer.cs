@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -45,6 +45,7 @@ namespace QuanLyGiangVien
             this.btnHocPhan = new Button();
             this.btnDaoTao = new Button();
             this.pnlDaoTao = new TableLayoutPanel();
+            this.btnLopHocPhan = new Button();
             this.btnPhanCong = new Button();
             this.btnThongKe = new Button();
             this.pnlThongKe = new TableLayoutPanel();
@@ -432,7 +433,7 @@ namespace QuanLyGiangVien
             // pnlDaoTao
             this.pnlDaoTao.Name = "pnlDaoTao";
             this.pnlDaoTao.ColumnCount = 1;
-            this.pnlDaoTao.RowCount = 1;
+            this.pnlDaoTao.RowCount = 2;
             this.pnlDaoTao.GrowStyle = TableLayoutPanelGrowStyle.FixedSize;
             this.pnlDaoTao.Dock = DockStyle.Fill;
             this.pnlDaoTao.AutoSize = true;
@@ -441,10 +442,24 @@ namespace QuanLyGiangVien
             this.pnlDaoTao.TabIndex = 6;
             this.pnlDaoTao.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             this.pnlDaoTao.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+            this.pnlDaoTao.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+            // btnLopHocPhan
+            this.btnLopHocPhan.Name = "btnLopHocPhan";
+            this.btnLopHocPhan.Text = "Lớp học phần";
+            this.btnLopHocPhan.TabIndex = 0;
+            this.btnLopHocPhan.UseVisualStyleBackColor = true;
+            this.btnLopHocPhan.Dock = DockStyle.Fill;
+            this.btnLopHocPhan.Height = 36;
+            this.btnLopHocPhan.TextAlign = ContentAlignment.MiddleLeft;
+            this.btnLopHocPhan.Padding = new Padding(14, 0, 5, 0);
+            this.btnLopHocPhan.Margin = new Padding(0, 0, 0, 5);
+            this.btnLopHocPhan.Font = new Font("Segoe UI", 9.5F);
+            this.btnLopHocPhan.Enabled = false;
+            this.pnlDaoTao.Controls.Add(this.btnLopHocPhan, 0, 0);
             // btnPhanCong
             this.btnPhanCong.Name = "btnPhanCong";
             this.btnPhanCong.Text = "Phân công giảng dạy";
-            this.btnPhanCong.TabIndex = 0;
+            this.btnPhanCong.TabIndex = 1;
             this.btnPhanCong.UseVisualStyleBackColor = true;
             this.btnPhanCong.Dock = DockStyle.Fill;
             this.btnPhanCong.Height = 36;
@@ -453,7 +468,7 @@ namespace QuanLyGiangVien
             this.btnPhanCong.Margin = new Padding(0, 0, 0, 5);
             this.btnPhanCong.Font = new Font("Segoe UI", 9.5F);
             this.btnPhanCong.Enabled = false;
-            this.pnlDaoTao.Controls.Add(this.btnPhanCong, 0, 0);
+            this.pnlDaoTao.Controls.Add(this.btnPhanCong, 0, 1);
             this.layoutSidebar.Controls.Add(this.btnDaoTao, 0, 6);
             this.layoutSidebar.Controls.Add(this.pnlDaoTao, 0, 7);
             // btnThongKe
@@ -1092,6 +1107,7 @@ namespace QuanLyGiangVien
         private Button btnHocPhan;
         private Button btnDaoTao;
         private TableLayoutPanel pnlDaoTao;
+        private Button btnLopHocPhan;
         private Button btnPhanCong;
         private Button btnThongKe;
         private TableLayoutPanel pnlThongKe;
@@ -1145,3 +1161,4 @@ namespace QuanLyGiangVien
         private Label lblWorkload;
     }
 }
+

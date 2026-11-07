@@ -64,6 +64,7 @@ namespace QuanLyGiangVien
             AddRoute(btnChuyenMon, "frmSpecialization", s => new frmSpecialization(s.UserId));
             AddRoute(btnHocPhan, CourseForm, s => new frmCourse(s.UserId), refresh: true);
 
+            AddRoute(btnLopHocPhan, AssignmentForm, s => new frmClass(s), refresh: true, fullScopeOnly: true);
             AddRoute(btnPhanCong, AssignmentForm, s => new frmTeachingAssignment(s), refresh: true);
             AddRoute(btnKhoiLuong, WorkloadForm, s => new frmTeachingWorkload(s));
             AddRoute(btnBieuDo, ChartForm, s => new frmChart(), fullScopeOnly: true);
