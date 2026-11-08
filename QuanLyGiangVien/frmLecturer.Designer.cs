@@ -119,9 +119,9 @@
             this.pnlCuon.Controls.Add(this.layoutChinh);
             this.pnlCuon.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlCuon.Location = new System.Drawing.Point(0, 0);
-            this.pnlCuon.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnlCuon.Margin = new System.Windows.Forms.Padding(4);
             this.pnlCuon.Name = "pnlCuon";
-            this.pnlCuon.Padding = new System.Windows.Forms.Padding(9, 9, 9, 9);
+            this.pnlCuon.Padding = new System.Windows.Forms.Padding(9);
             this.pnlCuon.Size = new System.Drawing.Size(1200, 712);
             this.pnlCuon.TabIndex = 0;
             // 
@@ -140,7 +140,7 @@
             this.layoutChinh.Margin = new System.Windows.Forms.Padding(0);
             this.layoutChinh.MinimumSize = new System.Drawing.Size(882, 777);
             this.layoutChinh.Name = "layoutChinh";
-            this.layoutChinh.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.layoutChinh.Padding = new System.Windows.Forms.Padding(3);
             this.layoutChinh.RowCount = 6;
             this.layoutChinh.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.layoutChinh.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -378,7 +378,7 @@
             // 
             this.cboGioiTinh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.cboGioiTinh.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboGioiTinh.Location = new System.Drawing.Point(0, 29);
+            this.cboGioiTinh.Location = new System.Drawing.Point(0, 31);
             this.cboGioiTinh.Margin = new System.Windows.Forms.Padding(0, 0, 0, 3);
             this.cboGioiTinh.Name = "cboGioiTinh";
             this.cboGioiTinh.Size = new System.Drawing.Size(282, 33);
@@ -576,7 +576,7 @@
             // 
             this.cboMaBoMon.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.cboMaBoMon.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboMaBoMon.Location = new System.Drawing.Point(0, 29);
+            this.cboMaBoMon.Location = new System.Drawing.Point(0, 31);
             this.cboMaBoMon.Margin = new System.Windows.Forms.Padding(0, 0, 0, 3);
             this.cboMaBoMon.Name = "cboMaBoMon";
             this.cboMaBoMon.Size = new System.Drawing.Size(282, 33);
@@ -615,7 +615,7 @@
             // 
             this.cboMaHocVi.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.cboMaHocVi.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboMaHocVi.Location = new System.Drawing.Point(0, 29);
+            this.cboMaHocVi.Location = new System.Drawing.Point(0, 31);
             this.cboMaHocVi.Margin = new System.Windows.Forms.Padding(0, 0, 0, 3);
             this.cboMaHocVi.Name = "cboMaHocVi";
             this.cboMaHocVi.Size = new System.Drawing.Size(282, 33);
@@ -654,7 +654,7 @@
             // 
             this.cboMaChucVu.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.cboMaChucVu.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboMaChucVu.Location = new System.Drawing.Point(0, 29);
+            this.cboMaChucVu.Location = new System.Drawing.Point(0, 31);
             this.cboMaChucVu.Margin = new System.Windows.Forms.Padding(0, 0, 0, 3);
             this.cboMaChucVu.Name = "cboMaChucVu";
             this.cboMaChucVu.Size = new System.Drawing.Size(282, 33);
@@ -861,7 +861,7 @@
             // 
             this.cboLocBoMon.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.cboLocBoMon.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboLocBoMon.Location = new System.Drawing.Point(0, 29);
+            this.cboLocBoMon.Location = new System.Drawing.Point(0, 31);
             this.cboLocBoMon.Margin = new System.Windows.Forms.Padding(0, 0, 0, 3);
             this.cboLocBoMon.Name = "cboLocBoMon";
             this.cboLocBoMon.Size = new System.Drawing.Size(282, 33);
@@ -900,7 +900,7 @@
             // 
             this.cboLocHocVi.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.cboLocHocVi.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboLocHocVi.Location = new System.Drawing.Point(0, 29);
+            this.cboLocHocVi.Location = new System.Drawing.Point(0, 31);
             this.cboLocHocVi.Margin = new System.Windows.Forms.Padding(0, 0, 0, 3);
             this.cboLocHocVi.Name = "cboLocHocVi";
             this.cboLocHocVi.Size = new System.Drawing.Size(282, 33);
@@ -939,7 +939,7 @@
             // 
             this.cboLocTrangThai.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.cboLocTrangThai.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboLocTrangThai.Location = new System.Drawing.Point(0, 29);
+            this.cboLocTrangThai.Location = new System.Drawing.Point(0, 31);
             this.cboLocTrangThai.Margin = new System.Windows.Forms.Padding(0, 0, 0, 3);
             this.cboLocTrangThai.Name = "cboLocTrangThai";
             this.cboLocTrangThai.Size = new System.Drawing.Size(282, 33);
@@ -1030,12 +1030,14 @@
             // 
             this.dgvDanhSach.AllowUserToAddRows = false;
             this.dgvDanhSach.AllowUserToDeleteRows = false;
-            this.dgvDanhSach.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.dgvDanhSach.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvDanhSach.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvDanhSach.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCellsExceptHeaders;
             this.dgvDanhSach.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvDanhSach.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvDanhSach.Location = new System.Drawing.Point(9, 552);
-            this.dgvDanhSach.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.dgvDanhSach.Margin = new System.Windows.Forms.Padding(6);
             this.dgvDanhSach.MinimumSize = new System.Drawing.Size(0, 195);
             this.dgvDanhSach.MultiSelect = false;
             this.dgvDanhSach.Name = "dgvDanhSach";
@@ -1056,7 +1058,7 @@
             this.pnlCuoi.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.pnlCuoi.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
             this.pnlCuoi.Location = new System.Drawing.Point(0, 712);
-            this.pnlCuoi.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnlCuoi.Margin = new System.Windows.Forms.Padding(4);
             this.pnlCuoi.Name = "pnlCuoi";
             this.pnlCuoi.Padding = new System.Windows.Forms.Padding(12, 6, 12, 6);
             this.pnlCuoi.Size = new System.Drawing.Size(1200, 68);
@@ -1074,7 +1076,7 @@
             this.btnQuayLai.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnQuayLai.ForeColor = System.Drawing.Color.White;
             this.btnQuayLai.Location = new System.Drawing.Point(1004, 10);
-            this.btnQuayLai.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnQuayLai.Margin = new System.Windows.Forms.Padding(4);
             this.btnQuayLai.MinimumSize = new System.Drawing.Size(168, 48);
             this.btnQuayLai.Name = "btnQuayLai";
             this.btnQuayLai.Size = new System.Drawing.Size(168, 48);
@@ -1092,7 +1094,7 @@
             this.Controls.Add(this.pnlCuon);
             this.Controls.Add(this.pnlCuoi);
             this.Font = new System.Drawing.Font("Segoe UI", 9.5F);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MinimumSize = new System.Drawing.Size(709, 452);
             this.Name = "frmLecturer";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;

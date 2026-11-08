@@ -62,10 +62,10 @@ namespace QuanLyGiangVien
             this.pnlThaoTac.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTaiKhoan)).BeginInit();
             this.SuspendLayout();
-            //
+            // 
             // lblTieuDe
-            //
-            this.lblTieuDe.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            // 
+            this.lblTieuDe.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTieuDe.BackColor = System.Drawing.Color.Transparent;
             this.lblTieuDe.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -76,10 +76,10 @@ namespace QuanLyGiangVien
             this.lblTieuDe.TabIndex = 0;
             this.lblTieuDe.Text = "QUẢN LÝ TÀI KHOẢN";
             this.lblTieuDe.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            //
+            // 
             // pnlTimKiem
-            //
-            this.pnlTimKiem.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            // 
+            this.pnlTimKiem.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlTimKiem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(39)))), ((int)(((byte)(58)))));
             this.pnlTimKiem.Controls.Add(this.cboLocTrangThai);
@@ -95,20 +95,20 @@ namespace QuanLyGiangVien
             this.pnlTimKiem.Name = "pnlTimKiem";
             this.pnlTimKiem.Size = new System.Drawing.Size(1034, 100);
             this.pnlTimKiem.TabIndex = 1;
-            //
+            // 
             // cboLocTrangThai
-            //
+            // 
             this.cboLocTrangThai.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
             this.cboLocTrangThai.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboLocTrangThai.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(242)))), ((int)(((byte)(251)))));
             this.cboLocTrangThai.FormattingEnabled = true;
             this.cboLocTrangThai.Location = new System.Drawing.Point(804, 46);
             this.cboLocTrangThai.Name = "cboLocTrangThai";
-            this.cboLocTrangThai.Size = new System.Drawing.Size(210, 28);
+            this.cboLocTrangThai.Size = new System.Drawing.Size(210, 33);
             this.cboLocTrangThai.TabIndex = 4;
-            //
+            // 
             // lblLocTrangThai
-            //
+            // 
             this.lblLocTrangThai.BackColor = System.Drawing.Color.Transparent;
             this.lblLocTrangThai.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(181)))), ((int)(((byte)(199)))), ((int)(((byte)(220)))));
             this.lblLocTrangThai.Location = new System.Drawing.Point(804, 14);
@@ -116,20 +116,20 @@ namespace QuanLyGiangVien
             this.lblLocTrangThai.Size = new System.Drawing.Size(210, 25);
             this.lblLocTrangThai.TabIndex = 4;
             this.lblLocTrangThai.Text = "Trạng thái";
-            //
+            // 
             // cboLocVaiTro
-            //
+            // 
             this.cboLocVaiTro.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
             this.cboLocVaiTro.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboLocVaiTro.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(242)))), ((int)(((byte)(251)))));
             this.cboLocVaiTro.FormattingEnabled = true;
             this.cboLocVaiTro.Location = new System.Drawing.Point(590, 46);
             this.cboLocVaiTro.Name = "cboLocVaiTro";
-            this.cboLocVaiTro.Size = new System.Drawing.Size(190, 28);
+            this.cboLocVaiTro.Size = new System.Drawing.Size(190, 33);
             this.cboLocVaiTro.TabIndex = 3;
-            //
+            // 
             // lblLocVaiTro
-            //
+            // 
             this.lblLocVaiTro.BackColor = System.Drawing.Color.Transparent;
             this.lblLocVaiTro.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(181)))), ((int)(((byte)(199)))), ((int)(((byte)(220)))));
             this.lblLocVaiTro.Location = new System.Drawing.Point(590, 14);
@@ -137,9 +137,9 @@ namespace QuanLyGiangVien
             this.lblLocVaiTro.Size = new System.Drawing.Size(190, 25);
             this.lblLocVaiTro.TabIndex = 3;
             this.lblLocVaiTro.Text = "Vai trò";
-            //
+            // 
             // btnLamMoi
-            //
+            // 
             this.btnLamMoi.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(39)))), ((int)(((byte)(58)))));
             this.btnLamMoi.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnLamMoi.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(82)))), ((int)(((byte)(110)))));
@@ -151,9 +151,9 @@ namespace QuanLyGiangVien
             this.btnLamMoi.TabIndex = 2;
             this.btnLamMoi.Text = "Làm mới";
             this.btnLamMoi.UseVisualStyleBackColor = false;
-            //
+            // 
             // btnTimKiem
-            //
+            // 
             this.btnTimKiem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(39)))), ((int)(((byte)(58)))));
             this.btnTimKiem.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnTimKiem.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(82)))), ((int)(((byte)(110)))));
@@ -165,20 +165,20 @@ namespace QuanLyGiangVien
             this.btnTimKiem.TabIndex = 1;
             this.btnTimKiem.Text = "Tìm";
             this.btnTimKiem.UseVisualStyleBackColor = false;
-            //
+            // 
             // txtTimKiem
-            //
+            // 
             this.txtTimKiem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
             this.txtTimKiem.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtTimKiem.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTimKiem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(242)))), ((int)(((byte)(251)))));
             this.txtTimKiem.Location = new System.Drawing.Point(20, 46);
             this.txtTimKiem.Name = "txtTimKiem";
-            this.txtTimKiem.Size = new System.Drawing.Size(320, 31);
+            this.txtTimKiem.Size = new System.Drawing.Size(320, 36);
             this.txtTimKiem.TabIndex = 0;
-            //
+            // 
             // lblTimKiem
-            //
+            // 
             this.lblTimKiem.BackColor = System.Drawing.Color.Transparent;
             this.lblTimKiem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(181)))), ((int)(((byte)(199)))), ((int)(((byte)(220)))));
             this.lblTimKiem.Location = new System.Drawing.Point(20, 14);
@@ -186,10 +186,10 @@ namespace QuanLyGiangVien
             this.lblTimKiem.Size = new System.Drawing.Size(320, 25);
             this.lblTimKiem.TabIndex = 0;
             this.lblTimKiem.Text = "Tìm tài khoản";
-            //
+            // 
             // pnlThaoTac
-            //
-            this.pnlThaoTac.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            // 
+            this.pnlThaoTac.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlThaoTac.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(39)))), ((int)(((byte)(58)))));
             this.pnlThaoTac.Controls.Add(this.btnDoiMatKhau);
@@ -203,9 +203,9 @@ namespace QuanLyGiangVien
             this.pnlThaoTac.Name = "pnlThaoTac";
             this.pnlThaoTac.Size = new System.Drawing.Size(1034, 54);
             this.pnlThaoTac.TabIndex = 2;
-            //
+            // 
             // btnDoiMatKhau
-            //
+            // 
             this.btnDoiMatKhau.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(39)))), ((int)(((byte)(58)))));
             this.btnDoiMatKhau.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnDoiMatKhau.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(82)))), ((int)(((byte)(110)))));
@@ -218,9 +218,9 @@ namespace QuanLyGiangVien
             this.btnDoiMatKhau.TabIndex = 5;
             this.btnDoiMatKhau.Text = "Đổi mật khẩu";
             this.btnDoiMatKhau.UseVisualStyleBackColor = false;
-            //
+            // 
             // btnMoKhoa
-            //
+            // 
             this.btnMoKhoa.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(39)))), ((int)(((byte)(58)))));
             this.btnMoKhoa.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnMoKhoa.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(82)))), ((int)(((byte)(110)))));
@@ -233,9 +233,9 @@ namespace QuanLyGiangVien
             this.btnMoKhoa.TabIndex = 4;
             this.btnMoKhoa.Text = "Mở khóa";
             this.btnMoKhoa.UseVisualStyleBackColor = false;
-            //
+            // 
             // btnKhoa
-            //
+            // 
             this.btnKhoa.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(39)))), ((int)(((byte)(58)))));
             this.btnKhoa.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnKhoa.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(82)))), ((int)(((byte)(110)))));
@@ -248,9 +248,9 @@ namespace QuanLyGiangVien
             this.btnKhoa.TabIndex = 3;
             this.btnKhoa.Text = "Khóa";
             this.btnKhoa.UseVisualStyleBackColor = false;
-            //
+            // 
             // btnXoa
-            //
+            // 
             this.btnXoa.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(39)))), ((int)(((byte)(58)))));
             this.btnXoa.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnXoa.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(82)))), ((int)(((byte)(110)))));
@@ -263,9 +263,9 @@ namespace QuanLyGiangVien
             this.btnXoa.TabIndex = 2;
             this.btnXoa.Text = "Xóa";
             this.btnXoa.UseVisualStyleBackColor = false;
-            //
+            // 
             // btnSua
-            //
+            // 
             this.btnSua.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(39)))), ((int)(((byte)(58)))));
             this.btnSua.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSua.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(82)))), ((int)(((byte)(110)))));
@@ -278,9 +278,9 @@ namespace QuanLyGiangVien
             this.btnSua.TabIndex = 1;
             this.btnSua.Text = "Sửa";
             this.btnSua.UseVisualStyleBackColor = false;
-            //
+            // 
             // btnThem
-            //
+            // 
             this.btnThem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(91)))), ((int)(((byte)(190)))));
             this.btnThem.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnThem.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(82)))), ((int)(((byte)(110)))));
@@ -294,14 +294,14 @@ namespace QuanLyGiangVien
             this.btnThem.TabIndex = 0;
             this.btnThem.Text = "Thêm tài khoản";
             this.btnThem.UseVisualStyleBackColor = false;
-            //
+            // 
             // dgvTaiKhoan
-            //
+            // 
             this.dgvTaiKhoan.AllowUserToAddRows = false;
             this.dgvTaiKhoan.AllowUserToDeleteRows = false;
             this.dgvTaiKhoan.AllowUserToResizeColumns = false;
-            this.dgvTaiKhoan.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.dgvTaiKhoan.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvTaiKhoan.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvTaiKhoan.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(39)))), ((int)(((byte)(58)))));
@@ -345,27 +345,27 @@ namespace QuanLyGiangVien
             this.dgvTaiKhoan.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvTaiKhoan.Size = new System.Drawing.Size(1034, 350);
             this.dgvTaiKhoan.TabIndex = 3;
-            //
+            // 
             // colMaNguoiDung
-            //
+            // 
             this.colMaNguoiDung.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.colMaNguoiDung.FillWeight = 12F;
             this.colMaNguoiDung.HeaderText = "Mã tài khoản";
             this.colMaNguoiDung.MinimumWidth = 6;
             this.colMaNguoiDung.Name = "colMaNguoiDung";
             this.colMaNguoiDung.ReadOnly = true;
-            //
+            // 
             // colTenDangNhap
-            //
+            // 
             this.colTenDangNhap.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.colTenDangNhap.FillWeight = 22F;
             this.colTenDangNhap.HeaderText = "Tên đăng nhập";
             this.colTenDangNhap.MinimumWidth = 6;
             this.colTenDangNhap.Name = "colTenDangNhap";
             this.colTenDangNhap.ReadOnly = true;
-            //
+            // 
             // colEmailKhoiPhuc
-            //
+            // 
             this.colEmailKhoiPhuc.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.colEmailKhoiPhuc.DataPropertyName = "RecoveryEmail";
             this.colEmailKhoiPhuc.FillWeight = 30F;
@@ -373,36 +373,36 @@ namespace QuanLyGiangVien
             this.colEmailKhoiPhuc.MinimumWidth = 90;
             this.colEmailKhoiPhuc.Name = "colEmailKhoiPhuc";
             this.colEmailKhoiPhuc.ReadOnly = true;
-            //
+            // 
             // colGiangVien
-            //
+            // 
             this.colGiangVien.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.colGiangVien.FillWeight = 28F;
             this.colGiangVien.HeaderText = "Giảng viên";
             this.colGiangVien.MinimumWidth = 6;
             this.colGiangVien.Name = "colGiangVien";
             this.colGiangVien.ReadOnly = true;
-            //
+            // 
             // colVaiTro
-            //
+            // 
             this.colVaiTro.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.colVaiTro.FillWeight = 20F;
             this.colVaiTro.HeaderText = "Vai trò";
             this.colVaiTro.MinimumWidth = 6;
             this.colVaiTro.Name = "colVaiTro";
             this.colVaiTro.ReadOnly = true;
-            //
+            // 
             // colTrangThai
-            //
+            // 
             this.colTrangThai.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.colTrangThai.FillWeight = 18F;
             this.colTrangThai.HeaderText = "Trạng thái";
             this.colTrangThai.MinimumWidth = 6;
             this.colTrangThai.Name = "colTrangThai";
             this.colTrangThai.ReadOnly = true;
-            //
+            // 
             // lblTongTaiKhoan
-            //
+            // 
             this.lblTongTaiKhoan.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblTongTaiKhoan.BackColor = System.Drawing.Color.Transparent;
             this.lblTongTaiKhoan.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -412,9 +412,9 @@ namespace QuanLyGiangVien
             this.lblTongTaiKhoan.Size = new System.Drawing.Size(400, 25);
             this.lblTongTaiKhoan.TabIndex = 4;
             this.lblTongTaiKhoan.Text = "Tổng số tài khoản: ";
-            //
+            // 
             // btnQuayLaiMain
-            //
+            // 
             this.btnQuayLaiMain.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnQuayLaiMain.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(185)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
             this.btnQuayLaiMain.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -432,10 +432,10 @@ namespace QuanLyGiangVien
             this.btnQuayLaiMain.TabIndex = 5;
             this.btnQuayLaiMain.Text = "Quay lại";
             this.btnQuayLaiMain.UseVisualStyleBackColor = false;
-            //
+            // 
             // frmUserManagement
-            //
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(23)))), ((int)(((byte)(37)))));
             this.ClientSize = new System.Drawing.Size(1082, 673);

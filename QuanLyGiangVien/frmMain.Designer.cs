@@ -19,84 +19,84 @@ namespace QuanLyGiangVien
 
         private void InitializeComponent()
         {
-            this.pnlHeader = new Panel();
-            this.layoutHeader = new TableLayoutPanel();
-            this.lblIconHeThong = new Label();
-            this.lblTieuDeHeThong = new Label();
-            this.lblWelcome = new Label();
-            this.btnTheme = new Button();
-            this.pnlSidebar = new Panel();
-            this.layoutSidebar = new TableLayoutPanel();
-            this.lblIconMenu = new Label();
-            this.btnTongQuan = new Button();
-            this.btnHeThong = new Button();
-            this.pnlHeThong = new TableLayoutPanel();
-            this.btnNguoiDung = new Button();
-            this.btnDoiMatKhau = new Button();
-            this.btnPhanQuyen = new Button();
-            this.btnDanhMuc = new Button();
-            this.pnlDanhMuc = new TableLayoutPanel();
-            this.btnKhoa = new Button();
-            this.btnBoMon = new Button();
-            this.btnGiangVien = new Button();
-            this.btnHocVi = new Button();
-            this.btnChucVu = new Button();
-            this.btnChuyenMon = new Button();
-            this.btnHocPhan = new Button();
-            this.btnDaoTao = new Button();
-            this.pnlDaoTao = new TableLayoutPanel();
-            this.btnLopHocPhan = new Button();
-            this.btnPhanCong = new Button();
-            this.btnThongKe = new Button();
-            this.pnlThongKe = new TableLayoutPanel();
-            this.btnKhoiLuong = new Button();
-            this.btnBieuDo = new Button();
-            this.btnBaoCao = new Button();
-            this.pnlBaoCao = new TableLayoutPanel();
-            this.btnBaoCaoGiangVien = new Button();
-            this.btnBaoCaoPhanCong = new Button();
-            this.btnBaoCaoTaiTrongKhoa = new Button();
-            this.btnBaoCaoChuaPhanCong = new Button();
-            this.btnDangXuat = new Button();
-            this.pnlContent = new Panel();
-            this.layoutDashboard = new TableLayoutPanel();
-            this.layoutOverviewHeader = new TableLayoutPanel();
-            this.lblTieuDeTongQuan = new Label();
-            this.lblScope = new Label();
-            this.btnBieuDoTongQuan = new Button();
-            this.lblDashboardMessage = new Label();
-            this.layoutCounts = new TableLayoutPanel();
-            this.cardGiangVien = new TableLayoutPanel();
-            this.lblDanhMucGiangVien = new Label();
-            this.lblSoGiangVien = new Label();
-            this.lblTrangThaiGiangVien = new Label();
-            this.cardKhoa = new TableLayoutPanel();
-            this.lblDanhMucKhoa = new Label();
-            this.lblSoKhoa = new Label();
-            this.lblTrangThaiKhoa = new Label();
-            this.cardHocPhan = new TableLayoutPanel();
-            this.lblDanhMucHocPhan = new Label();
-            this.lblSoHocPhan = new Label();
-            this.lblTrangThaiHocPhan = new Label();
-            this.cardLop = new TableLayoutPanel();
-            this.lblDanhMucLop = new Label();
-            this.lblSoLop = new Label();
-            this.lblTrangThaiLop = new Label();
-            this.layoutWorkload = new TableLayoutPanel();
-            this.lblTieuDeKhoiLuong = new Label();
-            this.layoutSemester = new TableLayoutPanel();
-            this.lblWorkloadYear = new Label();
-            this.cboHocKy = new ComboBox();
-            this.layoutRates = new TableLayoutPanel();
-            this.rateDat = new TableLayoutPanel();
-            this.lblRateTitleDat = new Label();
-            this.lblSoDat = new Label();
-            this.lblTiLeDat = new Label();
-            this.rateVuot = new TableLayoutPanel();
-            this.lblRateTitleVuot = new Label();
-            this.lblSoVuot = new Label();
-            this.lblTiLeVuot = new Label();
-            this.lblWorkload = new Label();
+            this.pnlHeader = new System.Windows.Forms.Panel();
+            this.layoutHeader = new System.Windows.Forms.TableLayoutPanel();
+            this.lblIconHeThong = new System.Windows.Forms.Label();
+            this.lblTieuDeHeThong = new System.Windows.Forms.Label();
+            this.lblWelcome = new System.Windows.Forms.Label();
+            this.btnTheme = new System.Windows.Forms.Button();
+            this.pnlSidebar = new System.Windows.Forms.Panel();
+            this.layoutSidebar = new System.Windows.Forms.TableLayoutPanel();
+            this.lblIconMenu = new System.Windows.Forms.Label();
+            this.btnTongQuan = new System.Windows.Forms.Button();
+            this.btnHeThong = new System.Windows.Forms.Button();
+            this.pnlHeThong = new System.Windows.Forms.TableLayoutPanel();
+            this.btnNguoiDung = new System.Windows.Forms.Button();
+            this.btnDoiMatKhau = new System.Windows.Forms.Button();
+            this.btnPhanQuyen = new System.Windows.Forms.Button();
+            this.btnDanhMuc = new System.Windows.Forms.Button();
+            this.pnlDanhMuc = new System.Windows.Forms.TableLayoutPanel();
+            this.btnKhoa = new System.Windows.Forms.Button();
+            this.btnBoMon = new System.Windows.Forms.Button();
+            this.btnGiangVien = new System.Windows.Forms.Button();
+            this.btnHocVi = new System.Windows.Forms.Button();
+            this.btnChucVu = new System.Windows.Forms.Button();
+            this.btnChuyenMon = new System.Windows.Forms.Button();
+            this.btnHocPhan = new System.Windows.Forms.Button();
+            this.btnDaoTao = new System.Windows.Forms.Button();
+            this.pnlDaoTao = new System.Windows.Forms.TableLayoutPanel();
+            this.btnLopHocPhan = new System.Windows.Forms.Button();
+            this.btnPhanCong = new System.Windows.Forms.Button();
+            this.btnThongKe = new System.Windows.Forms.Button();
+            this.pnlThongKe = new System.Windows.Forms.TableLayoutPanel();
+            this.btnKhoiLuong = new System.Windows.Forms.Button();
+            this.btnBieuDo = new System.Windows.Forms.Button();
+            this.btnBaoCao = new System.Windows.Forms.Button();
+            this.pnlBaoCao = new System.Windows.Forms.TableLayoutPanel();
+            this.btnBaoCaoGiangVien = new System.Windows.Forms.Button();
+            this.btnBaoCaoPhanCong = new System.Windows.Forms.Button();
+            this.btnBaoCaoTaiTrongKhoa = new System.Windows.Forms.Button();
+            this.btnBaoCaoChuaPhanCong = new System.Windows.Forms.Button();
+            this.btnDangXuat = new System.Windows.Forms.Button();
+            this.pnlContent = new System.Windows.Forms.Panel();
+            this.layoutDashboard = new System.Windows.Forms.TableLayoutPanel();
+            this.layoutOverviewHeader = new System.Windows.Forms.TableLayoutPanel();
+            this.lblTieuDeTongQuan = new System.Windows.Forms.Label();
+            this.lblScope = new System.Windows.Forms.Label();
+            this.btnBieuDoTongQuan = new System.Windows.Forms.Button();
+            this.lblDashboardMessage = new System.Windows.Forms.Label();
+            this.layoutCounts = new System.Windows.Forms.TableLayoutPanel();
+            this.cardGiangVien = new System.Windows.Forms.TableLayoutPanel();
+            this.lblDanhMucGiangVien = new System.Windows.Forms.Label();
+            this.lblSoGiangVien = new System.Windows.Forms.Label();
+            this.lblTrangThaiGiangVien = new System.Windows.Forms.Label();
+            this.cardKhoa = new System.Windows.Forms.TableLayoutPanel();
+            this.lblDanhMucKhoa = new System.Windows.Forms.Label();
+            this.lblSoKhoa = new System.Windows.Forms.Label();
+            this.lblTrangThaiKhoa = new System.Windows.Forms.Label();
+            this.cardHocPhan = new System.Windows.Forms.TableLayoutPanel();
+            this.lblDanhMucHocPhan = new System.Windows.Forms.Label();
+            this.lblSoHocPhan = new System.Windows.Forms.Label();
+            this.lblTrangThaiHocPhan = new System.Windows.Forms.Label();
+            this.cardLop = new System.Windows.Forms.TableLayoutPanel();
+            this.lblDanhMucLop = new System.Windows.Forms.Label();
+            this.lblSoLop = new System.Windows.Forms.Label();
+            this.lblTrangThaiLop = new System.Windows.Forms.Label();
+            this.layoutWorkload = new System.Windows.Forms.TableLayoutPanel();
+            this.lblTieuDeKhoiLuong = new System.Windows.Forms.Label();
+            this.layoutSemester = new System.Windows.Forms.TableLayoutPanel();
+            this.lblWorkloadYear = new System.Windows.Forms.Label();
+            this.cboHocKy = new System.Windows.Forms.ComboBox();
+            this.layoutRates = new System.Windows.Forms.TableLayoutPanel();
+            this.rateDat = new System.Windows.Forms.TableLayoutPanel();
+            this.lblRateTitleDat = new System.Windows.Forms.Label();
+            this.lblSoDat = new System.Windows.Forms.Label();
+            this.lblTiLeDat = new System.Windows.Forms.Label();
+            this.rateVuot = new System.Windows.Forms.TableLayoutPanel();
+            this.lblRateTitleVuot = new System.Windows.Forms.Label();
+            this.lblSoVuot = new System.Windows.Forms.Label();
+            this.lblTiLeVuot = new System.Windows.Forms.Label();
+            this.lblWorkload = new System.Windows.Forms.Label();
             this.pnlHeader.SuspendLayout();
             this.layoutHeader.SuspendLayout();
             this.pnlSidebar.SuspendLayout();
@@ -120,963 +120,1283 @@ namespace QuanLyGiangVien
             this.rateDat.SuspendLayout();
             this.rateVuot.SuspendLayout();
             this.SuspendLayout();
-
+            // 
             // pnlHeader
+            // 
+            this.pnlHeader.Controls.Add(this.layoutHeader);
+            this.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlHeader.Location = new System.Drawing.Point(0, 0);
+            this.pnlHeader.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pnlHeader.Name = "pnlHeader";
-            this.pnlHeader.Dock = DockStyle.Top;
-            this.pnlHeader.Height = 86;
-            this.pnlHeader.Padding = new Padding(22, 8, 18, 8);
+            this.pnlHeader.Padding = new System.Windows.Forms.Padding(33, 12, 27, 12);
+            this.pnlHeader.Size = new System.Drawing.Size(1785, 129);
             this.pnlHeader.TabIndex = 0;
+            // 
             // layoutHeader
-            this.layoutHeader.Name = "layoutHeader";
+            // 
             this.layoutHeader.ColumnCount = 3;
-            this.layoutHeader.RowCount = 2;
-            this.layoutHeader.GrowStyle = TableLayoutPanelGrowStyle.FixedSize;
-            this.layoutHeader.Dock = DockStyle.Fill;
-            this.layoutHeader.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
-            this.layoutHeader.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            this.layoutHeader.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
-            this.layoutHeader.RowStyles.Add(new RowStyle(SizeType.Percent, 60F));
-            this.layoutHeader.RowStyles.Add(new RowStyle(SizeType.Percent, 40F));
-            // lblIconHeThong
-            this.lblIconHeThong.Name = "lblIconHeThong";
-            this.lblIconHeThong.Text = "GV";
-            this.lblIconHeThong.TextAlign = ContentAlignment.MiddleCenter;
-            this.lblIconHeThong.Anchor = AnchorStyles.Left;
-            this.lblIconHeThong.Size = new Size(56, 48);
-            this.lblIconHeThong.Margin = new Padding(0, 0, 12, 0);
-            this.lblIconHeThong.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
-            // lblTieuDeHeThong
-            this.lblTieuDeHeThong.Name = "lblTieuDeHeThong";
-            this.lblTieuDeHeThong.Text = "Quản lý giảng viên";
-            this.lblTieuDeHeThong.Dock = DockStyle.Fill;
-            this.lblTieuDeHeThong.TextAlign = ContentAlignment.BottomLeft;
-            this.lblTieuDeHeThong.AutoEllipsis = true;
-            this.lblTieuDeHeThong.Margin = new Padding(0);
-            this.lblTieuDeHeThong.Font = new Font("Segoe UI", 21F, FontStyle.Bold);
-            // lblWelcome
-            this.lblWelcome.Name = "lblWelcome";
-            this.lblWelcome.Text = "Xin chào";
-            this.lblWelcome.Dock = DockStyle.Fill;
-            this.lblWelcome.TextAlign = ContentAlignment.TopLeft;
-            this.lblWelcome.AutoEllipsis = true;
-            this.lblWelcome.Font = new Font("Segoe UI", 11F);
-            this.lblWelcome.Margin = new Padding(0, 3, 0, 0);
-            // btnTheme
-            this.btnTheme.Name = "btnTheme";
-            this.btnTheme.Text = "Giao diện sáng";
-            this.btnTheme.TabIndex = 0;
-            this.btnTheme.UseVisualStyleBackColor = true;
-            this.btnTheme.AutoSize = true;
-            this.btnTheme.MinimumSize = new Size(100, 34);
-            this.btnTheme.Click += new EventHandler(this.btnTheme_Click);
-            this.btnTheme.Anchor = AnchorStyles.Right;
-            this.btnTheme.MinimumSize = new Size(136, 42);
+            this.layoutHeader.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.layoutHeader.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.layoutHeader.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.layoutHeader.Controls.Add(this.lblIconHeThong, 0, 0);
             this.layoutHeader.Controls.Add(this.lblTieuDeHeThong, 1, 0);
             this.layoutHeader.Controls.Add(this.lblWelcome, 1, 1);
             this.layoutHeader.Controls.Add(this.btnTheme, 2, 0);
+            this.layoutHeader.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.layoutHeader.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize;
+            this.layoutHeader.Location = new System.Drawing.Point(33, 12);
+            this.layoutHeader.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.layoutHeader.Name = "layoutHeader";
+            this.layoutHeader.RowCount = 2;
+            this.layoutHeader.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 60F));
+            this.layoutHeader.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
+            this.layoutHeader.Size = new System.Drawing.Size(1725, 105);
+            this.layoutHeader.TabIndex = 0;
+            // 
+            // lblIconHeThong
+            // 
+            this.lblIconHeThong.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lblIconHeThong.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold);
+            this.lblIconHeThong.Location = new System.Drawing.Point(0, 16);
+            this.lblIconHeThong.Margin = new System.Windows.Forms.Padding(0, 0, 18, 0);
+            this.lblIconHeThong.Name = "lblIconHeThong";
             this.layoutHeader.SetRowSpan(this.lblIconHeThong, 2);
+            this.lblIconHeThong.Size = new System.Drawing.Size(84, 72);
+            this.lblIconHeThong.TabIndex = 0;
+            this.lblIconHeThong.Text = "GV";
+            this.lblIconHeThong.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblTieuDeHeThong
+            // 
+            this.lblTieuDeHeThong.AutoEllipsis = true;
+            this.lblTieuDeHeThong.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblTieuDeHeThong.Font = new System.Drawing.Font("Segoe UI", 21F, System.Drawing.FontStyle.Bold);
+            this.lblTieuDeHeThong.Location = new System.Drawing.Point(102, 0);
+            this.lblTieuDeHeThong.Margin = new System.Windows.Forms.Padding(0);
+            this.lblTieuDeHeThong.Name = "lblTieuDeHeThong";
+            this.lblTieuDeHeThong.Size = new System.Drawing.Size(1411, 63);
+            this.lblTieuDeHeThong.TabIndex = 1;
+            this.lblTieuDeHeThong.Text = "Quản lý giảng viên";
+            this.lblTieuDeHeThong.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            // 
+            // lblWelcome
+            // 
+            this.lblWelcome.AutoEllipsis = true;
+            this.lblWelcome.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblWelcome.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.lblWelcome.Location = new System.Drawing.Point(102, 67);
+            this.lblWelcome.Margin = new System.Windows.Forms.Padding(0, 4, 0, 0);
+            this.lblWelcome.Name = "lblWelcome";
+            this.lblWelcome.Size = new System.Drawing.Size(1411, 38);
+            this.lblWelcome.TabIndex = 2;
+            this.lblWelcome.Text = "Xin chào";
+            // 
+            // btnTheme
+            // 
+            this.btnTheme.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnTheme.AutoSize = true;
+            this.btnTheme.Location = new System.Drawing.Point(1517, 21);
+            this.btnTheme.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnTheme.MinimumSize = new System.Drawing.Size(204, 63);
+            this.btnTheme.Name = "btnTheme";
             this.layoutHeader.SetRowSpan(this.btnTheme, 2);
-            this.pnlHeader.Controls.Add(this.layoutHeader);
+            this.btnTheme.Size = new System.Drawing.Size(204, 63);
+            this.btnTheme.TabIndex = 0;
+            this.btnTheme.Text = "Giao diện sáng";
+            this.btnTheme.UseVisualStyleBackColor = true;
+            this.btnTheme.Click += new System.EventHandler(this.btnTheme_Click);
+            // 
             // pnlSidebar
-            this.pnlSidebar.Name = "pnlSidebar";
-            this.pnlSidebar.Dock = DockStyle.Left;
-            this.pnlSidebar.Width = 218;
+            // 
             this.pnlSidebar.AutoScroll = true;
-            this.pnlSidebar.Padding = new Padding(14, 14, 14, 8);
+            this.pnlSidebar.Controls.Add(this.layoutSidebar);
+            this.pnlSidebar.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pnlSidebar.Location = new System.Drawing.Point(0, 129);
+            this.pnlSidebar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnlSidebar.Name = "pnlSidebar";
+            this.pnlSidebar.Padding = new System.Windows.Forms.Padding(21, 21, 21, 12);
+            this.pnlSidebar.Size = new System.Drawing.Size(327, 929);
             this.pnlSidebar.TabIndex = 1;
+            // 
             // layoutSidebar
-            this.layoutSidebar.Name = "layoutSidebar";
-            this.layoutSidebar.ColumnCount = 1;
-            this.layoutSidebar.RowCount = 13;
-            this.layoutSidebar.GrowStyle = TableLayoutPanelGrowStyle.FixedSize;
-            this.layoutSidebar.Dock = DockStyle.Top;
+            // 
             this.layoutSidebar.AutoSize = true;
-            this.layoutSidebar.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            this.layoutSidebar.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            this.layoutSidebar.RowStyles.Add(new RowStyle(SizeType.AutoSize));
-            this.layoutSidebar.RowStyles.Add(new RowStyle(SizeType.AutoSize));
-            this.layoutSidebar.RowStyles.Add(new RowStyle(SizeType.AutoSize));
-            this.layoutSidebar.RowStyles.Add(new RowStyle(SizeType.AutoSize));
-            this.layoutSidebar.RowStyles.Add(new RowStyle(SizeType.AutoSize));
-            this.layoutSidebar.RowStyles.Add(new RowStyle(SizeType.AutoSize));
-            this.layoutSidebar.RowStyles.Add(new RowStyle(SizeType.AutoSize));
-            this.layoutSidebar.RowStyles.Add(new RowStyle(SizeType.AutoSize));
-            this.layoutSidebar.RowStyles.Add(new RowStyle(SizeType.AutoSize));
-            this.layoutSidebar.RowStyles.Add(new RowStyle(SizeType.AutoSize));
-            this.layoutSidebar.RowStyles.Add(new RowStyle(SizeType.AutoSize));
-            this.layoutSidebar.RowStyles.Add(new RowStyle(SizeType.AutoSize));
-            this.layoutSidebar.RowStyles.Add(new RowStyle(SizeType.AutoSize));
-            // lblIconMenu
-            this.lblIconMenu.Name = "lblIconMenu";
-            this.lblIconMenu.Text = "CHỨC NĂNG";
-            this.lblIconMenu.AutoSize = true;
-            this.lblIconMenu.Margin = new Padding(5, 1, 0, 10);
-            this.lblIconMenu.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
+            this.layoutSidebar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.layoutSidebar.ColumnCount = 1;
+            this.layoutSidebar.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.layoutSidebar.Controls.Add(this.lblIconMenu, 0, 0);
-            // btnTongQuan
-            this.btnTongQuan.Name = "btnTongQuan";
-            this.btnTongQuan.Text = "Tổng quan";
-            this.btnTongQuan.TabIndex = 0;
-            this.btnTongQuan.UseVisualStyleBackColor = true;
-            this.btnTongQuan.Dock = DockStyle.Fill;
-            this.btnTongQuan.Height = 43;
-            this.btnTongQuan.TextAlign = ContentAlignment.MiddleLeft;
-            this.btnTongQuan.Padding = new Padding(9, 0, 5, 0);
-            this.btnTongQuan.Margin = new Padding(0, 0, 0, 5);
-            this.btnTongQuan.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            this.btnTongQuan.Click += new EventHandler(this.btnTongQuan_Click);
             this.layoutSidebar.Controls.Add(this.btnTongQuan, 0, 1);
-            // btnHeThong
-            this.btnHeThong.Name = "btnHeThong";
-            this.btnHeThong.Text = "Hệ thống  ▸";
-            this.btnHeThong.TabIndex = 1;
-            this.btnHeThong.UseVisualStyleBackColor = true;
-            this.btnHeThong.Dock = DockStyle.Fill;
-            this.btnHeThong.Height = 43;
-            this.btnHeThong.TextAlign = ContentAlignment.MiddleLeft;
-            this.btnHeThong.Padding = new Padding(9, 0, 5, 0);
-            this.btnHeThong.Margin = new Padding(0, 0, 0, 5);
-            this.btnHeThong.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            this.btnHeThong.Click += new EventHandler(this.btnNhom_Click);
-            // pnlHeThong
-            this.pnlHeThong.Name = "pnlHeThong";
-            this.pnlHeThong.ColumnCount = 1;
-            this.pnlHeThong.RowCount = 3;
-            this.pnlHeThong.GrowStyle = TableLayoutPanelGrowStyle.FixedSize;
-            this.pnlHeThong.Dock = DockStyle.Fill;
-            this.pnlHeThong.AutoSize = true;
-            this.pnlHeThong.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            this.pnlHeThong.Margin = new Padding(10, 0, 0, 6);
-            this.pnlHeThong.TabIndex = 2;
-            this.pnlHeThong.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            this.pnlHeThong.RowStyles.Add(new RowStyle(SizeType.AutoSize));
-            this.pnlHeThong.RowStyles.Add(new RowStyle(SizeType.AutoSize));
-            this.pnlHeThong.RowStyles.Add(new RowStyle(SizeType.AutoSize));
-            // btnNguoiDung
-            this.btnNguoiDung.Name = "btnNguoiDung";
-            this.btnNguoiDung.Text = "Quản lý người dùng";
-            this.btnNguoiDung.TabIndex = 0;
-            this.btnNguoiDung.UseVisualStyleBackColor = true;
-            this.btnNguoiDung.Dock = DockStyle.Fill;
-            this.btnNguoiDung.Height = 36;
-            this.btnNguoiDung.TextAlign = ContentAlignment.MiddleLeft;
-            this.btnNguoiDung.Padding = new Padding(14, 0, 5, 0);
-            this.btnNguoiDung.Margin = new Padding(0, 0, 0, 5);
-            this.btnNguoiDung.Font = new Font("Segoe UI", 9.5F);
-            this.btnNguoiDung.Enabled = false;
-            this.pnlHeThong.Controls.Add(this.btnNguoiDung, 0, 0);
-            // btnDoiMatKhau
-            this.btnDoiMatKhau.Name = "btnDoiMatKhau";
-            this.btnDoiMatKhau.Text = "Đổi mật khẩu";
-            this.btnDoiMatKhau.TabIndex = 1;
-            this.btnDoiMatKhau.UseVisualStyleBackColor = true;
-            this.btnDoiMatKhau.Dock = DockStyle.Fill;
-            this.btnDoiMatKhau.Height = 36;
-            this.btnDoiMatKhau.TextAlign = ContentAlignment.MiddleLeft;
-            this.btnDoiMatKhau.Padding = new Padding(14, 0, 5, 0);
-            this.btnDoiMatKhau.Margin = new Padding(0, 0, 0, 5);
-            this.btnDoiMatKhau.Font = new Font("Segoe UI", 9.5F);
-            this.btnDoiMatKhau.Enabled = false;
-            this.pnlHeThong.Controls.Add(this.btnDoiMatKhau, 0, 1);
-            // btnPhanQuyen
-            this.btnPhanQuyen.Name = "btnPhanQuyen";
-            this.btnPhanQuyen.Text = "Vai trò và phân quyền";
-            this.btnPhanQuyen.TabIndex = 2;
-            this.btnPhanQuyen.UseVisualStyleBackColor = true;
-            this.btnPhanQuyen.Dock = DockStyle.Fill;
-            this.btnPhanQuyen.Height = 36;
-            this.btnPhanQuyen.TextAlign = ContentAlignment.MiddleLeft;
-            this.btnPhanQuyen.Padding = new Padding(14, 0, 5, 0);
-            this.btnPhanQuyen.Margin = new Padding(0, 0, 0, 5);
-            this.btnPhanQuyen.Font = new Font("Segoe UI", 9.5F);
-            this.btnPhanQuyen.Enabled = false;
-            this.pnlHeThong.Controls.Add(this.btnPhanQuyen, 0, 2);
             this.layoutSidebar.Controls.Add(this.btnHeThong, 0, 2);
             this.layoutSidebar.Controls.Add(this.pnlHeThong, 0, 3);
-            // btnDanhMuc
-            this.btnDanhMuc.Name = "btnDanhMuc";
-            this.btnDanhMuc.Text = "Danh mục  ▸";
-            this.btnDanhMuc.TabIndex = 3;
-            this.btnDanhMuc.UseVisualStyleBackColor = true;
-            this.btnDanhMuc.Dock = DockStyle.Fill;
-            this.btnDanhMuc.Height = 43;
-            this.btnDanhMuc.TextAlign = ContentAlignment.MiddleLeft;
-            this.btnDanhMuc.Padding = new Padding(9, 0, 5, 0);
-            this.btnDanhMuc.Margin = new Padding(0, 0, 0, 5);
-            this.btnDanhMuc.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            this.btnDanhMuc.Click += new EventHandler(this.btnNhom_Click);
-            // pnlDanhMuc
-            this.pnlDanhMuc.Name = "pnlDanhMuc";
-            this.pnlDanhMuc.ColumnCount = 1;
-            this.pnlDanhMuc.RowCount = 7;
-            this.pnlDanhMuc.GrowStyle = TableLayoutPanelGrowStyle.FixedSize;
-            this.pnlDanhMuc.Dock = DockStyle.Fill;
-            this.pnlDanhMuc.AutoSize = true;
-            this.pnlDanhMuc.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            this.pnlDanhMuc.Margin = new Padding(10, 0, 0, 6);
-            this.pnlDanhMuc.TabIndex = 4;
-            this.pnlDanhMuc.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            this.pnlDanhMuc.RowStyles.Add(new RowStyle(SizeType.AutoSize));
-            this.pnlDanhMuc.RowStyles.Add(new RowStyle(SizeType.AutoSize));
-            this.pnlDanhMuc.RowStyles.Add(new RowStyle(SizeType.AutoSize));
-            this.pnlDanhMuc.RowStyles.Add(new RowStyle(SizeType.AutoSize));
-            this.pnlDanhMuc.RowStyles.Add(new RowStyle(SizeType.AutoSize));
-            this.pnlDanhMuc.RowStyles.Add(new RowStyle(SizeType.AutoSize));
-            this.pnlDanhMuc.RowStyles.Add(new RowStyle(SizeType.AutoSize));
-            // btnKhoa
-            this.btnKhoa.Name = "btnKhoa";
-            this.btnKhoa.Text = "Khoa";
-            this.btnKhoa.TabIndex = 0;
-            this.btnKhoa.UseVisualStyleBackColor = true;
-            this.btnKhoa.Dock = DockStyle.Fill;
-            this.btnKhoa.Height = 36;
-            this.btnKhoa.TextAlign = ContentAlignment.MiddleLeft;
-            this.btnKhoa.Padding = new Padding(14, 0, 5, 0);
-            this.btnKhoa.Margin = new Padding(0, 0, 0, 5);
-            this.btnKhoa.Font = new Font("Segoe UI", 9.5F);
-            this.btnKhoa.Enabled = false;
-            this.pnlDanhMuc.Controls.Add(this.btnKhoa, 0, 0);
-            // btnBoMon
-            this.btnBoMon.Name = "btnBoMon";
-            this.btnBoMon.Text = "Bộ môn";
-            this.btnBoMon.TabIndex = 1;
-            this.btnBoMon.UseVisualStyleBackColor = true;
-            this.btnBoMon.Dock = DockStyle.Fill;
-            this.btnBoMon.Height = 36;
-            this.btnBoMon.TextAlign = ContentAlignment.MiddleLeft;
-            this.btnBoMon.Padding = new Padding(14, 0, 5, 0);
-            this.btnBoMon.Margin = new Padding(0, 0, 0, 5);
-            this.btnBoMon.Font = new Font("Segoe UI", 9.5F);
-            this.btnBoMon.Enabled = false;
-            this.pnlDanhMuc.Controls.Add(this.btnBoMon, 0, 1);
-            // btnGiangVien
-            this.btnGiangVien.Name = "btnGiangVien";
-            this.btnGiangVien.Text = "Giảng viên";
-            this.btnGiangVien.TabIndex = 2;
-            this.btnGiangVien.UseVisualStyleBackColor = true;
-            this.btnGiangVien.Dock = DockStyle.Fill;
-            this.btnGiangVien.Height = 36;
-            this.btnGiangVien.TextAlign = ContentAlignment.MiddleLeft;
-            this.btnGiangVien.Padding = new Padding(14, 0, 5, 0);
-            this.btnGiangVien.Margin = new Padding(0, 0, 0, 5);
-            this.btnGiangVien.Font = new Font("Segoe UI", 9.5F);
-            this.btnGiangVien.Enabled = false;
-            this.pnlDanhMuc.Controls.Add(this.btnGiangVien, 0, 2);
-            // btnHocVi
-            this.btnHocVi.Name = "btnHocVi";
-            this.btnHocVi.Text = "Học vị";
-            this.btnHocVi.TabIndex = 3;
-            this.btnHocVi.UseVisualStyleBackColor = true;
-            this.btnHocVi.Dock = DockStyle.Fill;
-            this.btnHocVi.Height = 36;
-            this.btnHocVi.TextAlign = ContentAlignment.MiddleLeft;
-            this.btnHocVi.Padding = new Padding(14, 0, 5, 0);
-            this.btnHocVi.Margin = new Padding(0, 0, 0, 5);
-            this.btnHocVi.Font = new Font("Segoe UI", 9.5F);
-            this.btnHocVi.Enabled = false;
-            this.pnlDanhMuc.Controls.Add(this.btnHocVi, 0, 3);
-            // btnChucVu
-            this.btnChucVu.Name = "btnChucVu";
-            this.btnChucVu.Text = "Chức vụ";
-            this.btnChucVu.TabIndex = 4;
-            this.btnChucVu.UseVisualStyleBackColor = true;
-            this.btnChucVu.Dock = DockStyle.Fill;
-            this.btnChucVu.Height = 36;
-            this.btnChucVu.TextAlign = ContentAlignment.MiddleLeft;
-            this.btnChucVu.Padding = new Padding(14, 0, 5, 0);
-            this.btnChucVu.Margin = new Padding(0, 0, 0, 5);
-            this.btnChucVu.Font = new Font("Segoe UI", 9.5F);
-            this.btnChucVu.Enabled = false;
-            this.pnlDanhMuc.Controls.Add(this.btnChucVu, 0, 4);
-            // btnChuyenMon
-            this.btnChuyenMon.Name = "btnChuyenMon";
-            this.btnChuyenMon.Text = "Chuyên môn";
-            this.btnChuyenMon.TabIndex = 5;
-            this.btnChuyenMon.UseVisualStyleBackColor = true;
-            this.btnChuyenMon.Dock = DockStyle.Fill;
-            this.btnChuyenMon.Height = 36;
-            this.btnChuyenMon.TextAlign = ContentAlignment.MiddleLeft;
-            this.btnChuyenMon.Padding = new Padding(14, 0, 5, 0);
-            this.btnChuyenMon.Margin = new Padding(0, 0, 0, 5);
-            this.btnChuyenMon.Font = new Font("Segoe UI", 9.5F);
-            this.btnChuyenMon.Enabled = false;
-            this.pnlDanhMuc.Controls.Add(this.btnChuyenMon, 0, 5);
-            // btnHocPhan
-            this.btnHocPhan.Name = "btnHocPhan";
-            this.btnHocPhan.Text = "Học phần";
-            this.btnHocPhan.TabIndex = 6;
-            this.btnHocPhan.UseVisualStyleBackColor = true;
-            this.btnHocPhan.Dock = DockStyle.Fill;
-            this.btnHocPhan.Height = 36;
-            this.btnHocPhan.TextAlign = ContentAlignment.MiddleLeft;
-            this.btnHocPhan.Padding = new Padding(14, 0, 5, 0);
-            this.btnHocPhan.Margin = new Padding(0, 0, 0, 5);
-            this.btnHocPhan.Font = new Font("Segoe UI", 9.5F);
-            this.btnHocPhan.Enabled = false;
-            this.pnlDanhMuc.Controls.Add(this.btnHocPhan, 0, 6);
             this.layoutSidebar.Controls.Add(this.btnDanhMuc, 0, 4);
             this.layoutSidebar.Controls.Add(this.pnlDanhMuc, 0, 5);
-            // btnDaoTao
-            this.btnDaoTao.Name = "btnDaoTao";
-            this.btnDaoTao.Text = "Đào tạo  ▸";
-            this.btnDaoTao.TabIndex = 5;
-            this.btnDaoTao.UseVisualStyleBackColor = true;
-            this.btnDaoTao.Dock = DockStyle.Fill;
-            this.btnDaoTao.Height = 43;
-            this.btnDaoTao.TextAlign = ContentAlignment.MiddleLeft;
-            this.btnDaoTao.Padding = new Padding(9, 0, 5, 0);
-            this.btnDaoTao.Margin = new Padding(0, 0, 0, 5);
-            this.btnDaoTao.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            this.btnDaoTao.Click += new EventHandler(this.btnNhom_Click);
-            // pnlDaoTao
-            this.pnlDaoTao.Name = "pnlDaoTao";
-            this.pnlDaoTao.ColumnCount = 1;
-            this.pnlDaoTao.RowCount = 2;
-            this.pnlDaoTao.GrowStyle = TableLayoutPanelGrowStyle.FixedSize;
-            this.pnlDaoTao.Dock = DockStyle.Fill;
-            this.pnlDaoTao.AutoSize = true;
-            this.pnlDaoTao.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            this.pnlDaoTao.Margin = new Padding(10, 0, 0, 6);
-            this.pnlDaoTao.TabIndex = 6;
-            this.pnlDaoTao.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            this.pnlDaoTao.RowStyles.Add(new RowStyle(SizeType.AutoSize));
-            this.pnlDaoTao.RowStyles.Add(new RowStyle(SizeType.AutoSize));
-            // btnLopHocPhan
-            this.btnLopHocPhan.Name = "btnLopHocPhan";
-            this.btnLopHocPhan.Text = "Lớp học phần";
-            this.btnLopHocPhan.TabIndex = 0;
-            this.btnLopHocPhan.UseVisualStyleBackColor = true;
-            this.btnLopHocPhan.Dock = DockStyle.Fill;
-            this.btnLopHocPhan.Height = 36;
-            this.btnLopHocPhan.TextAlign = ContentAlignment.MiddleLeft;
-            this.btnLopHocPhan.Padding = new Padding(14, 0, 5, 0);
-            this.btnLopHocPhan.Margin = new Padding(0, 0, 0, 5);
-            this.btnLopHocPhan.Font = new Font("Segoe UI", 9.5F);
-            this.btnLopHocPhan.Enabled = false;
-            this.pnlDaoTao.Controls.Add(this.btnLopHocPhan, 0, 0);
-            // btnPhanCong
-            this.btnPhanCong.Name = "btnPhanCong";
-            this.btnPhanCong.Text = "Phân công giảng dạy";
-            this.btnPhanCong.TabIndex = 1;
-            this.btnPhanCong.UseVisualStyleBackColor = true;
-            this.btnPhanCong.Dock = DockStyle.Fill;
-            this.btnPhanCong.Height = 36;
-            this.btnPhanCong.TextAlign = ContentAlignment.MiddleLeft;
-            this.btnPhanCong.Padding = new Padding(14, 0, 5, 0);
-            this.btnPhanCong.Margin = new Padding(0, 0, 0, 5);
-            this.btnPhanCong.Font = new Font("Segoe UI", 9.5F);
-            this.btnPhanCong.Enabled = false;
-            this.pnlDaoTao.Controls.Add(this.btnPhanCong, 0, 1);
             this.layoutSidebar.Controls.Add(this.btnDaoTao, 0, 6);
             this.layoutSidebar.Controls.Add(this.pnlDaoTao, 0, 7);
-            // btnThongKe
-            this.btnThongKe.Name = "btnThongKe";
-            this.btnThongKe.Text = "Thống kê  ▸";
-            this.btnThongKe.TabIndex = 7;
-            this.btnThongKe.UseVisualStyleBackColor = true;
-            this.btnThongKe.Dock = DockStyle.Fill;
-            this.btnThongKe.Height = 43;
-            this.btnThongKe.TextAlign = ContentAlignment.MiddleLeft;
-            this.btnThongKe.Padding = new Padding(9, 0, 5, 0);
-            this.btnThongKe.Margin = new Padding(0, 0, 0, 5);
-            this.btnThongKe.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            this.btnThongKe.Click += new EventHandler(this.btnNhom_Click);
-            // pnlThongKe
-            this.pnlThongKe.Name = "pnlThongKe";
-            this.pnlThongKe.ColumnCount = 1;
-            this.pnlThongKe.RowCount = 2;
-            this.pnlThongKe.GrowStyle = TableLayoutPanelGrowStyle.FixedSize;
-            this.pnlThongKe.Dock = DockStyle.Fill;
-            this.pnlThongKe.AutoSize = true;
-            this.pnlThongKe.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            this.pnlThongKe.Margin = new Padding(10, 0, 0, 6);
-            this.pnlThongKe.TabIndex = 8;
-            this.pnlThongKe.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            this.pnlThongKe.RowStyles.Add(new RowStyle(SizeType.AutoSize));
-            this.pnlThongKe.RowStyles.Add(new RowStyle(SizeType.AutoSize));
-            // btnKhoiLuong
-            this.btnKhoiLuong.Name = "btnKhoiLuong";
-            this.btnKhoiLuong.Text = "Khối lượng giảng dạy";
-            this.btnKhoiLuong.TabIndex = 0;
-            this.btnKhoiLuong.UseVisualStyleBackColor = true;
-            this.btnKhoiLuong.Dock = DockStyle.Fill;
-            this.btnKhoiLuong.Height = 36;
-            this.btnKhoiLuong.TextAlign = ContentAlignment.MiddleLeft;
-            this.btnKhoiLuong.Padding = new Padding(14, 0, 5, 0);
-            this.btnKhoiLuong.Margin = new Padding(0, 0, 0, 5);
-            this.btnKhoiLuong.Font = new Font("Segoe UI", 9.5F);
-            this.btnKhoiLuong.Enabled = false;
-            this.pnlThongKe.Controls.Add(this.btnKhoiLuong, 0, 0);
-            // btnBieuDo
-            this.btnBieuDo.Name = "btnBieuDo";
-            this.btnBieuDo.Text = "Biểu đồ";
-            this.btnBieuDo.TabIndex = 1;
-            this.btnBieuDo.UseVisualStyleBackColor = true;
-            this.btnBieuDo.Dock = DockStyle.Fill;
-            this.btnBieuDo.Height = 36;
-            this.btnBieuDo.TextAlign = ContentAlignment.MiddleLeft;
-            this.btnBieuDo.Padding = new Padding(14, 0, 5, 0);
-            this.btnBieuDo.Margin = new Padding(0, 0, 0, 5);
-            this.btnBieuDo.Font = new Font("Segoe UI", 9.5F);
-            this.btnBieuDo.Enabled = false;
-            this.pnlThongKe.Controls.Add(this.btnBieuDo, 0, 1);
             this.layoutSidebar.Controls.Add(this.btnThongKe, 0, 8);
             this.layoutSidebar.Controls.Add(this.pnlThongKe, 0, 9);
-            // btnBaoCao
-            this.btnBaoCao.Name = "btnBaoCao";
-            this.btnBaoCao.Text = "Báo cáo  ▸";
-            this.btnBaoCao.TabIndex = 9;
-            this.btnBaoCao.UseVisualStyleBackColor = true;
-            this.btnBaoCao.Dock = DockStyle.Fill;
-            this.btnBaoCao.Height = 43;
-            this.btnBaoCao.TextAlign = ContentAlignment.MiddleLeft;
-            this.btnBaoCao.Padding = new Padding(9, 0, 5, 0);
-            this.btnBaoCao.Margin = new Padding(0, 0, 0, 5);
-            this.btnBaoCao.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            this.btnBaoCao.Click += new EventHandler(this.btnNhom_Click);
-            // pnlBaoCao
-            this.pnlBaoCao.Name = "pnlBaoCao";
-            this.pnlBaoCao.ColumnCount = 1;
-            this.pnlBaoCao.RowCount = 4;
-            this.pnlBaoCao.GrowStyle = TableLayoutPanelGrowStyle.FixedSize;
-            this.pnlBaoCao.Dock = DockStyle.Fill;
-            this.pnlBaoCao.AutoSize = true;
-            this.pnlBaoCao.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            this.pnlBaoCao.Margin = new Padding(10, 0, 0, 6);
-            this.pnlBaoCao.TabIndex = 10;
-            this.pnlBaoCao.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            this.pnlBaoCao.RowStyles.Add(new RowStyle(SizeType.AutoSize));
-            this.pnlBaoCao.RowStyles.Add(new RowStyle(SizeType.AutoSize));
-            this.pnlBaoCao.RowStyles.Add(new RowStyle(SizeType.AutoSize));
-            this.pnlBaoCao.RowStyles.Add(new RowStyle(SizeType.AutoSize));
-            // btnBaoCaoGiangVien
-            this.btnBaoCaoGiangVien.Name = "btnBaoCaoGiangVien";
-            this.btnBaoCaoGiangVien.Text = "Danh sách giảng viên";
-            this.btnBaoCaoGiangVien.TabIndex = 0;
-            this.btnBaoCaoGiangVien.UseVisualStyleBackColor = true;
-            this.btnBaoCaoGiangVien.Dock = DockStyle.Fill;
-            this.btnBaoCaoGiangVien.Height = 36;
-            this.btnBaoCaoGiangVien.TextAlign = ContentAlignment.MiddleLeft;
-            this.btnBaoCaoGiangVien.Padding = new Padding(14, 0, 5, 0);
-            this.btnBaoCaoGiangVien.Margin = new Padding(0, 0, 0, 5);
-            this.btnBaoCaoGiangVien.Font = new Font("Segoe UI", 9.5F);
-            this.btnBaoCaoGiangVien.Enabled = false;
-            this.pnlBaoCao.Controls.Add(this.btnBaoCaoGiangVien, 0, 0);
-            // btnBaoCaoPhanCong
-            this.btnBaoCaoPhanCong.Name = "btnBaoCaoPhanCong";
-            this.btnBaoCaoPhanCong.Text = "Phân công giảng dạy";
-            this.btnBaoCaoPhanCong.TabIndex = 1;
-            this.btnBaoCaoPhanCong.UseVisualStyleBackColor = true;
-            this.btnBaoCaoPhanCong.Dock = DockStyle.Fill;
-            this.btnBaoCaoPhanCong.Height = 36;
-            this.btnBaoCaoPhanCong.TextAlign = ContentAlignment.MiddleLeft;
-            this.btnBaoCaoPhanCong.Padding = new Padding(14, 0, 5, 0);
-            this.btnBaoCaoPhanCong.Margin = new Padding(0, 0, 0, 5);
-            this.btnBaoCaoPhanCong.Font = new Font("Segoe UI", 9.5F);
-            this.btnBaoCaoPhanCong.Enabled = false;
-            this.pnlBaoCao.Controls.Add(this.btnBaoCaoPhanCong, 0, 1);
-            // btnBaoCaoTaiTrongKhoa
-            this.btnBaoCaoTaiTrongKhoa.Name = "btnBaoCaoTaiTrongKhoa";
-            this.btnBaoCaoTaiTrongKhoa.Text = "Tải trọng theo khoa";
-            this.btnBaoCaoTaiTrongKhoa.TabIndex = 2;
-            this.btnBaoCaoTaiTrongKhoa.UseVisualStyleBackColor = true;
-            this.btnBaoCaoTaiTrongKhoa.Dock = DockStyle.Fill;
-            this.btnBaoCaoTaiTrongKhoa.Height = 36;
-            this.btnBaoCaoTaiTrongKhoa.TextAlign = ContentAlignment.MiddleLeft;
-            this.btnBaoCaoTaiTrongKhoa.Padding = new Padding(14, 0, 5, 0);
-            this.btnBaoCaoTaiTrongKhoa.Margin = new Padding(0, 0, 0, 5);
-            this.btnBaoCaoTaiTrongKhoa.Font = new Font("Segoe UI", 9.5F);
-            this.btnBaoCaoTaiTrongKhoa.Enabled = false;
-            this.pnlBaoCao.Controls.Add(this.btnBaoCaoTaiTrongKhoa, 0, 2);
-            // btnBaoCaoChuaPhanCong
-            this.btnBaoCaoChuaPhanCong.Name = "btnBaoCaoChuaPhanCong";
-            this.btnBaoCaoChuaPhanCong.Text = "Giảng viên chưa phân công";
-            this.btnBaoCaoChuaPhanCong.TabIndex = 3;
-            this.btnBaoCaoChuaPhanCong.UseVisualStyleBackColor = true;
-            this.btnBaoCaoChuaPhanCong.Dock = DockStyle.Fill;
-            this.btnBaoCaoChuaPhanCong.Height = 36;
-            this.btnBaoCaoChuaPhanCong.TextAlign = ContentAlignment.MiddleLeft;
-            this.btnBaoCaoChuaPhanCong.Padding = new Padding(14, 0, 5, 0);
-            this.btnBaoCaoChuaPhanCong.Margin = new Padding(0, 0, 0, 5);
-            this.btnBaoCaoChuaPhanCong.Font = new Font("Segoe UI", 9.5F);
-            this.btnBaoCaoChuaPhanCong.Enabled = false;
-            this.pnlBaoCao.Controls.Add(this.btnBaoCaoChuaPhanCong, 0, 3);
             this.layoutSidebar.Controls.Add(this.btnBaoCao, 0, 10);
             this.layoutSidebar.Controls.Add(this.pnlBaoCao, 0, 11);
-            // btnDangXuat
-            this.btnDangXuat.Name = "btnDangXuat";
-            this.btnDangXuat.Text = "Đăng xuất";
-            this.btnDangXuat.TabIndex = 11;
-            this.btnDangXuat.UseVisualStyleBackColor = true;
-            this.btnDangXuat.Dock = DockStyle.Fill;
-            this.btnDangXuat.Height = 43;
-            this.btnDangXuat.TextAlign = ContentAlignment.MiddleLeft;
-            this.btnDangXuat.Padding = new Padding(9, 0, 5, 0);
-            this.btnDangXuat.Margin = new Padding(0, 0, 0, 5);
-            this.btnDangXuat.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            this.btnDangXuat.Click += new EventHandler(this.btnDangXuat_Click);
-            this.btnDangXuat.Margin = new Padding(0, 12, 0, 0);
             this.layoutSidebar.Controls.Add(this.btnDangXuat, 0, 12);
-            this.pnlSidebar.Controls.Add(this.layoutSidebar);
+            this.layoutSidebar.Dock = System.Windows.Forms.DockStyle.Top;
+            this.layoutSidebar.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize;
+            this.layoutSidebar.Location = new System.Drawing.Point(21, 21);
+            this.layoutSidebar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.layoutSidebar.Name = "layoutSidebar";
+            this.layoutSidebar.RowCount = 13;
+            this.layoutSidebar.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.layoutSidebar.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.layoutSidebar.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.layoutSidebar.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.layoutSidebar.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.layoutSidebar.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.layoutSidebar.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.layoutSidebar.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.layoutSidebar.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.layoutSidebar.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.layoutSidebar.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.layoutSidebar.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.layoutSidebar.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.layoutSidebar.Size = new System.Drawing.Size(259, 1717);
+            this.layoutSidebar.TabIndex = 0;
+            // 
+            // lblIconMenu
+            // 
+            this.lblIconMenu.AutoSize = true;
+            this.lblIconMenu.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold);
+            this.lblIconMenu.Location = new System.Drawing.Point(8, 2);
+            this.lblIconMenu.Margin = new System.Windows.Forms.Padding(8, 2, 0, 15);
+            this.lblIconMenu.Name = "lblIconMenu";
+            this.lblIconMenu.Size = new System.Drawing.Size(128, 25);
+            this.lblIconMenu.TabIndex = 0;
+            this.lblIconMenu.Text = "CHỨC NĂNG";
+            // 
+            // btnTongQuan
+            // 
+            this.btnTongQuan.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnTongQuan.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
+            this.btnTongQuan.Location = new System.Drawing.Point(0, 42);
+            this.btnTongQuan.Margin = new System.Windows.Forms.Padding(0, 0, 0, 8);
+            this.btnTongQuan.Name = "btnTongQuan";
+            this.btnTongQuan.Padding = new System.Windows.Forms.Padding(14, 0, 8, 0);
+            this.btnTongQuan.Size = new System.Drawing.Size(259, 64);
+            this.btnTongQuan.TabIndex = 0;
+            this.btnTongQuan.Text = "Tổng quan";
+            this.btnTongQuan.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnTongQuan.UseVisualStyleBackColor = true;
+            this.btnTongQuan.Click += new System.EventHandler(this.btnTongQuan_Click);
+            // 
+            // btnHeThong
+            // 
+            this.btnHeThong.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnHeThong.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
+            this.btnHeThong.Location = new System.Drawing.Point(0, 114);
+            this.btnHeThong.Margin = new System.Windows.Forms.Padding(0, 0, 0, 8);
+            this.btnHeThong.Name = "btnHeThong";
+            this.btnHeThong.Padding = new System.Windows.Forms.Padding(14, 0, 8, 0);
+            this.btnHeThong.Size = new System.Drawing.Size(259, 64);
+            this.btnHeThong.TabIndex = 1;
+            this.btnHeThong.Text = "Hệ thống  ▸";
+            this.btnHeThong.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnHeThong.UseVisualStyleBackColor = true;
+            this.btnHeThong.Click += new System.EventHandler(this.btnNhom_Click);
+            // 
+            // pnlHeThong
+            // 
+            this.pnlHeThong.AutoSize = true;
+            this.pnlHeThong.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.pnlHeThong.ColumnCount = 1;
+            this.pnlHeThong.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.pnlHeThong.Controls.Add(this.btnNguoiDung, 0, 0);
+            this.pnlHeThong.Controls.Add(this.btnDoiMatKhau, 0, 1);
+            this.pnlHeThong.Controls.Add(this.btnPhanQuyen, 0, 2);
+            this.pnlHeThong.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlHeThong.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize;
+            this.pnlHeThong.Location = new System.Drawing.Point(15, 186);
+            this.pnlHeThong.Margin = new System.Windows.Forms.Padding(15, 0, 0, 9);
+            this.pnlHeThong.Name = "pnlHeThong";
+            this.pnlHeThong.RowCount = 3;
+            this.pnlHeThong.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.pnlHeThong.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.pnlHeThong.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.pnlHeThong.Size = new System.Drawing.Size(244, 186);
+            this.pnlHeThong.TabIndex = 2;
+            // 
+            // btnNguoiDung
+            // 
+            this.btnNguoiDung.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnNguoiDung.Enabled = false;
+            this.btnNguoiDung.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+            this.btnNguoiDung.Location = new System.Drawing.Point(0, 0);
+            this.btnNguoiDung.Margin = new System.Windows.Forms.Padding(0, 0, 0, 8);
+            this.btnNguoiDung.Name = "btnNguoiDung";
+            this.btnNguoiDung.Padding = new System.Windows.Forms.Padding(21, 0, 8, 0);
+            this.btnNguoiDung.Size = new System.Drawing.Size(244, 54);
+            this.btnNguoiDung.TabIndex = 0;
+            this.btnNguoiDung.Text = "Quản lý người dùng";
+            this.btnNguoiDung.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnNguoiDung.UseVisualStyleBackColor = true;
+            // 
+            // btnDoiMatKhau
+            // 
+            this.btnDoiMatKhau.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnDoiMatKhau.Enabled = false;
+            this.btnDoiMatKhau.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+            this.btnDoiMatKhau.Location = new System.Drawing.Point(0, 62);
+            this.btnDoiMatKhau.Margin = new System.Windows.Forms.Padding(0, 0, 0, 8);
+            this.btnDoiMatKhau.Name = "btnDoiMatKhau";
+            this.btnDoiMatKhau.Padding = new System.Windows.Forms.Padding(21, 0, 8, 0);
+            this.btnDoiMatKhau.Size = new System.Drawing.Size(244, 54);
+            this.btnDoiMatKhau.TabIndex = 1;
+            this.btnDoiMatKhau.Text = "Đổi mật khẩu";
+            this.btnDoiMatKhau.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDoiMatKhau.UseVisualStyleBackColor = true;
+            // 
+            // btnPhanQuyen
+            // 
+            this.btnPhanQuyen.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnPhanQuyen.Enabled = false;
+            this.btnPhanQuyen.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+            this.btnPhanQuyen.Location = new System.Drawing.Point(0, 124);
+            this.btnPhanQuyen.Margin = new System.Windows.Forms.Padding(0, 0, 0, 8);
+            this.btnPhanQuyen.Name = "btnPhanQuyen";
+            this.btnPhanQuyen.Padding = new System.Windows.Forms.Padding(21, 0, 8, 0);
+            this.btnPhanQuyen.Size = new System.Drawing.Size(244, 54);
+            this.btnPhanQuyen.TabIndex = 2;
+            this.btnPhanQuyen.Text = "Vai trò và phân quyền";
+            this.btnPhanQuyen.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPhanQuyen.UseVisualStyleBackColor = true;
+            // 
+            // btnDanhMuc
+            // 
+            this.btnDanhMuc.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnDanhMuc.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
+            this.btnDanhMuc.Location = new System.Drawing.Point(0, 381);
+            this.btnDanhMuc.Margin = new System.Windows.Forms.Padding(0, 0, 0, 8);
+            this.btnDanhMuc.Name = "btnDanhMuc";
+            this.btnDanhMuc.Padding = new System.Windows.Forms.Padding(14, 0, 8, 0);
+            this.btnDanhMuc.Size = new System.Drawing.Size(259, 64);
+            this.btnDanhMuc.TabIndex = 3;
+            this.btnDanhMuc.Text = "Danh mục  ▸";
+            this.btnDanhMuc.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDanhMuc.UseVisualStyleBackColor = true;
+            this.btnDanhMuc.Click += new System.EventHandler(this.btnNhom_Click);
+            // 
+            // pnlDanhMuc
+            // 
+            this.pnlDanhMuc.AutoSize = true;
+            this.pnlDanhMuc.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.pnlDanhMuc.ColumnCount = 1;
+            this.pnlDanhMuc.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.pnlDanhMuc.Controls.Add(this.btnKhoa, 0, 0);
+            this.pnlDanhMuc.Controls.Add(this.btnBoMon, 0, 1);
+            this.pnlDanhMuc.Controls.Add(this.btnGiangVien, 0, 2);
+            this.pnlDanhMuc.Controls.Add(this.btnHocVi, 0, 3);
+            this.pnlDanhMuc.Controls.Add(this.btnChucVu, 0, 4);
+            this.pnlDanhMuc.Controls.Add(this.btnChuyenMon, 0, 5);
+            this.pnlDanhMuc.Controls.Add(this.btnHocPhan, 0, 6);
+            this.pnlDanhMuc.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlDanhMuc.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize;
+            this.pnlDanhMuc.Location = new System.Drawing.Point(15, 453);
+            this.pnlDanhMuc.Margin = new System.Windows.Forms.Padding(15, 0, 0, 9);
+            this.pnlDanhMuc.Name = "pnlDanhMuc";
+            this.pnlDanhMuc.RowCount = 7;
+            this.pnlDanhMuc.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.pnlDanhMuc.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.pnlDanhMuc.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.pnlDanhMuc.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.pnlDanhMuc.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.pnlDanhMuc.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.pnlDanhMuc.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.pnlDanhMuc.Size = new System.Drawing.Size(244, 434);
+            this.pnlDanhMuc.TabIndex = 4;
+            // 
+            // btnKhoa
+            // 
+            this.btnKhoa.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnKhoa.Enabled = false;
+            this.btnKhoa.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+            this.btnKhoa.Location = new System.Drawing.Point(0, 0);
+            this.btnKhoa.Margin = new System.Windows.Forms.Padding(0, 0, 0, 8);
+            this.btnKhoa.Name = "btnKhoa";
+            this.btnKhoa.Padding = new System.Windows.Forms.Padding(21, 0, 8, 0);
+            this.btnKhoa.Size = new System.Drawing.Size(244, 54);
+            this.btnKhoa.TabIndex = 0;
+            this.btnKhoa.Text = "Khoa";
+            this.btnKhoa.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnKhoa.UseVisualStyleBackColor = true;
+            // 
+            // btnBoMon
+            // 
+            this.btnBoMon.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnBoMon.Enabled = false;
+            this.btnBoMon.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+            this.btnBoMon.Location = new System.Drawing.Point(0, 62);
+            this.btnBoMon.Margin = new System.Windows.Forms.Padding(0, 0, 0, 8);
+            this.btnBoMon.Name = "btnBoMon";
+            this.btnBoMon.Padding = new System.Windows.Forms.Padding(21, 0, 8, 0);
+            this.btnBoMon.Size = new System.Drawing.Size(244, 54);
+            this.btnBoMon.TabIndex = 1;
+            this.btnBoMon.Text = "Bộ môn";
+            this.btnBoMon.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnBoMon.UseVisualStyleBackColor = true;
+            // 
+            // btnGiangVien
+            // 
+            this.btnGiangVien.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnGiangVien.Enabled = false;
+            this.btnGiangVien.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+            this.btnGiangVien.Location = new System.Drawing.Point(0, 124);
+            this.btnGiangVien.Margin = new System.Windows.Forms.Padding(0, 0, 0, 8);
+            this.btnGiangVien.Name = "btnGiangVien";
+            this.btnGiangVien.Padding = new System.Windows.Forms.Padding(21, 0, 8, 0);
+            this.btnGiangVien.Size = new System.Drawing.Size(244, 54);
+            this.btnGiangVien.TabIndex = 2;
+            this.btnGiangVien.Text = "Giảng viên";
+            this.btnGiangVien.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnGiangVien.UseVisualStyleBackColor = true;
+            // 
+            // btnHocVi
+            // 
+            this.btnHocVi.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnHocVi.Enabled = false;
+            this.btnHocVi.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+            this.btnHocVi.Location = new System.Drawing.Point(0, 186);
+            this.btnHocVi.Margin = new System.Windows.Forms.Padding(0, 0, 0, 8);
+            this.btnHocVi.Name = "btnHocVi";
+            this.btnHocVi.Padding = new System.Windows.Forms.Padding(21, 0, 8, 0);
+            this.btnHocVi.Size = new System.Drawing.Size(244, 54);
+            this.btnHocVi.TabIndex = 3;
+            this.btnHocVi.Text = "Học vị";
+            this.btnHocVi.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnHocVi.UseVisualStyleBackColor = true;
+            // 
+            // btnChucVu
+            // 
+            this.btnChucVu.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnChucVu.Enabled = false;
+            this.btnChucVu.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+            this.btnChucVu.Location = new System.Drawing.Point(0, 248);
+            this.btnChucVu.Margin = new System.Windows.Forms.Padding(0, 0, 0, 8);
+            this.btnChucVu.Name = "btnChucVu";
+            this.btnChucVu.Padding = new System.Windows.Forms.Padding(21, 0, 8, 0);
+            this.btnChucVu.Size = new System.Drawing.Size(244, 54);
+            this.btnChucVu.TabIndex = 4;
+            this.btnChucVu.Text = "Chức vụ";
+            this.btnChucVu.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnChucVu.UseVisualStyleBackColor = true;
+            // 
+            // btnChuyenMon
+            // 
+            this.btnChuyenMon.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnChuyenMon.Enabled = false;
+            this.btnChuyenMon.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+            this.btnChuyenMon.Location = new System.Drawing.Point(0, 310);
+            this.btnChuyenMon.Margin = new System.Windows.Forms.Padding(0, 0, 0, 8);
+            this.btnChuyenMon.Name = "btnChuyenMon";
+            this.btnChuyenMon.Padding = new System.Windows.Forms.Padding(21, 0, 8, 0);
+            this.btnChuyenMon.Size = new System.Drawing.Size(244, 54);
+            this.btnChuyenMon.TabIndex = 5;
+            this.btnChuyenMon.Text = "Chuyên môn";
+            this.btnChuyenMon.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnChuyenMon.UseVisualStyleBackColor = true;
+            // 
+            // btnHocPhan
+            // 
+            this.btnHocPhan.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnHocPhan.Enabled = false;
+            this.btnHocPhan.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+            this.btnHocPhan.Location = new System.Drawing.Point(0, 372);
+            this.btnHocPhan.Margin = new System.Windows.Forms.Padding(0, 0, 0, 8);
+            this.btnHocPhan.Name = "btnHocPhan";
+            this.btnHocPhan.Padding = new System.Windows.Forms.Padding(21, 0, 8, 0);
+            this.btnHocPhan.Size = new System.Drawing.Size(244, 54);
+            this.btnHocPhan.TabIndex = 6;
+            this.btnHocPhan.Text = "Học phần";
+            this.btnHocPhan.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnHocPhan.UseVisualStyleBackColor = true;
+            // 
+            // btnDaoTao
+            // 
+            this.btnDaoTao.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnDaoTao.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
+            this.btnDaoTao.Location = new System.Drawing.Point(0, 896);
+            this.btnDaoTao.Margin = new System.Windows.Forms.Padding(0, 0, 0, 8);
+            this.btnDaoTao.Name = "btnDaoTao";
+            this.btnDaoTao.Padding = new System.Windows.Forms.Padding(14, 0, 8, 0);
+            this.btnDaoTao.Size = new System.Drawing.Size(259, 64);
+            this.btnDaoTao.TabIndex = 5;
+            this.btnDaoTao.Text = "Đào tạo  ▸";
+            this.btnDaoTao.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDaoTao.UseVisualStyleBackColor = true;
+            this.btnDaoTao.Click += new System.EventHandler(this.btnNhom_Click);
+            // 
+            // pnlDaoTao
+            // 
+            this.pnlDaoTao.AutoSize = true;
+            this.pnlDaoTao.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.pnlDaoTao.ColumnCount = 1;
+            this.pnlDaoTao.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.pnlDaoTao.Controls.Add(this.btnLopHocPhan, 0, 0);
+            this.pnlDaoTao.Controls.Add(this.btnPhanCong, 0, 1);
+            this.pnlDaoTao.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlDaoTao.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize;
+            this.pnlDaoTao.Location = new System.Drawing.Point(15, 968);
+            this.pnlDaoTao.Margin = new System.Windows.Forms.Padding(15, 0, 0, 9);
+            this.pnlDaoTao.Name = "pnlDaoTao";
+            this.pnlDaoTao.RowCount = 2;
+            this.pnlDaoTao.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.pnlDaoTao.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.pnlDaoTao.Size = new System.Drawing.Size(244, 124);
+            this.pnlDaoTao.TabIndex = 6;
+            // 
+            // btnLopHocPhan
+            // 
+            this.btnLopHocPhan.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnLopHocPhan.Enabled = false;
+            this.btnLopHocPhan.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+            this.btnLopHocPhan.Location = new System.Drawing.Point(0, 0);
+            this.btnLopHocPhan.Margin = new System.Windows.Forms.Padding(0, 0, 0, 8);
+            this.btnLopHocPhan.Name = "btnLopHocPhan";
+            this.btnLopHocPhan.Padding = new System.Windows.Forms.Padding(21, 0, 8, 0);
+            this.btnLopHocPhan.Size = new System.Drawing.Size(244, 54);
+            this.btnLopHocPhan.TabIndex = 0;
+            this.btnLopHocPhan.Text = "Lớp học phần";
+            this.btnLopHocPhan.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnLopHocPhan.UseVisualStyleBackColor = true;
+            // 
+            // btnPhanCong
+            // 
+            this.btnPhanCong.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnPhanCong.Enabled = false;
+            this.btnPhanCong.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+            this.btnPhanCong.Location = new System.Drawing.Point(0, 62);
+            this.btnPhanCong.Margin = new System.Windows.Forms.Padding(0, 0, 0, 8);
+            this.btnPhanCong.Name = "btnPhanCong";
+            this.btnPhanCong.Padding = new System.Windows.Forms.Padding(21, 0, 8, 0);
+            this.btnPhanCong.Size = new System.Drawing.Size(244, 54);
+            this.btnPhanCong.TabIndex = 1;
+            this.btnPhanCong.Text = "Phân công giảng dạy";
+            this.btnPhanCong.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPhanCong.UseVisualStyleBackColor = true;
+            // 
+            // btnThongKe
+            // 
+            this.btnThongKe.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnThongKe.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
+            this.btnThongKe.Location = new System.Drawing.Point(0, 1101);
+            this.btnThongKe.Margin = new System.Windows.Forms.Padding(0, 0, 0, 8);
+            this.btnThongKe.Name = "btnThongKe";
+            this.btnThongKe.Padding = new System.Windows.Forms.Padding(14, 0, 8, 0);
+            this.btnThongKe.Size = new System.Drawing.Size(259, 64);
+            this.btnThongKe.TabIndex = 7;
+            this.btnThongKe.Text = "Thống kê  ▸";
+            this.btnThongKe.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnThongKe.UseVisualStyleBackColor = true;
+            this.btnThongKe.Click += new System.EventHandler(this.btnNhom_Click);
+            // 
+            // pnlThongKe
+            // 
+            this.pnlThongKe.AutoSize = true;
+            this.pnlThongKe.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.pnlThongKe.ColumnCount = 1;
+            this.pnlThongKe.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.pnlThongKe.Controls.Add(this.btnKhoiLuong, 0, 0);
+            this.pnlThongKe.Controls.Add(this.btnBieuDo, 0, 1);
+            this.pnlThongKe.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlThongKe.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize;
+            this.pnlThongKe.Location = new System.Drawing.Point(15, 1173);
+            this.pnlThongKe.Margin = new System.Windows.Forms.Padding(15, 0, 0, 9);
+            this.pnlThongKe.Name = "pnlThongKe";
+            this.pnlThongKe.RowCount = 2;
+            this.pnlThongKe.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.pnlThongKe.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.pnlThongKe.Size = new System.Drawing.Size(244, 124);
+            this.pnlThongKe.TabIndex = 8;
+            // 
+            // btnKhoiLuong
+            // 
+            this.btnKhoiLuong.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnKhoiLuong.Enabled = false;
+            this.btnKhoiLuong.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+            this.btnKhoiLuong.Location = new System.Drawing.Point(0, 0);
+            this.btnKhoiLuong.Margin = new System.Windows.Forms.Padding(0, 0, 0, 8);
+            this.btnKhoiLuong.Name = "btnKhoiLuong";
+            this.btnKhoiLuong.Padding = new System.Windows.Forms.Padding(21, 0, 8, 0);
+            this.btnKhoiLuong.Size = new System.Drawing.Size(244, 54);
+            this.btnKhoiLuong.TabIndex = 0;
+            this.btnKhoiLuong.Text = "Khối lượng giảng dạy";
+            this.btnKhoiLuong.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnKhoiLuong.UseVisualStyleBackColor = true;
+            // 
+            // btnBieuDo
+            // 
+            this.btnBieuDo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnBieuDo.Enabled = false;
+            this.btnBieuDo.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+            this.btnBieuDo.Location = new System.Drawing.Point(0, 62);
+            this.btnBieuDo.Margin = new System.Windows.Forms.Padding(0, 0, 0, 8);
+            this.btnBieuDo.Name = "btnBieuDo";
+            this.btnBieuDo.Padding = new System.Windows.Forms.Padding(21, 0, 8, 0);
+            this.btnBieuDo.Size = new System.Drawing.Size(244, 54);
+            this.btnBieuDo.TabIndex = 1;
+            this.btnBieuDo.Text = "Biểu đồ";
+            this.btnBieuDo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnBieuDo.UseVisualStyleBackColor = true;
+            // 
+            // btnBaoCao
+            // 
+            this.btnBaoCao.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnBaoCao.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
+            this.btnBaoCao.Location = new System.Drawing.Point(0, 1306);
+            this.btnBaoCao.Margin = new System.Windows.Forms.Padding(0, 0, 0, 8);
+            this.btnBaoCao.Name = "btnBaoCao";
+            this.btnBaoCao.Padding = new System.Windows.Forms.Padding(14, 0, 8, 0);
+            this.btnBaoCao.Size = new System.Drawing.Size(259, 64);
+            this.btnBaoCao.TabIndex = 9;
+            this.btnBaoCao.Text = "Báo cáo  ▸";
+            this.btnBaoCao.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnBaoCao.UseVisualStyleBackColor = true;
+            this.btnBaoCao.Click += new System.EventHandler(this.btnNhom_Click);
+            // 
+            // pnlBaoCao
+            // 
+            this.pnlBaoCao.AutoSize = true;
+            this.pnlBaoCao.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.pnlBaoCao.ColumnCount = 1;
+            this.pnlBaoCao.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.pnlBaoCao.Controls.Add(this.btnBaoCaoGiangVien, 0, 0);
+            this.pnlBaoCao.Controls.Add(this.btnBaoCaoPhanCong, 0, 1);
+            this.pnlBaoCao.Controls.Add(this.btnBaoCaoTaiTrongKhoa, 0, 2);
+            this.pnlBaoCao.Controls.Add(this.btnBaoCaoChuaPhanCong, 0, 3);
+            this.pnlBaoCao.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlBaoCao.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize;
+            this.pnlBaoCao.Location = new System.Drawing.Point(15, 1378);
+            this.pnlBaoCao.Margin = new System.Windows.Forms.Padding(15, 0, 0, 9);
+            this.pnlBaoCao.Name = "pnlBaoCao";
+            this.pnlBaoCao.RowCount = 4;
+            this.pnlBaoCao.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.pnlBaoCao.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.pnlBaoCao.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.pnlBaoCao.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.pnlBaoCao.Size = new System.Drawing.Size(244, 248);
+            this.pnlBaoCao.TabIndex = 10;
+            // 
+            // btnBaoCaoGiangVien
+            // 
+            this.btnBaoCaoGiangVien.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnBaoCaoGiangVien.Enabled = false;
+            this.btnBaoCaoGiangVien.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+            this.btnBaoCaoGiangVien.Location = new System.Drawing.Point(0, 0);
+            this.btnBaoCaoGiangVien.Margin = new System.Windows.Forms.Padding(0, 0, 0, 8);
+            this.btnBaoCaoGiangVien.Name = "btnBaoCaoGiangVien";
+            this.btnBaoCaoGiangVien.Padding = new System.Windows.Forms.Padding(21, 0, 8, 0);
+            this.btnBaoCaoGiangVien.Size = new System.Drawing.Size(244, 54);
+            this.btnBaoCaoGiangVien.TabIndex = 0;
+            this.btnBaoCaoGiangVien.Text = "Danh sách giảng viên";
+            this.btnBaoCaoGiangVien.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnBaoCaoGiangVien.UseVisualStyleBackColor = true;
+            // 
+            // btnBaoCaoPhanCong
+            // 
+            this.btnBaoCaoPhanCong.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnBaoCaoPhanCong.Enabled = false;
+            this.btnBaoCaoPhanCong.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+            this.btnBaoCaoPhanCong.Location = new System.Drawing.Point(0, 62);
+            this.btnBaoCaoPhanCong.Margin = new System.Windows.Forms.Padding(0, 0, 0, 8);
+            this.btnBaoCaoPhanCong.Name = "btnBaoCaoPhanCong";
+            this.btnBaoCaoPhanCong.Padding = new System.Windows.Forms.Padding(21, 0, 8, 0);
+            this.btnBaoCaoPhanCong.Size = new System.Drawing.Size(244, 54);
+            this.btnBaoCaoPhanCong.TabIndex = 1;
+            this.btnBaoCaoPhanCong.Text = "Phân công giảng dạy";
+            this.btnBaoCaoPhanCong.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnBaoCaoPhanCong.UseVisualStyleBackColor = true;
+            // 
+            // btnBaoCaoTaiTrongKhoa
+            // 
+            this.btnBaoCaoTaiTrongKhoa.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnBaoCaoTaiTrongKhoa.Enabled = false;
+            this.btnBaoCaoTaiTrongKhoa.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+            this.btnBaoCaoTaiTrongKhoa.Location = new System.Drawing.Point(0, 124);
+            this.btnBaoCaoTaiTrongKhoa.Margin = new System.Windows.Forms.Padding(0, 0, 0, 8);
+            this.btnBaoCaoTaiTrongKhoa.Name = "btnBaoCaoTaiTrongKhoa";
+            this.btnBaoCaoTaiTrongKhoa.Padding = new System.Windows.Forms.Padding(21, 0, 8, 0);
+            this.btnBaoCaoTaiTrongKhoa.Size = new System.Drawing.Size(244, 54);
+            this.btnBaoCaoTaiTrongKhoa.TabIndex = 2;
+            this.btnBaoCaoTaiTrongKhoa.Text = "Tải trọng theo khoa";
+            this.btnBaoCaoTaiTrongKhoa.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnBaoCaoTaiTrongKhoa.UseVisualStyleBackColor = true;
+            // 
+            // btnBaoCaoChuaPhanCong
+            // 
+            this.btnBaoCaoChuaPhanCong.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnBaoCaoChuaPhanCong.Enabled = false;
+            this.btnBaoCaoChuaPhanCong.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+            this.btnBaoCaoChuaPhanCong.Location = new System.Drawing.Point(0, 186);
+            this.btnBaoCaoChuaPhanCong.Margin = new System.Windows.Forms.Padding(0, 0, 0, 8);
+            this.btnBaoCaoChuaPhanCong.Name = "btnBaoCaoChuaPhanCong";
+            this.btnBaoCaoChuaPhanCong.Padding = new System.Windows.Forms.Padding(21, 0, 8, 0);
+            this.btnBaoCaoChuaPhanCong.Size = new System.Drawing.Size(244, 54);
+            this.btnBaoCaoChuaPhanCong.TabIndex = 3;
+            this.btnBaoCaoChuaPhanCong.Text = "Giảng viên chưa phân công";
+            this.btnBaoCaoChuaPhanCong.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnBaoCaoChuaPhanCong.UseVisualStyleBackColor = true;
+            // 
+            // btnDangXuat
+            // 
+            this.btnDangXuat.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnDangXuat.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
+            this.btnDangXuat.Location = new System.Drawing.Point(0, 1653);
+            this.btnDangXuat.Margin = new System.Windows.Forms.Padding(0, 18, 0, 0);
+            this.btnDangXuat.Name = "btnDangXuat";
+            this.btnDangXuat.Padding = new System.Windows.Forms.Padding(14, 0, 8, 0);
+            this.btnDangXuat.Size = new System.Drawing.Size(259, 64);
+            this.btnDangXuat.TabIndex = 11;
+            this.btnDangXuat.Text = "Đăng xuất";
+            this.btnDangXuat.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDangXuat.UseVisualStyleBackColor = true;
+            this.btnDangXuat.Click += new System.EventHandler(this.btnDangXuat_Click);
+            // 
             // pnlContent
-            this.pnlContent.Name = "pnlContent";
-            this.pnlContent.Dock = DockStyle.Fill;
+            // 
             this.pnlContent.AutoScroll = true;
+            this.pnlContent.Controls.Add(this.layoutDashboard);
+            this.pnlContent.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlContent.Location = new System.Drawing.Point(327, 129);
+            this.pnlContent.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnlContent.Name = "pnlContent";
+            this.pnlContent.Size = new System.Drawing.Size(1458, 929);
             this.pnlContent.TabIndex = 2;
+            // 
             // layoutDashboard
-            this.layoutDashboard.Name = "layoutDashboard";
+            // 
             this.layoutDashboard.ColumnCount = 1;
-            this.layoutDashboard.RowCount = 4;
-            this.layoutDashboard.GrowStyle = TableLayoutPanelGrowStyle.FixedSize;
-            this.layoutDashboard.Dock = DockStyle.Fill;
-            this.layoutDashboard.MinimumSize = new Size(356, 634);
-            this.layoutDashboard.Padding = new Padding(20, 14, 20, 16);
-            this.layoutDashboard.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            this.layoutDashboard.RowStyles.Add(new RowStyle(SizeType.AutoSize));
-            this.layoutDashboard.RowStyles.Add(new RowStyle(SizeType.AutoSize));
-            this.layoutDashboard.RowStyles.Add(new RowStyle(SizeType.AutoSize));
-            this.layoutDashboard.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            // layoutOverviewHeader
-            this.layoutOverviewHeader.Name = "layoutOverviewHeader";
-            this.layoutOverviewHeader.ColumnCount = 2;
-            this.layoutOverviewHeader.RowCount = 2;
-            this.layoutOverviewHeader.GrowStyle = TableLayoutPanelGrowStyle.FixedSize;
-            this.layoutOverviewHeader.Dock = DockStyle.Fill;
-            this.layoutOverviewHeader.AutoSize = true;
-            this.layoutOverviewHeader.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            this.layoutOverviewHeader.Margin = new Padding(6, 0, 6, 8);
-            this.layoutOverviewHeader.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            this.layoutOverviewHeader.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
-            this.layoutOverviewHeader.RowStyles.Add(new RowStyle(SizeType.AutoSize));
-            this.layoutOverviewHeader.RowStyles.Add(new RowStyle(SizeType.AutoSize));
-            // lblTieuDeTongQuan
-            this.lblTieuDeTongQuan.Name = "lblTieuDeTongQuan";
-            this.lblTieuDeTongQuan.Text = "Tổng quan";
-            this.lblTieuDeTongQuan.AutoSize = true;
-            this.lblTieuDeTongQuan.Dock = DockStyle.Fill;
-            this.lblTieuDeTongQuan.Margin = new Padding(0, 0, 0, 3);
-            this.lblTieuDeTongQuan.Font = new Font("Segoe UI", 26F, FontStyle.Bold);
-            // lblScope
-            this.lblScope.Name = "lblScope";
-            this.lblScope.Text = "Bản ghi đang hoạt động trong phạm vi được xem.";
-            this.lblScope.AutoSize = true;
-            this.lblScope.Dock = DockStyle.Fill;
-            this.lblScope.Font = new Font("Segoe UI", 10F);
-            this.lblScope.Margin = new Padding(0, 0, 0, 0);
-            // btnBieuDoTongQuan
-            this.btnBieuDoTongQuan.Name = "btnBieuDoTongQuan";
-            this.btnBieuDoTongQuan.Text = "Mở biểu đồ";
-            this.btnBieuDoTongQuan.TabIndex = 0;
-            this.btnBieuDoTongQuan.UseVisualStyleBackColor = true;
-            this.btnBieuDoTongQuan.AutoSize = true;
-            this.btnBieuDoTongQuan.MinimumSize = new Size(100, 34);
-            this.btnBieuDoTongQuan.Enabled = false;
-            this.btnBieuDoTongQuan.Anchor = AnchorStyles.Right;
-            this.btnBieuDoTongQuan.MinimumSize = new Size(112, 42);
-            this.btnBieuDoTongQuan.Margin = new Padding(10, 0, 0, 0);
-            this.btnBieuDoTongQuan.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            this.layoutOverviewHeader.Controls.Add(this.lblTieuDeTongQuan, 0, 0);
-            this.layoutOverviewHeader.Controls.Add(this.lblScope, 0, 1);
-            this.layoutOverviewHeader.Controls.Add(this.btnBieuDoTongQuan, 1, 0);
-            this.layoutOverviewHeader.SetRowSpan(this.btnBieuDoTongQuan, 2);
-            // lblDashboardMessage
-            this.lblDashboardMessage.Name = "lblDashboardMessage";
-            this.lblDashboardMessage.Text = "";
-            this.lblDashboardMessage.AutoSize = true;
-            this.lblDashboardMessage.Dock = DockStyle.Fill;
-            this.lblDashboardMessage.Margin = new Padding(6, 0, 6, 1);
-            this.lblDashboardMessage.AccessibleName = "Trạng thái tải tổng quan";
-            this.lblDashboardMessage.Visible = false;
-            // layoutCounts
-            this.layoutCounts.Name = "layoutCounts";
-            this.layoutCounts.ColumnCount = 2;
-            this.layoutCounts.RowCount = 2;
-            this.layoutCounts.GrowStyle = TableLayoutPanelGrowStyle.FixedSize;
-            this.layoutCounts.Dock = DockStyle.Fill;
-            this.layoutCounts.AutoSize = true;
-            this.layoutCounts.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            this.layoutCounts.Margin = new Padding(0);
-            this.layoutCounts.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            this.layoutCounts.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            this.layoutCounts.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            this.layoutCounts.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            // cardGiangVien
-            this.cardGiangVien.Name = "cardGiangVien";
-            this.cardGiangVien.ColumnCount = 1;
-            this.cardGiangVien.RowCount = 3;
-            this.cardGiangVien.GrowStyle = TableLayoutPanelGrowStyle.FixedSize;
-            this.cardGiangVien.Dock = DockStyle.Fill;
-            this.cardGiangVien.Padding = new Padding(13, 11, 13, 10);
-            this.cardGiangVien.Margin = new Padding(6);
-            this.cardGiangVien.MinimumSize = new Size(0, 125);
-            this.cardGiangVien.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            this.cardGiangVien.RowStyles.Add(new RowStyle(SizeType.AutoSize));
-            this.cardGiangVien.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            this.cardGiangVien.RowStyles.Add(new RowStyle(SizeType.AutoSize));
-            // lblDanhMucGiangVien
-            this.lblDanhMucGiangVien.Name = "lblDanhMucGiangVien";
-            this.lblDanhMucGiangVien.Text = "Giảng viên";
-            this.lblDanhMucGiangVien.Dock = DockStyle.Fill;
-            this.lblDanhMucGiangVien.AutoSize = true;
-            this.lblDanhMucGiangVien.Margin = new Padding(0);
-            this.lblDanhMucGiangVien.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            // lblSoGiangVien
-            this.lblSoGiangVien.Name = "lblSoGiangVien";
-            this.lblSoGiangVien.Text = "—";
-            this.lblSoGiangVien.Dock = DockStyle.Fill;
-            this.lblSoGiangVien.TextAlign = ContentAlignment.MiddleLeft;
-            this.lblSoGiangVien.Margin = new Padding(0);
-            this.lblSoGiangVien.AccessibleName = "Số giảng viên đang hoạt động";
-            this.lblSoGiangVien.Font = new Font("Segoe UI", 27F, FontStyle.Bold);
-            // lblTrangThaiGiangVien
-            this.lblTrangThaiGiangVien.Name = "lblTrangThaiGiangVien";
-            this.lblTrangThaiGiangVien.Text = "Đang tải…";
-            this.lblTrangThaiGiangVien.Dock = DockStyle.Fill;
-            this.lblTrangThaiGiangVien.AutoSize = true;
-            this.lblTrangThaiGiangVien.Margin = new Padding(0);
-            this.cardGiangVien.Controls.Add(this.lblDanhMucGiangVien, 0, 0);
-            this.cardGiangVien.Controls.Add(this.lblSoGiangVien, 0, 1);
-            this.cardGiangVien.Controls.Add(this.lblTrangThaiGiangVien, 0, 2);
-            this.layoutCounts.Controls.Add(this.cardGiangVien, 0, 0);
-            // cardKhoa
-            this.cardKhoa.Name = "cardKhoa";
-            this.cardKhoa.ColumnCount = 1;
-            this.cardKhoa.RowCount = 3;
-            this.cardKhoa.GrowStyle = TableLayoutPanelGrowStyle.FixedSize;
-            this.cardKhoa.Dock = DockStyle.Fill;
-            this.cardKhoa.Padding = new Padding(13, 11, 13, 10);
-            this.cardKhoa.Margin = new Padding(6);
-            this.cardKhoa.MinimumSize = new Size(0, 125);
-            this.cardKhoa.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            this.cardKhoa.RowStyles.Add(new RowStyle(SizeType.AutoSize));
-            this.cardKhoa.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            this.cardKhoa.RowStyles.Add(new RowStyle(SizeType.AutoSize));
-            // lblDanhMucKhoa
-            this.lblDanhMucKhoa.Name = "lblDanhMucKhoa";
-            this.lblDanhMucKhoa.Text = "Khoa";
-            this.lblDanhMucKhoa.Dock = DockStyle.Fill;
-            this.lblDanhMucKhoa.AutoSize = true;
-            this.lblDanhMucKhoa.Margin = new Padding(0);
-            this.lblDanhMucKhoa.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            // lblSoKhoa
-            this.lblSoKhoa.Name = "lblSoKhoa";
-            this.lblSoKhoa.Text = "—";
-            this.lblSoKhoa.Dock = DockStyle.Fill;
-            this.lblSoKhoa.TextAlign = ContentAlignment.MiddleLeft;
-            this.lblSoKhoa.Margin = new Padding(0);
-            this.lblSoKhoa.AccessibleName = "Số khoa đang hoạt động";
-            this.lblSoKhoa.Font = new Font("Segoe UI", 27F, FontStyle.Bold);
-            // lblTrangThaiKhoa
-            this.lblTrangThaiKhoa.Name = "lblTrangThaiKhoa";
-            this.lblTrangThaiKhoa.Text = "Đang tải…";
-            this.lblTrangThaiKhoa.Dock = DockStyle.Fill;
-            this.lblTrangThaiKhoa.AutoSize = true;
-            this.lblTrangThaiKhoa.Margin = new Padding(0);
-            this.cardKhoa.Controls.Add(this.lblDanhMucKhoa, 0, 0);
-            this.cardKhoa.Controls.Add(this.lblSoKhoa, 0, 1);
-            this.cardKhoa.Controls.Add(this.lblTrangThaiKhoa, 0, 2);
-            this.layoutCounts.Controls.Add(this.cardKhoa, 1, 0);
-            // cardHocPhan
-            this.cardHocPhan.Name = "cardHocPhan";
-            this.cardHocPhan.ColumnCount = 1;
-            this.cardHocPhan.RowCount = 3;
-            this.cardHocPhan.GrowStyle = TableLayoutPanelGrowStyle.FixedSize;
-            this.cardHocPhan.Dock = DockStyle.Fill;
-            this.cardHocPhan.Padding = new Padding(13, 11, 13, 10);
-            this.cardHocPhan.Margin = new Padding(6);
-            this.cardHocPhan.MinimumSize = new Size(0, 125);
-            this.cardHocPhan.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            this.cardHocPhan.RowStyles.Add(new RowStyle(SizeType.AutoSize));
-            this.cardHocPhan.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            this.cardHocPhan.RowStyles.Add(new RowStyle(SizeType.AutoSize));
-            // lblDanhMucHocPhan
-            this.lblDanhMucHocPhan.Name = "lblDanhMucHocPhan";
-            this.lblDanhMucHocPhan.Text = "Học phần";
-            this.lblDanhMucHocPhan.Dock = DockStyle.Fill;
-            this.lblDanhMucHocPhan.AutoSize = true;
-            this.lblDanhMucHocPhan.Margin = new Padding(0);
-            this.lblDanhMucHocPhan.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            // lblSoHocPhan
-            this.lblSoHocPhan.Name = "lblSoHocPhan";
-            this.lblSoHocPhan.Text = "—";
-            this.lblSoHocPhan.Dock = DockStyle.Fill;
-            this.lblSoHocPhan.TextAlign = ContentAlignment.MiddleLeft;
-            this.lblSoHocPhan.Margin = new Padding(0);
-            this.lblSoHocPhan.AccessibleName = "Số học phần đang hoạt động";
-            this.lblSoHocPhan.Font = new Font("Segoe UI", 27F, FontStyle.Bold);
-            // lblTrangThaiHocPhan
-            this.lblTrangThaiHocPhan.Name = "lblTrangThaiHocPhan";
-            this.lblTrangThaiHocPhan.Text = "Đang tải…";
-            this.lblTrangThaiHocPhan.Dock = DockStyle.Fill;
-            this.lblTrangThaiHocPhan.AutoSize = true;
-            this.lblTrangThaiHocPhan.Margin = new Padding(0);
-            this.cardHocPhan.Controls.Add(this.lblDanhMucHocPhan, 0, 0);
-            this.cardHocPhan.Controls.Add(this.lblSoHocPhan, 0, 1);
-            this.cardHocPhan.Controls.Add(this.lblTrangThaiHocPhan, 0, 2);
-            this.layoutCounts.Controls.Add(this.cardHocPhan, 0, 1);
-            // cardLop
-            this.cardLop.Name = "cardLop";
-            this.cardLop.ColumnCount = 1;
-            this.cardLop.RowCount = 3;
-            this.cardLop.GrowStyle = TableLayoutPanelGrowStyle.FixedSize;
-            this.cardLop.Dock = DockStyle.Fill;
-            this.cardLop.Padding = new Padding(13, 11, 13, 10);
-            this.cardLop.Margin = new Padding(6);
-            this.cardLop.MinimumSize = new Size(0, 125);
-            this.cardLop.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            this.cardLop.RowStyles.Add(new RowStyle(SizeType.AutoSize));
-            this.cardLop.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            this.cardLop.RowStyles.Add(new RowStyle(SizeType.AutoSize));
-            // lblDanhMucLop
-            this.lblDanhMucLop.Name = "lblDanhMucLop";
-            this.lblDanhMucLop.Text = "Lớp học phần";
-            this.lblDanhMucLop.Dock = DockStyle.Fill;
-            this.lblDanhMucLop.AutoSize = true;
-            this.lblDanhMucLop.Margin = new Padding(0);
-            this.lblDanhMucLop.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            // lblSoLop
-            this.lblSoLop.Name = "lblSoLop";
-            this.lblSoLop.Text = "—";
-            this.lblSoLop.Dock = DockStyle.Fill;
-            this.lblSoLop.TextAlign = ContentAlignment.MiddleLeft;
-            this.lblSoLop.Margin = new Padding(0);
-            this.lblSoLop.AccessibleName = "Số lớp học phần đang hoạt động";
-            this.lblSoLop.Font = new Font("Segoe UI", 27F, FontStyle.Bold);
-            // lblTrangThaiLop
-            this.lblTrangThaiLop.Name = "lblTrangThaiLop";
-            this.lblTrangThaiLop.Text = "Đang tải…";
-            this.lblTrangThaiLop.Dock = DockStyle.Fill;
-            this.lblTrangThaiLop.AutoSize = true;
-            this.lblTrangThaiLop.Margin = new Padding(0);
-            this.cardLop.Controls.Add(this.lblDanhMucLop, 0, 0);
-            this.cardLop.Controls.Add(this.lblSoLop, 0, 1);
-            this.cardLop.Controls.Add(this.lblTrangThaiLop, 0, 2);
-            this.layoutCounts.Controls.Add(this.cardLop, 1, 1);
-            // layoutWorkload
-            this.layoutWorkload.Name = "layoutWorkload";
-            this.layoutWorkload.ColumnCount = 1;
-            this.layoutWorkload.RowCount = 4;
-            this.layoutWorkload.GrowStyle = TableLayoutPanelGrowStyle.FixedSize;
-            this.layoutWorkload.Dock = DockStyle.Fill;
-            this.layoutWorkload.AutoSize = true;
-            this.layoutWorkload.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            this.layoutWorkload.Padding = new Padding(14, 10, 14, 9);
-            this.layoutWorkload.Margin = new Padding(6, 7, 6, 0);
-            this.layoutWorkload.TabIndex = 1;
-            this.layoutWorkload.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            this.layoutWorkload.RowStyles.Add(new RowStyle(SizeType.AutoSize));
-            this.layoutWorkload.RowStyles.Add(new RowStyle(SizeType.AutoSize));
-            this.layoutWorkload.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            this.layoutWorkload.RowStyles.Add(new RowStyle(SizeType.AutoSize));
-            // lblTieuDeKhoiLuong
-            this.lblTieuDeKhoiLuong.Name = "lblTieuDeKhoiLuong";
-            this.lblTieuDeKhoiLuong.Text = "Khối lượng giảng dạy";
-            this.lblTieuDeKhoiLuong.Dock = DockStyle.Fill;
-            this.lblTieuDeKhoiLuong.AutoSize = true;
-            this.lblTieuDeKhoiLuong.Margin = new Padding(0);
-            this.lblTieuDeKhoiLuong.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
-            // layoutSemester
-            this.layoutSemester.Name = "layoutSemester";
-            this.layoutSemester.ColumnCount = 2;
-            this.layoutSemester.RowCount = 1;
-            this.layoutSemester.GrowStyle = TableLayoutPanelGrowStyle.FixedSize;
-            this.layoutSemester.AutoSize = true;
-            this.layoutSemester.Dock = DockStyle.Fill;
-            this.layoutSemester.Margin = new Padding(0, 2, 0, 7);
-            this.layoutSemester.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            this.layoutSemester.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
-            this.layoutSemester.RowStyles.Add(new RowStyle(SizeType.AutoSize));
-            // lblWorkloadYear
-            this.lblWorkloadYear.Name = "lblWorkloadYear";
-            this.lblWorkloadYear.Text = "Năm học";
-            this.lblWorkloadYear.Dock = DockStyle.Fill;
-            this.lblWorkloadYear.AutoSize = true;
-            this.lblWorkloadYear.Font = new Font("Segoe UI", 10F);
-            this.lblWorkloadYear.TextAlign = ContentAlignment.MiddleLeft;
-            this.lblWorkloadYear.Margin = new Padding(0);
-            // cboHocKy
-            this.cboHocKy.Name = "cboHocKy";
-            this.cboHocKy.AccessibleName = "Học kỳ";
-            this.cboHocKy.DisplayMember = "Name";
-            this.cboHocKy.ValueMember = "Id";
-            this.cboHocKy.DropDownStyle = ComboBoxStyle.DropDownList;
-            this.cboHocKy.Width = 132;
-            this.cboHocKy.Enabled = false;
-            this.cboHocKy.TabIndex = 0;
-            this.cboHocKy.Font = new Font("Segoe UI", 10.5F);
-            this.cboHocKy.Anchor = AnchorStyles.Right;
-            this.cboHocKy.Margin = new Padding(5, 2, 0, 2);
-            this.cboHocKy.SelectedValueChanged += new EventHandler(this.cboHocKy_SelectedValueChanged);
-            this.layoutSemester.Controls.Add(this.lblWorkloadYear, 0, 0);
-            this.layoutSemester.Controls.Add(this.cboHocKy, 1, 0);
-            // layoutRates
-            this.layoutRates.Name = "layoutRates";
-            this.layoutRates.ColumnCount = 2;
-            this.layoutRates.RowCount = 1;
-            this.layoutRates.GrowStyle = TableLayoutPanelGrowStyle.FixedSize;
-            this.layoutRates.AutoSize = true;
-            this.layoutRates.Dock = DockStyle.Fill;
-            this.layoutRates.Margin = new Padding(0);
-            this.layoutRates.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            this.layoutRates.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            this.layoutRates.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            // rateDat
-            this.rateDat.Name = "rateDat";
-            this.rateDat.ColumnCount = 1;
-            this.rateDat.RowCount = 3;
-            this.rateDat.GrowStyle = TableLayoutPanelGrowStyle.FixedSize;
-            this.rateDat.AutoSize = true;
-            this.rateDat.Dock = DockStyle.Fill;
-            this.rateDat.Padding = new Padding(9, 6, 9, 6);
-            this.rateDat.Margin = new Padding(0, 0, 4, 0);
-            this.rateDat.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            this.rateDat.RowStyles.Add(new RowStyle(SizeType.AutoSize));
-            this.rateDat.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            this.rateDat.RowStyles.Add(new RowStyle(SizeType.AutoSize));
-            // lblRateTitleDat
-            this.lblRateTitleDat.Name = "lblRateTitleDat";
-            this.lblRateTitleDat.Text = "Đạt định mức";
-            this.lblRateTitleDat.Dock = DockStyle.Fill;
-            this.lblRateTitleDat.AutoSize = true;
-            this.lblRateTitleDat.Margin = new Padding(0);
-            this.lblRateTitleDat.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            // lblSoDat
-            this.lblSoDat.Name = "lblSoDat";
-            this.lblSoDat.Text = "—";
-            this.lblSoDat.Dock = DockStyle.Fill;
-            this.lblSoDat.AutoSize = true;
-            this.lblSoDat.Margin = new Padding(0);
-            this.lblSoDat.AccessibleName = "Tỷ lệ đạt định mức";
-            this.lblSoDat.Font = new Font("Segoe UI", 24F, FontStyle.Bold);
-            this.lblSoDat.TextAlign = ContentAlignment.MiddleLeft;
-            // lblTiLeDat
-            this.lblTiLeDat.Name = "lblTiLeDat";
-            this.lblTiLeDat.Text = " ";
-            this.lblTiLeDat.Dock = DockStyle.Fill;
-            this.lblTiLeDat.AutoSize = true;
-            this.lblTiLeDat.Margin = new Padding(0);
-            this.rateDat.Controls.Add(this.lblRateTitleDat, 0, 0);
-            this.rateDat.Controls.Add(this.lblSoDat, 0, 1);
-            this.rateDat.Controls.Add(this.lblTiLeDat, 0, 2);
-            this.layoutRates.Controls.Add(this.rateDat, 0, 0);
-            // rateVuot
-            this.rateVuot.Name = "rateVuot";
-            this.rateVuot.ColumnCount = 1;
-            this.rateVuot.RowCount = 3;
-            this.rateVuot.GrowStyle = TableLayoutPanelGrowStyle.FixedSize;
-            this.rateVuot.AutoSize = true;
-            this.rateVuot.Dock = DockStyle.Fill;
-            this.rateVuot.Padding = new Padding(9, 6, 9, 6);
-            this.rateVuot.Margin = new Padding(4, 0, 0, 0);
-            this.rateVuot.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            this.rateVuot.RowStyles.Add(new RowStyle(SizeType.AutoSize));
-            this.rateVuot.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            this.rateVuot.RowStyles.Add(new RowStyle(SizeType.AutoSize));
-            // lblRateTitleVuot
-            this.lblRateTitleVuot.Name = "lblRateTitleVuot";
-            this.lblRateTitleVuot.Text = "Vượt định mức";
-            this.lblRateTitleVuot.Dock = DockStyle.Fill;
-            this.lblRateTitleVuot.AutoSize = true;
-            this.lblRateTitleVuot.Margin = new Padding(0);
-            this.lblRateTitleVuot.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            // lblSoVuot
-            this.lblSoVuot.Name = "lblSoVuot";
-            this.lblSoVuot.Text = "—";
-            this.lblSoVuot.Dock = DockStyle.Fill;
-            this.lblSoVuot.AutoSize = true;
-            this.lblSoVuot.Margin = new Padding(0);
-            this.lblSoVuot.AccessibleName = "Tỷ lệ vượt định mức";
-            this.lblSoVuot.Font = new Font("Segoe UI", 24F, FontStyle.Bold);
-            this.lblSoVuot.TextAlign = ContentAlignment.MiddleLeft;
-            // lblTiLeVuot
-            this.lblTiLeVuot.Name = "lblTiLeVuot";
-            this.lblTiLeVuot.Text = " ";
-            this.lblTiLeVuot.Dock = DockStyle.Fill;
-            this.lblTiLeVuot.AutoSize = true;
-            this.lblTiLeVuot.Margin = new Padding(0);
-            this.rateVuot.Controls.Add(this.lblRateTitleVuot, 0, 0);
-            this.rateVuot.Controls.Add(this.lblSoVuot, 0, 1);
-            this.rateVuot.Controls.Add(this.lblTiLeVuot, 0, 2);
-            this.layoutRates.Controls.Add(this.rateVuot, 1, 0);
-            // lblWorkload
-            this.lblWorkload.Name = "lblWorkload";
-            this.lblWorkload.Text = "Đang tải…";
-            this.lblWorkload.AutoSize = true;
-            this.lblWorkload.Dock = DockStyle.Fill;
-            this.lblWorkload.MinimumSize = new Size(0, 17);
-            this.lblWorkload.Margin = new Padding(0, 6, 0, 0);
-            this.lblWorkload.AccessibleName = "Trạng thái tải tỷ lệ";
-            this.layoutWorkload.Controls.Add(this.lblTieuDeKhoiLuong, 0, 0);
-            this.layoutWorkload.Controls.Add(this.layoutSemester, 0, 1);
-            this.layoutWorkload.Controls.Add(this.layoutRates, 0, 2);
-            this.layoutWorkload.Controls.Add(this.lblWorkload, 0, 3);
+            this.layoutDashboard.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.layoutDashboard.Controls.Add(this.layoutOverviewHeader, 0, 0);
             this.layoutDashboard.Controls.Add(this.lblDashboardMessage, 0, 1);
             this.layoutDashboard.Controls.Add(this.layoutCounts, 0, 2);
             this.layoutDashboard.Controls.Add(this.layoutWorkload, 0, 3);
-            this.pnlContent.Controls.Add(this.layoutDashboard);
-
+            this.layoutDashboard.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.layoutDashboard.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize;
+            this.layoutDashboard.Location = new System.Drawing.Point(0, 0);
+            this.layoutDashboard.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.layoutDashboard.MinimumSize = new System.Drawing.Size(534, 951);
+            this.layoutDashboard.Name = "layoutDashboard";
+            this.layoutDashboard.Padding = new System.Windows.Forms.Padding(30, 21, 30, 24);
+            this.layoutDashboard.RowCount = 4;
+            this.layoutDashboard.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.layoutDashboard.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.layoutDashboard.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.layoutDashboard.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.layoutDashboard.Size = new System.Drawing.Size(1458, 951);
+            this.layoutDashboard.TabIndex = 0;
+            // 
+            // layoutOverviewHeader
+            // 
+            this.layoutOverviewHeader.AutoSize = true;
+            this.layoutOverviewHeader.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.layoutOverviewHeader.ColumnCount = 2;
+            this.layoutOverviewHeader.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.layoutOverviewHeader.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.layoutOverviewHeader.Controls.Add(this.lblTieuDeTongQuan, 0, 0);
+            this.layoutOverviewHeader.Controls.Add(this.lblScope, 0, 1);
+            this.layoutOverviewHeader.Controls.Add(this.btnBieuDoTongQuan, 1, 0);
+            this.layoutOverviewHeader.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.layoutOverviewHeader.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize;
+            this.layoutOverviewHeader.Location = new System.Drawing.Point(39, 21);
+            this.layoutOverviewHeader.Margin = new System.Windows.Forms.Padding(9, 0, 9, 12);
+            this.layoutOverviewHeader.Name = "layoutOverviewHeader";
+            this.layoutOverviewHeader.RowCount = 2;
+            this.layoutOverviewHeader.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.layoutOverviewHeader.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.layoutOverviewHeader.Size = new System.Drawing.Size(1380, 102);
+            this.layoutOverviewHeader.TabIndex = 0;
+            // 
+            // lblTieuDeTongQuan
+            // 
+            this.lblTieuDeTongQuan.AutoSize = true;
+            this.lblTieuDeTongQuan.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblTieuDeTongQuan.Font = new System.Drawing.Font("Segoe UI", 26F, System.Drawing.FontStyle.Bold);
+            this.lblTieuDeTongQuan.Location = new System.Drawing.Point(0, 0);
+            this.lblTieuDeTongQuan.Margin = new System.Windows.Forms.Padding(0, 0, 0, 4);
+            this.lblTieuDeTongQuan.Name = "lblTieuDeTongQuan";
+            this.lblTieuDeTongQuan.Size = new System.Drawing.Size(1167, 70);
+            this.lblTieuDeTongQuan.TabIndex = 0;
+            this.lblTieuDeTongQuan.Text = "Tổng quan";
+            // 
+            // lblScope
+            // 
+            this.lblScope.AutoSize = true;
+            this.lblScope.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblScope.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.lblScope.Location = new System.Drawing.Point(0, 74);
+            this.lblScope.Margin = new System.Windows.Forms.Padding(0);
+            this.lblScope.Name = "lblScope";
+            this.lblScope.Size = new System.Drawing.Size(1167, 28);
+            this.lblScope.TabIndex = 1;
+            this.lblScope.Text = "Bản ghi đang hoạt động trong phạm vi được xem.";
+            // 
+            // btnBieuDoTongQuan
+            // 
+            this.btnBieuDoTongQuan.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnBieuDoTongQuan.AutoSize = true;
+            this.btnBieuDoTongQuan.Enabled = false;
+            this.btnBieuDoTongQuan.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.btnBieuDoTongQuan.Location = new System.Drawing.Point(1182, 19);
+            this.btnBieuDoTongQuan.Margin = new System.Windows.Forms.Padding(15, 0, 0, 0);
+            this.btnBieuDoTongQuan.MinimumSize = new System.Drawing.Size(168, 63);
+            this.btnBieuDoTongQuan.Name = "btnBieuDoTongQuan";
+            this.layoutOverviewHeader.SetRowSpan(this.btnBieuDoTongQuan, 2);
+            this.btnBieuDoTongQuan.Size = new System.Drawing.Size(198, 63);
+            this.btnBieuDoTongQuan.TabIndex = 0;
+            this.btnBieuDoTongQuan.Text = "Mở biểu đồ";
+            this.btnBieuDoTongQuan.UseVisualStyleBackColor = true;
+            // 
+            // lblDashboardMessage
+            // 
+            this.lblDashboardMessage.AccessibleName = "Trạng thái tải tổng quan";
+            this.lblDashboardMessage.AutoSize = true;
+            this.lblDashboardMessage.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblDashboardMessage.Location = new System.Drawing.Point(39, 135);
+            this.lblDashboardMessage.Margin = new System.Windows.Forms.Padding(9, 0, 9, 2);
+            this.lblDashboardMessage.Name = "lblDashboardMessage";
+            this.lblDashboardMessage.Size = new System.Drawing.Size(1380, 28);
+            this.lblDashboardMessage.TabIndex = 1;
+            this.lblDashboardMessage.Visible = false;
+            // 
+            // layoutCounts
+            // 
+            this.layoutCounts.AutoSize = true;
+            this.layoutCounts.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.layoutCounts.ColumnCount = 2;
+            this.layoutCounts.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.layoutCounts.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.layoutCounts.Controls.Add(this.cardGiangVien, 0, 0);
+            this.layoutCounts.Controls.Add(this.cardKhoa, 1, 0);
+            this.layoutCounts.Controls.Add(this.cardHocPhan, 0, 1);
+            this.layoutCounts.Controls.Add(this.cardLop, 1, 1);
+            this.layoutCounts.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.layoutCounts.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize;
+            this.layoutCounts.Location = new System.Drawing.Point(30, 165);
+            this.layoutCounts.Margin = new System.Windows.Forms.Padding(0);
+            this.layoutCounts.Name = "layoutCounts";
+            this.layoutCounts.RowCount = 2;
+            this.layoutCounts.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.layoutCounts.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.layoutCounts.Size = new System.Drawing.Size(1398, 412);
+            this.layoutCounts.TabIndex = 2;
+            // 
+            // cardGiangVien
+            // 
+            this.cardGiangVien.ColumnCount = 1;
+            this.cardGiangVien.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.cardGiangVien.Controls.Add(this.lblDanhMucGiangVien, 0, 0);
+            this.cardGiangVien.Controls.Add(this.lblSoGiangVien, 0, 1);
+            this.cardGiangVien.Controls.Add(this.lblTrangThaiGiangVien, 0, 2);
+            this.cardGiangVien.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cardGiangVien.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize;
+            this.cardGiangVien.Location = new System.Drawing.Point(9, 9);
+            this.cardGiangVien.Margin = new System.Windows.Forms.Padding(9, 9, 9, 9);
+            this.cardGiangVien.MinimumSize = new System.Drawing.Size(0, 188);
+            this.cardGiangVien.Name = "cardGiangVien";
+            this.cardGiangVien.Padding = new System.Windows.Forms.Padding(20, 16, 20, 15);
+            this.cardGiangVien.RowCount = 3;
+            this.cardGiangVien.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.cardGiangVien.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.cardGiangVien.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.cardGiangVien.Size = new System.Drawing.Size(681, 188);
+            this.cardGiangVien.TabIndex = 0;
+            // 
+            // lblDanhMucGiangVien
+            // 
+            this.lblDanhMucGiangVien.AutoSize = true;
+            this.lblDanhMucGiangVien.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblDanhMucGiangVien.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
+            this.lblDanhMucGiangVien.Location = new System.Drawing.Point(20, 16);
+            this.lblDanhMucGiangVien.Margin = new System.Windows.Forms.Padding(0);
+            this.lblDanhMucGiangVien.Name = "lblDanhMucGiangVien";
+            this.lblDanhMucGiangVien.Size = new System.Drawing.Size(641, 30);
+            this.lblDanhMucGiangVien.TabIndex = 0;
+            this.lblDanhMucGiangVien.Text = "Giảng viên";
+            // 
+            // lblSoGiangVien
+            // 
+            this.lblSoGiangVien.AccessibleName = "Số giảng viên đang hoạt động";
+            this.lblSoGiangVien.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblSoGiangVien.Font = new System.Drawing.Font("Segoe UI", 27F, System.Drawing.FontStyle.Bold);
+            this.lblSoGiangVien.Location = new System.Drawing.Point(20, 46);
+            this.lblSoGiangVien.Margin = new System.Windows.Forms.Padding(0);
+            this.lblSoGiangVien.Name = "lblSoGiangVien";
+            this.lblSoGiangVien.Size = new System.Drawing.Size(641, 99);
+            this.lblSoGiangVien.TabIndex = 1;
+            this.lblSoGiangVien.Text = "—";
+            this.lblSoGiangVien.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblTrangThaiGiangVien
+            // 
+            this.lblTrangThaiGiangVien.AutoSize = true;
+            this.lblTrangThaiGiangVien.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblTrangThaiGiangVien.Location = new System.Drawing.Point(20, 145);
+            this.lblTrangThaiGiangVien.Margin = new System.Windows.Forms.Padding(0);
+            this.lblTrangThaiGiangVien.Name = "lblTrangThaiGiangVien";
+            this.lblTrangThaiGiangVien.Size = new System.Drawing.Size(641, 28);
+            this.lblTrangThaiGiangVien.TabIndex = 2;
+            this.lblTrangThaiGiangVien.Text = "Đang tải…";
+            // 
+            // cardKhoa
+            // 
+            this.cardKhoa.ColumnCount = 1;
+            this.cardKhoa.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.cardKhoa.Controls.Add(this.lblDanhMucKhoa, 0, 0);
+            this.cardKhoa.Controls.Add(this.lblSoKhoa, 0, 1);
+            this.cardKhoa.Controls.Add(this.lblTrangThaiKhoa, 0, 2);
+            this.cardKhoa.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cardKhoa.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize;
+            this.cardKhoa.Location = new System.Drawing.Point(708, 9);
+            this.cardKhoa.Margin = new System.Windows.Forms.Padding(9, 9, 9, 9);
+            this.cardKhoa.MinimumSize = new System.Drawing.Size(0, 188);
+            this.cardKhoa.Name = "cardKhoa";
+            this.cardKhoa.Padding = new System.Windows.Forms.Padding(20, 16, 20, 15);
+            this.cardKhoa.RowCount = 3;
+            this.cardKhoa.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.cardKhoa.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.cardKhoa.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.cardKhoa.Size = new System.Drawing.Size(681, 188);
+            this.cardKhoa.TabIndex = 1;
+            // 
+            // lblDanhMucKhoa
+            // 
+            this.lblDanhMucKhoa.AutoSize = true;
+            this.lblDanhMucKhoa.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblDanhMucKhoa.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
+            this.lblDanhMucKhoa.Location = new System.Drawing.Point(20, 16);
+            this.lblDanhMucKhoa.Margin = new System.Windows.Forms.Padding(0);
+            this.lblDanhMucKhoa.Name = "lblDanhMucKhoa";
+            this.lblDanhMucKhoa.Size = new System.Drawing.Size(641, 30);
+            this.lblDanhMucKhoa.TabIndex = 0;
+            this.lblDanhMucKhoa.Text = "Khoa";
+            // 
+            // lblSoKhoa
+            // 
+            this.lblSoKhoa.AccessibleName = "Số khoa đang hoạt động";
+            this.lblSoKhoa.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblSoKhoa.Font = new System.Drawing.Font("Segoe UI", 27F, System.Drawing.FontStyle.Bold);
+            this.lblSoKhoa.Location = new System.Drawing.Point(20, 46);
+            this.lblSoKhoa.Margin = new System.Windows.Forms.Padding(0);
+            this.lblSoKhoa.Name = "lblSoKhoa";
+            this.lblSoKhoa.Size = new System.Drawing.Size(641, 99);
+            this.lblSoKhoa.TabIndex = 1;
+            this.lblSoKhoa.Text = "—";
+            this.lblSoKhoa.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblTrangThaiKhoa
+            // 
+            this.lblTrangThaiKhoa.AutoSize = true;
+            this.lblTrangThaiKhoa.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblTrangThaiKhoa.Location = new System.Drawing.Point(20, 145);
+            this.lblTrangThaiKhoa.Margin = new System.Windows.Forms.Padding(0);
+            this.lblTrangThaiKhoa.Name = "lblTrangThaiKhoa";
+            this.lblTrangThaiKhoa.Size = new System.Drawing.Size(641, 28);
+            this.lblTrangThaiKhoa.TabIndex = 2;
+            this.lblTrangThaiKhoa.Text = "Đang tải…";
+            // 
+            // cardHocPhan
+            // 
+            this.cardHocPhan.ColumnCount = 1;
+            this.cardHocPhan.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.cardHocPhan.Controls.Add(this.lblDanhMucHocPhan, 0, 0);
+            this.cardHocPhan.Controls.Add(this.lblSoHocPhan, 0, 1);
+            this.cardHocPhan.Controls.Add(this.lblTrangThaiHocPhan, 0, 2);
+            this.cardHocPhan.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cardHocPhan.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize;
+            this.cardHocPhan.Location = new System.Drawing.Point(9, 215);
+            this.cardHocPhan.Margin = new System.Windows.Forms.Padding(9, 9, 9, 9);
+            this.cardHocPhan.MinimumSize = new System.Drawing.Size(0, 188);
+            this.cardHocPhan.Name = "cardHocPhan";
+            this.cardHocPhan.Padding = new System.Windows.Forms.Padding(20, 16, 20, 15);
+            this.cardHocPhan.RowCount = 3;
+            this.cardHocPhan.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.cardHocPhan.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.cardHocPhan.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.cardHocPhan.Size = new System.Drawing.Size(681, 188);
+            this.cardHocPhan.TabIndex = 2;
+            // 
+            // lblDanhMucHocPhan
+            // 
+            this.lblDanhMucHocPhan.AutoSize = true;
+            this.lblDanhMucHocPhan.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblDanhMucHocPhan.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
+            this.lblDanhMucHocPhan.Location = new System.Drawing.Point(20, 16);
+            this.lblDanhMucHocPhan.Margin = new System.Windows.Forms.Padding(0);
+            this.lblDanhMucHocPhan.Name = "lblDanhMucHocPhan";
+            this.lblDanhMucHocPhan.Size = new System.Drawing.Size(641, 30);
+            this.lblDanhMucHocPhan.TabIndex = 0;
+            this.lblDanhMucHocPhan.Text = "Học phần";
+            // 
+            // lblSoHocPhan
+            // 
+            this.lblSoHocPhan.AccessibleName = "Số học phần đang hoạt động";
+            this.lblSoHocPhan.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblSoHocPhan.Font = new System.Drawing.Font("Segoe UI", 27F, System.Drawing.FontStyle.Bold);
+            this.lblSoHocPhan.Location = new System.Drawing.Point(20, 46);
+            this.lblSoHocPhan.Margin = new System.Windows.Forms.Padding(0);
+            this.lblSoHocPhan.Name = "lblSoHocPhan";
+            this.lblSoHocPhan.Size = new System.Drawing.Size(641, 99);
+            this.lblSoHocPhan.TabIndex = 1;
+            this.lblSoHocPhan.Text = "—";
+            this.lblSoHocPhan.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblTrangThaiHocPhan
+            // 
+            this.lblTrangThaiHocPhan.AutoSize = true;
+            this.lblTrangThaiHocPhan.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblTrangThaiHocPhan.Location = new System.Drawing.Point(20, 145);
+            this.lblTrangThaiHocPhan.Margin = new System.Windows.Forms.Padding(0);
+            this.lblTrangThaiHocPhan.Name = "lblTrangThaiHocPhan";
+            this.lblTrangThaiHocPhan.Size = new System.Drawing.Size(641, 28);
+            this.lblTrangThaiHocPhan.TabIndex = 2;
+            this.lblTrangThaiHocPhan.Text = "Đang tải…";
+            // 
+            // cardLop
+            // 
+            this.cardLop.ColumnCount = 1;
+            this.cardLop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.cardLop.Controls.Add(this.lblDanhMucLop, 0, 0);
+            this.cardLop.Controls.Add(this.lblSoLop, 0, 1);
+            this.cardLop.Controls.Add(this.lblTrangThaiLop, 0, 2);
+            this.cardLop.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cardLop.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize;
+            this.cardLop.Location = new System.Drawing.Point(708, 215);
+            this.cardLop.Margin = new System.Windows.Forms.Padding(9, 9, 9, 9);
+            this.cardLop.MinimumSize = new System.Drawing.Size(0, 188);
+            this.cardLop.Name = "cardLop";
+            this.cardLop.Padding = new System.Windows.Forms.Padding(20, 16, 20, 15);
+            this.cardLop.RowCount = 3;
+            this.cardLop.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.cardLop.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.cardLop.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.cardLop.Size = new System.Drawing.Size(681, 188);
+            this.cardLop.TabIndex = 3;
+            // 
+            // lblDanhMucLop
+            // 
+            this.lblDanhMucLop.AutoSize = true;
+            this.lblDanhMucLop.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblDanhMucLop.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
+            this.lblDanhMucLop.Location = new System.Drawing.Point(20, 16);
+            this.lblDanhMucLop.Margin = new System.Windows.Forms.Padding(0);
+            this.lblDanhMucLop.Name = "lblDanhMucLop";
+            this.lblDanhMucLop.Size = new System.Drawing.Size(641, 30);
+            this.lblDanhMucLop.TabIndex = 0;
+            this.lblDanhMucLop.Text = "Lớp học phần";
+            // 
+            // lblSoLop
+            // 
+            this.lblSoLop.AccessibleName = "Số lớp học phần đang hoạt động";
+            this.lblSoLop.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblSoLop.Font = new System.Drawing.Font("Segoe UI", 27F, System.Drawing.FontStyle.Bold);
+            this.lblSoLop.Location = new System.Drawing.Point(20, 46);
+            this.lblSoLop.Margin = new System.Windows.Forms.Padding(0);
+            this.lblSoLop.Name = "lblSoLop";
+            this.lblSoLop.Size = new System.Drawing.Size(641, 99);
+            this.lblSoLop.TabIndex = 1;
+            this.lblSoLop.Text = "—";
+            this.lblSoLop.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblTrangThaiLop
+            // 
+            this.lblTrangThaiLop.AutoSize = true;
+            this.lblTrangThaiLop.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblTrangThaiLop.Location = new System.Drawing.Point(20, 145);
+            this.lblTrangThaiLop.Margin = new System.Windows.Forms.Padding(0);
+            this.lblTrangThaiLop.Name = "lblTrangThaiLop";
+            this.lblTrangThaiLop.Size = new System.Drawing.Size(641, 28);
+            this.lblTrangThaiLop.TabIndex = 2;
+            this.lblTrangThaiLop.Text = "Đang tải…";
+            // 
+            // layoutWorkload
+            // 
+            this.layoutWorkload.AutoSize = true;
+            this.layoutWorkload.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.layoutWorkload.ColumnCount = 1;
+            this.layoutWorkload.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.layoutWorkload.Controls.Add(this.lblTieuDeKhoiLuong, 0, 0);
+            this.layoutWorkload.Controls.Add(this.layoutSemester, 0, 1);
+            this.layoutWorkload.Controls.Add(this.layoutRates, 0, 2);
+            this.layoutWorkload.Controls.Add(this.lblWorkload, 0, 3);
+            this.layoutWorkload.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.layoutWorkload.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize;
+            this.layoutWorkload.Location = new System.Drawing.Point(39, 587);
+            this.layoutWorkload.Margin = new System.Windows.Forms.Padding(9, 10, 9, 0);
+            this.layoutWorkload.Name = "layoutWorkload";
+            this.layoutWorkload.Padding = new System.Windows.Forms.Padding(21, 15, 21, 14);
+            this.layoutWorkload.RowCount = 4;
+            this.layoutWorkload.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.layoutWorkload.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.layoutWorkload.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.layoutWorkload.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.layoutWorkload.Size = new System.Drawing.Size(1380, 340);
+            this.layoutWorkload.TabIndex = 1;
+            // 
+            // lblTieuDeKhoiLuong
+            // 
+            this.lblTieuDeKhoiLuong.AutoSize = true;
+            this.lblTieuDeKhoiLuong.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblTieuDeKhoiLuong.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold);
+            this.lblTieuDeKhoiLuong.Location = new System.Drawing.Point(21, 15);
+            this.lblTieuDeKhoiLuong.Margin = new System.Windows.Forms.Padding(0);
+            this.lblTieuDeKhoiLuong.Name = "lblTieuDeKhoiLuong";
+            this.lblTieuDeKhoiLuong.Size = new System.Drawing.Size(1338, 45);
+            this.lblTieuDeKhoiLuong.TabIndex = 0;
+            this.lblTieuDeKhoiLuong.Text = "Khối lượng giảng dạy";
+            // 
+            // layoutSemester
+            // 
+            this.layoutSemester.AutoSize = true;
+            this.layoutSemester.ColumnCount = 2;
+            this.layoutSemester.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.layoutSemester.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.layoutSemester.Controls.Add(this.lblWorkloadYear, 0, 0);
+            this.layoutSemester.Controls.Add(this.cboHocKy, 1, 0);
+            this.layoutSemester.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.layoutSemester.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize;
+            this.layoutSemester.Location = new System.Drawing.Point(21, 63);
+            this.layoutSemester.Margin = new System.Windows.Forms.Padding(0, 3, 0, 10);
+            this.layoutSemester.Name = "layoutSemester";
+            this.layoutSemester.RowCount = 1;
+            this.layoutSemester.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.layoutSemester.Size = new System.Drawing.Size(1338, 44);
+            this.layoutSemester.TabIndex = 1;
+            // 
+            // lblWorkloadYear
+            // 
+            this.lblWorkloadYear.AutoSize = true;
+            this.lblWorkloadYear.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblWorkloadYear.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.lblWorkloadYear.Location = new System.Drawing.Point(0, 0);
+            this.lblWorkloadYear.Margin = new System.Windows.Forms.Padding(0);
+            this.lblWorkloadYear.Name = "lblWorkloadYear";
+            this.lblWorkloadYear.Size = new System.Drawing.Size(1134, 44);
+            this.lblWorkloadYear.TabIndex = 0;
+            this.lblWorkloadYear.Text = "Năm học";
+            this.lblWorkloadYear.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // cboHocKy
+            // 
+            this.cboHocKy.AccessibleName = "Học kỳ";
+            this.cboHocKy.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.cboHocKy.DisplayMember = "Name";
+            this.cboHocKy.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboHocKy.Enabled = false;
+            this.cboHocKy.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            this.cboHocKy.Location = new System.Drawing.Point(1142, 3);
+            this.cboHocKy.Margin = new System.Windows.Forms.Padding(8, 3, 0, 3);
+            this.cboHocKy.Name = "cboHocKy";
+            this.cboHocKy.Size = new System.Drawing.Size(196, 38);
+            this.cboHocKy.TabIndex = 0;
+            this.cboHocKy.ValueMember = "Id";
+            this.cboHocKy.SelectedValueChanged += new System.EventHandler(this.cboHocKy_SelectedValueChanged);
+            // 
+            // layoutRates
+            // 
+            this.layoutRates.AutoSize = true;
+            this.layoutRates.ColumnCount = 2;
+            this.layoutRates.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.layoutRates.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.layoutRates.Controls.Add(this.rateDat, 0, 0);
+            this.layoutRates.Controls.Add(this.rateVuot, 1, 0);
+            this.layoutRates.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.layoutRates.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize;
+            this.layoutRates.Location = new System.Drawing.Point(21, 117);
+            this.layoutRates.Margin = new System.Windows.Forms.Padding(0);
+            this.layoutRates.Name = "layoutRates";
+            this.layoutRates.RowCount = 1;
+            this.layoutRates.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.layoutRates.Size = new System.Drawing.Size(1338, 172);
+            this.layoutRates.TabIndex = 2;
+            // 
+            // rateDat
+            // 
+            this.rateDat.AutoSize = true;
+            this.rateDat.ColumnCount = 1;
+            this.rateDat.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.rateDat.Controls.Add(this.lblRateTitleDat, 0, 0);
+            this.rateDat.Controls.Add(this.lblSoDat, 0, 1);
+            this.rateDat.Controls.Add(this.lblTiLeDat, 0, 2);
+            this.rateDat.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rateDat.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize;
+            this.rateDat.Location = new System.Drawing.Point(0, 0);
+            this.rateDat.Margin = new System.Windows.Forms.Padding(0, 0, 6, 0);
+            this.rateDat.Name = "rateDat";
+            this.rateDat.Padding = new System.Windows.Forms.Padding(14, 9, 14, 9);
+            this.rateDat.RowCount = 3;
+            this.rateDat.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.rateDat.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.rateDat.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.rateDat.Size = new System.Drawing.Size(663, 172);
+            this.rateDat.TabIndex = 0;
+            // 
+            // lblRateTitleDat
+            // 
+            this.lblRateTitleDat.AutoSize = true;
+            this.lblRateTitleDat.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblRateTitleDat.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.lblRateTitleDat.Location = new System.Drawing.Point(14, 9);
+            this.lblRateTitleDat.Margin = new System.Windows.Forms.Padding(0);
+            this.lblRateTitleDat.Name = "lblRateTitleDat";
+            this.lblRateTitleDat.Size = new System.Drawing.Size(635, 28);
+            this.lblRateTitleDat.TabIndex = 0;
+            this.lblRateTitleDat.Text = "Đạt định mức";
+            // 
+            // lblSoDat
+            // 
+            this.lblSoDat.AccessibleName = "Tỷ lệ đạt định mức";
+            this.lblSoDat.AutoSize = true;
+            this.lblSoDat.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblSoDat.Font = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Bold);
+            this.lblSoDat.Location = new System.Drawing.Point(14, 37);
+            this.lblSoDat.Margin = new System.Windows.Forms.Padding(0);
+            this.lblSoDat.Name = "lblSoDat";
+            this.lblSoDat.Size = new System.Drawing.Size(635, 98);
+            this.lblSoDat.TabIndex = 1;
+            this.lblSoDat.Text = "—";
+            this.lblSoDat.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblTiLeDat
+            // 
+            this.lblTiLeDat.AutoSize = true;
+            this.lblTiLeDat.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblTiLeDat.Location = new System.Drawing.Point(14, 135);
+            this.lblTiLeDat.Margin = new System.Windows.Forms.Padding(0);
+            this.lblTiLeDat.Name = "lblTiLeDat";
+            this.lblTiLeDat.Size = new System.Drawing.Size(635, 28);
+            this.lblTiLeDat.TabIndex = 2;
+            this.lblTiLeDat.Text = " ";
+            // 
+            // rateVuot
+            // 
+            this.rateVuot.AutoSize = true;
+            this.rateVuot.ColumnCount = 1;
+            this.rateVuot.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.rateVuot.Controls.Add(this.lblRateTitleVuot, 0, 0);
+            this.rateVuot.Controls.Add(this.lblSoVuot, 0, 1);
+            this.rateVuot.Controls.Add(this.lblTiLeVuot, 0, 2);
+            this.rateVuot.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rateVuot.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize;
+            this.rateVuot.Location = new System.Drawing.Point(675, 0);
+            this.rateVuot.Margin = new System.Windows.Forms.Padding(6, 0, 0, 0);
+            this.rateVuot.Name = "rateVuot";
+            this.rateVuot.Padding = new System.Windows.Forms.Padding(14, 9, 14, 9);
+            this.rateVuot.RowCount = 3;
+            this.rateVuot.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.rateVuot.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.rateVuot.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.rateVuot.Size = new System.Drawing.Size(663, 172);
+            this.rateVuot.TabIndex = 1;
+            // 
+            // lblRateTitleVuot
+            // 
+            this.lblRateTitleVuot.AutoSize = true;
+            this.lblRateTitleVuot.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblRateTitleVuot.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.lblRateTitleVuot.Location = new System.Drawing.Point(14, 9);
+            this.lblRateTitleVuot.Margin = new System.Windows.Forms.Padding(0);
+            this.lblRateTitleVuot.Name = "lblRateTitleVuot";
+            this.lblRateTitleVuot.Size = new System.Drawing.Size(635, 28);
+            this.lblRateTitleVuot.TabIndex = 0;
+            this.lblRateTitleVuot.Text = "Vượt định mức";
+            // 
+            // lblSoVuot
+            // 
+            this.lblSoVuot.AccessibleName = "Tỷ lệ vượt định mức";
+            this.lblSoVuot.AutoSize = true;
+            this.lblSoVuot.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblSoVuot.Font = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Bold);
+            this.lblSoVuot.Location = new System.Drawing.Point(14, 37);
+            this.lblSoVuot.Margin = new System.Windows.Forms.Padding(0);
+            this.lblSoVuot.Name = "lblSoVuot";
+            this.lblSoVuot.Size = new System.Drawing.Size(635, 98);
+            this.lblSoVuot.TabIndex = 1;
+            this.lblSoVuot.Text = "—";
+            this.lblSoVuot.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblTiLeVuot
+            // 
+            this.lblTiLeVuot.AutoSize = true;
+            this.lblTiLeVuot.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblTiLeVuot.Location = new System.Drawing.Point(14, 135);
+            this.lblTiLeVuot.Margin = new System.Windows.Forms.Padding(0);
+            this.lblTiLeVuot.Name = "lblTiLeVuot";
+            this.lblTiLeVuot.Size = new System.Drawing.Size(635, 28);
+            this.lblTiLeVuot.TabIndex = 2;
+            this.lblTiLeVuot.Text = " ";
+            // 
+            // lblWorkload
+            // 
+            this.lblWorkload.AccessibleName = "Trạng thái tải tỷ lệ";
+            this.lblWorkload.AutoSize = true;
+            this.lblWorkload.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblWorkload.Location = new System.Drawing.Point(21, 298);
+            this.lblWorkload.Margin = new System.Windows.Forms.Padding(0, 9, 0, 0);
+            this.lblWorkload.MinimumSize = new System.Drawing.Size(0, 26);
+            this.lblWorkload.Name = "lblWorkload";
+            this.lblWorkload.Size = new System.Drawing.Size(1338, 28);
+            this.lblWorkload.TabIndex = 3;
+            this.lblWorkload.Text = "Đang tải…";
+            // 
             // frmMain
-            this.AutoScaleDimensions = new SizeF(96F, 96F);
-            this.AutoScaleMode = AutoScaleMode.Dpi;
-            this.ClientSize = new Size(1190, 705);
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(144F, 144F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.ClientSize = new System.Drawing.Size(1785, 1058);
             this.Controls.Add(this.pnlContent);
             this.Controls.Add(this.pnlSidebar);
             this.Controls.Add(this.pnlHeader);
-            this.Font = new Font("Segoe UI", 10F);
-            this.MinimumSize = new Size(555, 355);
+            this.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.MinimumSize = new System.Drawing.Size(822, 504);
             this.Name = "frmMain";
-            this.StartPosition = FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Quản lý giảng viên";
-            this.Load += new EventHandler(this.frmMain_Load);
-            this.Shown += new EventHandler(this.frmMain_Shown);
-            this.rateVuot.ResumeLayout(false);
-            this.rateVuot.PerformLayout();
-            this.rateDat.ResumeLayout(false);
-            this.rateDat.PerformLayout();
-            this.layoutRates.ResumeLayout(false);
-            this.layoutRates.PerformLayout();
-            this.layoutSemester.ResumeLayout(false);
-            this.layoutSemester.PerformLayout();
-            this.layoutWorkload.ResumeLayout(false);
-            this.layoutWorkload.PerformLayout();
-            this.cardLop.ResumeLayout(false);
-            this.cardLop.PerformLayout();
-            this.cardHocPhan.ResumeLayout(false);
-            this.cardHocPhan.PerformLayout();
-            this.cardKhoa.ResumeLayout(false);
-            this.cardKhoa.PerformLayout();
-            this.cardGiangVien.ResumeLayout(false);
-            this.cardGiangVien.PerformLayout();
-            this.layoutCounts.ResumeLayout(false);
-            this.layoutCounts.PerformLayout();
-            this.layoutOverviewHeader.ResumeLayout(false);
-            this.layoutOverviewHeader.PerformLayout();
-            this.layoutDashboard.ResumeLayout(false);
-            this.layoutDashboard.PerformLayout();
-            this.pnlContent.ResumeLayout(false);
-            this.pnlContent.PerformLayout();
-            this.pnlBaoCao.ResumeLayout(false);
-            this.pnlBaoCao.PerformLayout();
-            this.pnlThongKe.ResumeLayout(false);
-            this.pnlThongKe.PerformLayout();
-            this.pnlDaoTao.ResumeLayout(false);
-            this.pnlDaoTao.PerformLayout();
-            this.pnlDanhMuc.ResumeLayout(false);
-            this.pnlDanhMuc.PerformLayout();
-            this.pnlHeThong.ResumeLayout(false);
-            this.pnlHeThong.PerformLayout();
-            this.layoutSidebar.ResumeLayout(false);
-            this.layoutSidebar.PerformLayout();
-            this.pnlSidebar.ResumeLayout(false);
-            this.pnlSidebar.PerformLayout();
+            this.Load += new System.EventHandler(this.frmMain_Load);
+            this.Shown += new System.EventHandler(this.frmMain_Shown);
+            this.pnlHeader.ResumeLayout(false);
             this.layoutHeader.ResumeLayout(false);
             this.layoutHeader.PerformLayout();
-            this.pnlHeader.ResumeLayout(false);
-            this.pnlHeader.PerformLayout();
+            this.pnlSidebar.ResumeLayout(false);
+            this.pnlSidebar.PerformLayout();
+            this.layoutSidebar.ResumeLayout(false);
+            this.layoutSidebar.PerformLayout();
+            this.pnlHeThong.ResumeLayout(false);
+            this.pnlDanhMuc.ResumeLayout(false);
+            this.pnlDaoTao.ResumeLayout(false);
+            this.pnlThongKe.ResumeLayout(false);
+            this.pnlBaoCao.ResumeLayout(false);
+            this.pnlContent.ResumeLayout(false);
+            this.layoutDashboard.ResumeLayout(false);
+            this.layoutDashboard.PerformLayout();
+            this.layoutOverviewHeader.ResumeLayout(false);
+            this.layoutOverviewHeader.PerformLayout();
+            this.layoutCounts.ResumeLayout(false);
+            this.cardGiangVien.ResumeLayout(false);
+            this.cardGiangVien.PerformLayout();
+            this.cardKhoa.ResumeLayout(false);
+            this.cardKhoa.PerformLayout();
+            this.cardHocPhan.ResumeLayout(false);
+            this.cardHocPhan.PerformLayout();
+            this.cardLop.ResumeLayout(false);
+            this.cardLop.PerformLayout();
+            this.layoutWorkload.ResumeLayout(false);
+            this.layoutWorkload.PerformLayout();
+            this.layoutSemester.ResumeLayout(false);
+            this.layoutSemester.PerformLayout();
+            this.layoutRates.ResumeLayout(false);
+            this.layoutRates.PerformLayout();
+            this.rateDat.ResumeLayout(false);
+            this.rateDat.PerformLayout();
+            this.rateVuot.ResumeLayout(false);
+            this.rateVuot.PerformLayout();
             this.ResumeLayout(false);
+
         }
 
         #endregion

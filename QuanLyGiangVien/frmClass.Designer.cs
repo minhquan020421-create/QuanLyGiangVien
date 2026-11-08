@@ -94,7 +94,7 @@ namespace QuanLyGiangVien
             this.btnQuayLai.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(38)))), ((int)(((byte)(38)))));
             this.btnQuayLai.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnQuayLai.ForeColor = System.Drawing.Color.White;
-            this.btnQuayLai.Location = new System.Drawing.Point(1350, 10);
+            this.btnQuayLai.Location = new System.Drawing.Point(1251, 10);
             this.btnQuayLai.Margin = new System.Windows.Forms.Padding(4);
             this.btnQuayLai.MinimumSize = new System.Drawing.Size(168, 48);
             this.btnQuayLai.Name = "btnQuayLai";
@@ -110,7 +110,7 @@ namespace QuanLyGiangVien
             this.lblKetQua.Location = new System.Drawing.Point(9, 270);
             this.lblKetQua.Margin = new System.Windows.Forms.Padding(6, 3, 6, 6);
             this.lblKetQua.Name = "lblKetQua";
-            this.lblKetQua.Size = new System.Drawing.Size(1510, 20);
+            this.lblKetQua.Size = new System.Drawing.Size(1411, 20);
             this.lblKetQua.TabIndex = 3;
             this.lblKetQua.Text = "Chưa tải dữ liệu";
             // 
@@ -118,7 +118,7 @@ namespace QuanLyGiangVien
             // 
             this.btnTimKiem.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnTimKiem.AutoSize = true;
-            this.btnTimKiem.Location = new System.Drawing.Point(1328, 5);
+            this.btnTimKiem.Location = new System.Drawing.Point(1229, 5);
             this.btnTimKiem.Margin = new System.Windows.Forms.Padding(6, 3, 6, 9);
             this.btnTimKiem.MinimumSize = new System.Drawing.Size(188, 48);
             this.btnTimKiem.Name = "btnTimKiem";
@@ -133,7 +133,7 @@ namespace QuanLyGiangVien
             this.lblTimKiem.Location = new System.Drawing.Point(0, 0);
             this.lblTimKiem.Margin = new System.Windows.Forms.Padding(0, 0, 0, 4);
             this.lblTimKiem.Name = "lblTimKiem";
-            this.lblTimKiem.Size = new System.Drawing.Size(1310, 20);
+            this.lblTimKiem.Size = new System.Drawing.Size(1211, 20);
             this.lblTimKiem.TabIndex = 14;
             this.lblTimKiem.Text = "Tìm theo mã lớp, tên lớp hoặc học phần";
             // 
@@ -144,7 +144,7 @@ namespace QuanLyGiangVien
             this.txtTimKiem.Margin = new System.Windows.Forms.Padding(0, 0, 0, 3);
             this.txtTimKiem.MaxLength = 150;
             this.txtTimKiem.Name = "txtTimKiem";
-            this.txtTimKiem.Size = new System.Drawing.Size(1310, 26);
+            this.txtTimKiem.Size = new System.Drawing.Size(1211, 26);
             this.txtTimKiem.TabIndex = 15;
             // 
             // layoutTuKhoa
@@ -162,7 +162,7 @@ namespace QuanLyGiangVien
             this.layoutTuKhoa.RowCount = 2;
             this.layoutTuKhoa.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.layoutTuKhoa.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.layoutTuKhoa.Size = new System.Drawing.Size(1310, 53);
+            this.layoutTuKhoa.Size = new System.Drawing.Size(1211, 53);
             this.layoutTuKhoa.TabIndex = 0;
             // 
             // layoutTim
@@ -180,7 +180,7 @@ namespace QuanLyGiangVien
             this.layoutTim.Name = "layoutTim";
             this.layoutTim.RowCount = 1;
             this.layoutTim.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.layoutTim.Size = new System.Drawing.Size(1522, 62);
+            this.layoutTim.Size = new System.Drawing.Size(1423, 62);
             this.layoutTim.TabIndex = 2;
             // 
             // btnThem
@@ -239,7 +239,7 @@ namespace QuanLyGiangVien
             this.pnlNut.Location = new System.Drawing.Point(9, 148);
             this.pnlNut.Margin = new System.Windows.Forms.Padding(6, 3, 6, 6);
             this.pnlNut.Name = "pnlNut";
-            this.pnlNut.Size = new System.Drawing.Size(1510, 51);
+            this.pnlNut.Size = new System.Drawing.Size(1411, 51);
             this.pnlNut.TabIndex = 1;
             // 
             // lblTrangThai
@@ -249,7 +249,7 @@ namespace QuanLyGiangVien
             this.lblTrangThai.Location = new System.Drawing.Point(0, 0);
             this.lblTrangThai.Margin = new System.Windows.Forms.Padding(0, 0, 0, 4);
             this.lblTrangThai.Name = "lblTrangThai";
-            this.lblTrangThai.Size = new System.Drawing.Size(323, 20);
+            this.lblTrangThai.Size = new System.Drawing.Size(293, 20);
             this.lblTrangThai.TabIndex = 8;
             this.lblTrangThai.Text = "Trạng thái lớp";
             // 
@@ -263,7 +263,7 @@ namespace QuanLyGiangVien
             this.chkTrangThai.Margin = new System.Windows.Forms.Padding(0, 0, 0, 3);
             this.chkTrangThai.MinimumSize = new System.Drawing.Size(0, 38);
             this.chkTrangThai.Name = "chkTrangThai";
-            this.chkTrangThai.Size = new System.Drawing.Size(323, 38);
+            this.chkTrangThai.Size = new System.Drawing.Size(293, 38);
             this.chkTrangThai.TabIndex = 9;
             this.chkTrangThai.Text = "Đang mở lớp";
             // 
@@ -274,7 +274,7 @@ namespace QuanLyGiangVien
             this.lblSoDienThoai.Location = new System.Drawing.Point(0, 0);
             this.lblSoDienThoai.Margin = new System.Windows.Forms.Padding(0, 0, 0, 4);
             this.lblSoDienThoai.Name = "lblSoDienThoai";
-            this.lblSoDienThoai.Size = new System.Drawing.Size(368, 20);
+            this.lblSoDienThoai.Size = new System.Drawing.Size(334, 20);
             this.lblSoDienThoai.TabIndex = 6;
             this.lblSoDienThoai.Text = "\tNăm học";
             // 
@@ -287,13 +287,13 @@ namespace QuanLyGiangVien
             this.layoutchkTrangThai.Controls.Add(this.lblTrangThai, 0, 0);
             this.layoutchkTrangThai.Controls.Add(this.chkTrangThai, 0, 1);
             this.layoutchkTrangThai.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.layoutchkTrangThai.Location = new System.Drawing.Point(386, 67);
+            this.layoutchkTrangThai.Location = new System.Drawing.Point(352, 67);
             this.layoutchkTrangThai.Margin = new System.Windows.Forms.Padding(6, 3, 6, 6);
             this.layoutchkTrangThai.Name = "layoutchkTrangThai";
             this.layoutchkTrangThai.RowCount = 2;
             this.layoutchkTrangThai.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.layoutchkTrangThai.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.layoutchkTrangThai.Size = new System.Drawing.Size(323, 69);
+            this.layoutchkTrangThai.Size = new System.Drawing.Size(293, 69);
             this.layoutchkTrangThai.TabIndex = 4;
             // 
             // cboNamHoc
@@ -303,7 +303,7 @@ namespace QuanLyGiangVien
             this.cboNamHoc.Location = new System.Drawing.Point(0, 31);
             this.cboNamHoc.Margin = new System.Windows.Forms.Padding(0, 0, 0, 3);
             this.cboNamHoc.Name = "cboNamHoc";
-            this.cboNamHoc.Size = new System.Drawing.Size(368, 28);
+            this.cboNamHoc.Size = new System.Drawing.Size(334, 28);
             this.cboNamHoc.TabIndex = 7;
             // 
             // layouttxtSoDienThoai
@@ -321,7 +321,7 @@ namespace QuanLyGiangVien
             this.layouttxtSoDienThoai.RowCount = 2;
             this.layouttxtSoDienThoai.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.layouttxtSoDienThoai.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.layouttxtSoDienThoai.Size = new System.Drawing.Size(368, 69);
+            this.layouttxtSoDienThoai.Size = new System.Drawing.Size(334, 69);
             this.layouttxtSoDienThoai.TabIndex = 3;
             // 
             // lblEmail
@@ -331,7 +331,7 @@ namespace QuanLyGiangVien
             this.lblEmail.Location = new System.Drawing.Point(0, 0);
             this.lblEmail.Margin = new System.Windows.Forms.Padding(0, 0, 0, 4);
             this.lblEmail.Name = "lblEmail";
-            this.lblEmail.Size = new System.Drawing.Size(413, 20);
+            this.lblEmail.Size = new System.Drawing.Size(375, 20);
             this.lblEmail.TabIndex = 4;
             this.lblEmail.Text = "Học phần";
             // 
@@ -342,7 +342,7 @@ namespace QuanLyGiangVien
             this.cboHocPhan.Location = new System.Drawing.Point(0, 24);
             this.cboHocPhan.Margin = new System.Windows.Forms.Padding(0, 0, 0, 3);
             this.cboHocPhan.Name = "cboHocPhan";
-            this.cboHocPhan.Size = new System.Drawing.Size(413, 28);
+            this.cboHocPhan.Size = new System.Drawing.Size(375, 28);
             this.cboHocPhan.TabIndex = 5;
             // 
             // layouttxtEmail
@@ -354,14 +354,14 @@ namespace QuanLyGiangVien
             this.layouttxtEmail.Controls.Add(this.lblEmail, 0, 0);
             this.layouttxtEmail.Controls.Add(this.cboHocPhan, 0, 1);
             this.layouttxtEmail.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.layouttxtEmail.Location = new System.Drawing.Point(721, 3);
+            this.layouttxtEmail.Location = new System.Drawing.Point(657, 3);
             this.layouttxtEmail.Margin = new System.Windows.Forms.Padding(6, 3, 6, 6);
             this.layouttxtEmail.Name = "layouttxtEmail";
             this.layouttxtEmail.RowCount = 2;
             this.layouttxtEmail.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.layouttxtEmail.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.layouttxtEmail.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.layouttxtEmail.Size = new System.Drawing.Size(413, 55);
+            this.layouttxtEmail.Size = new System.Drawing.Size(375, 55);
             this.layouttxtEmail.TabIndex = 2;
             // 
             // lblTenKhoa
@@ -371,7 +371,7 @@ namespace QuanLyGiangVien
             this.lblTenKhoa.Location = new System.Drawing.Point(0, 0);
             this.lblTenKhoa.Margin = new System.Windows.Forms.Padding(0, 0, 0, 4);
             this.lblTenKhoa.Name = "lblTenKhoa";
-            this.lblTenKhoa.Size = new System.Drawing.Size(323, 20);
+            this.lblTenKhoa.Size = new System.Drawing.Size(293, 20);
             this.lblTenKhoa.TabIndex = 2;
             this.lblTenKhoa.Text = "Tên lớp";
             // 
@@ -382,7 +382,7 @@ namespace QuanLyGiangVien
             this.txtTenLop.Margin = new System.Windows.Forms.Padding(0, 0, 0, 3);
             this.txtTenLop.MaxLength = 100;
             this.txtTenLop.Name = "txtTenLop";
-            this.txtTenLop.Size = new System.Drawing.Size(323, 26);
+            this.txtTenLop.Size = new System.Drawing.Size(293, 26);
             this.txtTenLop.TabIndex = 3;
             // 
             // layouttxtTenKhoa
@@ -394,13 +394,13 @@ namespace QuanLyGiangVien
             this.layouttxtTenKhoa.Controls.Add(this.lblTenKhoa, 0, 0);
             this.layouttxtTenKhoa.Controls.Add(this.txtTenLop, 0, 1);
             this.layouttxtTenKhoa.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.layouttxtTenKhoa.Location = new System.Drawing.Point(386, 3);
+            this.layouttxtTenKhoa.Location = new System.Drawing.Point(352, 3);
             this.layouttxtTenKhoa.Margin = new System.Windows.Forms.Padding(6, 3, 6, 6);
             this.layouttxtTenKhoa.Name = "layouttxtTenKhoa";
             this.layouttxtTenKhoa.RowCount = 2;
             this.layouttxtTenKhoa.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.layouttxtTenKhoa.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.layouttxtTenKhoa.Size = new System.Drawing.Size(323, 55);
+            this.layouttxtTenKhoa.Size = new System.Drawing.Size(293, 55);
             this.layouttxtTenKhoa.TabIndex = 1;
             // 
             // lblMaKhoa
@@ -410,7 +410,7 @@ namespace QuanLyGiangVien
             this.lblMaKhoa.Location = new System.Drawing.Point(0, 0);
             this.lblMaKhoa.Margin = new System.Windows.Forms.Padding(0, 0, 0, 4);
             this.lblMaKhoa.Name = "lblMaKhoa";
-            this.lblMaKhoa.Size = new System.Drawing.Size(368, 20);
+            this.lblMaKhoa.Size = new System.Drawing.Size(334, 20);
             this.lblMaKhoa.TabIndex = 0;
             this.lblMaKhoa.Text = "Mã lớp học phần (tự tăng)";
             // 
@@ -422,7 +422,7 @@ namespace QuanLyGiangVien
             this.txtMaLopHP.MaxLength = 20;
             this.txtMaLopHP.Name = "txtMaLopHP";
             this.txtMaLopHP.ReadOnly = true;
-            this.txtMaLopHP.Size = new System.Drawing.Size(368, 26);
+            this.txtMaLopHP.Size = new System.Drawing.Size(334, 26);
             this.txtMaLopHP.TabIndex = 1;
             this.txtMaLopHP.TabStop = false;
             // 
@@ -441,7 +441,7 @@ namespace QuanLyGiangVien
             this.layouttxtMaKhoa.RowCount = 2;
             this.layouttxtMaKhoa.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.layouttxtMaKhoa.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.layouttxtMaKhoa.Size = new System.Drawing.Size(368, 55);
+            this.layouttxtMaKhoa.Size = new System.Drawing.Size(334, 55);
             this.layouttxtMaKhoa.TabIndex = 0;
             // 
             // layoutNhap
@@ -452,7 +452,7 @@ namespace QuanLyGiangVien
             this.layoutNhap.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.layoutNhap.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29.38099F));
             this.layoutNhap.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 37.31474F));
-            this.layoutNhap.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 381F));
+            this.layoutNhap.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 384F));
             this.layoutNhap.Controls.Add(this.layouttxtMaKhoa, 0, 0);
             this.layoutNhap.Controls.Add(this.layouttxtTenKhoa, 1, 0);
             this.layoutNhap.Controls.Add(this.layouttxtEmail, 2, 0);
@@ -468,7 +468,7 @@ namespace QuanLyGiangVien
             this.layoutNhap.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.layoutNhap.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.layoutNhap.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.layoutNhap.Size = new System.Drawing.Size(1522, 142);
+            this.layoutNhap.Size = new System.Drawing.Size(1423, 142);
             this.layoutNhap.TabIndex = 0;
             this.layoutNhap.Paint += new System.Windows.Forms.PaintEventHandler(this.layoutNhap_Paint);
             // 
@@ -476,7 +476,7 @@ namespace QuanLyGiangVien
             // 
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.numSoLuongSinhVien);
-            this.panel1.Location = new System.Drawing.Point(1143, 3);
+            this.panel1.Location = new System.Drawing.Point(1041, 3);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(369, 53);
             this.panel1.TabIndex = 5;
@@ -510,9 +510,9 @@ namespace QuanLyGiangVien
             // 
             this.panel2.Controls.Add(this.cboHocKy);
             this.panel2.Controls.Add(this.label1);
-            this.panel2.Location = new System.Drawing.Point(718, 67);
+            this.panel2.Location = new System.Drawing.Point(654, 67);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(419, 72);
+            this.panel2.Size = new System.Drawing.Size(381, 72);
             this.panel2.TabIndex = 6;
             // 
             // cboHocKy
@@ -522,7 +522,7 @@ namespace QuanLyGiangVien
             this.cboHocKy.Location = new System.Drawing.Point(6, 32);
             this.cboHocKy.Margin = new System.Windows.Forms.Padding(0, 0, 0, 3);
             this.cboHocKy.Name = "cboHocKy";
-            this.cboHocKy.Size = new System.Drawing.Size(413, 28);
+            this.cboHocKy.Size = new System.Drawing.Size(375, 28);
             this.cboHocKy.TabIndex = 6;
             // 
             // label1
@@ -558,17 +558,19 @@ namespace QuanLyGiangVien
             this.layoutChinh.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.layoutChinh.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.layoutChinh.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.layoutChinh.Size = new System.Drawing.Size(1528, 842);
+            this.layoutChinh.Size = new System.Drawing.Size(1429, 888);
             this.layoutChinh.TabIndex = 0;
             // 
             // dgvDanhSach
             // 
             this.dgvDanhSach.AllowUserToAddRows = false;
             this.dgvDanhSach.AllowUserToDeleteRows = false;
-            this.dgvDanhSach.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.dgvDanhSach.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvDanhSach.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvDanhSach.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCellsExceptHeaders;
             this.dgvDanhSach.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvDanhSach.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvDanhSach.Location = new System.Drawing.Point(9, 302);
             this.dgvDanhSach.Margin = new System.Windows.Forms.Padding(6);
             this.dgvDanhSach.MinimumSize = new System.Drawing.Size(0, 270);
@@ -579,19 +581,21 @@ namespace QuanLyGiangVien
             this.dgvDanhSach.RowHeadersWidth = 62;
             this.dgvDanhSach.RowTemplate.Height = 26;
             this.dgvDanhSach.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvDanhSach.Size = new System.Drawing.Size(1510, 531);
+            this.dgvDanhSach.Size = new System.Drawing.Size(1411, 577);
             this.dgvDanhSach.TabIndex = 4;
             // 
             // pnlCuon
             // 
+            this.pnlCuon.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlCuon.AutoScroll = true;
             this.pnlCuon.Controls.Add(this.layoutChinh);
-            this.pnlCuon.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlCuon.Location = new System.Drawing.Point(0, 0);
             this.pnlCuon.Margin = new System.Windows.Forms.Padding(4);
             this.pnlCuon.Name = "pnlCuon";
             this.pnlCuon.Padding = new System.Windows.Forms.Padding(9);
-            this.pnlCuon.Size = new System.Drawing.Size(1546, 860);
+            this.pnlCuon.Size = new System.Drawing.Size(1447, 906);
             this.pnlCuon.TabIndex = 2;
             // 
             // pnlCuoi
@@ -601,11 +605,11 @@ namespace QuanLyGiangVien
             this.pnlCuoi.Controls.Add(this.btnQuayLai);
             this.pnlCuoi.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.pnlCuoi.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.pnlCuoi.Location = new System.Drawing.Point(0, 860);
+            this.pnlCuoi.Location = new System.Drawing.Point(0, 906);
             this.pnlCuoi.Margin = new System.Windows.Forms.Padding(4);
             this.pnlCuoi.Name = "pnlCuoi";
             this.pnlCuoi.Padding = new System.Windows.Forms.Padding(12, 6, 12, 6);
-            this.pnlCuoi.Size = new System.Drawing.Size(1546, 68);
+            this.pnlCuoi.Size = new System.Drawing.Size(1447, 68);
             this.pnlCuoi.TabIndex = 3;
             this.pnlCuoi.WrapContents = false;
             // 
@@ -613,7 +617,7 @@ namespace QuanLyGiangVien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1546, 928);
+            this.ClientSize = new System.Drawing.Size(1447, 974);
             this.Controls.Add(this.pnlCuon);
             this.Controls.Add(this.pnlCuoi);
             this.Name = "frmClass";

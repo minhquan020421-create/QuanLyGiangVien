@@ -65,9 +65,9 @@
             this.pnlCuon.Controls.Add(this.layoutChinh);
             this.pnlCuon.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlCuon.Location = new System.Drawing.Point(0, 0);
-            this.pnlCuon.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnlCuon.Margin = new System.Windows.Forms.Padding(4);
             this.pnlCuon.Name = "pnlCuon";
-            this.pnlCuon.Padding = new System.Windows.Forms.Padding(9, 9, 9, 9);
+            this.pnlCuon.Padding = new System.Windows.Forms.Padding(9);
             this.pnlCuon.Size = new System.Drawing.Size(1200, 622);
             this.pnlCuon.TabIndex = 0;
             // 
@@ -85,7 +85,7 @@
             this.layoutChinh.Margin = new System.Windows.Forms.Padding(0);
             this.layoutChinh.MinimumSize = new System.Drawing.Size(0, 630);
             this.layoutChinh.Name = "layoutChinh";
-            this.layoutChinh.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.layoutChinh.Padding = new System.Windows.Forms.Padding(3);
             this.layoutChinh.RowCount = 5;
             this.layoutChinh.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.layoutChinh.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -426,12 +426,14 @@
             // 
             this.dgvDanhSach.AllowUserToAddRows = false;
             this.dgvDanhSach.AllowUserToDeleteRows = false;
-            this.dgvDanhSach.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.dgvDanhSach.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvDanhSach.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvDanhSach.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCellsExceptHeaders;
             this.dgvDanhSach.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvDanhSach.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvDanhSach.Location = new System.Drawing.Point(9, 330);
-            this.dgvDanhSach.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.dgvDanhSach.Margin = new System.Windows.Forms.Padding(6);
             this.dgvDanhSach.MinimumSize = new System.Drawing.Size(0, 270);
             this.dgvDanhSach.MultiSelect = false;
             this.dgvDanhSach.Name = "dgvDanhSach";
@@ -442,6 +444,7 @@
             this.dgvDanhSach.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvDanhSach.Size = new System.Drawing.Size(1164, 291);
             this.dgvDanhSach.TabIndex = 4;
+            this.dgvDanhSach.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDanhSach_CellContentClick);
             this.dgvDanhSach.SelectionChanged += new System.EventHandler(this.dgvDanhSach_SelectionChanged);
             // 
             // pnlCuoi
@@ -452,7 +455,7 @@
             this.pnlCuoi.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.pnlCuoi.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
             this.pnlCuoi.Location = new System.Drawing.Point(0, 622);
-            this.pnlCuoi.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnlCuoi.Margin = new System.Windows.Forms.Padding(4);
             this.pnlCuoi.Name = "pnlCuoi";
             this.pnlCuoi.Padding = new System.Windows.Forms.Padding(12, 6, 12, 6);
             this.pnlCuoi.Size = new System.Drawing.Size(1200, 68);
@@ -470,7 +473,7 @@
             this.btnQuayLai.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnQuayLai.ForeColor = System.Drawing.Color.White;
             this.btnQuayLai.Location = new System.Drawing.Point(1004, 10);
-            this.btnQuayLai.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnQuayLai.Margin = new System.Windows.Forms.Padding(4);
             this.btnQuayLai.MinimumSize = new System.Drawing.Size(168, 48);
             this.btnQuayLai.Name = "btnQuayLai";
             this.btnQuayLai.Size = new System.Drawing.Size(168, 48);
@@ -488,7 +491,7 @@
             this.Controls.Add(this.pnlCuon);
             this.Controls.Add(this.pnlCuoi);
             this.Font = new System.Drawing.Font("Segoe UI", 9.5F);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MinimumSize = new System.Drawing.Size(709, 452);
             this.Name = "frmDepartment";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;

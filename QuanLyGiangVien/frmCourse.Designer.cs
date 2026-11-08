@@ -388,7 +388,7 @@
             // 
             this.cboMaBoMon.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.cboMaBoMon.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboMaBoMon.Location = new System.Drawing.Point(0, 29);
+            this.cboMaBoMon.Location = new System.Drawing.Point(0, 31);
             this.cboMaBoMon.Margin = new System.Windows.Forms.Padding(0, 0, 0, 3);
             this.cboMaBoMon.Name = "cboMaBoMon";
             this.cboMaBoMon.Size = new System.Drawing.Size(382, 33);
@@ -585,9 +585,11 @@
             // 
             this.dgvDanhSach.AllowUserToAddRows = false;
             this.dgvDanhSach.AllowUserToDeleteRows = false;
+            this.dgvDanhSach.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvDanhSach.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvDanhSach.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvDanhSach.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvDanhSach.Location = new System.Drawing.Point(9, 404);
             this.dgvDanhSach.Margin = new System.Windows.Forms.Padding(6);
             this.dgvDanhSach.MinimumSize = new System.Drawing.Size(0, 210);
