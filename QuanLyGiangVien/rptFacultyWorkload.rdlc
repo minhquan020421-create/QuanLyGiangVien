@@ -219,7 +219,9 @@
                               <Style />
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Left</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox10</rd:DefaultName>
@@ -249,7 +251,9 @@
                               <Style />
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Left</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox8</rd:DefaultName>
@@ -279,7 +283,9 @@
                               <Style />
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Left</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox3</rd:DefaultName>
@@ -294,6 +300,7 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -309,7 +316,9 @@
                               <Style />
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Left</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox5</rd:DefaultName>
@@ -339,7 +348,9 @@
                               <Style />
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Left</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox7</rd:DefaultName>
@@ -381,7 +392,7 @@
         </TablixRowHierarchy>
         <DataSetName>DataSet1</DataSetName>
         <Top>0.61389in</Top>
-        <Height>0.75695in</Height>
+        <Height>0.75694in</Height>
         <Width>9.1in</Width>
         <ZIndex>1</ZIndex>
         <Style>
@@ -396,10 +407,12 @@
   </Body>
   <Width>9.1in</Width>
   <Page>
-    <LeftMargin>1in</LeftMargin>
-    <RightMargin>1in</RightMargin>
-    <TopMargin>1in</TopMargin>
-    <BottomMargin>1in</BottomMargin>
+    <PageHeight>8.27in</PageHeight>
+    <PageWidth>11.69in</PageWidth>
+    <LeftMargin>0.25in</LeftMargin>
+    <RightMargin>0.5in</RightMargin>
+    <TopMargin>0.25in</TopMargin>
+    <BottomMargin>0.5in</BottomMargin>
     <Style />
   </Page>
   <AutoRefresh>0</AutoRefresh>
@@ -414,17 +427,32 @@
   </DataSources>
   <DataSets>
     <DataSet Name="DataSet1">
-      <Fields>
-        <Field Name="STT"><DataField>STT</DataField><rd:TypeName>System.Int32</rd:TypeName></Field>
-        <Field Name="TenKhoa"><DataField>TenKhoa</DataField><rd:TypeName>System.String</rd:TypeName></Field>
-        <Field Name="SoLop"><DataField>SoLop</DataField><rd:TypeName>System.Int32</rd:TypeName></Field>
-        <Field Name="TongSoTiet"><DataField>TongSoTiet</DataField><rd:TypeName>System.Int32</rd:TypeName></Field>
-        <Field Name="TrungBinhTiet"><DataField>TrungBinhTiet</DataField><rd:TypeName>System.Decimal</rd:TypeName></Field>
-      </Fields>
       <Query>
         <DataSourceName>FacultyWorkloadData</DataSourceName>
         <CommandText>/* Local DataSet */</CommandText>
       </Query>
+      <Fields>
+        <Field Name="STT">
+          <DataField>STT</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="TenKhoa">
+          <DataField>TenKhoa</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SoLop">
+          <DataField>SoLop</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="TongSoTiet">
+          <DataField>TongSoTiet</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="TrungBinhTiet">
+          <DataField>TrungBinhTiet</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+      </Fields>
     </DataSet>
   </DataSets>
   <rd:ReportUnitType>Inch</rd:ReportUnitType>

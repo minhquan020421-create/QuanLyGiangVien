@@ -92,7 +92,13 @@ namespace QuanLyGiangVien
             if (loading) return;
             selected = null;
             if (dgvDanhSach.SelectedRows.Count == 0) return;
-            int id = Convert.ToInt32(dgvDanhSach.SelectedRows[0].Cells["colMaChuyenMon"].Value);
+            // DataGridView auto-generates columns from the anonymous projection, whose
+            // runtime column name is MaChuyenMon (the Designer columns are not attached).
+            var row = dgvDanhSach.SelectedRows[0].DataBoundItem;
+            if (row == null) return;
+            int id;
+            if (!int.TryParse(Convert.ToString(row.GetType().GetProperty("MaChuyenMon")?.GetValue(row, null)), out id))
+                return;
             selected = rows.FirstOrDefault(x => x.MaChuyenMon == id);
             if (selected == null) return;
             txtMaChuyenMon.Text = selected.MaChuyenMon.ToString();
@@ -166,10 +172,14 @@ namespace QuanLyGiangVien
             {
                 HoangFormHelper.RequireAction(maNguoiDung, "frmSpecialization", "Xoa");
                 permissionChecked = true;
-                HoangFormHelper.Require(!db.GIANG_VIEN_CHUYEN_MONs.Any(x => x.MaChuyenMon == item.MaChuyenMon),
+                // Re-fetch the record using the current context so the delete is not
+                // attempted with an entity tracked by an old form-lifetime context.
+                var current = db.CHUYEN_MONs.SingleOrDefault(x => x.MaChuyenMon == item.MaChuyenMon);
+                HoangFormHelper.Require(current != null, "Chuyên môn không còn tồn tại. Hãy tải lại danh sách.");
+                HoangFormHelper.Require(!db.GIANG_VIEN_CHUYEN_MONs.Any(x => x.MaChuyenMon == current.MaChuyenMon),
                     "Dữ liệu đang được sử dụng. Không thể xóa; hãy kiểm tra các bản ghi liên quan.");
                 writing = true;
-                db.CHUYEN_MONs.DeleteOnSubmit(item);
+                db.CHUYEN_MONs.DeleteOnSubmit(current);
                 db.SubmitChanges();
                 MessageBox.Show(this, "Đã xóa dữ liệu.", "Thông báo");
             });

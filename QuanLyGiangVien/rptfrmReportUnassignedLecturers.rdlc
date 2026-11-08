@@ -252,7 +252,9 @@
                               <Style />
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Left</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox4</rd:DefaultName>
@@ -282,7 +284,9 @@
                               <Style />
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Left</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox14</rd:DefaultName>
@@ -372,7 +376,9 @@
                               <Style />
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Left</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox6</rd:DefaultName>
@@ -402,7 +408,9 @@
                               <Style />
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Left</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox8</rd:DefaultName>
@@ -446,7 +454,7 @@
         <DataSetName>DataSet1</DataSetName>
         <Top>0.60694in</Top>
         <Height>0.90278in</Height>
-        <Width>9.1in</Width>
+        <Width>9.10002in</Width>
         <ZIndex>1</ZIndex>
         <Style>
           <Border>
@@ -458,12 +466,14 @@
     <Height>2in</Height>
     <Style />
   </Body>
-  <Width>9.1in</Width>
+  <Width>9.10002in</Width>
   <Page>
-    <LeftMargin>1in</LeftMargin>
-    <RightMargin>1in</RightMargin>
-    <TopMargin>1in</TopMargin>
-    <BottomMargin>1in</BottomMargin>
+    <PageHeight>8.27in</PageHeight>
+    <PageWidth>11.69in</PageWidth>
+    <LeftMargin>0.25in</LeftMargin>
+    <RightMargin>0.5in</RightMargin>
+    <TopMargin>0.25in</TopMargin>
+    <BottomMargin>0.5in</BottomMargin>
     <Style />
   </Page>
   <AutoRefresh>0</AutoRefresh>
@@ -478,18 +488,36 @@
   </DataSources>
   <DataSets>
     <DataSet Name="DataSet1">
-      <Fields>
-        <Field Name="STT"><DataField>STT</DataField><rd:TypeName>System.Int32</rd:TypeName></Field>
-        <Field Name="MaGV"><DataField>MaGV</DataField><rd:TypeName>System.Int32</rd:TypeName></Field>
-        <Field Name="HoTen"><DataField>HoTen</DataField><rd:TypeName>System.String</rd:TypeName></Field>
-        <Field Name="TenBoMon"><DataField>TenBoMon</DataField><rd:TypeName>System.String</rd:TypeName></Field>
-        <Field Name="TenHocVi"><DataField>TenHocVi</DataField><rd:TypeName>System.String</rd:TypeName></Field>
-        <Field Name="SoTiet"><DataField>SoTiet</DataField><rd:TypeName>System.Int32</rd:TypeName></Field>
-      </Fields>
       <Query>
         <DataSourceName>UnassignedLecturersData</DataSourceName>
         <CommandText>/* Local DataSet */</CommandText>
       </Query>
+      <Fields>
+        <Field Name="STT">
+          <DataField>STT</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="MaGV">
+          <DataField>MaGV</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="HoTen">
+          <DataField>HoTen</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="TenBoMon">
+          <DataField>TenBoMon</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="TenHocVi">
+          <DataField>TenHocVi</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SoTiet">
+          <DataField>SoTiet</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+      </Fields>
     </DataSet>
   </DataSets>
   <rd:ReportUnitType>Inch</rd:ReportUnitType>

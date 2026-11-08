@@ -216,10 +216,15 @@ namespace QuanLyGiangVien
             {
                 // Nhung muc 0 khong tao lat banh, tranh nhan 0% chong len nhau.
                 series.Label = string.Empty;
+                // Explicitly disable pie labels: the WinForms chart can still render
+                // category names when the default PieLabelStyle is enabled.
+                series["PieLabelStyle"] = "Disabled";
                 series.LegendText = "#VALX";
                 chartThongKe.Legends[0].Enabled = true;
                 chartThongKe.Legends[0].Docking = Docking.Right;
                 chartThongKe.Legends[0].Alignment = StringAlignment.Center;
+                // A larger legend font improves readability and scales its color keys.
+                chartThongKe.Legends[0].Font = new Font("Segoe UI", 13F, FontStyle.Regular);
             }
             else
             {
@@ -230,6 +235,7 @@ namespace QuanLyGiangVien
             foreach (var point in pie ? values.Where(x => x.Value > 0) : values)
             {
                 int index = series.Points.AddXY(point.Key, point.Value);
+                if (pie) series.Points[index].Label = string.Empty;
                 series.Points[index].ToolTip = point.Key + ": " + point.Value.ToString("N0");
             }
             chartThongKe.Series.Add(series);

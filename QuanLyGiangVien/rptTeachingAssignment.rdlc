@@ -241,7 +241,9 @@
                               <Style />
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Left</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <Style>
@@ -293,7 +295,9 @@
                               <Style />
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Left</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <Style>
@@ -319,7 +323,9 @@
                               <Style />
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Left</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <Style>
@@ -345,7 +351,9 @@
                               <Style />
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Left</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <Style>
@@ -371,7 +379,9 @@
                               <Style />
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Left</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <Style>
@@ -422,11 +432,11 @@
   </Body>
   <Width>9.2in</Width>
   <Page>
-    <PageHeight>8.5in</PageHeight>
-    <PageWidth>11in</PageWidth>
-    <LeftMargin>0.5in</LeftMargin>
+    <PageHeight>8.27in</PageHeight>
+    <PageWidth>11.69in</PageWidth>
+    <LeftMargin>0.25in</LeftMargin>
     <RightMargin>0.5in</RightMargin>
-    <TopMargin>0.5in</TopMargin>
+    <TopMargin>0.25in</TopMargin>
     <BottomMargin>0.5in</BottomMargin>
     <Style />
   </Page>
