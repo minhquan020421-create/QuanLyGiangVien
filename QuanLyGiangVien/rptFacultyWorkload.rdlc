@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2008/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <!-- Bố cục thân báo cáo: tiêu đề và tablix; biểu thức trong ô lấy giá trị qua Fields!TenTruong.Value. -->
   <Body>
     <ReportItems>
       <Textbox Name="ReportTitle">
@@ -28,6 +29,7 @@
         <Width>9.1in</Width>
         <Style />
       </Textbox>
+      <!-- Bảng tổng hợp một dòng cho mỗi khoa; các cột gồm tên khoa, số lớp, tổng tiết và trung bình tiết/giảng viên. -->
       <Tablix Name="Tablix1">
         <TablixBody>
           <TablixColumns>
@@ -406,6 +408,7 @@
     <Style />
   </Body>
   <Width>9.1in</Width>
+  <!-- Page xác định khổ giấy, lề và cách ngắt trang khi in hoặc xuất PDF. -->
   <Page>
     <PageHeight>8.27in</PageHeight>
     <PageWidth>11.69in</PageWidth>
@@ -416,6 +419,7 @@
     <Style />
   </Page>
   <AutoRefresh>0</AutoRefresh>
+  <!-- DataSource là tên nguồn logic trong RDLC; ứng dụng tự cấp dữ liệu khi chạy chế độ Local. -->
   <DataSources>
     <DataSource Name="FacultyWorkloadData">
       <ConnectionProperties>
@@ -425,12 +429,14 @@
       <rd:DataSourceID>be1f8790-345e-4b49-9b04-2a4362301328</rd:DataSourceID>
     </DataSource>
   </DataSources>
+  <!-- Hợp đồng dữ liệu: DataSet1 cần các thuộc tính: STT, TenKhoa, SoLop, TongSoTiet, TrungBinhTiet. frmReportFacultyWorkload cung cấp các hàng này. -->
   <DataSets>
     <DataSet Name="DataSet1">
       <Query>
         <DataSourceName>FacultyWorkloadData</DataSourceName>
         <CommandText>/* Local DataSet */</CommandText>
       </Query>
+      <!-- Tên/kiểu Field phải đồng bộ với thuộc tính trên object truyền vào ReportDataSource. -->
       <Fields>
         <Field Name="STT">
           <DataField>STT</DataField>
@@ -458,3 +464,5 @@
   <rd:ReportUnitType>Inch</rd:ReportUnitType>
   <rd:ReportID>d99cf106-d607-4e2a-bf42-a633f77595d1</rd:ReportID>
 </Report>
+
+

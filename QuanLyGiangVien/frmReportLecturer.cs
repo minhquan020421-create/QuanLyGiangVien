@@ -1,8 +1,6 @@
 using System;
 using System.ComponentModel;
 using System.Collections.Generic;
-using System.Data.Linq;
-using System.Drawing.Printing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -10,6 +8,7 @@ using Microsoft.Reporting.WinForms;
 
 namespace QuanLyGiangVien
 {
+    /// <summary>Lọc danh sách giảng viên theo khoa, bộ môn, học vị và trạng thái để xem/in/xuất RDLC.</summary>
     public partial class frmReportLecturer : Form
     {
         private readonly string connectionString;
@@ -65,6 +64,7 @@ namespace QuanLyGiangVien
 
         private void LoadFilters()
         {
+            // Nạp bộ lọc; cờ loading chặn báo cáo chạy giữa lúc ComboBox đang được bind.
             loadingFilters = true;
             try
             {
@@ -98,6 +98,7 @@ namespace QuanLyGiangVien
 
         private void LoadDepartments(QuanLyGiangVienDataContext db, int facultyId)
         {
+            // Khi chọn khoa cụ thể, bộ môn chỉ gồm các mục trực thuộc khoa đó.
             var departments = db.BO_MONs
                 .Where(x => facultyId == 0 || x.MaKhoa == facultyId)
                 .OrderBy(x => x.TenBoMon)
@@ -110,6 +111,7 @@ namespace QuanLyGiangVien
 
         private void cboFaculty_SelectedIndexChanged(object sender, EventArgs e)
         {
+            // Đổi khoa thì nạp lại bộ môn con, sau đó người dùng xem báo cáo theo lựa chọn mới.
             if (loadingFilters || cboFaculty.SelectedValue == null) return;
             int facultyId = SelectedId(cboFaculty);
             try
@@ -124,6 +126,7 @@ namespace QuanLyGiangVien
 
         private void ShowReport()
         {
+            // Giá trị 0/-1 đại diện "Tất cả"; điều kiện được đưa trực tiếp vào truy vấn LINQ.
             try
             {
                 int facultyId = SelectedId(cboFaculty);
@@ -135,6 +138,7 @@ namespace QuanLyGiangVien
                 List<LecturerReportRow> rows;
                 using (var db = new QuanLyGiangVienDataContext(connectionString))
                 {
+                    // LEFT JOIN chức vụ để giảng viên chưa có chức vụ vẫn xuất hiện trong báo cáo.
                     var query = from gv in db.GIANG_VIENs
                                 join bm in db.BO_MONs on gv.MaBoMon equals bm.MaBoMon
                                 join hv in db.HOC_VIs on gv.MaHocVi equals hv.MaHocVi
@@ -156,6 +160,7 @@ namespace QuanLyGiangVien
                     rows = query.ToList();
                 }
 
+                // Tên DataSet1 phải khớp với dataset trong rptLecturer.rdlc.
                 reportViewerLecturer.LocalReport.DataSources.Clear();
                 reportViewerLecturer.LocalReport.DataSources.Add(
                     new ReportDataSource("DataSet1", rows));
@@ -170,18 +175,21 @@ namespace QuanLyGiangVien
 
         private static int SelectedId(ComboBox combo)
         {
+            // Lựa chọn "Tất cả" có ID 0; item null cũng được xem như chưa giới hạn.
             var item = combo.SelectedItem as FilterItem;
             return item == null ? 0 : item.Id;
         }
 
         private void btnPrint_Click(object sender, EventArgs e)
         {
+            // ReportViewer tự xử lý máy in và thiết lập trang.
             try { reportViewerLecturer.PrintDialog(); }
             catch (Exception ex) { ShowError("Không thể mở hộp thoại in", ex); }
         }
 
         private void btnExportPDF_Click(object sender, EventArgs e)
         {
+            // Render dữ liệu đang xem thành PDF, không truy vấn lại SQL.
             try
             {
                 using (var dialog = new SaveFileDialog
@@ -203,15 +211,9 @@ namespace QuanLyGiangVien
 
         private void ShowError(string title, Exception ex)
         {
+            // Gom lỗi truy vấn, render và xuất tệp về cùng cách hiển thị.
             MessageBox.Show(this, title + ":\r\n" + ex.Message, "Lỗi",
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
-
-        private void label1_Click(object sender, EventArgs e) { }
-
-        private void reportViewerLecturer_Load(object sender, EventArgs e)
-        {
-
         }
 
         private void btQuayLai_Click(object sender, EventArgs e)

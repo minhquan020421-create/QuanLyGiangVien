@@ -1,4 +1,4 @@
-﻿namespace QuanLyGiangVien
+namespace QuanLyGiangVien
 {
     partial class frmReportLecturer
     {
@@ -153,7 +153,6 @@
             this.reportViewerLecturer.ShowPromptAreaButton = false;
             this.reportViewerLecturer.Size = new System.Drawing.Size(1335, 492);
             this.reportViewerLecturer.TabIndex = 12;
-            this.reportViewerLecturer.Load += new System.EventHandler(this.reportViewerLecturer_Load);
             // 
             // lblFaculty
             // 
@@ -226,7 +225,6 @@
             this.lblStatus.Size = new System.Drawing.Size(99, 25);
             this.lblStatus.TabIndex = 5;
             this.lblStatus.Text = "Trạng thái";
-            this.lblStatus.Click += new System.EventHandler(this.label1_Click);
             // 
             // cboStatus
             // 

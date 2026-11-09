@@ -8,6 +8,7 @@ using Microsoft.Reporting.WinForms;
 
 namespace QuanLyGiangVien
 {
+    /// <summary>Báo cáo tải trọng từng khoa; trung bình = tổng tiết / số giảng viên đang hoạt động.</summary>
     public partial class frmReportFacultyWorkload : Form
     {
         private readonly string connectionString;
@@ -21,6 +22,7 @@ namespace QuanLyGiangVien
 
         private sealed class ReportRow
         {
+            // Tên thuộc tính phải trùng với Fields của DataSet1 trong RDLC.
             public int STT { get; set; }
             public string TenKhoa { get; set; }
             public int SoLop { get; set; }
@@ -32,7 +34,7 @@ namespace QuanLyGiangVien
         {
             InitializeComponent();
             Theme.Apply(this);
-            // De giu vung xem RDLC sang va de doc trong ca giao dien toi.
+            // Giữ vùng RDLC nền trắng để báo cáo dễ đọc ở cả giao diện sáng và tối.
             reportViewer1.BackColor = System.Drawing.Color.White;
             btQuayLai.Click += (s, e) => Close();
             var setting = ConfigurationManager.ConnectionStrings["QuanLyGiangVien.Properties.Settings.QuanLyGiangVienConnectionString1"]
@@ -53,7 +55,7 @@ namespace QuanLyGiangVien
             try
             {
                 reportViewer1.ProcessingMode = ProcessingMode.Local;
-                // RDLC da duoc nhung trong assembly va khai bao san trong Designer.
+                // Nạp report đã nhúng trong assembly; tên phải trùng ResourceName của project.
                 reportViewer1.LocalReport.ReportEmbeddedResource = "QuanLyGiangVien.rptFacultyWorkload.rdlc";
                 reportViewer1.SetDisplayMode(DisplayMode.PrintLayout);
                 reportViewer1.ZoomMode = ZoomMode.PageWidth;
@@ -65,6 +67,7 @@ namespace QuanLyGiangVien
 
         private void LoadFilters()
         {
+            // ID 0 được dành cho lựa chọn "Tất cả" trong các bộ lọc.
             loading = true;
             try
             {
@@ -86,6 +89,7 @@ namespace QuanLyGiangVien
 
         private static void SetCombo(ComboBox combo, List<Choice> items)
         {
+            // Ánh xạ tên lựa chọn ra giao diện và ID làm giá trị lọc.
             combo.DataSource = items;
             combo.DisplayMember = "Name";
             combo.ValueMember = "Id";
@@ -93,12 +97,14 @@ namespace QuanLyGiangVien
 
         private static int SelectedId(ComboBox combo)
         {
+            // Trả 0 nếu chưa chọn để đại diện không giới hạn bộ lọc.
             var item = combo.SelectedItem as Choice;
             return item == null ? 0 : item.Id;
         }
 
         private void ShowReport()
         {
+            // Dựng tập ReportRow và gắn vào ReportViewer ở chế độ xử lý Local.
             if (loading || reportViewer1.LocalReport == null || cboKhoa.SelectedItem == null) return;
             try
             {
@@ -108,9 +114,14 @@ namespace QuanLyGiangVien
                 List<ReportRow> rows;
                 using (var db = new QuanLyGiangVienDataContext(connectionString))
                 {
-                    // Tải khoa và lớp riêng để giữ cả các khoa chưa mở lớp trong kỳ.
+                    // Tải khoa riêng để vẫn có dòng 0 tiết cho khoa chưa mở lớp trong kỳ.
                     var facultyNames = db.KHOAs.Where(k => facultyId == 0 || k.MaKhoa == facultyId)
                         .Select(k => new { k.MaKhoa, k.TenKhoa }).ToList();
+                    // Đếm giảng viên trong một truy vấn gộp, tránh truy vấn SQL riêng cho từng khoa.
+                    var teacherCounts = db.GIANG_VIENs.Where(g => g.TrangThai)
+                        .GroupBy(g => g.BO_MON.MaKhoa)
+                        .Select(g => new { MaKhoa = g.Key, SoGiangVien = g.Count() })
+                        .ToDictionary(x => x.MaKhoa, x => x.SoGiangVien);
                     var classRows = (from lop in db.LOP_HOC_PHANs
                                      join hp in db.HOC_PHANs on lop.MaHocPhan equals hp.MaHocPhan
                                      join bm in db.BO_MONs on hp.MaBoMon equals bm.MaBoMon
@@ -123,12 +134,14 @@ namespace QuanLyGiangVien
                     var hourRows = db.PHAN_CONG_GIANG_DAYs.Where(x => classIds.Contains(x.MaLopHP))
                         .GroupBy(x => x.MaLopHP)
                         .Select(g => new { MaLopHP = g.Key, SoTiet = g.Sum(x => x.SoTiet) }).ToList();
+                    // Ghép số lớp/tiết theo khoa; trung bình chia cho số giảng viên đang hoạt động.
                     rows = facultyNames.Select((faculty, index) =>
                     {
                         var facultyClasses = classRows.Where(x => x.MaKhoa == faculty.MaKhoa).ToList();
                         var facultyClassIds = new HashSet<int>(facultyClasses.Select(x => x.MaLopHP));
                         int totalHours = hourRows.Where(x => facultyClassIds.Contains(x.MaLopHP)).Sum(x => x.SoTiet);
-                        int teacherCount = db.GIANG_VIENs.Count(g => g.TrangThai && g.BO_MON.MaKhoa == faculty.MaKhoa);
+                        int teacherCount;
+                        if (!teacherCounts.TryGetValue(faculty.MaKhoa, out teacherCount)) teacherCount = 0;
                         return new ReportRow
                         {
                             STT = index + 1,
@@ -152,12 +165,14 @@ namespace QuanLyGiangVien
 
         private void PrintReport()
         {
+            // Mở hộp thoại in tích hợp của ReportViewer.
             try { reportViewer1.PrintDialog(); }
             catch (Exception ex) { ShowError("Không thể mở hộp thoại in", ex); }
         }
 
         private void ExportPdf()
         {
+            // Render report hiện tại thành PDF tại vị trí người dùng chọn.
             try
             {
                 using (var dialog = new SaveFileDialog { Filter = "PDF (*.pdf)|*.pdf", FileName = "BaoCaoTaiTrongGiangDayTheoKhoa.pdf", Title = "Xuất báo cáo tải trọng" })
@@ -172,14 +187,9 @@ namespace QuanLyGiangVien
 
         private void ShowError(string title, Exception ex)
         {
+            // Lỗi truy vấn/render được chuyển thành thông báo thân thiện trong form.
             MessageBox.Show(this, title + ":\r\n" + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
-        private void lblDegree_Click(object sender, EventArgs e) { }
-
-        private void reportViewer1_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }

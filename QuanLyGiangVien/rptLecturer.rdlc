@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2008/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <!-- Bố cục thân báo cáo: tiêu đề và tablix; biểu thức trong ô lấy giá trị qua Fields!TenTruong.Value. -->
   <Body>
     <ReportItems>
       <Textbox Name="txtTitle">
@@ -39,6 +40,7 @@
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
       </Textbox>
+      <!-- Bảng chi tiết: các biểu thức trong hàng dữ liệu dùng năm Field thuộc tính của LecturerReportRow. -->
       <Tablix Name="Tablix4">
         <TablixBody>
           <TablixColumns>
@@ -482,6 +484,7 @@
     </Style>
   </Body>
   <Width>9.46528in</Width>
+  <!-- Page xác định khổ giấy, lề và cách ngắt trang khi in hoặc xuất PDF. -->
   <Page>
     <PageHeight>8.27in</PageHeight>
     <PageWidth>11.69in</PageWidth>
@@ -492,6 +495,7 @@
     <Style />
   </Page>
   <AutoRefresh>0</AutoRefresh>
+  <!-- DataSource là tên nguồn logic trong RDLC; ứng dụng tự cấp dữ liệu khi chạy chế độ Local. -->
   <DataSources>
     <DataSource Name="QuanLyGiangVienDataSet">
       <ConnectionProperties>
@@ -501,12 +505,14 @@
       <rd:DataSourceID>0b5fce22-2cd7-44a8-a4fc-ec67cc15076b</rd:DataSourceID>
     </DataSource>
   </DataSources>
+  <!-- Hợp đồng dữ liệu: DataSet1 khai báo các Field của danh sách giảng viên; các Field được dùng trong tablix là MaGV, HoTen, TenBoMon, TenHocVi, TenChucVu. Kiểu và tên Field phải khớp object được gắn trong frmReportLecturer. -->
   <DataSets>
     <DataSet Name="DataSet1">
       <Query>
         <DataSourceName>QuanLyGiangVienDataSet</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
       </Query>
+      <!-- Tên/kiểu Field phải đồng bộ với thuộc tính trên object truyền vào ReportDataSource. -->
       <Fields>
         <Field Name="MaGV">
           <DataField>MaGV</DataField>
@@ -515,42 +521,6 @@
         <Field Name="HoTen">
           <DataField>HoTen</DataField>
           <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="NgaySinh">
-          <DataField>NgaySinh</DataField>
-          <rd:TypeName>System.DateTime</rd:TypeName>
-        </Field>
-        <Field Name="GioiTinh">
-          <DataField>GioiTinh</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="Email">
-          <DataField>Email</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="SoDienThoai">
-          <DataField>SoDienThoai</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="DiaChi">
-          <DataField>DiaChi</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="NgayVaoTruong">
-          <DataField>NgayVaoTruong</DataField>
-          <rd:TypeName>System.DateTime</rd:TypeName>
-        </Field>
-        <Field Name="MaBoMon">
-          <DataField>MaBoMon</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="MaHocVi">
-          <DataField>MaHocVi</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="MaChucVu">
-          <DataField>MaChucVu</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
         <Field Name="TenBoMon">
           <DataField>TenBoMon</DataField>
@@ -565,16 +535,10 @@
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
       </Fields>
-      <rd:DataSetInfo>
-        <rd:DataSetName>QuanLyGiangVienDataSet</rd:DataSetName>
-        <rd:SchemaPath>D:\C#\ck2\QuanLyGiangVien\QuanLyGiangVienDataSet.xsd</rd:SchemaPath>
-        <rd:TableName>GIANG_VIEN</rd:TableName>
-        <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
-        <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>
-        <rd:TableAdapterName>GIANG_VIENTableAdapter</rd:TableAdapterName>
-      </rd:DataSetInfo>
     </DataSet>
   </DataSets>
   <rd:ReportUnitType>Inch</rd:ReportUnitType>
   <rd:ReportID>db9d7efb-0827-4276-9556-ae0e51bceaf8</rd:ReportID>
 </Report>
+
+

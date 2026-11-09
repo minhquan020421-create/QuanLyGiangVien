@@ -8,6 +8,7 @@ using Microsoft.Reporting.WinForms;
 
 namespace QuanLyGiangVien
 {
+    /// <summary>Báo cáo giảng viên hoạt động chưa được phân công trong phạm vi bộ lọc.</summary>
     public partial class frmReportUnassignedLecturers : Form
     {
         private readonly string connectionString;
@@ -64,6 +65,7 @@ namespace QuanLyGiangVien
 
         private void LoadFilters()
         {
+            // ID 0 trong ComboBox có nghĩa không giới hạn theo bộ lọc tương ứng.
             loading = true;
             try
             {
@@ -86,6 +88,7 @@ namespace QuanLyGiangVien
 
         private static void SetCombo(ComboBox combo, List<Choice> items)
         {
+            // Gắn tên để hiển thị và ID để truy vấn.
             combo.DataSource = items;
             combo.DisplayMember = "Name";
             combo.ValueMember = "Id";
@@ -93,6 +96,7 @@ namespace QuanLyGiangVien
 
         private void LoadDepartments(QuanLyGiangVienDataContext db, int facultyId)
         {
+            // Bộ môn được lọc theo khoa đang chọn, với ID 0 là tất cả bộ môn.
             var departments = db.BO_MONs.Where(x => facultyId == 0 || x.MaKhoa == facultyId)
                 .OrderBy(x => x.TenBoMon).Select(x => new Choice { Id = x.MaBoMon, Name = x.TenBoMon }).ToList();
             departments.Insert(0, new Choice { Id = 0, Name = "Tất cả" });
@@ -101,6 +105,7 @@ namespace QuanLyGiangVien
 
         private void cboKhoa_SelectedIndexChanged(object sender, EventArgs e)
         {
+            // Đồng bộ bộ môn con và làm mới kết quả sau khi khoa thay đổi.
             if (loading || cboKhoa.SelectedValue == null) return;
             try
             {
@@ -112,12 +117,14 @@ namespace QuanLyGiangVien
 
         private static int SelectedId(ComboBox combo)
         {
+            // Không có item tương ứng thì trả 0, tức là không giới hạn theo bộ lọc.
             var selected = combo.SelectedItem as Choice;
             return selected == null ? 0 : selected.Id;
         }
 
         private void ShowReport()
         {
+            // Tính tiết trước, sau đó LEFT JOIN để vẫn giữ giảng viên chưa có dòng phân công.
             if (loading || reportViewer1.LocalReport == null || cboKhoa.SelectedItem == null) return;
             try
             {
@@ -128,6 +135,7 @@ namespace QuanLyGiangVien
                 List<ReportRow> rows;
                 using (var db = new QuanLyGiangVienDataContext(connectionString))
                 {
+                    // Nhóm phân công theo giảng viên; tổng nullable chuyển thành 0 nếu không có giờ.
                     var assignedHours = from pc in db.PHAN_CONG_GIANG_DAYs
                                         join lop in db.LOP_HOC_PHANs on pc.MaLopHP equals lop.MaLopHP
                                         where (yearId == 0 || lop.MaNamHoc == yearId)
@@ -135,6 +143,7 @@ namespace QuanLyGiangVien
                                         group pc by pc.MaGV into totals
                                         select new { MaGV = totals.Key, SoTiet = totals.Sum(x => (int?)x.SoTiet) ?? 0 };
 
+                    // LEFT JOIN tổng tiết để giữ người chưa được phân công trong kết quả.
                     var data = (from gv in db.GIANG_VIENs
                                 join bm in db.BO_MONs on gv.MaBoMon equals bm.MaBoMon
                                 join hv in db.HOC_VIs on gv.MaHocVi equals hv.MaHocVi
@@ -154,6 +163,7 @@ namespace QuanLyGiangVien
                     }).ToList();
                 }
 
+                // DataSet1 phải trùng tên nguồn dữ liệu được khai báo trong RDLC.
                 reportViewer1.LocalReport.DataSources.Clear();
                 reportViewer1.LocalReport.DataSources.Add(new ReportDataSource("DataSet1", rows));
                 reportViewer1.RefreshReport();
@@ -166,12 +176,14 @@ namespace QuanLyGiangVien
 
         private void PrintReport()
         {
+            // Mở hộp thoại in tích hợp của ReportViewer.
             try { reportViewer1.PrintDialog(); }
             catch (Exception ex) { ShowError("Không thể mở hộp thoại in", ex); }
         }
 
         private void ExportPdf()
         {
+            // Xuất kết quả đang xem ra PDF tại nơi người dùng chọn.
             try
             {
                 using (var dialog = new SaveFileDialog { Filter = "PDF (*.pdf)|*.pdf", FileName = "BaoCaoGiangVienChuaPhanCong.pdf", Title = "Xuất báo cáo" })
@@ -186,6 +198,7 @@ namespace QuanLyGiangVien
 
         private void ShowError(string title, Exception ex)
         {
+            // Dùng một cách báo lỗi cho truy vấn, in và xuất PDF.
             MessageBox.Show(this, title + ":\r\n" + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
@@ -194,11 +207,5 @@ namespace QuanLyGiangVien
             Close();
         }
 
-        private void reportViewer1_Load(object sender, EventArgs e) { }
-
-        private void pnlFilter_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
     }
 }

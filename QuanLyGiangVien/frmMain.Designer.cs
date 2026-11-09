@@ -126,7 +126,7 @@ namespace QuanLyGiangVien
             this.pnlHeader.Controls.Add(this.layoutHeader);
             this.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlHeader.Location = new System.Drawing.Point(0, 0);
-            this.pnlHeader.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnlHeader.Margin = new System.Windows.Forms.Padding(4);
             this.pnlHeader.Name = "pnlHeader";
             this.pnlHeader.Padding = new System.Windows.Forms.Padding(33, 12, 27, 12);
             this.pnlHeader.Size = new System.Drawing.Size(1785, 129);
@@ -145,7 +145,7 @@ namespace QuanLyGiangVien
             this.layoutHeader.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutHeader.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize;
             this.layoutHeader.Location = new System.Drawing.Point(33, 12);
-            this.layoutHeader.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.layoutHeader.Margin = new System.Windows.Forms.Padding(4);
             this.layoutHeader.Name = "layoutHeader";
             this.layoutHeader.RowCount = 2;
             this.layoutHeader.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 60F));
@@ -196,7 +196,7 @@ namespace QuanLyGiangVien
             this.btnTheme.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btnTheme.AutoSize = true;
             this.btnTheme.Location = new System.Drawing.Point(1517, 21);
-            this.btnTheme.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnTheme.Margin = new System.Windows.Forms.Padding(4);
             this.btnTheme.MinimumSize = new System.Drawing.Size(204, 63);
             this.btnTheme.Name = "btnTheme";
             this.layoutHeader.SetRowSpan(this.btnTheme, 2);
@@ -212,7 +212,7 @@ namespace QuanLyGiangVien
             this.pnlSidebar.Controls.Add(this.layoutSidebar);
             this.pnlSidebar.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnlSidebar.Location = new System.Drawing.Point(0, 129);
-            this.pnlSidebar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnlSidebar.Margin = new System.Windows.Forms.Padding(4);
             this.pnlSidebar.Name = "pnlSidebar";
             this.pnlSidebar.Padding = new System.Windows.Forms.Padding(21, 21, 21, 12);
             this.pnlSidebar.Size = new System.Drawing.Size(327, 929);
@@ -240,7 +240,7 @@ namespace QuanLyGiangVien
             this.layoutSidebar.Dock = System.Windows.Forms.DockStyle.Top;
             this.layoutSidebar.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize;
             this.layoutSidebar.Location = new System.Drawing.Point(21, 21);
-            this.layoutSidebar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.layoutSidebar.Margin = new System.Windows.Forms.Padding(4);
             this.layoutSidebar.Name = "layoutSidebar";
             this.layoutSidebar.RowCount = 13;
             this.layoutSidebar.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -762,7 +762,7 @@ namespace QuanLyGiangVien
             this.pnlContent.Controls.Add(this.layoutDashboard);
             this.pnlContent.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlContent.Location = new System.Drawing.Point(327, 129);
-            this.pnlContent.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnlContent.Margin = new System.Windows.Forms.Padding(4);
             this.pnlContent.Name = "pnlContent";
             this.pnlContent.Size = new System.Drawing.Size(1458, 929);
             this.pnlContent.TabIndex = 2;
@@ -778,7 +778,7 @@ namespace QuanLyGiangVien
             this.layoutDashboard.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutDashboard.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize;
             this.layoutDashboard.Location = new System.Drawing.Point(0, 0);
-            this.layoutDashboard.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.layoutDashboard.Margin = new System.Windows.Forms.Padding(4);
             this.layoutDashboard.MinimumSize = new System.Drawing.Size(534, 951);
             this.layoutDashboard.Name = "layoutDashboard";
             this.layoutDashboard.Padding = new System.Windows.Forms.Padding(30, 21, 30, 24);
@@ -895,7 +895,7 @@ namespace QuanLyGiangVien
             this.cardGiangVien.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cardGiangVien.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize;
             this.cardGiangVien.Location = new System.Drawing.Point(9, 9);
-            this.cardGiangVien.Margin = new System.Windows.Forms.Padding(9, 9, 9, 9);
+            this.cardGiangVien.Margin = new System.Windows.Forms.Padding(9);
             this.cardGiangVien.MinimumSize = new System.Drawing.Size(0, 188);
             this.cardGiangVien.Name = "cardGiangVien";
             this.cardGiangVien.Padding = new System.Windows.Forms.Padding(20, 16, 20, 15);
@@ -952,7 +952,7 @@ namespace QuanLyGiangVien
             this.cardKhoa.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cardKhoa.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize;
             this.cardKhoa.Location = new System.Drawing.Point(708, 9);
-            this.cardKhoa.Margin = new System.Windows.Forms.Padding(9, 9, 9, 9);
+            this.cardKhoa.Margin = new System.Windows.Forms.Padding(9);
             this.cardKhoa.MinimumSize = new System.Drawing.Size(0, 188);
             this.cardKhoa.Name = "cardKhoa";
             this.cardKhoa.Padding = new System.Windows.Forms.Padding(20, 16, 20, 15);
@@ -1009,7 +1009,7 @@ namespace QuanLyGiangVien
             this.cardHocPhan.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cardHocPhan.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize;
             this.cardHocPhan.Location = new System.Drawing.Point(9, 215);
-            this.cardHocPhan.Margin = new System.Windows.Forms.Padding(9, 9, 9, 9);
+            this.cardHocPhan.Margin = new System.Windows.Forms.Padding(9);
             this.cardHocPhan.MinimumSize = new System.Drawing.Size(0, 188);
             this.cardHocPhan.Name = "cardHocPhan";
             this.cardHocPhan.Padding = new System.Windows.Forms.Padding(20, 16, 20, 15);
@@ -1066,7 +1066,7 @@ namespace QuanLyGiangVien
             this.cardLop.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cardLop.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize;
             this.cardLop.Location = new System.Drawing.Point(708, 215);
-            this.cardLop.Margin = new System.Windows.Forms.Padding(9, 9, 9, 9);
+            this.cardLop.Margin = new System.Windows.Forms.Padding(9);
             this.cardLop.MinimumSize = new System.Drawing.Size(0, 188);
             this.cardLop.Name = "cardLop";
             this.cardLop.Padding = new System.Windows.Forms.Padding(20, 16, 20, 15);
@@ -1352,7 +1352,7 @@ namespace QuanLyGiangVien
             this.Controls.Add(this.pnlSidebar);
             this.Controls.Add(this.pnlHeader);
             this.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MinimumSize = new System.Drawing.Size(822, 504);
             this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

@@ -1,4 +1,4 @@
-﻿namespace QuanLyGiangVien
+namespace QuanLyGiangVien
 {
     partial class frmReportTeachingAssignment
     {
@@ -210,7 +210,6 @@
             this.reportViewerTeachingAssignment.ShowPromptAreaButton = false;
             this.reportViewerTeachingAssignment.Size = new System.Drawing.Size(1333, 445);
             this.reportViewerTeachingAssignment.TabIndex = 7;
-            this.reportViewerTeachingAssignment.Load += new System.EventHandler(this.reportViewerTeachingAssignment_Load);
             // 
             // btQuayLai
             // 

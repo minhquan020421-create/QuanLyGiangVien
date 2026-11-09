@@ -8,17 +8,22 @@ using System.Windows.Forms.DataVisualization.Charting;
 
 namespace QuanLyGiangVien
 {
+    /// <summary>Thống kê giảng viên, lớp học phần và số tiết theo khoa dưới dạng biểu đồ.</summary>
     public partial class frmChart : Form
     {
+        // Chuỗi kết nối đọc lúc mở form, dùng cho các truy vấn thống kê bên dưới.
         private readonly string connectionString;
+        // Chặn bộ lọc chạy báo cáo giữa lúc các ComboBox đang được nạp.
         private bool loading;
 
+        // Đối tượng lọc giữ ID cho truy vấn và tên để hiển thị cho người dùng.
         private sealed class Choice
         {
             public int Id { get; set; }
             public string Name { get; set; }
         }
 
+        // Số liệu đã tổng hợp cho một khoa, dùng cho các thẻ và biểu đồ.
         private sealed class FacultyStat
         {
             public int Id { get; set; }
@@ -68,6 +73,7 @@ namespace QuanLyGiangVien
 
         private void LoadFilters()
         {
+            // Nạp năm, học kỳ và khoa; ID 0 đại diện lựa chọn "Tất cả".
             using (var db = new QuanLyGiangVienDataContext(connectionString))
             {
                 var years = db.NAM_HOCs.OrderByDescending(x => x.TuNam)
@@ -98,6 +104,7 @@ namespace QuanLyGiangVien
 
         private static void BindCombo(ComboBox combo, List<Choice> choices)
         {
+            // Cấu hình mỗi mục có phần chữ hiển thị và ID dùng trong truy vấn.
             combo.DataSource = choices;
             combo.DisplayMember = "Name";
             combo.ValueMember = "Id";
@@ -105,22 +112,26 @@ namespace QuanLyGiangVien
 
         private static int SelectedId(ComboBox combo)
         {
+            // Không có lựa chọn thì trả 0 để truy vấn hiểu là "Tất cả".
             var choice = combo.SelectedItem as Choice;
             return choice == null ? 0 : choice.Id;
         }
 
         private void FilterChanged(object sender, EventArgs e)
         {
+            // Bỏ qua event khi đang nạp bộ lọc; sau đó mỗi thay đổi mới cập nhật thống kê.
             if (!loading && IsHandleCreated) RefreshStatistics();
         }
 
         private void btnlammoi_Click(object sender, EventArgs e)
         {
+            // Nút làm mới chạy lại truy vấn theo các lựa chọn hiện tại.
             RefreshStatistics();
         }
 
         private void RefreshStatistics()
         {
+            // Chỉ cập nhật khi các bộ lọc có giá trị và khởi tạo đã hoàn tất.
             if (loading || comboBox1.SelectedItem == null || comboBox2.SelectedItem == null || cboKhoa.SelectedItem == null) return;
             try
             {
@@ -131,6 +142,7 @@ namespace QuanLyGiangVien
 
                 using (var db = new QuanLyGiangVienDataContext(connectionString))
                 {
+                    // Lấy các khoa trước để vẫn hiển thị khoa chưa có lớp với giá trị 0.
                     var faculties = db.KHOAs.Where(k => k.TrangThai && (facultyId == 0 || k.MaKhoa == facultyId))
                         .OrderBy(k => k.TenKhoa)
                         .Select(k => new FacultyStat
@@ -140,6 +152,7 @@ namespace QuanLyGiangVien
                             LecturerCount = k.BO_MONs.SelectMany(b => b.GIANG_VIENs).Count(g => g.TrangThai)
                         }).ToList();
 
+                    // Lọc lớp đang mở theo năm/kỳ/khoa rồi gom tổng số tiết phân công theo lớp.
                     var classData = (from lop in db.LOP_HOC_PHANs
                                      join hp in db.HOC_PHANs on lop.MaHocPhan equals hp.MaHocPhan
                                      join bm in db.BO_MONs on hp.MaBoMon equals bm.MaBoMon
@@ -165,6 +178,7 @@ namespace QuanLyGiangVien
                     }).ToList();
                 }
 
+                // Các thẻ đầu trang là tổng của tập khoa sau khi đã áp dụng bộ lọc.
                 int lecturerTotal = stats.Sum(x => x.LecturerCount);
                 int classTotal = stats.Sum(x => x.ClassCount);
                 int hourTotal = stats.Sum(x => x.TotalHours);
@@ -188,6 +202,7 @@ namespace QuanLyGiangVien
 
         private void ConfigureChart()
         {
+            // Xóa cấu hình cũ để mỗi lần vẽ chỉ có một vùng biểu đồ và một chú giải.
             chartThongKe.Series.Clear();
             chartThongKe.ChartAreas.Clear();
             chartThongKe.Legends.Clear();
@@ -202,6 +217,7 @@ namespace QuanLyGiangVien
 
         private void RenderChart(List<KeyValuePair<string, int>> values, string metric, bool pie)
         {
+            // Tạo chuỗi dữ liệu mới; loại biểu đồ quyết định hiển thị chú giải/nhãn.
             chartThongKe.Series.Clear();
             var series = new Series("Số liệu")
             {
@@ -246,12 +262,9 @@ namespace QuanLyGiangVien
 
         private void ShowError(string message, Exception ex)
         {
+            // Hiện nguyên nhân để người dùng biết cần kiểm tra SQL hay cấu hình.
             MessageBox.Show(this, message + "\r\n" + ex.Message, "Lỗi thống kê", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
-
-        private void label1_Click(object sender, EventArgs e) { }
-        private void label8_Click(object sender, EventArgs e) { }
-        private void label10_Click(object sender, EventArgs e) { }
 
         private void pnlFilter_Paint(object sender, PaintEventArgs e)
         {

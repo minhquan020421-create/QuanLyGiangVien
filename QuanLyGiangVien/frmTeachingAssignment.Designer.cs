@@ -1,4 +1,4 @@
-﻿namespace QuanLyGiangVien
+namespace QuanLyGiangVien
 {
     partial class frmTeachingAssignment
     {
@@ -101,7 +101,6 @@
             this.pnlAssignmentInfo.Name = "pnlAssignmentInfo";
             this.pnlAssignmentInfo.Size = new System.Drawing.Size(1200, 344);
             this.pnlAssignmentInfo.TabIndex = 1;
-            this.pnlAssignmentInfo.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlAssignmentInfo_Paint);
             // 
             // btnAssign
             // 
@@ -132,7 +131,6 @@
             this.lblPeriods.Size = new System.Drawing.Size(69, 28);
             this.lblPeriods.TabIndex = 10;
             this.lblPeriods.Text = "Số tiết";
-            this.lblPeriods.Click += new System.EventHandler(this.lblPeriods_Click);
             // 
             // cboCourseClass
             // 
@@ -176,7 +174,6 @@
             this.lblLecturer.Size = new System.Drawing.Size(113, 28);
             this.lblLecturer.TabIndex = 6;
             this.lblLecturer.Text = "Giảng viên";
-            this.lblLecturer.Click += new System.EventHandler(this.lblLecturer_Click);
             // 
             // lblTeacher
             // 
@@ -253,7 +250,6 @@
             this.lblAssignmentList.TabIndex = 2;
             this.lblAssignmentList.Tag = "";
             this.lblAssignmentList.Text = "DANH SÁCH PHÂN CÔNG";
-            this.lblAssignmentList.Click += new System.EventHandler(this.lblAssignmentList_Click);
             // 
             // dgvAssignments
             // 

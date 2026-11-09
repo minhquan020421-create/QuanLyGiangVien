@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2008/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <!-- Bố cục thân báo cáo: tiêu đề và tablix; biểu thức trong ô lấy giá trị qua Fields!TenTruong.Value. -->
   <Body>
     <ReportItems>
       <Textbox Name="ReportTitle">
@@ -29,6 +30,7 @@
         <Width>9.1in</Width>
         <Style />
       </Textbox>
+      <!-- Bảng chi tiết các phân công; mỗi hàng gồm giảng viên, học phần, lớp, học kỳ và số tiết. -->
       <Tablix Name="AssignmentTable">
         <TablixBody>
           <TablixColumns>
@@ -431,6 +433,7 @@
     <Style />
   </Body>
   <Width>9.2in</Width>
+  <!-- Page xác định khổ giấy, lề và cách ngắt trang khi in hoặc xuất PDF. -->
   <Page>
     <PageHeight>8.27in</PageHeight>
     <PageWidth>11.69in</PageWidth>
@@ -441,6 +444,7 @@
     <Style />
   </Page>
   <AutoRefresh>0</AutoRefresh>
+  <!-- DataSource là tên nguồn logic trong RDLC; ứng dụng tự cấp dữ liệu khi chạy chế độ Local. -->
   <DataSources>
     <DataSource Name="TeachingAssignmentData">
       <ConnectionProperties>
@@ -450,12 +454,14 @@
       <rd:DataSourceID>6d9a832e-7fa2-4c15-bf8b-59472c6e2299</rd:DataSourceID>
     </DataSource>
   </DataSources>
+  <!-- Hợp đồng dữ liệu: DataSet1 cần các thuộc tính: STT, HoTen, TenHocPhan, TenLop, TenHocKy, SoTiet. frmReportTeachingAssignment cung cấp các hàng này. -->
   <DataSets>
     <DataSet Name="DataSet1">
       <Query>
         <DataSourceName>TeachingAssignmentData</DataSourceName>
         <CommandText>/* Local */</CommandText>
       </Query>
+      <!-- Tên/kiểu Field phải đồng bộ với thuộc tính trên object truyền vào ReportDataSource. -->
       <Fields>
         <Field Name="STT">
           <DataField>STT</DataField>
@@ -487,3 +493,5 @@
   <rd:ReportUnitType>Inch</rd:ReportUnitType>
   <rd:ReportID>79b34f08-014d-4fc7-8607-b73f5196f28d</rd:ReportID>
 </Report>
+
+

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data.Linq;
 using System.Linq;
@@ -117,7 +117,7 @@ namespace QuanLyGiangVien
             if (loading) return;
             selected = null;
             if (dgvDanhSach.SelectedRows.Count == 0) return;
-            int id = Convert.ToInt32(dgvDanhSach.SelectedRows[0].Cells["colMaHocPhan"].Value);
+            int id = Convert.ToInt32(dgvDanhSach.SelectedRows[0].Cells["MaHocPhan"].Value);
             selected = rows.FirstOrDefault(x => x.MaHocPhan == id);
             if (selected == null) return;
             txtMaHocPhan.Text = selected.MaHocPhan.ToString(); txtTenHocPhan.Text = selected.TenHocPhan; numSoTinChi.Value = selected.SoTinChi; numSoTietLyThuyet.Value = selected.SoTietLyThuyet; numSoTietThucHanh.Value = selected.SoTietThucHanh; cboMaBoMon.SelectedValue = selected.MaBoMon; chkTrangThai.Checked = selected.TrangThai;
@@ -198,3 +198,4 @@ namespace QuanLyGiangVien
         }
     }
 }
+

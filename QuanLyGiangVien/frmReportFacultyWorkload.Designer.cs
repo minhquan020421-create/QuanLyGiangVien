@@ -1,4 +1,4 @@
-﻿namespace QuanLyGiangVien
+namespace QuanLyGiangVien
 {
     partial class frmReportFacultyWorkload
     {
@@ -103,7 +103,6 @@
             this.lblDegree.Size = new System.Drawing.Size(56, 25);
             this.lblDegree.TabIndex = 2;
             this.lblDegree.Text = "Khoa";
-            this.lblDegree.Click += new System.EventHandler(this.lblDegree_Click);
             // 
             // cboHocKy
             // 
@@ -213,7 +212,6 @@
             this.reportViewer1.ServerReport.BearerToken = null;
             this.reportViewer1.Size = new System.Drawing.Size(1479, 530);
             this.reportViewer1.TabIndex = 13;
-            this.reportViewer1.Load += new System.EventHandler(this.reportViewer1_Load);
             // 
             // frmReportFacultyWorkload
             // 

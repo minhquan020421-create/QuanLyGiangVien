@@ -58,7 +58,6 @@ namespace QuanLyGiangVien
             this.lblNamHoc.Size = new System.Drawing.Size(115, 29);
             this.lblNamHoc.TabIndex = 0;
             this.lblNamHoc.Text = "Năm học:";
-            this.lblNamHoc.Click += new System.EventHandler(this.lblNamHoc_Click);
             // 
             // cboNamHoc
             // 
@@ -83,7 +82,6 @@ namespace QuanLyGiangVien
             this.lblHocKy.Size = new System.Drawing.Size(91, 29);
             this.lblHocKy.TabIndex = 2;
             this.lblHocKy.Text = "Học kỳ:";
-            this.lblHocKy.Click += new System.EventHandler(this.lblHocKy_Click);
             // 
             // cboHocKy
             // 
@@ -108,7 +106,6 @@ namespace QuanLyGiangVien
             this.lblKhoa.Size = new System.Drawing.Size(75, 29);
             this.lblKhoa.TabIndex = 4;
             this.lblKhoa.Text = "Khoa:";
-            this.lblKhoa.Click += new System.EventHandler(this.lblKhoa_Click);
             // 
             // cboKhoa
             // 
@@ -181,7 +178,6 @@ namespace QuanLyGiangVien
             this.dgvTeachingWorkload.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvTeachingWorkload.Size = new System.Drawing.Size(1160, 550);
             this.dgvTeachingWorkload.TabIndex = 8;
-            this.dgvTeachingWorkload.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTeachingWorkload_CellContentClick_1);
             // 
             // colMaGV
             // 

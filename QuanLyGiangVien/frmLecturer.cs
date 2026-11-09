@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data.Linq;
 using System.Linq;
@@ -216,7 +216,7 @@ namespace QuanLyGiangVien
             if (loading) return;
             selected = null;
             if (dgvDanhSach.SelectedRows.Count == 0) return;
-            int id = Convert.ToInt32(dgvDanhSach.SelectedRows[0].Cells["colMaGV"].Value);
+            int id = Convert.ToInt32(dgvDanhSach.SelectedRows[0].Cells["MaGV"].Value);
             selected = rows.FirstOrDefault(x => x.MaGV == id);
             if (selected == null) return;
             loading = true;
@@ -351,3 +351,4 @@ namespace QuanLyGiangVien
         }
     }
 }
+

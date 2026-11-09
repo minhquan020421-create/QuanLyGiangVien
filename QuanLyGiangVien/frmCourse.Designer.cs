@@ -388,7 +388,7 @@
             // 
             this.cboMaBoMon.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.cboMaBoMon.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboMaBoMon.Location = new System.Drawing.Point(0, 31);
+            this.cboMaBoMon.Location = new System.Drawing.Point(0, 29);
             this.cboMaBoMon.Margin = new System.Windows.Forms.Padding(0, 0, 0, 3);
             this.cboMaBoMon.Name = "cboMaBoMon";
             this.cboMaBoMon.Size = new System.Drawing.Size(382, 33);

@@ -1,13 +1,14 @@
 ﻿using System;
-using System.Data;
 using System.Linq;
 using System.Transactions;
 using System.Windows.Forms;
 
 namespace QuanLyGiangVien
 {
+    /// <summary>Phân công giảng viên vào lớp cùng khoa, giới hạn số tiết và chống ghi trùng.</summary>
     public partial class frmTeachingAssignment : Form
     {
+        // Ngưỡng tải giảng dạy tối đa trong một học kỳ.
         private const int DinhMucTietMoiHocKy = 300;
         private readonly Session session;
         private int? lecturerScope;
@@ -39,6 +40,7 @@ namespace QuanLyGiangVien
                 dangNap = true;
                 using (var db = Session.Open())
                 {
+                    // Xác định phạm vi tài khoản: quản lý được thao tác, giảng viên chỉ xem dữ liệu của mình.
                     var user = CurrentViewer(db);
                     lecturerScope = GetLecturerScope(user);
                     btnAssign.Enabled = !lecturerScope.HasValue &&
@@ -82,6 +84,7 @@ namespace QuanLyGiangVien
 
         private NGUOI_DUNG CurrentViewer(QuanLyGiangVienDataContext db)
         {
+            // Lấy phiên còn hiệu lực và kiểm tra quyền xem trước mọi truy vấn nghiệp vụ.
             if (session == null) throw new UserMessage("Bạn chưa đăng nhập.");
             var user = session.Current(db);
             if (!Session.Allows(db, user.MaVaiTro, nameof(frmTeachingAssignment), ActionRight.View))
@@ -91,6 +94,7 @@ namespace QuanLyGiangVien
 
         private static int? GetLecturerScope(NGUOI_DUNG user)
         {
+            // null cho quản lý toàn cục; ID giảng viên cho tài khoản bị giới hạn cá nhân.
             if (!HoangFormHelper.IsLecturer(user.VAI_TRO.TenVaiTro)) return null;
             return user.MaGV ?? throw new UserMessage("Tài khoản chưa liên kết với hồ sơ giảng viên.");
         }
@@ -105,6 +109,7 @@ namespace QuanLyGiangVien
 
         private void RequireAddPermission(QuanLyGiangVienDataContext db)
         {
+            // Chống gọi trực tiếp chức năng ghi dù nút đã bị khóa trên giao diện.
             var user = ValidateViewScope(db);
             if (lecturerScope.HasValue ||
                 !Session.Allows(db, user.MaVaiTro, nameof(frmTeachingAssignment), ActionRight.Add))
@@ -127,6 +132,7 @@ namespace QuanLyGiangVien
                 using (var db = Session.Open())
                 {
                     ValidateViewScope(db);
+                    // Tìm khoa của giảng viên đã chọn để lọc lớp đúng phạm vi khoa đó.
                     int? facultyId = null;
                     if (cboLecturer.SelectedValue != null)
                     {
@@ -137,6 +143,7 @@ namespace QuanLyGiangVien
                     dangNap = true;
                     // Lop duoc loc dong theo khoa cua giang vien va hoc ky dang chon.
                     // Khong rang buoc theo chuyen mon hay phan cong cu, nen giang vien moi tu dong dung duoc.
+                    // Chỉ lấy lớp đang mở đúng năm/kỳ, có học phần thuộc khoa giảng viên.
                     var classes = db.LOP_HOC_PHANs
                         .Where(x => x.TrangThai && x.MaNamHoc == maNamHoc && x.MaHocKy == maHocKy)
                         .Where(x => facultyId.HasValue && x.HOC_PHAN.BO_MON.MaKhoa == facultyId.Value)
@@ -163,6 +170,7 @@ namespace QuanLyGiangVien
 
         private void LoadAssignments()
         {
+            // Hiển thị phân công trong học kỳ đang chọn; giảng viên chỉ thấy phân công của mình.
             if (IsDisposed || DialogResult != DialogResult.None) return;
             dgvAssignments.Rows.Clear();
             if (!DaChonNamHocVaHocKy()) return;
@@ -196,6 +204,7 @@ namespace QuanLyGiangVien
 
         private void btnAssign_Click(object sender, EventArgs e)
         {
+            // Kiểm tra đầu vào UI trước khi mở transaction ghi vào SQL.
             if (!DaChonNamHocVaHocKy() || cboLecturer.SelectedValue == null || cboCourseClass.SelectedValue == null)
             {
                 MessageBox.Show("Vui lòng chọn năm học, học kỳ, giảng viên và lớp học phần.", "Thiếu thông tin",
@@ -223,6 +232,7 @@ namespace QuanLyGiangVien
             int maLopHP = Convert.ToInt32(cboCourseClass.SelectedValue);
             try
             {
+                // Serializable ngăn hai thao tác đồng thời cùng đọc một tổng cũ rồi vượt định mức.
                 var options = new TransactionOptions { IsolationLevel = System.Transactions.IsolationLevel.Serializable };
                 using (var scope = new TransactionScope(TransactionScopeOption.Required, options))
                 using (var db = Session.Open())
@@ -234,6 +244,7 @@ namespace QuanLyGiangVien
                         throw new InvalidOperationException("Giảng viên không tồn tại hoặc đang ngừng hoạt động.");
                     if (lopHocPhan == null || !lopHocPhan.TrangThai || lopHocPhan.MaNamHoc != maNamHoc || lopHocPhan.MaHocKy != maHocKy)
                         throw new InvalidOperationException("Lớp học phần không hợp lệ cho năm học và học kỳ đã chọn.");
+                    // Kiểm tra lại trên dữ liệu SQL để không tin riêng danh sách ComboBox đã nạp trước đó.
                     if (lopHocPhan.HOC_PHAN.BO_MON.MaKhoa != giangVien.BO_MON.MaKhoa)
                         throw new InvalidOperationException("Chỉ được phân công giảng viên dạy lớp thuộc khoa của giảng viên.");
                     if (db.PHAN_CONG_GIANG_DAYs.Any(x => x.MaGV == maGV && x.MaLopHP == maLopHP))
@@ -250,6 +261,7 @@ namespace QuanLyGiangVien
                         throw new InvalidOperationException("Phân công này làm tổng số tiết là " + (tongTietDaPhanCong + soTiet)
                             + ", vượt định mức " + DinhMucTietMoiHocKy + " tiết/học kỳ.");
 
+                    // Tạo bản ghi sau khi qua mọi ràng buộc; Complete xác nhận transaction thành công.
                     db.PHAN_CONG_GIANG_DAYs.InsertOnSubmit(new PHAN_CONG_GIANG_DAY
                     {
                         MaGV = maGV,
@@ -282,6 +294,7 @@ namespace QuanLyGiangVien
 
         private static bool LaDesignTime()
         {
+            // Không truy vấn cơ sở dữ liệu khi Visual Studio đang mở WinForms Designer.
             return System.ComponentModel.LicenseManager.UsageMode == System.ComponentModel.LicenseUsageMode.Designtime;
         }
 
@@ -290,14 +303,9 @@ namespace QuanLyGiangVien
             MessageBox.Show(message + "\n\nChi tiết: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
-        // Các event handler này đang được WinForms Designer tham chiếu.
-        private void lblLecturer_Click(object sender, EventArgs e) { }
         private void cboLecturer_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (!dangNap && !LaDesignTime()) LoadCourseClasses();
         }
-        private void lblPeriods_Click(object sender, EventArgs e) { }
-        private void lblAssignmentList_Click(object sender, EventArgs e) { }
-        private void pnlAssignmentInfo_Paint(object sender, PaintEventArgs e) { }
     }
 }

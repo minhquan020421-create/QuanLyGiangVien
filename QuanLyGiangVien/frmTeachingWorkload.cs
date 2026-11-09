@@ -6,8 +6,10 @@ using System.Windows.Forms;
 
 namespace QuanLyGiangVien
 {
+    /// <summary>Tổng hợp tiết theo giảng viên, học kỳ và khoa, có giới hạn dữ liệu theo tài khoản.</summary>
     public partial class frmTeachingWorkload : Form
     {
+        // Ngưỡng dùng để gắn trạng thái thiếu, đạt hoặc vượt định mức.
         internal const int DinhMucTietMoiHocKy = 300;
         private readonly Session session;
         private int? lecturerScope;
@@ -35,6 +37,7 @@ namespace QuanLyGiangVien
             {
                 using (var db = Session.Open())
                 {
+                    // Người dùng dạng giảng viên bị giới hạn vào hồ sơ của chính mình.
                     lecturerScope = GetViewScope(db);
                     cboNamHoc.DataSource = db.NAM_HOCs
                         .Where(x => x.TrangThai)
@@ -95,6 +98,7 @@ namespace QuanLyGiangVien
 
         private int? GetViewScope(QuanLyGiangVienDataContext db)
         {
+            // Xác thực user và quyền; null nghĩa là vai trò quản lý được xem toàn bộ dữ liệu.
             if (session == null) throw new UserMessage("Bạn chưa đăng nhập.");
             var user = session.Current(db);
             if (!Session.Allows(db, user.MaVaiTro, nameof(frmTeachingWorkload), ActionRight.View))
@@ -105,6 +109,7 @@ namespace QuanLyGiangVien
 
         private void CloseForAccessError(UserMessage ex)
         {
+            // Báo quyền/phạm vi không hợp lệ rồi đóng form để không tiếp tục hiển thị sai dữ liệu.
             MessageBox.Show(this, ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             Close();
         }
@@ -112,6 +117,7 @@ namespace QuanLyGiangVien
         internal static IQueryable<PHAN_CONG_GIANG_DAY> ActiveAssignments(
             QuanLyGiangVienDataContext db, int maNamHoc, int maHocKy)
         {
+            // Chỉ tính phân công còn hiệu lực: lớp đang mở và giảng viên đang hoạt động.
             return db.PHAN_CONG_GIANG_DAYs.Where(x => x.LOP_HOC_PHAN.TrangThai &&
                 x.LOP_HOC_PHAN.MaNamHoc == maNamHoc && x.LOP_HOC_PHAN.MaHocKy == maHocKy &&
                 x.GIANG_VIEN.TrangThai);
@@ -119,6 +125,7 @@ namespace QuanLyGiangVien
 
         private void LoadWorkload()
         {
+            // Xóa dữ liệu cũ; dừng nếu năm/kỳ chưa có giá trị hợp lệ.
             dgvTeachingWorkload.Rows.Clear();
             if (cboNamHoc.SelectedValue == null || cboHocKy.SelectedValue == null) return;
 
@@ -138,7 +145,7 @@ namespace QuanLyGiangVien
                     if (GetViewScope(db) != lecturerScope)
                         throw new UserMessage("Phạm vi dữ liệu đã thay đổi. Hãy mở lại chức năng.");
 
-                    // Đọc danh sách giảng viên trước để vẫn hiện người có tổng số tiết bằng 0.
+                    // Đọc danh sách giảng viên trước để vẫn hiện người chưa được phân công với tổng 0.
                     var lecturers = db.GIANG_VIENs
                         .Where(x => x.TrangThai && (maKhoa == 0 || x.BO_MON.MaKhoa == maKhoa))
                         .Where(x => !lecturerScope.HasValue || x.MaGV == lecturerScope)
@@ -151,6 +158,7 @@ namespace QuanLyGiangVien
                         })
                         .ToList();
 
+                    // Truy vấn giờ riêng rồi cộng theo MaGV để điền vào từng hàng giảng viên.
                     var assignments = ActiveAssignments(db, maNamHoc, maHocKy)
                         .Where(x => (maKhoa == 0 || x.GIANG_VIEN.BO_MON.MaKhoa == maKhoa) &&
                                     (!lecturerScope.HasValue || x.MaGV == lecturerScope))
@@ -193,6 +201,7 @@ namespace QuanLyGiangVien
 
         private void btnLamMoi_Click(object sender, EventArgs e)
         {
+            // Đặt lại bộ lọc nhưng tạm khóa event để chỉ tải dữ liệu một lần.
             dangNapBoLoc = true;
             if (cboNamHoc.Items.Count > 0) cboNamHoc.SelectedIndex = 0;
             if (cboHocKy.Items.Count > 0) cboHocKy.SelectedIndex = 0;
@@ -218,14 +227,10 @@ namespace QuanLyGiangVien
 
         private static void HienThiLoi(string thongBao, Exception ex)
         {
+            // Tập trung cách hiển thị lỗi truy vấn và lỗi kết nối.
             MessageBox.Show(thongBao + "\n\nChi tiết: " + ex.Message,
                 "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
-
-        // Giữ các handler click do WinForms Designer tham chiếu.
-        private void dgvTeachingWorkload_CellContentClick(object sender, DataGridViewCellEventArgs e) { }
-        private void lblNamHoc_Click(object sender, EventArgs e) { }
-        private void lblHocKy_Click(object sender, EventArgs e) { }
 
         private sealed class KhoaFilterItem
         {
@@ -233,14 +238,5 @@ namespace QuanLyGiangVien
             public string TenKhoa { get; set; }
         }
 
-        private void dgvTeachingWorkload_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void lblKhoa_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

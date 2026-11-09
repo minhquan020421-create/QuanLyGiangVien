@@ -229,7 +229,7 @@
             // 
             this.cboMaKhoa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.cboMaKhoa.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboMaKhoa.Location = new System.Drawing.Point(0, 31);
+            this.cboMaKhoa.Location = new System.Drawing.Point(0, 34);
             this.cboMaKhoa.Margin = new System.Windows.Forms.Padding(0, 0, 0, 3);
             this.cboMaKhoa.Name = "cboMaKhoa";
             this.cboMaKhoa.Size = new System.Drawing.Size(576, 33);

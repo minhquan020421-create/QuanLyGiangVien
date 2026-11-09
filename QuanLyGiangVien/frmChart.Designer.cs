@@ -1,4 +1,4 @@
-﻿namespace QuanLyGiangVien
+namespace QuanLyGiangVien
 {
     partial class frmChart
     {
@@ -160,7 +160,6 @@
             this.label1.Size = new System.Drawing.Size(68, 25);
             this.label1.TabIndex = 5;
             this.label1.Text = "Chỉ số ";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // cboKhoa
             // 
@@ -255,7 +254,6 @@
             this.label8.Size = new System.Drawing.Size(22, 25);
             this.label8.TabIndex = 7;
             this.label8.Text = "0";
-            this.label8.Click += new System.EventHandler(this.label8_Click);
             // 
             // label9
             // 
@@ -278,7 +276,6 @@
             this.label10.Size = new System.Drawing.Size(22, 25);
             this.label10.TabIndex = 9;
             this.label10.Text = "0";
-            this.label10.Click += new System.EventHandler(this.label10_Click);
             // 
             // panel1
             // 

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2008/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <!-- Bố cục thân báo cáo: tiêu đề và tablix; biểu thức trong ô lấy giá trị qua Fields!TenTruong.Value. -->
   <Body>
     <ReportItems>
       <Textbox Name="ReportTitle">
@@ -28,6 +29,7 @@
         <Width>9.1in</Width>
         <Style />
       </Textbox>
+      <!-- Bảng liệt kê giảng viên chưa có phân công; mỗi hàng dữ liệu là một hồ sơ giảng viên. -->
       <Tablix Name="Tablix1">
         <TablixBody>
           <TablixColumns>
@@ -467,6 +469,7 @@
     <Style />
   </Body>
   <Width>9.10002in</Width>
+  <!-- Page xác định khổ giấy, lề và cách ngắt trang khi in hoặc xuất PDF. -->
   <Page>
     <PageHeight>8.27in</PageHeight>
     <PageWidth>11.69in</PageWidth>
@@ -477,6 +480,7 @@
     <Style />
   </Page>
   <AutoRefresh>0</AutoRefresh>
+  <!-- DataSource là tên nguồn logic trong RDLC; ứng dụng tự cấp dữ liệu khi chạy chế độ Local. -->
   <DataSources>
     <DataSource Name="UnassignedLecturersData">
       <ConnectionProperties>
@@ -486,12 +490,14 @@
       <rd:DataSourceID>9c641fab-cf26-4a7a-a466-2873e49b28f8</rd:DataSourceID>
     </DataSource>
   </DataSources>
+  <!-- Hợp đồng dữ liệu: DataSet1 cần các thuộc tính: STT, MaGV, HoTen, TenBoMon, TenHocVi, SoTiet. frmReportUnassignedLecturers cung cấp các hàng này. -->
   <DataSets>
     <DataSet Name="DataSet1">
       <Query>
         <DataSourceName>UnassignedLecturersData</DataSourceName>
         <CommandText>/* Local DataSet */</CommandText>
       </Query>
+      <!-- Tên/kiểu Field phải đồng bộ với thuộc tính trên object truyền vào ReportDataSource. -->
       <Fields>
         <Field Name="STT">
           <DataField>STT</DataField>
@@ -523,3 +529,5 @@
   <rd:ReportUnitType>Inch</rd:ReportUnitType>
   <rd:ReportID>dc5a23a0-829d-4584-b4f0-5045da3677b9</rd:ReportID>
 </Report>
+
+

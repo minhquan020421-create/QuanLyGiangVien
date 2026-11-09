@@ -1,4 +1,4 @@
-﻿namespace QuanLyGiangVien
+namespace QuanLyGiangVien
 {
     partial class frmReportUnassignedLecturers
     {
@@ -205,7 +205,6 @@
             this.pnlFilter.Name = "pnlFilter";
             this.pnlFilter.Size = new System.Drawing.Size(1419, 163);
             this.pnlFilter.TabIndex = 15;
-            this.pnlFilter.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlFilter_Paint);
             // 
             // lblTitle
             // 
@@ -240,7 +239,6 @@
             this.reportViewer1.ServerReport.BearerToken = null;
             this.reportViewer1.Size = new System.Drawing.Size(1419, 569);
             this.reportViewer1.TabIndex = 16;
-            this.reportViewer1.Load += new System.EventHandler(this.reportViewer1_Load);
             // 
             // frmReportUnassignedLecturers
             // 
